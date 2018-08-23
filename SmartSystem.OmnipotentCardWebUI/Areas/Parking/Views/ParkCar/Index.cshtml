@@ -1,0 +1,484 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "车辆管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/DateExtensions.js" type="text/javascript"></script>
+@Html.ReferenceScriptHtml("/Scripts/parking/parkcar.js?v=6")
+<script src="/Scripts/fileupload/vendor/jquery.ui.widget.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.iframe-transport.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.fileupload.js" type="text/javascript"></script>
+<script src="../../../../Scripts/parking/DataGrid.js" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+    <div region="west" split="true" title="车场信息" style="width: 250px;">
+        <div style="margin:5px 0px 5px 5px; text-align:left">
+            <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox" />&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()" />
+        </div>
+        <ul id="parkingTree"></ul>
+    </div>
+    <div region="center" title="车辆信息" style="padding:2px; ">
+        <div style="margin-bottom: 2px">
+            <table>
+                <tr>
+                    <td>姓名/电话：</td>
+                    <td><input class="easyui-textbox" style="width: 100px; height: 25px" id="txtQueryEmployeeName" /></td>
+                    <td>车牌号：</td>
+                    <td><input class="easyui-textbox" style="width: 100px; height: 25px" id="txtQueryPlateNo" /></td>
+                    <td>车位号：</td>
+                    <td><input class="easyui-textbox" style="width: 100px; height: 25px" id="txtQueryPKLot" /></td>
+                    <td>家庭地址：</td>
+                    <td colspan="2"><input class="easyui-textbox" style="width: 150px; height: 25px" id="txtQueryFamilyAddr" /></td>
+                </tr>
+                <tr>
+                    <td>车类：</td>
+                    <td>
+                        <input id="cmbQueryCarType" name="QueryCarType" class="easyui-combobox" editable=false style=" width:100px" />
+                    </td>
+                    <td>车型：</td>
+                    <td>
+                        <input id="cmbQueryCarModel" name="QueryCarModel" class="easyui-combobox" editable=false style=" width:100px" />
+                    </td>
+                    <td>状态：</td>
+                    <td>
+                        <input id="cmbQueryState" name="QueryState" class="easyui-combobox" editable=false style=" width:100px" />
+                    </td>
+                    <td align="right">&nbsp;&nbsp;<input type="checkbox" id="cbxDue"/>即将到期</td>
+                    <td colspan="3">
+                        &nbsp;&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton" style="width: 50px; height: 28px" onclick="return btnSubmitQuery()">查询</a>
+                        &nbsp;&nbsp;<a href="/Download/车辆导入模板.rar">下载车辆导入模板</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="height: 88%">
+            <table fit="true" id="tableCar"></table>
+        </div>
+    </div>
+</div>
+
+<input type="file" name="files" id="carImportFile" class="formtext" style="display:none" />
+<div id="divCarBox" style="display:none">
+    <form id="divCarBoxForm" class="easyui-form">
+        <div title="编辑车辆信息" style="padding: 20px;">
+            <input type="hidden" name="GID" id="hiddEditGID" />
+            <input type="hidden" name="CardID" id="hiddEditCardID" />
+            <input type="hidden" name="PKID" id="hiddPKID" />
+            <input type="hidden" name="CarBaseTypeID" id="hiddCarBaseTypeID" />
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr>
+                    <td align="right">
+                        车型：
+                    </td>
+                    <td>
+                        <input id="cmbCarModelID" name="CarModelID" class="easyui-combobox" editable=false style=" width:140px" />
+                        <span style="color:Red">*</span>
+                    </td>
+                    <td align="right" style="width:80px">
+                        车类：
+                    </td>
+                    <td>
+                        <input id="cmbCarTypeID" name="CarTypeID" class="easyui-combobox" editable=false style=" width:140px" />
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        车牌颜色：
+                    </td>
+                    <td>
+                        <input id="cmbColor" name="Color" class="easyui-combobox" editable=false style=" width:140px" />
+                        <span style="color:Red">*</span>
+                    </td>
+                    <td align="right">
+                        车牌号：
+                    </td>
+                    <td>
+                        <input type="hidden" id="hiddPlateNo" name="PlateNo" />
+                        @Html.Action("Index", "ParkPlateNo", new { area = "", txtWidth = "90px", needShowHead = false })
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        车场区域：
+                    </td>
+                    <td>
+                        <input type="hidden" id="hiddAreaIDS" name="AreaIDS" />
+                        <select id="cmbAreaIDS" class="easyui-combobox" editable=false data-options="multiple:true" style="width:140px"> </select>
+                        <span style="color:Red">*</span>
+                    </td>
+                    <td align="right">
+                        车场通道：
+                    </td>
+                    <td>
+                        <input type="hidden" id="hiddGateID" name="GateID" />
+                        <select id="cmbGateID" class="easyui-combobox" editable=false data-options="multiple:true" style="width:140px"> </select>
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        车主姓名：
+                    </td>
+                    <td>
+                        <input id="txtEmployeeName" name="EmployeeName" class="easyui-validatebox form-control" style="width:140px">
+                        <span style="color:Red">*</span>
+                    </td>
+                    <td align="right">
+                        车主电话：
+                    </td>
+                    <td>
+                        <input id="txtMobilePhone" name="MobilePhone" class="easyui-validatebox form-control" style="width:140px">
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        车位组：
+                    </td>
+                    <td>
+                        <select id="cmbCarBitGroup" name="PKLot" class="easyui-combobox" style="width:100px"> </select>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" style="width: 50px; height: 22px" onclick="return btnEditCarBitGroup()">编辑</a>
+                    </td>
+                    <td align="right">
+                        车位数量：
+                    </td>
+                    <td>
+                        <input id="txtPKLotNum" name="PKLotNum" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width:140px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        家庭地址：
+                    </td>
+                    <td colspan="3">
+                        <input id="txtFamilyAddr" name="FamilyAddr" class="easyui-textbox" data-options="multiline:true" style="width:390px;height:25px">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        备注：
+                    </td>
+                    <td colspan="3">
+                        <input id="txtRemark" name="Remark" class="easyui-textbox" data-options="multiline:true" style="width:390px;height:25px">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+
+<div id="divCarRenewalBox" style="display:none">
+    <form id="divCarRenewalBoxForm" class="easyui-form">
+        <div title="车辆续期" style="padding: 20px;">
+            <input type="hidden" name="GID" id="hiddRenewalGID" />
+            <input type="hidden" name="CarBaseTypeID" id="hiddRenewalCarBaseTypeID" />
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr>
+                    <td align="right">
+                        车牌号码：
+                    </td>
+                    <td>
+                        <input id="txtRenewalPlateNo" name="PlateNo" disabled="disabled" class="easyui-validatebox  form-control" />
+                    </td>
+                </tr>
+                <tr class="trRenewal trManyCarManyLot">
+                    <td colspan="2">
+                        <div>
+                            <span style="color:Red">*多位续期将对以下车辆统一处理为当前选择车辆的有效期</span>
+                            <div id="divManyCarManyLot">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        车主姓名：
+                    </td>
+                    <td>
+                        <input id="txtRenewalUserName" name="EmployeeName" disabled="disabled" class="easyui-validatebox form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        车位号：
+                    </td>
+                    <td>
+                        <input id="txtRenewalPKLot" name="PKLot" disabled="disabled" class="easyui-validatebox  form-control" />
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard VipCard TempCard SeasonCard YearCard CustomCard" style="display: none">
+                    <td align="right">
+                        开始生效日期：
+                    </td>
+                    <td>
+                        <input type="hidden" id="hiddRenewalBeginDate" name="BeginDate" />
+                        <input id="txtRenewalBeginDate" class="form-control" style="width:150px" />
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard VipCard TempCard Recharge SeasonCard YearCard CustomCard" style="display: none">
+                    <td align="right">
+                        <span id="spanEndDateDes">原有效期结束日期</span>：
+                    </td>
+                    <td>
+                        <input id="txtRenewalEndDate" name="EndDate" class="form-control" />
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard CustomCard" id="MonthCard" style="display: none">
+                    <td align="right">
+                        续费月金额：
+                    </td>
+                    <td>
+                        <input id="txtRenewalCarMonthlyRentAmount" name="CarMonthlyRentAmount" disabled="disabled" class="easyui-validatebox  form-control" />
+                    </td>
+                </tr>
+                <tr class="trRenewal SeasonCard" id="SeasonCard" style="display: none">
+                    <td align="right">
+                        续费季金额：
+                    </td>
+                    <td>
+                        <input id="txtRenewalCarSeasonRentAmount" name="CarSeasonRentAmount" disabled="disabled" class="easyui-validatebox  form-control" />
+                    </td>
+                </tr>
+                <tr class="trRenewal YearCard" id="YearCard" style="display: none">
+                    <td align="right">
+                        续费年金额：
+                    </td>
+                    <td>
+                        <input id="txtRenewalCarYearRentAmount" name="CarYearRentAmount" disabled="disabled" class="easyui-validatebox  form-control" />
+                    </td>
+                </tr>
+                <tr class="trRenewal CustomCard" style="display: none">
+                    <td align="right">
+                        缴费月数：
+                    </td>
+                    <td>
+                        <input id="txtRenewalCustom" name="RenewalCustom" disabled="disabled" class="easyui-validatebox  form-control" />
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard VipCard" style="display: none">
+                    <td align="right">
+                        缴费月数：
+                    </td>
+                    <td>
+                        <select name="RenewalMonth" id="sltRenewalMonth" style="width:150px" class="form-select-control">
+                            <option value="1">一个月</option>
+                            <option value="2">二个月</option>
+                            <option value="3">三个月</option>
+                            <option value="4">四个月</option>
+                            <option value="5">五个月</option>
+                            <option value="6">六个月</option>
+                            <option value="7">七个月</option>
+                            <option value="8">八个月</option>
+                            <option value="9">九个月</option>
+                            <option value="10">十个月</option>
+                            <option value="11">十一个月</option>
+                            <option value="12">十二个月</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="trRenewal SeasonCard" style="display: none">
+                    <td align="right">
+                        缴费季数：
+                    </td>
+                    <td>
+                        <select name="RenewalSeason" id="sltRenewalSeason" style="width:150px" class="form-select-control">
+                            <option value="1">一季</option>
+                            <option value="2">二季</option>
+                            <option value="3">三季</option>
+                            <option value="4">四季</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="trRenewal YearCard" style="display: none">
+                    <td align="right">
+                        缴费年数：
+                    </td>
+                    <td>
+                        <select name="RenewalYear" id="sltRenewalYear" style="width:150px" class="form-select-control">
+                            <option value="1">一年</option>
+                            <option value="2">二年</option>
+                            <option value="3">三年</option>
+                            <option value="4">四年</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard VipCard TempCard SeasonCard YearCard CustomCard" style="display: none">
+                    <td align="right">
+                        新有效期结束日期：
+                    </td>
+                    <td>
+                        <input type="hidden" id="hiddRenewalNewEndDate" name="NewEndDate" />
+                        <input id="txtRenewalNewEndDate" class="form-control" style="width:150px" />
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard SeasonCard YearCard CustomCard" style="display: none">
+                    <td align="right">
+                        缴费金额：
+                    </td>
+                    <td>
+                        <input type="text" id="txtMonthlyRentTotalMoney" name="MonthlyRentTotalMoney" readonly="readonly" class="easyui-validatebox  form-control" style="width:140px" /> 元
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard MonthCardToTemp" style="display: none">
+                    <td align="right">
+                        月卡转临停金额：
+                    </td>
+                    <td>
+                        <input type="text" id="txtMonthlyRentToTempNoPayAmount" name="MonthlyRentToTempNoPayAmount" readonly="readonly" class="easyui-validatebox  form-control" style="width:140px" /> 元
+                    </td>
+                </tr>
+                <tr class="trRenewal MonthCard SeasonCard YearCard CustomCard" style="display: none">
+                    <td align="right">
+                        需支付总金额：
+                    </td>
+                    <td>
+                        <input type="text" id="txtNeedPayTotalMoney" name="NeedPayTotalMoney" readonly="readonly" class="easyui-validatebox  form-control" style="width:140px" /> 元
+                    </td>
+                </tr>
+                <tr class="trRenewal Recharge" style="display: none">
+                    <td align="right">
+                        原始金额：
+                    </td>
+                    <td>
+                        <input id="txtRenewalOriginalMoney" disabled="disabled" name="OriginalMoney" class="easyui-validatebox form-control" style="width:140px" /> 元
+                    </td>
+                </tr>
+                <tr class="trRenewal Recharge" style="display: none">
+                    <td align="right">
+                        充值金额：
+                    </td>
+                    <td>
+                        <input type="number" id="txtRenewalRechargeMoney" name="RechargeMoney" class="form-control" value="0" style="width:140px" /> 元
+                    </td>
+                </tr>
+                <tr class="trRenewal Recharge" style="display: none">
+                    <td align="right">
+                        充值后金额：
+                    </td>
+                    <td>
+                        <input id="txtRechargeAfterMoney" disabled="disabled" name="NewMoney" class="easyui-validatebox form-control" style="width:140px" /> 元
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+
+<div id="divCarSuspendBox" style="display:none">
+    <form id="divCarSuspendBoxForm" class="easyui-form">
+        <div title="车辆暂停设置" style="padding: 20px;">
+            <input type="hidden" name="CarBaseTypeID" id="hiddSuspendCarBaseTypeID" />
+            <input type="hidden" name="grantId" id="hiddSuspendGID" />
+            <input type="hidden" name="EndDate" id="hiddSuspendEndDate" />
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr>
+                    <td align="right">
+                        开始日期：
+                    </td>
+                    <td>
+                        <input id="txtstart" name="start" type="text" class="easyui-datebox" style="width:150px" required="required"></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        结束日期：
+                    </td>
+                    <td>
+                        <input id="txtend" name="end" type="text" class="easyui-datebox" style="width:150px"></input>
+                        <br><span>不填则需手动恢复</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<div id="divCarImportBox" style="display:none">
+    <form id="divCarImportBoxForm" class="easyui-form">
+        <input type="hidden" name="PKID" id="hiddImportPKID" />
+        <div title="导入车辆信息" style="padding: 20px;">
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr>
+                    <td align="right">
+                        车类：
+                    </td>
+                    <td>
+                        <input id="sltImportCarTypeID" name="CarTypeID" class="easyui-combobox" editable=false style=" width:200px" />
+
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        车型：
+                    </td>
+                    <td>
+                        <input id="sltImportCarModelID" name="CarModelID" class="easyui-combobox" editable=false style=" width:200px" />
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        车场区域：
+                    </td>
+                    <td>
+                        <input type="hidden" id="hiddImportAreaIDS" name="AreaIDS" />
+                        <select id="sltImportAreaIDS" class="easyui-combobox" editable=false data-options="multiple:true" style="width:200px"> </select>
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        车场通道：
+                    </td>
+                    <td>
+                        <input type="hidden" id="hiddImportGateID" name="GateID" />
+                        <select id="sltImportGateID" class="easyui-combobox" editable=false data-options="multiple:true" style="width:200px"> </select>
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        选择文件：
+                    </td>
+                    <td>
+
+                        <a class="easyui-linkbutton" onclick="return btnSelectImportFile()">点击选择</a> <span id="spanUploadFileResult">
+                        </span>
+                        <input type="hidden" id="hiddCarFilePath" name="CarFilePath" />
+                        <span style="color:Red">*</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<div id="divParkCarBitGroupBox" style="display:none">
+    <form id="divParkCarBitGroupBoxForm" class="easyui-form">
+        <div title="编辑车位组" style="padding: 20px;">
+            <input type="hidden" name="PKID" id="hiddParkCarBitGroupPKID" />
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr>
+                    <td align="right">
+                        车位组：
+                    </td>
+                    <td>
+                        <input id="txtCarBitName" name="CarBitName" class="easyui-validatebox form-control" style="width:150px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        车位数量：
+                    </td>
+                    <td>
+                        <input id="txtCarBitNum" name="CarBitNum" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width:150px" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "系统角色管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/easyui/tree-extend.js" type="text/javascript"></script>
+<script src="/Scripts/users/systemrole.js?v=1" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" title="用户角色" style="width: 25%" collapsible="false">
+        <div style="padding: 5px 0;">
+            @if (ViewBag.CanAdd)
+            { 
+                <a href="#" class="easyui-linkbutton" id="addrole" data-options="iconCls:'icon-add'">添加</a>
+            }
+            @if (ViewBag.CanUpdate)
+            { 
+                <a href="#" class="easyui-linkbutton" id="updaterole"  data-options="iconCls:'icon-edit'">
+                    修改</a>
+            }
+            @if (ViewBag.CanDelete)
+            { 
+                <a href="#" class="easyui-linkbutton" id="deleterole"  data-options="iconCls:'icon-remove'">
+                    删除</a>
+            }
+            <a href="#" class="easyui-linkbutton" id="reloadrole"  data-options="iconCls:'icon-reload'">
+                刷新</a>
+        </div>
+        <ul id="treeUserRole" lines="true">
+        </ul>
+    </div>
+    <div region="center" title="角色模块授权" style="width: 70%">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north'" style="height: 40px">
+                <div style="margin: 5px 0px 5px 10px">
+ 
+                    @if (ViewBag.CanaAuthorize)
+                    { 
+                        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" id="btnSubmitData" onclick="return btnSaveRoleModule()">确认授权</a>
+                    }
+                </div>
+            </div>
+            <div data-options="region:'center',border:false">
+                <ul id="treeRoleModule" style="margin: 20px 0 0 10px" lines="true">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="editUserRoleBox" style="display: none">
+    <form id="editUserRoleBoxForm" class="easyui-form">
+    <div title="编辑用户角色" style="padding: 20px;">
+        <input type="hidden" name="RecordID" id="hiddRoleRecordID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    角色名称：
+                </td>
+                <td>
+                    <input id="txtRoleName" name="RoleName" required="true" class="easyui-textbox form-control" style="width:150px" missingmessage="不能为空" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>

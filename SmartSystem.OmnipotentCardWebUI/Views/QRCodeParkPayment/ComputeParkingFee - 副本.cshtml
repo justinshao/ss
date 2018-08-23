@@ -1,0 +1,146 @@
+﻿@using Common.Core;
+@using Common.Entities.Order;
+@model OnlineOrder
+@{
+    ViewBag.Title = "停车缴费";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    .weui_grid_cus
+    {
+        width: 25%;
+        height: 60px;
+        background-color: #fff;
+    }
+    .weui_grid_cus p
+    {
+        line-height: 14px;
+    }
+    .weui_btn_primary
+    {
+        background-color:#c8161d !important;   
+     }
+     .headtc{font-size:16px; height:26px; line-height:26px; overflow:hidden; width:96px; margin:0 auto; margin-top:10px;}
+     .header_change{text-align:center;overflow:hidden;}
+     .weui_cell::before{border:0px !important;}
+     .weui_cells::before{border-top:0px !important;}
+     #alert_box
+     {
+        width:322px;
+        height:211px;
+        position: absolute;
+        z-index:99999999;
+
+    }
+</style>
+<div class="row">
+        <!--header-->
+         <div class="header_change" style="background:#fff; margin-bottom:1em;">
+                 <div class="headtc"><table align="center" cellpadding="0" cellspacing="0"><tr style="align:center !important;"><td><img src="/Content/mobile/images/P.png" width="22" height="22" alt="" /></td><td style="">&nbsp;&nbsp;</td><td style="">临停车费</td></tr></table></div>
+               @*   <div>
+                     <span style="font-size:20px;color:#c8161d;">@ViewBag.PayMoney</span>元 
+                  </div> *@
+                  <div style="margin-top:10px; margin-bottom:10px;">
+                  <img onclick="alert_box('@ViewBag.url')" src="@ViewBag.url" width="100" height="80" alt="" />
+                  </div>
+        </div>
+        <div id="alert_box" style="display:none"><img src=""  id="aa" alt="" width="322" height="211"/></div>
+         <div class="fontcen" style="background:#fff">
+           @if(!string.IsNullOrWhiteSpace(Model.PlateNo))
+            { 
+                <div class="weui_cell" style="border-top:0px !important;">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            车牌号</p>
+                    </div>
+                    <div class="weui_cell_ft">@Model.PlateNo &nbsp;<a style="color:#0EA9FB" href="/ParkingPayment/LicensePlatePayment">修改</a></div>
+                </div>
+            }
+            @if (Model.EntranceTime != DateTime.MinValue)
+            { 
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            入场时间</p>
+                    </div>
+                    <div class="weui_cell_ft">
+                        @Model.EntranceTime.ToPlatDateTimeString()</div>
+                </div>
+            }
+            
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        停车时长</p>
+                </div>
+                <div class="weui_cell_ft">
+                    @Model.EntranceTime.GetParkingDuration(DateTime.Now)
+                </div>
+            </div>
+
+        </div>
+
+         <div class="fontbotom" style="background:#fff;margin-top:1em;">
+             @if (ViewBag.IsShowPlateNumber) { 
+                  <div class="weui_cell" style="border-top:0px !important;">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            停车地点</p>
+                    </div>
+                    <div class="weui_cell_ft">@Model.PKName</div>
+                </div>
+              }
+        </div>
+        @{
+            using (Html.BeginForm("SubmitParkingPaymentRequest", "QRCodeParkPayment", FormMethod.Post))
+            {
+                <input type="hidden" id="hidd_licensePlate" name="PlateNo" value="@Model.PlateNo"/>
+                <input type="hidden" id="hidd_parkingId" name="PKID" value="@Model.PKID"/>
+                <input type="hidden" id="hidd_parkCardNo" name="ParkCardNo" value="@Model.ParkCardNo"/>
+                <input type="hidden" id="hidd_parkingName" name="PKName" value="@Model.PKName"/>
+                <input type="hidden" id="hidd_inOutID" name="InOutID" value="@Model.InOutID"/>
+                <input type="hidden" id="hidd_EntranceTime" name="EntranceTime" value="@Model.EntranceTime.ToString("yyyy-MM-dd HH:mm:ss")"/>
+                 <input type="hidden"id="hidd_ExitTime" name="ExitTime" value="@Model.ExitTime.ToString("yyyy-MM-dd HH:mm:ss")"/>
+                <input type="hidden" id="hidd_PayTime" name="OrderTime" value="@Model.OrderTime.ToString("yyyy-MM-dd HH:mm:ss")"/>
+                <input type="hidden" id="hidd_paymoney" name="Amount" value="@Model.Amount"/>
+                <input type="hidden" id="hidd_PayDetailID" name="PayDetailID" value="@Model.PayDetailID"/>
+                <input type="hidden" id="hidd_PayChannel" name="PaymentChannel" />
+                <input type="hidden" id="hidd_PayeeChannel" name="PayeeChannel" />
+                <input type="hidden" id="hidd_OrderSource" name="OrderSource" value="@Model.OrderSource" />
+                <input type="hidden" id="hidd_ExternalPKID" name="ExternalPKID" value="@Model.ExternalPKID" />
+                @Html.Action("Index", "PaymentType", new { preferentialMoney = Model.DiscountAmount, payMoney = Model.Amount, showPreferentialMoney = true, alreadyPayment = 0 })
+            }
+        }
+    </div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmitPaymentRequest").click(function () {
+            var total_pay_money = $("#span_total_pay_money").text();
+            if (total_pay_money == "" || parseFloat(total_pay_money) <= 0) {
+                WxAlert("", "支付金额不正确");
+                return false;
+            }
+            var paytype = $("[name=radiopaytype]:checked").val();
+            $("#hidd_PayChannel").val(paytype);
+            $("#hidd_PayeeChannel").val(paytype);
+            $("#loadingSubmitPayToast").show();
+        });
+        var a = document.getElementById("alert_box");
+        a.onclick = function () {
+            document.getElementById("alert_box").style.display = 'none';
+        }
+    })
+    var width = document.documentElement.clientWidth || document.body.clientWidth;
+    var height = document.documentElement.clientHeight || document.body.clientHeight;
+    //document.getElementById("btn").addEventListener("click", alert_box);
+    function alert_box(x) {
+        document.getElementById("alert_box").style = "display:block;position:absolute;left:" + Math.floor((width - 322) / 2) + "px;top:" + Math.floor((height - 211) / 2) + "px;";
+        document.getElementById("aa").src = (x);
+        //        alert(x);
+    }
+
+    function aa(x) {
+        //        alert(x);
+        alert_box(x); //可选参数
+    }
+</script>

@@ -1,0 +1,92 @@
+﻿@using ClassLibrary1.PurseData;
+@model MyCoupon
+@{
+    ViewBag.Title = "优惠券";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<script src="/Scripts/BaseSize.js?v=1" type="text/javascript"></script>
+<link href="/Content/PurseAndCoupon.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.myCoupon li a').each(function () {
+            if ($($(this))[0].href == String(window.location)) {
+                $('.myCoupon li').removeClass("activity");
+                $(this).parent().addClass('activity');
+                this.style.color = "#c8161d";
+            }
+        });
+    });
+</script>
+
+<div class="myCoupon">
+    <ul>
+        <li ><a href="/PurseData/MyCouponIndex?a=-1">全部</a></li>
+        <li ><a href="/PurseData/MyCouponIndex?a=0">未使用</a></li>
+        <li ><a href="/PurseData/MyCouponIndex?a=1">已使用</a></li>
+        <li ><a href="/PurseData/MyCouponIndex?a=2">已过期</a></li>
+    </ul>
+</div>
+
+
+<div style="width: 1px; height: 0.35rem;">
+</div>
+
+@if (Model != null)
+{
+    for (var i = 0; i < @Model.Result.List.Count; i++)
+    {
+        if (@Model.Result.List[i].Status == 0)
+        {
+            <div style="background-image: url(/Content/mobile/images/yellowCoupon.png); background-repeat: no-repeat;
+        background-size: 34rem 9.5rem; width: 34rem; height: 9.5rem; margin-left: 1.75rem;
+        margin-top: 1.5rem;" class="mycoupons">
+        <a href="@Url.Action("CouponMore", "PurseData", new { Cut = @Model.Result.List[i].Cut, timeStr = @Model.Result.List[i].ReceiveTime, timeEnd = @Model.Result.List[i].DeadlineTime, Brife = @Model.Result.List[i].Brife, ActivityName = @Model.Result.List[i].ActivityName, CouponType = @Model.Result.List[i].CouponType })">
+            <div class="mycountleft">
+                <div class="pricesc">
+                    ￥@Model.Result.List[i].CapPrice</div>
+                <div class="pricesong">
+                    满 @Model.Result.List[i].Full 元用 @Model.Result.List[i].Cut ( @Model.Result.List[i].Brife)</div>
+                <div class="priyxq">
+                    有效期 @Model.Result.List[i].ReceiveTime- @Model.Result.List[i].DeadlineTime</div>
+            </div>
+        </a>
+        <div class="mycountright">
+            去使用
+        </div>
+    </div>
+        }
+        else if (@Model.Result.List[i].Status == 1)
+        {
+            <div style="background-image: url(/Content/mobile/images/hareCoupon.png);background-repeat: no-repeat;  background-size: 34rem 9.5rem;width:34rem; height:9.5rem; margin-left:1.75rem; margin-top:1.5rem;" class="mycoupons">
+<a href="@Url.Action("CouponMore", "PurseData", new { Cut = @Model.Result.List[i].Cut, timeStr = @Model.Result.List[i].ReceiveTime, timeEnd = @Model.Result.List[i].DeadlineTime, Brife = @Model.Result.List[i].Brife, ActivityName = @Model.Result.List[i].ActivityName, CouponType = @Model.Result.List[i].CouponType })">
+    <div class="mycountleft">
+        <div class="pricesc">￥@Model.Result.List[i].CapPrice</div>
+        <div class="pricesong"> @Model.Result.List[i].Full 元用 @Model.Result.List[i].Cut ( @Model.Result.List[i].Brife)</div>
+        <div class="priyxq">有效期 @Model.Result.List[i].ReceiveTime- @Model.Result.List[i].DeadlineTime</div>
+    </div>
+</a>
+    <div class="mycountrightygq" style="background-image: url(/Content/mobile/images/use.png);background-repeat: no-repeat;  background-size: 5.9rem 5.9rem;width:5.9rem; height:5.9rem;" >
+        
+    </div>
+        
+</div>
+        }
+        else
+        {
+            <div style="background-image: url(/Content/mobile/images/hareCoupon.png);background-repeat: no-repeat;  background-size: 34rem 9.5rem;width:34rem; height:9.5rem; margin-left:1.75rem; margin-top:1.5rem;" class="mycoupons">
+            <a href="@Url.Action("CouponMore", "PurseData", new { Cut = @Model.Result.List[i].Cut, timeStr = @Model.Result.List[i].ReceiveTime, timeEnd = @Model.Result.List[i].DeadlineTime, Brife = @Model.Result.List[i].Brife, ActivityName = @Model.Result.List[i].ActivityName, CouponType = @Model.Result.List[i].CouponType })">
+    <div class="mycountleft">
+        <div class="pricesc">￥@Model.Result.List[i].CapPrice</div>
+        <div class="pricesong">@Model.Result.List[i].Full 元用 @Model.Result.List[i].Cut ( @Model.Result.List[i].Brife)</div>
+        <div class="priyxq">有效期 @Model.Result.List[i].ReceiveTime- @Model.Result.List[i].DeadlineTime</div>
+    </div></a>
+    <div class="mycountrightygq" style="background-image: url(/Content/mobile/images/handerd.png);background-repeat: no-repeat;  background-size: 5.9rem 5.9rem;width:5.9rem; height:5.9rem;" >
+        
+    </div>
+        
+</div>
+        }
+
+    }
+}

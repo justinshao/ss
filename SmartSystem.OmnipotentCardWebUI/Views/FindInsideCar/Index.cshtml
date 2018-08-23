@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "找内部车";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+        </div>
+        <div class="pull-right header-right">
+            找内部车</div>
+    </div>
+    <div style="margin-top:100px">
+    </div>
+    @Html.Action("Index", "LicensePlate")
+    <div class="top20">
+    </div>
+    <input type="button" class="weui_btn weui_btn_primary" onclick="return btnFindInsideCar()" value="开始查找" />
+    <div class="top30"></div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function btnFindInsideCar() {
+            $("#spanPlateNumberError").text("");
+            var city = $(".spanProvinceDescription").text();
+            var area = $(".spanCityDescription").text();
+            if (city == "" || area == "") {
+                $(".select_plate_cell_city").show();
+                $("#spanPlateNumberError").text("请选择省份");
+                return false;
+            }
+            var licensePlate = $("#txtUserPlateNumber").val();
+            if ($.trim(licensePlate) == "") {
+                $("#spanPlateNumberError").text("请输入车牌号");
+                return false;
+            }
+            if (licensePlate.replace(/\s+/g, "").length != 5 && licensePlate.replace(/\s+/g, "").length != 6) {
+                $("#spanPlateNumberError").text("车牌号格式不正确");
+                return false;
+            }
+            var value = $.trim(city) + $.trim(area) + licensePlate.replace(/\s+/g, "");
+            location.href = "/FindInsideCar/InsideCarDetail?plateNo=" + value;
+        }
+    </script>
+}

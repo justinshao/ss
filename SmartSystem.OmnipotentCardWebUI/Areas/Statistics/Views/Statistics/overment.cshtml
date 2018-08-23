@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "运营分析";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="../../../../Scripts/statistics/common.js?v=new Date()" type="text/javascript"></script>
+<script src="../../../../Scripts/parking/DataGrid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function ExportTest() {
+
+        var parkingid = $("#selectParks").combobox("getValue");
+
+        var data = $('#tableListBox').datagrid('getExcelXml', { title: '进出场数量' });  //获取datagrid数据对应的excel需要的xml格式的内容 
+        //用ajax发动到动态页动态写入xls文件中
+
+        $.ajax({
+            url: "/S/Statistics/DownLoadExcel",
+            data: { data: data },
+            type: 'POST',
+            dataType: 'text',
+            success: function (fn) {
+                window.open(fn);
+            },
+            error: function (xhr) {
+                $("#btnexport").html('动态页有问题\nstatus：' + xhr.status + '\nresponseText：' + xhr.responseText)
+            }
+        });
+    }
+
+
+    $(function () {
+        $('#txtStartTime').datebox('setValue', CurrentMonthFirstDay());
+        $('#txtEndTime').datebox('setValue', currentdateDay())
+        BindGetParkTree();
+        $("#btnQueryData").click(function () {
+            var ParkingID = $("#selectParks").combobox("getValue");
+            var starttime = $('#txtStartTime').datetimebox('getValue');
+            var endtime = $('#txtEndTime').datetimebox('getValue');
+            if (ParkingID == "-1") {
+                $.messager.alert('系统提示', '请选择车场!', 'error');
+                return;
+            }
+            var options = $('#tableListBox').datagrid('options');
+            options.url = "/S/Statistics/Search_Goverment";
+            $('#tableListBox').datagrid('load', { ParkingID: ParkingID, starttime: starttime, endtime: endtime });
+        });
+        $('#tableListBox').datagrid({
+            singleSelect: true,
+            nowrap: false,
+            striped: true,
+            collapsible: false,
+            remoteSort: false,
+            columns: [[
+                    { field: 'PKName', title: '车场名称', width: 150 },
+                    { field: 'pkid', title: 'pkid', width: 80,hidden:true},
+                    { field: 'ys', title: '应收金额', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(2);
+                        }
+                    },
+                      { field: 'ss', title: '实收金额', width: 100,
+                          formatter: function (value, row, index) {
+                              if (value != null)
+                                  return value.toFixed(2);
+                          }
+                      },
+                    { field: 'xj', title: '现金收费', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(2);
+                        },
+                        styler: function (value, row, index) {
+                            if (value > 0) {
+                                return 'background-color:lightcoral';
+                            }
+                        }
+                    },
+                    { field: 'xs', title: '线上缴费', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(2);
+                        }
+                    },{ field: 'bl', title: '比例', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(2);
+                        }
+                    },
+                    { field: 'fxcs', title: '放行次数', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(0);
+                        }
+                    }, { field: 'mfcs', title: '免费次数', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(0);
+                        }
+                    },
+                    { field: 'sffxcs', title: '收费放行次数', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(0);
+                        }
+                    }, { field: 'ssjfcs', title: '线上交费次数)', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(0);
+                        }
+                    },
+                    { field: 'zs', title: '首次支付次数', width: 100,
+                        formatter: function (value, row, index) {
+                            if (value != null)
+                                return value.toFixed(0);
+                        }
+                    }
+
+				]],
+            onLoadSuccess: function (data) {
+                $('#tableListBox').datagrid('fixRowHeight');
+            },
+            pagination: true,
+            rownumbers: true,
+            pageSize: 35,
+            pageList: [35],
+            toolbar: [{ text: '当前页', iconCls: 'icon-print', handler: function () { PrintReport(1) } }, '-', { text: '所有页', iconCls: 'icon-print', handler: function () { PrintReport(2) } }, '-', { text: '导出', iconCls: 'icon-save', handler: function () { ExportTest() } }]
+        });
+    });
+
+</script>
+
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="center" title="运营分析" style="padding:2px; ">
+     <div style="margin:3px 0px 3px 5px">       
+        &nbsp;&nbsp;车场名称：<input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/></select>
+        &nbsp;开始时间：<input class="easyui-datebox" type="text" id="txtStartTime" style="width:120px;height:25px; line-height:25px"  />
+        &nbsp;结束时间：<input class="easyui-datebox" type="text" id="txtEndTime" style="width:120px;height:25px; line-height:25px"  />
+        &nbsp;<a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a>
+    </div>
+    <div style="height: 94%;">        
+        <table fit="true" id="tableListBox">
+        </table>
+    </div>
+</div>
+</div>

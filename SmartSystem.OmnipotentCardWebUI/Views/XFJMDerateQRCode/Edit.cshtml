@@ -1,0 +1,174 @@
+﻿@using Common.Entities.Parking;
+@model ParkDerateQRcode
+@{
+    ViewBag.Title = "编辑折扣二维码";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "XFJMDerateQRCode")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            编辑折扣二维码</div>
+    </div>
+    <div style="margin-top: 45px">
+    </div>
+    @using (Html.BeginForm("AddOrUpdate", "XFJMDerateQRCode", FormMethod.Post, new { id = "addorupdate_from" }))
+    {
+        <input type="hidden" name="RecordID" value="@Model.RecordID"/>
+        <input type="hidden" name="DerateID" id="hiddDerateID" value="@Model.DerateID"/>
+        <div class="weui_cells">
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        优免规则</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" id="sltDerateID">
+                        @{
+                                                                 List<Common.Utilities.EnumContext> derateContexts = ViewBag.DerateContexts as List<Common.Utilities.EnumContext>;
+                                                                 foreach (var item in derateContexts)
+                                                                 {
+                                                                     string derateValue = string.Format("{0}|{1}", item.EnumString, item.EnumValue);
+                                <option value="@derateValue">@item.Description</option>
+                                                                 }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="weui_cell" id="divDerateValue">
+                <div class="weui_cell_hd">
+                    <label class="weui_label" id="spanDerateValueDes">
+                        优免值</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" id="txtDerateValue" name="DerateValue" type="number" value="@Model.DerateValue" placeholder="请输入优免值" />
+                </div>
+                <div class="weui_cell_ft" id="spanUnitDes">
+                    
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">
+                        可使用次数</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="number" id="txtCanUseTimes" name="CanUseTimes" value="@Model.CanUseTimes" placeholder="请输入可使用次数" />
+                </div>
+                <div class="weui_cell_ft">
+                    0表示不限
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        开始时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="datetime-local" id="txtStartTime" name="StartTime" value="@Model.StartTime" placeholder="" />
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        结束时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="datetime-local" id="txtEndTime" name="EndTime" value="@Model.EndTime" placeholder="" />
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">
+            备注</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <textarea class="weui_textarea" id="txtRemark" name="Remark" placeholder="请输入备注(可不填)"
+                        rows="2">@Model.Remark</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="weui_actionsheet_action">
+            <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group"
+                style="text-align: center">
+                <a  href="@Url.Action("Index", "XFJMDerateQRCode")" class="btn weui_btn weui_btn_mini weui_btn_default" style="height: 40px;
+                    width: 47%; line-height: 40px;">返回</a> 
+                   <a class="btn weui_btn weui_btn_mini weui_btn_primary"  style="height: 40px; width: 47%; line-height: 40px" onclick="return SubmitDerateQRCode()">保存</a>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(function () {
+        var derateId = $("#hiddDerateID").val();
+        if ($.trim(derateId) != "") {
+            var selectDerateID = "";
+            $("#sltDerateID option").each(function () {
+                var id = $(this).attr("value").split('|');
+                if (id[0] == derateId) {
+                    selectDerateID = $(this).attr("value");
+                    return false;
+                }
+            });
+            if (selectDerateID != "") {
+                $("#sltDerateID").val(selectDerateID);
+            }
+        }
+        $("#sltDerateID").change(function () {
+            var derateType = $(this).val();
+            SetDerateDescription(derateType);
+        });
+        var derateType = $("#sltDerateID").val();
+        SetDerateDescription(derateType)
+
+    });
+    function SubmitDerateQRCode() {
+        var sderateId = $("#sltDerateID").val();
+        if ($.trim(sderateId) == "") {
+            WxAlert("", "请选择优免规则");
+            return false;
+        }
+        var startTime = $("#txtStartTime").val();
+        if ($.trim(startTime) == "") {
+            WxAlert("", "请选择开始时间");
+            return false;
+        }
+        var endTime = $("#txtEndTime").val();
+        if ($.trim(endTime) == "") {
+            WxAlert("", "请选择结束时间");
+            return false;
+        }
+        $("#addorupdate_from").submit();
+    }
+    function SetDerateDescription(derateType) {
+        if ($.trim(derateType) == "") {
+            return;
+        }
+        var derateId = derateType.split('|')[0];
+        $("#hiddDerateID").val(derateId);
+        var derateType = parseInt(derateType.split('|')[1]);
+        $('#spanDerateValueDes').html('优免值');
+        $('#spanUnitDes').html('');
+        $('#divDerateValue').hide();
+        if (derateType == 8) {
+            $('#txtDerateValue').removeAttr("disabled");
+            $('#spanDerateValueDes').html('优免金额');
+            $('#spanUnitDes').html('元');
+            $('#divDerateValue').show();
+
+        } else if (derateType == 9 || derateType == 3) {
+            $('#txtDerateValue').removeAttr("disabled");
+            $('#spanDerateValueDes').html('优免时间');
+            $('#spanUnitDes').html('分钟');
+            $('#divDerateValue').show();
+        }
+        else if (derateType == 10) {
+            $('#txtDerateValue').removeAttr("disabled");
+            $('#spanDerateValueDes').html('优免');
+            $('#spanUnitDes').html('天');
+            $('#divDerateValue').show();
+        }
+         else {
+            $('#txtDerateValue').val(0);
+        }
+    }
+</script>

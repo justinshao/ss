@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "微信其他配置信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .text-overflow{
+    display:block;                     /*内联对象需加*/
+    width:25em;
+    word-break:keep-all;           /* 不换行 */
+    white-space:nowrap;          /* 不换行 */
+    overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+    }
+</style>
+<script src="/Scripts/nweixin/otherconfig.js" type="text/javascript"></script>
+
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+<div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+ <div region="center" title="微信其他配置信息" style="padding: 2px; background: #EFF5FF; height: 600px">
+        <table fit="true" id="tableOtherConfigBox"></table>
+</div>
+</div>
+<div id="editDetailBox">
+    <form id="editDetailBoxForm" class="easyui-form">
+    <div title="对应格式" style="padding: 20px;">
+        <div id="divContent" style="width:100px">
+        </div>
+    </div>
+    </form>
+</div>
+<div id="editConfigBox" style="display: none">
+    <form id="editConfigBoxForm" class="easyui-form">
+    <div title="修改配置" style="padding: 20px;">
+        <input type="hidden" name="ConfigType" />
+        <input type="hidden" name="CompanyID" id="hiddCompanyID"/>
+         <input class="easyui-textbox" data-options="multiline:true" name="ConfigValue" style="width: 300px; height: 50px" />
+    </div>
+    </form>
+</div>

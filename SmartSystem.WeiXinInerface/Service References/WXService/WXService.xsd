@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://proxy-callback.spsing.cn/WXService?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="RegisterAccount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strwxinfo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterAccountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterAccountResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXBindingMobilePhone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MobilePhone" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXBindingMobilePhoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXBindingMobilePhoneResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXUnsubscribe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OpenID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXUnsubscribeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXUnsubscribeResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryWXByOpenId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OpenID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryWXByOpenIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="QueryWXByOpenIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditWXInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="wx_info" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditWXInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditWXInfoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryAccountByAccountID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryAccountByAccountIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="QueryAccountByAccountIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryAccountByMobilePhone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MobilePhone" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryAccountByMobilePhoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="QueryAccountByMobilePhoneResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditAccountOption">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="wx_account" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditAccountOptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditAccountOptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EidtWX_infoVisitDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OpenID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EidtWX_infoVisitDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EidtWX_infoVisitDateResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EidtWX_infoLastPlateNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OpenID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="LastPlateNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EidtWX_infoLastPlateNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EidtWX_infoLastPlateNumberResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkparkinfoList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="currX" type="xs:double" />
+        <xs:element minOccurs="0" name="currY" type="xs:double" />
+        <xs:element minOccurs="0" name="Leng" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkparkinfoListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPkparkinfoListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkparkinByAccountIDList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkparkinByAccountIDListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPkparkinByAccountIDListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddWX_CarInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CarInfo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddWX_CarInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddWX_CarInfoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DelWX_CarInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RecordID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DelWX_CarInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DelWX_CarInfoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarInfoByAccountID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarInfoByAccountIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCarInfoByAccountIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarInfoByPlateNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PlateNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarInfoByPlateNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCarInfoByPlateNoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTempCarInfoIn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTempCarInfoInResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetTempCarInfoInResult" nillable="true" type="q1:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMonthCarInfoByAccountID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMonthCarInfoByAccountIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMonthCarInfoByAccountIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMonthCarInfoByPlateNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlateNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMonthCarInfoByPlateNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMonthCarInfoByPlateNumberResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBaseParkinfoByPKID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBaseParkinfoByPKIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetBaseParkinfoByPKIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLockCarByAccountID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLockCarByAccountIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLockCarByAccountIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXLockCarInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PlateNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXLockCarInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXLockCarInfoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXUlockCarInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PlateNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXUlockCarInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXUlockCarInfoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderWhetherEffective">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderWhetherEffectiveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderWhetherEffectiveResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderWhetherEffectiveNew">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ParkID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IORecordID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderWhetherEffectiveNewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderWhetherEffectiveNewResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXMonthlyRenewals">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MonthNum" type="xs:int" />
+        <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PayWay" type="xs:int" />
+        <xs:element minOccurs="0" name="OrderSource" type="xs:int" />
+        <xs:element minOccurs="0" name="OnlineOrderID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PayDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXMonthlyRenewalsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXMonthlyRenewalsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTempParkingFee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlateNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CalculatDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="OrderSource" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTempParkingFeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXTempParkingFeeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTempStopPayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PayWay" type="xs:int" />
+        <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="OnlineOrderID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PayDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTempStopPaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXTempStopPaymentResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXScanCodeTempParkingFee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BoxID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="OrderSource" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXScanCodeTempParkingFeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXScanCodeTempParkingFeeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXScanCodeTempParkingFeeByGateID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GateID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="OrderSource" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXScanCodeTempParkingFeeByGateIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXScanCodeTempParkingFeeByGateIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkOrderTempByAccountID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkOrderTempByAccountIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPkOrderTempByAccountIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkOrderMonthByAccountID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPkOrderMonthByAccountIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPkOrderMonthByAccountIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetParkDerate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sellerID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="VID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetParkDerateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXGetParkDerateResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetIORecordByPlateNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlateNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="VID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SellerID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetIORecordByPlateNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXGetIORecordByPlateNumberResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXDiscountPlateNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IORecordID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DerateID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="VID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SellerID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DerateMoney" type="xs:decimal" />
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXDiscountPlateNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXDiscountPlateNumberResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetSellerInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SellerNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PWD" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SellerID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetSellerInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXGetSellerInfoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXEditSellerPwd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SellerID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Pwd" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXEditSellerPwdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXEditSellerPwdResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetParkCarDerate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parms" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rows" type="xs:int" />
+        <xs:element minOccurs="0" name="pageindex" type="xs:int" />
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetParkCarDerateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXGetParkCarDerateResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetParkCarDerateByVID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parms" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rows" type="xs:int" />
+        <xs:element minOccurs="0" name="pageindex" type="xs:int" />
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetParkCarDerateByVIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXGetParkCarDerateByVIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXScanCodeInOut">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GateNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="OpenId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXScanCodeInOutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXScanCodeInOutResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetParkVisitor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetParkVisitorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetParkVisitorResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddParkVisitor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="jsondata" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddParkVisitorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddParkVisitorResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXRemoteGate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GateID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXRemoteGateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXRemoteGateResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXReservePKBit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="BitNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parking_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AreaID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="license_plate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="start_time" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="end_time" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXReservePKBitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXReservePKBitResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXReserveBitPay">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReserveID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="OnlineOrderID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXReserveBitPayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXReserveBitPayResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetReservePKBit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXGetReservePKBitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXGetReservePKBitResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXReservePKBitZH">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProxyNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="BitNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parking_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AreaID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="license_plate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="start_time" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="end_time" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXReservePKBitZHResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXReservePKBitZHResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTestClientProxyConnectionByVID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTestClientProxyConnectionByVIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXTestClientProxyConnectionByVIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTestClientProxyConnectionByPKID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PKID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WXTestClientProxyConnectionByPKIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WXTestClientProxyConnectionByPKIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendNotify">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendNotifyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

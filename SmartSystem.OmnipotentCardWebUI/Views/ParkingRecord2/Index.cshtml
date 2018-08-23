@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "停车记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+
+<style type="text/css">
+     body{ background-color:#f4f4f4; margin:0px; padding:0px;}
+    .layout{}
+    .headereee{}
+    .headereee ul{ list-style-type:none; margin:0px; padding:0px; color:#888; overflow:hidden;}
+    .headereee li{ list-style-type:none; margin:0px; padding:0px; float:left; width:33.3333333%; text-align:center; height:5.2rem; line-height:5.2rem; font-size:1.9rem; cursor:pointer;background-color:#fff;} 
+    .parkingcenter{ width:95%; margin:0 auto;}
+    .listLayout{background:#ffffff;-webkit-border-radius: 10px;border-radius: 10px;margin-top:1.5rem; height:16.9rem;}
+    .listhead { overflow:hidden; height:5rem; line-height:5rem;}
+    .listhead .listhead_left{ float:left; font-size:1.75rem; margin-left:0.3rem;}
+    .listhead .listhead_right{float:right; font-size:1.5rem; color:#c8161d;margin-right:1.3rem;}
+    .listcenter{ overflow:hidden; height:5rem; line-height:5rem;}
+    .listcenter .listcenter_left{ float:left; font-size:1.5rem; margin-left:1.3rem;}
+    .listcenter .listcenter_right{ float:right; font-size:1.5rem; margin-right:1.3rem;}
+    .paynow{ overflow:hidden; border-top:1px solid #d4d4d4;margin-left:1.3rem; margin-right:1.3rem;}
+    .paynow .paynow_right{ float:right; font-size:1.9rem; border:1px solid #c8161d; height:3.2rem !important; height:3.2rem important; margin-top:1.5rem; width:10.2rem; border-radius: 0.5rem; text-align:center; cursor:pointer; color:#c8161d;}
+    .contury{border-bottom:0.5rem solid #c8161d;  color:#c8161d;}
+    .divimage{float:left; margin-left:1.3rem; margin-top:1rem;}
+</style>
+
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+        //var aa = $("headsss").find("li");
+
+        var aa = document.getElementById("headsss").getElementsByTagName("li");
+        for (var i = 0; i < aa.length; i++) {
+            aa[i].index = i;
+            aa[i].onclick = function () {
+                clearCss();
+                $(this).addClass("contury");
+            }
+        }
+
+        function clearCss() {
+            for (var i = 0; i < aa.length; i++) {
+                aa[i].className = "";
+            }
+        }
+    }
+    calcRam()
+  
+
+</script>
+
+<div id="headsss" class="headereee">
+        <ul>
+            <li class="contury">全部</li>
+            <li>待出场</li>
+            <li>已出场</li>
+            </ul>
+    </div>
+
+
+    <div syle="width:1px; height:5.9rem;"></div>
+    <div id="all" class="parkingcenter">
+    <!-- 循环开始 -->
+             <div class="listLayout">
+                    <div class="listhead">
+                    <div class="divimage"><img src="../../Content/mobile/images/ltx.png" /></div> <div class="listhead_left">微软大楼停车场</div><div class="listhead_right">待出场</div>
+                    </div>
+
+                    <div class="listcenter">
+                        <div class="listcenter_left">浙B停车1天</div><div class="listcenter_right">￥15.00</div>
+                    </div>
+                    <div class="paynow">
+                        <div class="paynow_right">立刻支付</div>
+                    </div>
+            </div>
+
+             <div class="listLayout">
+                    <div class="listhead">
+                        <div class="listhead_left">微软大楼停车场</div><div class="listhead_right">待出场</div>
+                    </div>
+
+                    <div class="listcenter">
+                        <div class="listcenter_left">浙B停车1天</div><div class="listcenter_right">15.00</div>
+                    </div>
+                    <div class="paynow">
+                        <div class="paynow_right">立刻支付</div>
+                    </div>
+            </div>
+    <!-- 循环结束 -->
+
+    </div>
+
+
+

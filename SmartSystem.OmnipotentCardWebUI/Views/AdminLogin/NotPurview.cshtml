@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "系统提示";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+  <div class="row">
+     <div class="weui_msg top20" style="padding-top:0px">
+            <div class="weui_icon_area">
+                <i class="weui_icon_msg weui_icon_warn"></i>
+            </div>
+            <div class="weui_text_area">
+                <h3 class="weui_msg_title">登录超时，请重新登录</h3>
+            </div>
+        </div>
+    </div>
+ <div style="position:fixed;bottom:0; left:0px; right:0px;">
+        <a href="@Url.Action("Index", "AdminLogin")" class="weui_btn weui_btn_primary">重新登录</a>
+ </div>

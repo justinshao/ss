@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2A5BF93F-E241-48AE-905E-712A3152EF8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common.Entities</RootNamespace>
+    <AssemblyName>Common.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.0\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AliPay\AliPayApiConfig.cs" />
+    <Compile Include="BaseData\BaseCard.cs" />
+    <Compile Include="BaseData\BaseCity.cs" />
+    <Compile Include="BaseData\BaseCompany.cs" />
+    <Compile Include="BaseData\BaseEmployee.cs" />
+    <Compile Include="BaseData\BaseParkinfo.cs" />
+    <Compile Include="BaseData\BasePassRemark.cs" />
+    <Compile Include="BaseData\BaseProvince.cs" />
+    <Compile Include="BaseData\BaseVillage.cs" />
+    <Compile Include="BaseData\Message.cs" />
+    <Compile Include="BaseData\SysDictionary.cs" />
+    <Compile Include="BaseData\UploadResult.cs" />
+    <Compile Include="BoxUP\Box_UPParkOrder.cs" />
+    <Compile Include="BWY\BWYGateMapping.cs" />
+    <Compile Include="Condition\EmployeeCondition.cs" />
+    <Compile Include="Condition\ExceptionCondition.cs" />
+    <Compile Include="Condition\LoginLogCondition.cs" />
+    <Compile Include="Condition\OnlineOrderCondition.cs" />
+    <Compile Include="Condition\OperateLogCondition.cs" />
+    <Compile Include="Condition\ParkGrantCondition.cs" />
+    <Compile Include="Condition\VisitorInfoCondition.cs" />
+    <Compile Include="Condition\VisitorReportCondition.cs" />
+    <Compile Include="ConnectionStateModel\ConnectionStateResult.cs" />
+    <Compile Include="DAAPI\DAAddMonth.cs" />
+    <Compile Include="DAAPI\DAAreaMdoel.cs" />
+    <Compile Include="DAAPI\DAMonthCard.cs" />
+    <Compile Include="DAAPI\DAResult.cs" />
+    <Compile Include="DayAndNightMaxMoneyPara.cs" />
+    <Compile Include="Device\IDCard.cs" />
+    <Compile Include="Enum\ArticleType.cs" />
+    <Compile Include="Enum\ASType.cs" />
+    <Compile Include="Enum\BaseCarType.cs" />
+    <Compile Include="Enum\BlackListStatus.cs" />
+    <Compile Include="Enum\CarDerateStatus.cs" />
+    <Compile Include="Enum\CardStatus.cs" />
+    <Compile Include="Enum\CardSystem.cs" />
+    <Compile Include="Enum\CardType.cs" />
+    <Compile Include="Enum\CertifType.cs" />
+    <Compile Include="Enum\ComdState.cs" />
+    <Compile Include="Enum\ConfigType.cs" />
+    <Compile Include="Enum\DataStatus.cs" />
+    <Compile Include="Enum\DerateQRCodeSource.cs" />
+    <Compile Include="Enum\DerateSwparate.cs" />
+    <Compile Include="Enum\DerateType.cs" />
+    <Compile Include="Enum\DeviceType.cs" />
+    <Compile Include="Enum\EmployeeType.cs" />
+    <Compile Include="Enum\FeeRuleType.cs" />
+    <Compile Include="Enum\KeywordType.cs" />
+    <Compile Include="Enum\LoopType.cs" />
+    <Compile Include="Enum\FeeType.cs" />
+    <Compile Include="Enum\IoState.cs" />
+    <Compile Include="Enum\LogFrom.cs" />
+    <Compile Include="Enum\LotOccupy.cs" />
+    <Compile Include="Enum\LpDistinguish.cs" />
+    <Compile Include="Enum\MatchType.cs" />
+    <Compile Include="Enum\MenuType.cs" />
+    <Compile Include="Enum\MonthlyCarApplyStatus.cs" />
+    <Compile Include="Enum\OnlineOrderStatus.cs" />
+    <Compile Include="Enum\OnlineOrderType.cs" />
+    <Compile Include="Enum\OperatorType.cs" />
+    <Compile Include="Enum\OrderPayWay.cs" />
+    <Compile Include="Enum\OrderSource.cs" />
+    <Compile Include="Enum\OrderType.cs" />
+    <Compile Include="Enum\OverdueToTemp.cs" />
+    <Compile Include="Enum\ParkGrantState.cs" />
+    <Compile Include="Enum\PassRemarkType.cs" />
+    <Compile Include="Enum\PaymentChannel.cs" />
+    <Compile Include="Enum\PlateColor.cs" />
+    <Compile Include="Enum\PortType.cs" />
+    <Compile Include="Enum\ReplyType.cs" />
+    <Compile Include="Enum\ReportType.cs" />
+    <Compile Include="Enum\RequestSourceClient.cs" />
+    <Compile Include="Enum\ResultCode.cs" />
+    <Compile Include="Enum\WeiXinModule.cs" />
+    <Compile Include="Enum\WxMsgType.cs" />
+    <Compile Include="Enum\WxUserState.cs" />
+    <Compile Include="Enum\YesOrNo.cs" />
+    <Compile Include="JNAPI\JNParkIORecord.cs" />
+    <Compile Include="Logs\Exceptions.cs" />
+    <Compile Include="Logs\LoginLog.cs" />
+    <Compile Include="Logs\OperateLog.cs" />
+    <Compile Include="NoninductivePay\NoninductivePayInModel.cs" />
+    <Compile Include="NoninductivePay\NoninductivePayOutModel.cs" />
+    <Compile Include="NoninductivePay\ParkNoninductivePayModel.cs" />
+    <Compile Include="Other\CalSettleAmountModel.cs" />
+    <Compile Include="Other\ParkingFeeInfo.cs" />
+    <Compile Include="Parking\ParkBoxDetection.cs" />
+    <Compile Include="Parking\ParkCarBitGroup.cs" />
+    <Compile Include="Parking\ParkDerateConfig.cs" />
+    <Compile Include="Parking\ParkCarlineInfo.cs" />
+    <Compile Include="Parking\ParkDerateQRcode.cs" />
+    <Compile Include="Parking\ParkGateIOTime.cs" />
+    <Compile Include="Parking\ParkMonthlyCarApply.cs" />
+    <Compile Include="Parking\ParkSettlementApprovalFlowModel.cs" />
+    <Compile Include="Parking\ParkSettlementDetailsModel.cs" />
+    <Compile Include="Parking\ParkSettlementModel.cs" />
+    <Compile Include="Parking\ParkSettlementPlanModel.cs" />
+    <Compile Include="Parking\PlateNumberPrefixModel.cs" />
+    <Compile Include="Parking\ParkLpPlan.cs" />
+    <Compile Include="Parking\ScanCodeTempPay.cs" />
+    <Compile Include="PG\goverment.cs" />
+    <Compile Include="PG\tggpersons.cs" />
+    <Compile Include="prompt.cs" />
+    <Compile Include="Servers\DownDataPageModel.cs" />
+    <Compile Include="Order\OnlineOrder.cs" />
+    <Compile Include="Other\ImgModel.cs" />
+    <Compile Include="Other\MyResult.cs" />
+    <Compile Include="Other\Pagination.cs" />
+    <Compile Include="Other\Paging.cs" />
+    <Compile Include="Other\SystemDefaultConfig.cs" />
+    <Compile Include="Parking\EmployeePlate.cs" />
+    <Compile Include="Parking\ParkArea.cs" />
+    <Compile Include="Parking\ParkBlacklist.cs" />
+    <Compile Include="Parking\ParkBox.cs" />
+    <Compile Include="Parking\ParkCarDerate.cs" />
+    <Compile Include="Parking\ParkCardSuspendPlan.cs" />
+    <Compile Include="Parking\ParkCarModel.cs" />
+    <Compile Include="Parking\ParkCarType.cs" />
+    <Compile Include="Parking\ParkCarTypeSingle.cs" />
+    <Compile Include="Parking\ParkDerate.cs" />
+    <Compile Include="Parking\ParkDerateIntervar.cs" />
+    <Compile Include="Parking\ParkDevice.cs" />
+    <Compile Include="Parking\ParkDeviceDetection.cs" />
+    <Compile Include="Parking\ParkDeviceParam.cs" />
+    <Compile Include="Parking\ParkEvent.cs" />
+    <Compile Include="Parking\ParkFeeRule.cs" />
+    <Compile Include="Parking\ParkFeeRuleDetail.cs" />
+    <Compile Include="Parking\ParkGate.cs" />
+    <Compile Include="Parking\ParkGrant.cs" />
+    <Compile Include="Parking\ParkGrantView.cs" />
+    <Compile Include="Parking\ParkInterim.cs" />
+    <Compile Include="Parking\ParkIORecord.cs" />
+    <Compile Include="Parking\ParkOrder.cs" />
+    <Compile Include="Parking\ParkReserveBit.cs" />
+    <Compile Include="Parking\ParkSeller.cs" />
+    <Compile Include="Parking\ParkTimeseries.cs" />
+    <Compile Include="Parking\ParkVisitor.cs" />
+    <Compile Include="Parking\RemotelyOpenGateView.cs" />
+    <Compile Include="PG\AdsContent.cs" />
+    <Compile Include="PG\AdsToDevice.cs" />
+    <Compile Include="PG\PGArea.cs" />
+    <Compile Include="PG\PGAreaLine.cs" />
+    <Compile Include="PG\PGAreaPoint.cs" />
+    <Compile Include="PG\PGDevice.cs" />
+    <Compile Include="PG\PGEventRec.cs" />
+    <Compile Include="Servers\DSFResult.cs" />
+    <Compile Include="Servers\GetMoneyModel.cs" />
+    <Compile Include="Servers\GetMoneyZX.cs" />
+    <Compile Include="Servers\SHHuiTong.cs" />
+    <Compile Include="Servers\TableDataCount.cs" />
+    <Compile Include="Servers\UploadMoneyModel.cs" />
+    <Compile Include="Servers\UploadMoneyZX.cs" />
+    <Compile Include="SHJGJ\BusinessLog.cs" />
+    <Compile Include="SHJGJ\CommParkingRecord .cs" />
+    <Compile Include="SHJGJ\CommRequest.cs" />
+    <Compile Include="SHJGJ\CommResponse.cs" />
+    <Compile Include="SHJGJ\DeviceSignInModel.cs" />
+    <Compile Include="SHJGJ\InOutParkModel.cs" />
+    <Compile Include="SHJGJ\InParkModel.cs" />
+    <Compile Include="SHJGJ\InParkResult.cs" />
+    <Compile Include="SHJGJ\OutBusinessLog.cs" />
+    <Compile Include="SHJGJ\OutParkModel.cs" />
+    <Compile Include="SHJGJ\ParkInoModelcs.cs" />
+    <Compile Include="SHJGJ\SystemSignInModel.cs" />
+    <Compile Include="Statistics\AmoutModel.cs" />
+    <Compile Include="Statistics\CollectOnTime.cs" />
+    <Compile Include="Statistics\InOutNum.cs" />
+    <Compile Include="Statistics\MonthCardInfoModel.cs" />
+    <Compile Include="Statistics\OnDutyFL.cs" />
+    <Compile Include="Statistics\ParkVisitorReportModel.cs" />
+    <Compile Include="Statistics\ReportPoundNoteModel.cs" />
+    <Compile Include="Statistics\Statistics_SumTime.cs" />
+    <Compile Include="Statistics\TgOrder.cs" />
+    <Compile Include="Statistics\tgPerson.cs" />
+    <Compile Include="Statistics\userinfo.cs" />
+    <Compile Include="SWGL\SWGL_CAR_BaseInfo.cs" />
+    <Compile Include="SWGL\SWGL_CAR_GoInfo.cs" />
+    <Compile Include="tgOperatePurview.cs" />
+    <Compile Include="Validation\CarbitInfo.cs" />
+    <Compile Include="Validation\IdentityInfo.cs" />
+    <Compile Include="Validation\InputAgs.cs" />
+    <Compile Include="Validation\PKCarBitNum.cs" />
+    <Compile Include="Validation\PlateInfo.cs" />
+    <Compile Include="Validation\PlateResult.cs" />
+    <Compile Include="Validation\ProcessValidInfo.cs" />
+    <Compile Include="Validation\RateInfo.cs" />
+    <Compile Include="Validation\ResultAgs.cs" />
+    <Compile Include="Statistics\HomeResult.cs" />
+    <Compile Include="Statistics\InComeResult.cs" />
+    <Compile Include="Statistics\InOutResult.cs" />
+    <Compile Include="Parking\ParkChangeshiftrecord.cs" />
+    <Compile Include="Statistics\InParams.cs" />
+    <Compile Include="Statistics\KeyValue.cs" />
+    <Compile Include="Statistics\ReportParkEvent.cs" />
+    <Compile Include="Statistics\ReportParkOrder.cs" />
+    <Compile Include="Statistics\Statistics_Base.cs" />
+    <Compile Include="Statistics\Statistics_ChangeShift.cs" />
+    <Compile Include="Statistics\Statistics_Gather.cs" />
+    <Compile Include="Statistics\Statistics_GatherGate.cs" />
+    <Compile Include="Statistics\Statistics_GatherLongTime.cs" />
+    <Compile Include="SysUsers\SysScope.cs" />
+    <Compile Include="SysUsers\SysScopeAuthorize.cs" />
+    <Compile Include="SysUsers\SysCPModelRight.cs" />
+    <Compile Include="SysUsers\SysRoleAuthorize.cs" />
+    <Compile Include="SysUsers\SysRoles.cs" />
+    <Compile Include="SysUsers\SysUser.cs" />
+    <Compile Include="SysUsers\SysUserScopeMapping.cs" />
+    <Compile Include="SysUsers\SysUserRolesMapping.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebAPI\BBTC\Bookparkspace\BookparkspaceAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Bookparkspace\BookparkspaceAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Bookparkspace\BookparkspaceDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Bookparkspace\BookparkspacePostData.cs" />
+    <Compile Include="WebAPI\BBTC\Bookparkspace\BookparkspaceRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\Carddelay\CarddelayAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Carddelay\CarddelayAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Carddelay\CarddelayDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Carddelay\CarddelayPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Carddelay\CarddelayRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\CreateOrderByCarNo\CreateOrderByCarNoAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\CreateOrderByCarNo\CreateOrderByCarNoAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\CreateOrderByCarNo\CreateOrderByCarNoDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\CreateOrderByCarNo\CreateOrderByCarNoPostData.cs" />
+    <Compile Include="WebAPI\BBTC\CreateOrderByCarNo\CreateOrderByCarNoRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\DataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Downcarcertificate.Attributes.cs" />
+    <Compile Include="WebAPI\BBTC\Downcarcertificate.AttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Generateuncarorder.Attributes.cs" />
+    <Compile Include="WebAPI\BBTC\Generateuncarorder.AttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Lock\LockAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Lock\LockAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Lock\LockDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Lock\LockPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Lock\LockRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\Notifyorderresult\NotifyorderresultAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Notifyorderresult\NotifyorderresultAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Notifyorderresult\NotifyorderresultDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Notifyorderresult\NotifyorderresultPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Notifyorderresult\NotifyorderresultRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\PostData.cs" />
+    <Compile Include="WebAPI\BBTC\Querycarddealylist\QuerycarddealylistAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Querycarddealylist\QuerycarddealylistAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Querycarddealylist\QuerycarddealylistDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Querycarddealylist\QuerycarddealylistPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Querycarddealylist\QuerycarddealylistRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\Querylockedcar\QuerylockedcarAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Querylockedcar\QuerylockedcarAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Querylockedcar\QuerylockedcarDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Querylockedcar\QuerylockedcarPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Querylockedcar\QuerylockedcarRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\Queryorder\QueryorderAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Queryorder\QueryorderAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Queryorder\QueryorderDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Queryorder\QueryorderPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Queryorder\QueryorderRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkout\QueryparkoutAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkout\QueryparkoutAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkout\QueryparkoutDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkout\QueryparkoutPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkout\QueryparkoutRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkspace\QueryparkspaceAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkspace\QueryparkspaceAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkspace\QueryparkspaceDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkspace\QueryparkspacePostData.cs" />
+    <Compile Include="WebAPI\BBTC\Queryparkspace\QueryparkspaceRequstDAta.cs" />
+    <Compile Include="WebAPI\BBTC\Querypersonsbycar\QuerypersonsbycarAttributes.cs" />
+    <Compile Include="WebAPI\BBTC\Querypersonsbycar\QuerypersonsbycarAttributesRes.cs" />
+    <Compile Include="WebAPI\BBTC\Querypersonsbycar\QuerypersonsbycarDataItems.cs" />
+    <Compile Include="WebAPI\BBTC\Querypersonsbycar\QuerypersonsbycarPostData.cs" />
+    <Compile Include="WebAPI\BBTC\Querypersonsbycar\QuerypersonsbycarRequstData.cs" />
+    <Compile Include="WebAPI\BBTC\Querypersonsbycar\QuerypersonsbycarSubItems.cs" />
+    <Compile Include="WebAPI\BBTC\Querypersonsbycar\QuerypersonsbycarSubItemsAttributes.cs" />
+    <Compile Include="WebAPI\CIArea.cs" />
+    <Compile Include="WebAPI\CICalculatingTempCostAgt.cs" />
+    <Compile Include="WebAPI\CICalculatingTempCostPNAgt.cs" />
+    <Compile Include="WebAPI\CIDiscountPlateNumber.cs" />
+    <Compile Include="WebAPI\CIEditSellerPwd.cs" />
+    <Compile Include="WebAPI\CIGetIORecordByPlateNumber.cs" />
+    <Compile Include="WebAPI\CIGetMonthlyInfo.cs" />
+    <Compile Include="WebAPI\CIGetMonthlyInfoByPK.cs" />
+    <Compile Include="WebAPI\CIGetParkDerate.cs" />
+    <Compile Include="WebAPI\CIGetSellerInfo.cs" />
+    <Compile Include="WebAPI\CIGetUserCardCarAgt.cs" />
+    <Compile Include="WebAPI\CIMonthlyInfo.cs" />
+    <Compile Include="WebAPI\CIMonthlyPayAgt.cs" />
+    <Compile Include="WebAPI\CIOrder.cs" />
+    <Compile Include="WebAPI\CIParkinfo.cs" />
+    <Compile Include="WebAPI\CIPayAgt.cs" />
+    <Compile Include="WebAPI\CIPKInfoByID.cs" />
+    <Compile Include="WebAPI\CISeller_Derate.cs" />
+    <Compile Include="WebAPI\CISeller_IORecord.cs" />
+    <Compile Include="WebAPI\CItCarType.cs" />
+    <Compile Include="WebAPI\CITempPayAgt.cs" />
+    <Compile Include="WebAPI\CIUserLockCarAgt.cs" />
+    <Compile Include="WebAPI\CIUserLockCarInfoAgt.cs" />
+    <Compile Include="WebAPI\ICCarModel.cs" />
+    <Compile Include="WebAPI\ICGetCarType.cs" />
+    <Compile Include="WebAPI\ICGetParkDerate.cs" />
+    <Compile Include="WebAPI\TemResult.cs" />
+    <Compile Include="WX\AddMonthlyInfoResult.cs" />
+    <Compile Include="WX\AdvanceParking.cs" />
+    <Compile Include="WX\CarParkingResult.cs" />
+    <Compile Include="WX\ConsumerDiscountResult.cs" />
+    <Compile Include="WX\LockCarResult.cs" />
+    <Compile Include="WX\MonthlyRenewalResult.cs" />
+    <Compile Include="WX\ParkUserCarInfo.cs" />
+    <Compile Include="WX\pay.cs" />
+    <Compile Include="WX\PkOrderMonth.cs" />
+    <Compile Include="WX\PkOrderTemp.cs" />
+    <Compile Include="WX\TempParkingFeeResult.cs" />
+    <Compile Include="WX\TempStopPaymentResult.cs" />
+    <Compile Include="WX\VisitorInfo.cs" />
+    <Compile Include="WX\WXReserveBitResult.cs" />
+    <Compile Include="WX\WX_Account.cs" />
+    <Compile Include="WX\WX_ApiConfig.cs" />
+    <Compile Include="WX\WX_Article.cs" />
+    <Compile Include="WX\WX_CarInfo.cs" />
+    <Compile Include="WX\WX_Info.cs" />
+    <Compile Include="WX\WX_InteractionInfo.cs" />
+    <Compile Include="WX\WX_Keyword.cs" />
+    <Compile Include="WX\WX_LockCar.cs" />
+    <Compile Include="WX\WX_MenuAccessRecord.cs" />
+    <Compile Include="WX\WX_Menu.cs" />
+    <Compile Include="WX\WX_OpinionFeedback.cs" />
+    <Compile Include="WX\WX_OtherConfig.cs" />
+    <Compile Include="WX\WX_UserLocation.cs" />
+    <Compile Include="ZHDZ\ZHReserveResult.cs" />
+    <Compile Include="ZHDZ\ZHArea.cs" />
+    <Compile Include="ZHDZ\ZHIORecord.cs" />
+    <Compile Include="ZHDZ\ZHParkBit.cs" />
+    <Compile Include="ZHDZ\ZHParkinfo.cs" />
+    <Compile Include="ZHDZ\ZHParkOrder.cs" />
+    <Compile Include="ZHDZ\ZHResult.cs" />
+    <Compile Include="ZXAPI\InParkingModel.cs" />
+    <Compile Include="ZXAPI\IssuedModel.cs" />
+    <Compile Include="ZXAPI\IssuedResult.cs" />
+    <Compile Include="ZXAPI\NoPassPayModel.cs" />
+    <Compile Include="ZXAPI\OutParkingModel.cs" />
+    <Compile Include="ZXAPI\QueryFee.cs" />
+    <Compile Include="ZXAPI\QueryFeeResult.cs" />
+    <Compile Include="ZXAPI\QueryParkInfoModel.cs" />
+    <Compile Include="ZXAPI\QueryParkInfoReuslt.cs" />
+    <Compile Include="ZXAPI\SendTimeModel.cs" />
+    <Compile Include="ZXAPI\VipCardModel.cs" />
+    <Compile Include="ZXAPI\ZXResult.cs" />
+    <Compile Include="ZXAPI\ZXSignData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Core\Common.Core.csproj">
+      <Project>{EF989F15-C062-4C7D-8B69-8ACE8540C07B}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Utilities\Common.Utilities.csproj">
+      <Project>{660F9B65-6AD0-4984-914C-4459C41CA966}</Project>
+      <Name>Common.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

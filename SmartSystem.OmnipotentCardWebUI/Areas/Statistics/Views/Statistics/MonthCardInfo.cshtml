@@ -1,0 +1,30 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "MonthCardInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/monthcardinfo.js?v=1")
+<div class="easyui-layout"  fit="true">
+<div region="center" title="月卡信息" style="padding:2px; ">
+    <div style="margin:3px 0px 3px 5px">
+          <div style="margin-bottom: 5px">  
+            <table>
+                <tr>
+                    <td align="right">车场名称：</td><td><input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/></td>
+                  @*<td align="right">卡片类型：</td><td><select id="selectCarType" style="width: 150px; " class="my_select"><option value="-1">全部</option></select> </td>*@
+                    <td align="right">车牌号码：</td><td><input class="my_textbox" style="width: 150px;" id="txtPlateNumber" /></td>
+                    <td align="right">姓名/电话：</td><td><input class="my_textbox" style="width: 150px;" id="txtMobile" /></td>
+                    <td align="right">家庭地址：</td><td><input class="my_textbox" style="width: 150px;" id="txtHomeAddr" /></td>
+                    <td align="right">&nbsp;&nbsp;<input type="checkbox" id="cbxDue"/>即将到期</td>
+                    <td></td><td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+                </tr>
+               
+            </table>  
+         </div>
+    </div>
+    <div style="height: 88%;">        
+        <table fit="true" id="tableListBox" >
+        </table>
+    </div>
+</div>

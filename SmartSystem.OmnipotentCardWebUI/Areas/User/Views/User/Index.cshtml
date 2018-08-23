@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/users/user.js?v=1" type="text/javascript"></script>
+<div style="margin-bottom: 5px; margin-top: 5px">
+    &nbsp;<span style="font-size:12px">登录名</span>：<input class="easyui-textbox" style="width: 120px; height: 25px" id="txtqueryUserAccount" />
+    &nbsp; <a href="javascript:void(0)" id="btnQueryUserInfo" class="easyui-linkbutton" style="width: 50px; height: 28px">查询</a>
+</div>
+<table id="tableUser" style="height: 94%">
+</table>
+<div id="editSysUserBox" style="display: none">
+    <form id="editSysUserBoxForm" class="easyui-form">
+    <input type="hidden" name="RecordID" id="hiddRecordID" />
+    <input type="hidden" name="IsDefaultUser" id="hiddIsDefaultUser" />
+    <div id="cc" class="easyui-layout"   style="width: 630px; height: 400px;margin-left:3px">
+        <div data-options="region:'east'" title="用户作用域" collapsible="false" style="width: 300px;">
+            <ul id="treeScope" lines="true">
+            </ul>
+        </div>
+        <div data-options="region:'south'" title="用户信息" style="height: 80px;" collapsible="false">
+            <table cellpadding="3" class="table_open_window_edit" style="margin-top: 5px">
+                <tr>
+                    <td align="right">
+                        姓名
+                    </td>
+                    <td>
+                        <input id="txtUserName" name="UserName" required="true" style="width: 140px" class="easyui-validatebox form-control" missingmessage="不能为空" />
+                    </td>
+                    <td align="right">
+                        登录名
+                    </td>
+                    <td>
+                        <input id="txtUserAccount" name="UserAccount"  required="true" style="width: 140px" class="easyui-validatebox form-control" missingmessage="不能为空" />
+                    </td>
+                     <td align="right">
+                        登录密码
+                    </td>
+                    <td>
+                        <input id="txtPassword" type="password" name="Password" style="width: 140px" class="easyui-validatebox form-control"  missingmessage="不能为空" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div data-options="region:'center',title:'用户角色'"  >
+            <ul id="treeRole" lines="true">
+            </ul>
+        </div>
+        <input type="hidden" id="hiddUserRoles" name="UserRoles" />
+        <input type="hidden" id="hiddUserScopes" name="UserScopes" />
+    </div>
+    </form>
+</div>
+

@@ -1,0 +1,1203 @@
+﻿@using Common.Entities;
+@model List<SysRoleAuthorize>
+@{
+    ViewBag.Title = "首页";
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100%;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>智慧停车场管理云平台</title>
+    <link href="/Content/home/home.css?v=1" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <link href="/Content/themes/base/easy-ui/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="/Scripts/easyui/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="/Scripts/home/home.js?v=1" type="text/javascript"></script>
+    <style type="text/css">
+        #cc .accordion-header-selected
+        {
+            height: 23px;
+        }
+        #cc .panel-title
+        {
+            height: 23px;
+            line-height: 23px;
+            margin-left: 5px;
+        }
+        #cc .accordion-header-selected
+        {
+            background: #C4F6F6;
+        }
+        #cc .accordion .accordion-header-selected .panel-title
+        {
+            color: #000000;
+        }
+    </style>
+</head>
+<body style="background: url(/Content/home/images/topbg.jpg) repeat-x; height: 100%;">
+    <table width="100%" style="height: 100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2">
+                <div style="width: 100%">
+                    <div style="height: 88px; background: url(/Content/home/images/lefttop.jpg) no-repeat;
+                        float: left; width: 320px;">
+                    </div>
+                    <ul class="nav2">
+                        @if (Model.Exists(p => p.ModuleID == "PK010204"))
+                        {
+                            <li><a title="车辆管理" src="/p/ParkCar/Index">
+                                    <img src="/Content/images/top/车辆管理.png" style="width: auto; height: 45px" title="车辆管理" /><h2>
+                                        车辆管理</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010206"))
+                        {
+                            <li><a title="中央收费" src="/p/CentralFee/Index">
+                                    <img src="/Content/images/top/中央收费.png" style="width: auto; height: 45px" title="中央收费" /><h2>
+                                        中央收费</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010403"))
+                        {
+                            <li><a title="进出记录" src="/S/Statistics/ReportInOut">
+                                    <img src="/Content/images/top/进出记录.png" title="进出记录" style="height: 45px; width: auto;" /><h2>
+                                        进出记录</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010404"))
+                        {
+                            <li><a title="异常放行" src="/S/Statistics/ReportExceptionRelease">
+                                    <img src="/Content/images/top/异常放行.png" title="异常放行" style="height: 45px; width: auto;" /><h2>
+                                        异常放行</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010410"))
+                        {
+
+                            <li><a title="临停缴费记录" src="/S/Statistics/TempPay">
+                                    <img src="/Content/images/top/缴费记录.png" title="临停缴费记录" style="height: 45px; width: auto;" /><h2>
+                                        临停缴费记录</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010501"))
+                        {
+                            <li><a title="日报表" src="/S/Statistics/StatisticsDaily">
+                                    <img src="/Content/images/top/日报表.png" title="日报表" style="height: 45px; width: auto;" /><h2>
+                                        日报表</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010503"))
+                        {
+                            <li><a title="日汇总报表" src="/S/Statistics/StatisticsDailyGather">
+                                    <img src="/Content/images/top/日汇总报表.png" title="日汇总报表" style="height: 45px; width: auto;" /><h2>
+                                        日汇总报表</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010505"))
+                        {
+
+                            <li><a title="收入分析" src="/S/InCome/Index">
+                                    <img src="/Content/images/top/收入分析.png" title="收入分析" style="height: 45px; width: auto;" /><h2>
+                                        收入分析</h2>
+                                </a></li>
+                        }
+                        @if (Model.Exists(p => p.ModuleID == "PK010506"))
+                        {
+
+                            <li><a title="进出分析" src="/S/InOut/Index">
+                                    <img src="/Content/images/top/进出分析.png" title="进出分析" style="height: 45px; width: auto;" /><h2>
+                                        进出分析</h2>
+                                </a></li>
+                        }                      
+                    </ul>
+                    <div class="topright" style="height: 88px; background: url(../../Content/home/images/topbg2.jpg) no-repeat right;
+                        float: right;">
+                        <div style="float: right; padding-right: 20px; padding-top: 14px;">
+                            <span style="font-weight: bold; color: #1296db; font-size: 14px">@ViewBag.CurrLoginUserName
+                                ,欢迎您!</span>
+                        </div>
+                        <div style="clear: both">
+                        </div>
+                        <div style="float: right; padding-right: 20px; padding-top: 2px; color: #1296db;
+                            font-size: 10px">
+                            角色：@ViewBag.RoleDes</div>
+                            <div style="clear:both"></div>
+                        <div>
+                            <ul style="padding-top: 10px">
+                                <li><a href="javascript:void(0)" style="color: #003366" onclick="return UpdateUserLoginPwd()">
+                                    修改密码</a></li>
+                                <li><a href="/Login/Logout" target="_parent" style="color: #003366">安全退出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100%; height: 100%; vertical-align: top" colspan="2">
+                <div id="cc" class="easyui-layout" fit="true">
+                    <div data-options="region:'west',title:'导航菜单',iconCls:'my-menu-parking'" style="width: 238px;">
+                        <div class="easyui-accordion" fit="true" border="false">
+                            @if (Model.Exists(p => p.ModuleID == "PK0101"))
+                            {
+                            <div title="基础信息" data-options="iconCls:'my-menu-basedata'">
+                                @if (Model.Exists(p => p.ModuleID == "PK010101"))
+                                {
+                                    <div class="list" title="单位管理" src="/b/Company/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>单位管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PK010102"))
+                                {
+                                    <div class="list" title="小区管理" src="/b/Village/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>小区管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PK010103"))
+                                {
+                                    <div class="list" title="车场管理" src="/p/Parking/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>车场管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PK010104"))
+                                {
+                                    <div class="list" title="区域管理" src="/p/ParkArea/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>区域管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PK010105"))
+                                {
+                                    <div class="list" title="岗亭管理" src="/p/ParkBox/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>岗亭管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PK010106"))
+                                {
+                                    <div class="list" title="通道管理" src="/p/ParkGate/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>通道管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PK010108"))
+                                {
+                                    <div class="list" title="推广二维码管理" src="/p/TgPerson/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>推广二维码管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PKBWY01"))
+                                {
+                                    <div class="list" title="泊物云通道管理" src="/p/BWYParkGate/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>泊物云通道管理</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                                @if (Model.Exists(p => p.ModuleID == "PK010109"))
+                                {
+                                    <div class="list" title="客户端通知" src="/b/Message/Index">
+                                        <table style="margin-left: 15px">
+                                            <tr>
+                                                <td>
+                                                    <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                </td>
+                                                <td>
+                                                    <span>客户端通知</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                            </div>
+                            }
+                            @if (Model.Exists(p => p.ModuleID == "PK0102"))
+                            {
+                                <div title="车辆卡片" data-options="iconCls:'my-menu-car'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK010201"))
+                                    {
+                                        <div class="list" title="车类管理" src="/p/ParkCarType/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>车类管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div> 
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010202"))
+                                    {
+                                        <div class="list" title="车型管理" src="/p/ParkCarModel/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>车型管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010203"))
+                                    {
+                                        <div class="list" title="收费规则" src="/p/ParkFeeRule/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>收费规则</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010204"))
+                                    {
+                                        <div class="list" title="车辆管理" src="/p/ParkCar/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>车辆管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010205"))
+                                    {
+                                        <div class="list" title="黑名单管理" src="/p/ParkBackList/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>黑名单管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010206"))
+                                    {
+                                        <div class="list" title="中央缴费" src="/p/CentralFee/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>中央缴费</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                     @if (Model.Exists(p => p.ModuleID == "PK010207"))
+                                    {
+                                        <div class="list" title="月租车申请审核" src="/p/AduitMonthlyCarApply/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>月租车申请审核</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (Model.Exists(p => p.ModuleID == "PK0103"))
+                            {
+                                <div title="消费打折" data-options="iconCls:'my-menu-discount'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK010301"))
+                                    {  
+                                        <div class="list" title="商户管理" src="/p/ParkSeller/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>商户管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010302"))
+                                    {
+                                        <div class="list" title="优免管理" src="/p/ParkDerate/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>优免管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                      @if (Model.Exists(p => p.ModuleID == "PK010303"))
+                                    {
+                                        <div class="list" title="优免二维码" src="/p/ParkDerateQRCode/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>优免二维码</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010304"))
+                                    {
+                                        <div class="list" title="优免券发放" src="/p/ParkCarDerateQRCode/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>优免券发放</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (Model.Exists(p => p.ModuleID == "PK0104"))
+                            {
+                                <div title="报表信息" data-options="iconCls:'my-menu-report'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK010401"))
+                                    {
+                                        <div class="list" title="在场车辆" src="/S/Statistics/Presence">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>在场车辆</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010402"))
+                                    {
+                                             
+                                        <div class="list" title="无牌车辆" src="/S/Statistics/ReportNoPlateNumber">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>无牌车辆</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010403"))
+                                    {
+                                        <div class="list" title="进出记录" src="/S/Statistics/ReportInOut">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>进出记录</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010404"))
+                                    {
+                                        <div class="list" title="异常放行" src="/S/Statistics/ReportExceptionRelease">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>异常放行</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010405"))
+                                    {
+                                        <div class="list" title="通道事件" src="/S/Statistics/ReportGateEvents">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>通道事件</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010406"))
+                                    {
+                                        <div class="list" title="当班统计" src="/S/Statistics/ReportOnDuty">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>当班统计</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010407"))
+                                    {
+                                        <div class="list" title="订单明细" src="/S/Statistics/ReportOrders">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>订单明细</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010408"))
+                                    {
+                                        <div class="list" title="车辆充值" src="/Statistics/CardRecharge">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>卡片充值</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010409"))
+                                    {
+                                        <div class="list" title="月租续期" src="/S/Statistics/CardExtension">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>月卡续期</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010410"))
+                                    {
+                                        <div class="list" title="临停缴费" src="/S/Statistics/TempPay">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>临停缴费</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010411"))
+                                    {
+                                        <div class="list" title="商家优免" src="/S/Statistics/Coupon">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>商家优免</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010412"))
+                                    {
+                                        <div class="list" title="设备状态" src="/S/Device/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>设备状态</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                        @if (Model.Exists(p => p.ModuleID == "PK010413"))
+                                    {
+                                        <div class="list" title="车牌前缀" src="/S/Statistics/PlateNumberAnalyse">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>车牌前缀</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    
+                                          @if (Model.Exists(p => p.ModuleID == "PK010414"))
+                                    {
+                                        <div class="list" title="月卡信息" src="/S/Statistics/MonthCardInfo">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>月卡信息</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+
+                                          @if (Model.Exists(p => p.ModuleID == "PK010415"))
+                                    {
+                                        <div class="list" title="访客信息" src="/S/Statistics/ParkVisitorInfo">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>访客信息</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                      <div class="list" title="预停车信息" src="/nwx/AdvanceParkingInfo/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>预停车信息</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                </div>
+                            }
+                            @if (Model.Exists(p => p.ModuleID == "PK0105"))
+                            {
+                                <div title="统计分析" data-options="iconCls:'my-menu-statistics'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK010501"))
+                                    {    <div class="list" title="日报表" src="/S/Statistics/StatisticsDaily">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>日报表</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>}
+                                    @if (Model.Exists(p => p.ModuleID == "PK010502"))
+                                    {  <div class="list" title="月报表" src="/S/Statistics/StatisticsMonth">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>月报表</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div> }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010503"))
+                                    {  <div class="list" title="日汇总报表" src="/S/Statistics/StatisticsDailyGather">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>日汇总报表</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>}
+                                    @if (Model.Exists(p => p.ModuleID == "PK010504"))
+                                    {   <div class="list" title="月汇总报表" src="/S/Statistics/StatisticsMonthGather">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>月汇总报表</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div> }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010505"))
+                                    {   <div class="list" title="收入分析" src="/S/InCome/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>收入分析</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>}
+                                    @if (Model.Exists(p => p.ModuleID == "PK010506"))
+                                    {
+                                        <div class="list" title="进出分析" src="/S/InOut/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>进出分析</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010510"))
+                                    {
+                                        <div class="list" title="推广二维码统计" src="/S/Statistics/StatisticsPersontg">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>推广二维码统计</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            
+                            @if (Model.Exists(p => p.ModuleID == "PK0111"))
+                            {
+                                <div title="车场结算" data-options="iconCls:'my-menu-tixian'">
+                                  @if (Model.Exists(p => p.ModuleID == "PK011103"))
+                                    {
+                                        <div class="list" title="结算配置" src="/p/ParkSettleConfig/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>结算配置</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>   
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK011101"))
+                                    {
+                                        <div class="list" title="结算单" src="/p/ParkSettle/Settlement">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>结算单</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>   
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK011102"))
+                                    {
+                                        <div class="list" title="结算审批流程" src="/p/ParkSettle/SettlementAuditing">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>结算审批流程</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            @if (Model.Exists(p => p.ModuleID == "PK0106"))
+                            {
+                                <div title="权限管理" data-options="iconCls:'my-menu-authority'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK010601"))
+                                    {
+                                        <div class="list" title="角色管理" src="/u/Role/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>角色管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>   
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010602"))
+                                    {
+                                        <div class="list" title="作用域管理" src="/u/Scope/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>作用域管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010603"))
+                                    {
+                                        <div class="list" title="用户管理" src="/u/User/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>用户管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (Model.Exists(p => p.ModuleID == "PK0109"))
+                            { 
+                                <div title="微信管理" data-options="iconCls:'my-menu-weixin'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK010901"))
+                                    {
+                                        <div class="list" title="微信接口配置" src="/nwx/WXApiConfig/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>微信接口配置</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>   
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010908"))
+                                    {
+                                        <div class="list" title="微信支付配置" src="/nwx/WXPaymentConfig/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>微信支付配置</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>   
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010902"))
+                                    {
+                                        <div class="list" title="微信其他配置" src="/nwx/WXOtherConfig/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>微信其他配置</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010903"))
+                                    {
+                                        <div class="list" title="图文管理" src="/nwx/WXArticle/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>图文管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010904"))
+                                    {
+                                        <div class="list" title="关键字管理" src="/nwx/WXKeyword/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>关键字管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010905"))
+                                    {
+                                        <div class="list" title="菜单管理" src="/nwx/WXMenu/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>菜单管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010906"))
+                                    {
+                                        <div class="list" title="微信用户" src="/nwx/WXAccount/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>微信用户</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010909"))
+                                    {
+                                        <div class="list" title="意见反馈" src="/nwx/WXOpinionFeedback/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>意见反馈</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010910"))
+                                    {
+                                        <div class="list" title="微信订单管理" src="/nwx/WXOnlineOrder/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>微信订单管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (Model.Exists(p => p.ModuleID == "PK0110"))
+                            { 
+                                <div title="支付宝管理" data-options="iconCls:'my-menu-alipay'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK011001"))
+                                    {
+                                        <div class="list" title="支付宝接口配置" src="/a/AliPayApiConfig/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>支付宝接口配置</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>   
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK011002"))
+                                    {
+                                        <div class="list" title="支付宝订单管理" src="/a/AliPayOnlineOrder/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>支付宝订单管理</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (Model.Exists(p => p.ModuleID == "PK0108"))
+                            {
+                                <div title="日志管理" data-options="iconCls:'my-menu-log'">
+                                    @if (Model.Exists(p => p.ModuleID == "PK010801"))
+                                    {
+                                        <div class="list" title="登录日志" src="/Log/LoginLog/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>登录日志</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>   
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010802"))
+                                    {
+                                        <div class="list" title="操作日志" src="/Log/OperateLog/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>操作日志</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Exists(p => p.ModuleID == "PK010803"))
+                                    {
+                                        <div class="list" title="异常日志" src="/Log/Exception/Index">
+                                            <table style="margin-left: 15px">
+                                                <tr>
+                                                    <td>
+                                                        <img src="../../Content/home/images/fjt.png" style="vertical-align: middle; margin: 0px 5px 0px 5px" />
+                                                    </td>
+                                                    <td>
+                                                        <span>异常日志</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div data-options="region:'center'" style="background: #eee;">
+                        <div id="tbmain" class="easyui-tabs" data-options="fit:true,closable:true">
+                            <div title="车场首页" style="display: none;">
+                                <iframe scrolling="auto" frameborder="0" src="/Home/Main" style="width: 100%; height: 100%;">
+                                </iframe>
+                            </div>
+                        </div>
+                        <div id="mm" class="easyui-menu" style="width: 120px">
+                            @* <div id="mm-tabupdate">刷新</div>*@
+                            <div id="mm-tabclose">
+                                关闭</div>
+                            <div id="mm-tabcloseother">
+                                关闭其他</div>
+                            <div id="mm-tabcloseall">
+                                关闭全部</div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="footer">
+                    <span>手机+互联网智慧车场管理系统</span> <i></i>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div id="divUpdatePwdBox" style="display: none">
+        <form id="divUpdatePwdBoxForm" class="easyui-form">
+        <div title="修改密码" style="padding: 20px;">
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr style="height:30px">
+                    <td align="right">
+                        当前账号：
+                    </td>
+                    <td>
+                        <span id="spanCurrLoginUserName">admin</span>
+                    </td>
+                </tr>
+                <tr style="height:30px">
+                    <td align="right">
+                        原始密码：
+                    </td>
+                    <td>
+                        <input id="password" name="oldPwd" class="easyui-validatebox" required="true" type="password" style="width:200px; height:20px; line-height:20px"/>
+                    </td>
+                </tr>
+                <tr style="height:30px">
+                    <td align="right">
+                        新密码：
+                    </td>
+                    <td>
+                        <input id="password" name="newPwd1"  class="easyui-validatebox" required="true" type="password" style="width:200px; height:20px; line-height:20px""/>
+                    </td>
+                </tr>
+                <tr style="height:30px">
+                    <td align="right">
+                        确认密码：
+                    </td>
+                    <td>
+                        <input type="password" name="newPwd2" id="repassword" required="true" class="easyui-validatebox"  style="width:200px; height:20px; line-height:20px""/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </form>
+    </div>
+    <input type="hidden" id="hiddCurrLoginUserName" value="@ViewBag.CurrLoginUserName" />
+</body>
+</html>

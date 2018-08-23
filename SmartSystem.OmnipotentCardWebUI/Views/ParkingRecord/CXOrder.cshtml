@@ -1,0 +1,88 @@
+﻿@using ClassLibrary1
+@model ParkingDetail
+@{
+    ViewBag.Title = "停车详情";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    body{ background-color:#f4f4f4; margin:0px; padding:0px; }
+    .head{ width:95%; margin:0 auto; }
+    .lesste{ height:15rem; -webkit-border-radius:10px; border-radius: 10px; }
+    .lessation{ overflow:hidden; height:6rem; line-height:2rem; }
+    .lessation .divimage{ float:left;  margin-top:3.0rem;width:1.8rem; height:1.8rem;margin-left:40%;}
+    .lessation .fee{ font-size:1.8rem; margin-top:3.0rem; display: inline-block; color:#666666;margin-left:0.9rem;}
+    .lessation .mon{ float:left;margin-top:2.7rem; font-size:1.7rem; color:#c7161e;width:42%;text-align:right;}
+    .lessation .price{ margin-top:2.7rem; font-size:3.9rem; color:#c7161e;display: inline-block; width:58%;}
+    .lessation .out{ font-size:1.6rem; text-align:center; color:#c8161d;  }
+    
+    .recordinfo{ width:95%; margin:0 auto; }
+    .di{ margin-top:1.5rem; height:37.6rem; background:#ffffff; -webkit-border-radius: 10px; border-radius: 10px; }
+    .listhead { overflow:hidden; height:3.5rem; line-height:3rem; }
+    .listhead .neirong_left{ float:left; font-size:1.6rem; margin-left:1.6rem; color:#333333;margin-top:1rem; }
+    .listhead .neirong_right{ float:right; font-size:1.6rem; margin-right:1.6rem; color:#666666; margin-top:1rem;}
+    .listhead .onlinePrice{ float:right; font-size:1.6rem; margin-right:1.6rem; color:#c8161d;margin-top:1rem; }
+</style>
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+    }
+    calcRam()
+</script>
+
+<div class="head">
+<div class="lesste">
+    <div class="lessation">
+    @*style="padding:0rem 0rem 0rem 8.2rem; margin-left:1.5rem;"*@
+        <div class="divimage" style="align:center;"><img src="../../Content/mobile/images/ltx.png" width="100%" height="100%"  /></div><div class="fee" >停车费</div>
+    </div>
+    <div class="lessation">
+    <div class="mon" >￥</div><div class="price" >@Model.Result.OnlinePrice</div>
+    </div>
+    <div class="lessation">
+    <div class="out">已出场</div>
+    </div>
+    </div>
+</div>
+
+<div class="recordinfo">
+
+<div class="di">
+   <div class="listhead">
+        <div class="neirong_left">停车场</div><div class="neirong_right">@Model.Result.ParkingName</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">车牌号</div><div class="neirong_right">@Model.Result.LicensePlate</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">驶入时间</div><div class="neirong_right">@Model.Result.IntoTime</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">驶出时间</div> <div class="neirong_right">@Model.Result.OutTime</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">停车时长</div><div class="neirong_right">@Model.Result.ParkingTime</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">积分奖励</div> <div class="neirong_right">@Model.Result.Integral</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">订单编号</div><div class="neirong_right">@Model.Result.OrderNo</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">停车费用</div><div class="neirong_right">￥@Model.Result.TotalPrice</div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">优惠券</div>   <div class="neirong_right">￥@Model.Result.Cut </div>
+   </div>
+   <div class="listhead">
+        <div class="neirong_left">实际支付</div> <div class="onlinePrice">￥@Model.Result.OnlinePrice</div>
+   </div> 
+</div>
+</div>
+    
+

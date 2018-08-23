@@ -1,0 +1,1070 @@
+﻿@model List<string>
+    @{
+        Layout = null;
+    }
+
+    <html>
+    <head>
+        <title>临停缴费</title>
+        <meta name="viewport" content="initial-scale=0,maximum-scale=0,minimum-scale=0,user-scalable=no">
+        <script src="@Url.Content("/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script>
+    </head>
+    <style type="text/css">
+
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            /* color: #007aff; */
+        }
+
+        .container {
+            background-color: #F4F4F4;
+            overflow: hidden;
+        }
+
+        /* 请输入您的车牌号码 */
+
+        .tip {
+            text-align: center;
+            color: #999;
+            margin: 6rem 0 3.6rem 0;
+            font-size: 1.5rem;
+        }
+
+        /* 输入显示框 */
+
+        #tables {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8rem;
+            padding: 0 1rem;
+        }
+
+            #tables > div {
+                display: inline-block;
+            }
+
+            #tables .weiwukuang {
+                width: 3.75rem;
+                height: 4.8rem;
+                border: 1px solid #ccc;
+                color: #333;
+                font-size: 1.9rem;
+                line-height: 4.8rem;
+                text-align: center;
+                background-color: #fff;
+                border-radius: 3px;
+                margin-right: 0.7rem;
+            }
+
+        .weiwukuang1 {
+            width: 3.5rem;
+            height: 4.5rem;
+            border: 1px dashed #cccccc !important;
+            font-size: 1.8rem;
+            line-height: 4.5rem;
+            background-color: #fff;
+            border-radius: 3px;
+            text-align: center;
+            /* background-image: url(../image/xny.png); */
+            background-size: 70% 70%;
+            background-repeat: no-repeat;
+            margin-right: 0rem !important;
+            background-position: 50% 50%;
+        }
+
+
+
+        /* .add_icon {
+          font-size: 1.8rem;
+          color: #999;
+        }
+
+        .new_energy {
+          font-size: 1rem;
+          color: #999;
+          position: relative;
+          top: -.5rem;
+        } */
+
+        /* 确定添加 */
+
+        .btn {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 3%;
+        }
+
+            .btn button {
+                width: 100%;
+                height: 4.8rem;
+                background-color: #C7161C;
+                color: #fff;
+                border: none;
+                border-radius: .5rem;
+                font-size: 1.6rem;
+            }
+
+        /* 键盘 */
+
+        .weui_grids {
+            padding-top: 1rem;
+        }
+
+            .weui_grids > div {
+                margin-bottom: 5px;
+            }
+
+        .weuigrid_label,
+        .weui_grid_label {
+            display: inline-block;
+        }
+
+        .select_plate_cellcity {
+            text-align: center;
+        }
+
+        /* 第一位：地区 */
+
+        .weuigrid_label {
+            width: 3.4rem;
+            height: 4.5rem;
+            font-size: 1.5rem;
+            color: #333;
+            line-height: 4.375rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+        }
+
+        .delete_box {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .delete p {
+            width: 6rem;
+            height: 4.5rem;
+        }
+
+        /* 第二位： 大写英文 */
+
+        .weui_grids > div {
+            text-align: center;
+        }
+
+        /* .bottom_box{
+          text-align: left!important;
+        } */
+
+        .weui_grid_label {
+            width: 3.4rem;
+            height: 4.5rem;
+            font-size: 1.5rem;
+            color: #333;
+            line-height: 4.375rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .deleteNum {
+            float: right;
+        }
+
+            .deleteNum p {
+                width: 6rem;
+                height: 4.5rem;
+            }
+
+        .selectstyle {
+            background-color: #CCFFFF;
+        }
+        /* 此刻选中的框 */
+        .selectwi {
+            border: 1px solid #CE2E33 !important;
+        }
+        /* .select_plate_cell_aren .selectwi{} */
+
+        #divaddWxConfirm {
+            height: 424px;
+            width: 90%;
+            border-radius: 20px;
+            background-color: #fefefe;
+            border-top: 1px;
+            display: none;
+            position: absolute;
+            float: left;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 3;
+            border: 1px solid #ccc;
+        }
+
+        #confirmpic {
+            padding-top: 60px;
+            text-align: center;
+        }
+
+        #confirmtxt {
+            margin-top: 40px;
+            font: PingFang-SC-Medium;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        #confirmbutton {
+            height: 50%;
+            width: 90%;
+            text-align: center;
+        }
+
+        .btnCenter {
+            color: #c8161d;
+            text-align: center;
+            font: PingFang-SC-Medium;
+            font-size: 34px;
+            border: 1px solid #d4d4d4;
+            width: 50%;
+            height: 100px;
+            background-color: #fefefe;
+            border-radius: 20px;
+            margin-left: 15%;
+        }
+
+        .black_overlay {
+            position: fixed;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+            overflow: hidden;
+            background-color: #000;
+            display: none;
+        }
+
+        .btnright {
+            color: #c8161d;
+            text-align: center;
+            font: PingFang-SC-Medium;
+            font-size: 2.125rem;
+            float: right;
+            border: none;
+            width: 9.375rem;
+            height: 3.25rem;
+            background-color: #fefefe;
+            border-radius: 0rem 0rem 1.25rem 0rem;
+        }
+
+        .btnleft {
+            color: #999999;
+            text-align: center;
+            font: PingFang-SC-Medium;
+            font-size: 2.125rem;
+            float: left;
+            border: none;
+            width: 9.375rem;
+            height: 3.25rem;
+            background-color: #fefefe;
+            border-radius: 0rem 0rem 0rem 1.25rem;
+        }
+
+        .confirmtxt {
+            margin-top: 1.25rem;
+            font-size: 2rem;
+            font: PingFang-SC-Medium;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 1.875rem;
+        }
+
+        .fontsize {
+            font-size: 1.2em;
+            color: #888888;
+            margin-left: 3%;
+            margin-right: 5%;
+            height: 20%;
+            width: 100%
+        }
+
+            .fontsize div {
+                margin-top: 0.25em;
+                margin-right: 5%;
+            }
+
+        .ab {
+            border: 0px;
+            font-size: 2.1rem !important;
+            margin-top: 1.85rem;
+            background: #fff;
+        }
+    </style>
+    <body>
+
+
+        <div class="btn" style=" padding:0 !important;">
+            <button style="border-radius:0 !important">停车缴费</button>
+            @if (HttpContext.Current.Request.Cookies["SmartSystem_APP_UserToken"] == null || string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["SmartSystem_APP_UserToken"].Value)
+                || HttpContext.Current.Request.Cookies["SmartSystem_APP_UserToken"].Value == "-1")
+            {
+            <div style="position:absolute; right:3rem; cursor:pointer; top:1.7rem;"><a href="javascript:void(0);" onclick="return btnBingd()" style="color:White; font-size:1.2rem;">绑定</a></div>
+            }
+        </div>
+        <div class="container">
+
+            <div class="tip">
+                请输入待缴费的车牌
+            </div>
+            <div class="weiwuha" id="tables">
+                <div class="spanProvinceDescription weiwukuang wi selectwi" id="city">浙</div>
+                <div class="spanCityDescription weiwukuang wi" id="area">B</div>
+                <div class="spannum1 weiwukuang wi" id="are1"></div>
+                <div class="spannum2 weiwukuang wi" id="are2"></div>
+                <div class="spannum3 weiwukuang wi" id="are3"></div>
+                <div class="spannum4 weiwukuang wi" id="are4"></div>
+                <div class="spannum5 weiwukuang wi" id="are5"></div>
+                <div id="xny" class="spannumn weiwukuang weiwukuang1 wi"></div>
+                <!-- <span class="add_icon">+</span>
+                  <br>
+                  <span class="new_energy">新能源</span> -->
+            </div>
+            <div style="width:100%;height:35px; line-height:35px; text-align:center;font-size:1.2em; margin-top:2.9em; margin-bottom:0.9em; color:#888888;">
+                温馨提示
+            </div>
+
+            <div class="fontsize">
+                <div>1.临停车交费后15钟内可以不停车驶出当前车辆所在停车场,超时将需补缴超时停车费</div>
+                <div>2.临时牌照及其他车牌识别有误的车辆，请到人工收费处缴纳费用</div>
+                <div>3.如有任何疑问及服务,请与工作人员联系</div>
+                <div></div>
+            </div>
+            <div class="btn">
+                <input type="hidden" id="hiddParkingId" value="@ViewBag.ParkingId" />
+                <button onclick="return btnComputeParkingFee();">确认缴费</button>
+            </div>
+            <div id="#spanPlateNumberError"></div>
+            <div class="bd" style="width: 100%; bottom: 0px; position: absolute; background: #c0c7cf !important;
+z-index: 9999999;">
+                <div style="height: 3.6rem; width: 100%; background: white !important; color: #CE2F36;
+    line-height: 3.6rem;font-size: 1.6rem; text-align: right; cursor: pointer; display: none;" class="closes">
+                    <div onclick="aa();" style="padding-right: 1.5rem;">
+                        确定
+                    </div>
+                </div>
+                <div class="weui_grids select_plate_cellcity" style="display: none">
+                    <div style=" width:100%;">
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                浙
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                京
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                粤
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                津
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                晋
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                冀
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                黑
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                吉
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                辽
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                蒙
+                            </p>
+                        </a>
+                    </div>
+                    <div>
+                        <!-- <a class="weuigrid" style=" width:1px; height:.5rem;margin-left:5%;">
+                          <p></p>
+                        </a> -->
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                苏
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                沪
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                皖
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                赣
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                鲁
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                豫
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                鄂
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                湘
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                闽
+                            </p>
+                        </a>
+                    </div>
+                    <div>
+                        <!-- <a class="weuigrid " style=" width:1px; height:.5rem;margin-left:9%;">
+                          <p></p>
+                        </a> -->
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                桂
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                渝
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                琼
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                川
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                贵
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                云
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                藏
+                            </p>
+                        </a>
+                    </div>
+                    <div>
+                        <!-- <a class="weuigrid " style=" width:1px; height:.5rem;margin-left:25.5%;">
+                          <p></p>
+                        </a> -->
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                            <p class="weuigrid_label">
+                                陕
+                            </p>
+                            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                                <p class="weuigrid_label">
+                                    甘
+                                </p>
+                            </a>
+                            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                                <p class="weuigrid_label">
+                                    青
+                                </p>
+                            </a>
+                            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                                <p class="weuigrid_label">
+                                    宁
+                                </p>
+                            </a>
+                            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+                                <p class="weuigrid_label">
+                                    新
+                                </p>
+                            </a>
+                    </div>
+                    <div class="delete_box">
+                        <a href="javascript:void(0)" class="weuigrid weuigridoption delete">
+                            <p class="weuigrid_label">
+                                删
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="weui_grids select_plate_cell_area" style="display: none">
+                    <div>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                0
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                1
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                2
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                3
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                4
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                5
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                6
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                7
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                8
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                9
+                            </p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                A
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                B
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                C
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                D
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                E
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                F
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                G
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                H
+                            </p>
+                        </a>
+                        <!-- <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                              <p class="weui_grid_label">
+                                I
+                              </p>
+                            </a> -->
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                J
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                K
+                            </p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                L
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                M
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                N
+                            </p>
+                        </a>
+                        <!-- <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                              <p class="weui_grid_label">
+                                O
+                              </p>
+                            </a> -->
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                P
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                Q
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                R
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                S
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                T
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                U
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                V
+                            </p>
+                        </a>
+                    </div>
+                    <div class="bottom_box">
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                W
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                X
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                Y
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                Z
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                港
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                澳
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <p class="weui_grid_label">
+                                学
+                            </p>
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <!-- <p class="weui_grid_label">
+                            </p> -->
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                            <!-- <p class="weui_grid_label">
+                            </p> -->
+                        </a>
+                        <a href="javascript:void(0)" class="weui_grid weui_grid_option deleteNum">
+                            <p class="weui_grid_label">
+                                删
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="divaddWxConfirm" style=" height: 20.75rem !important; width: 31.75rem !important;border-radius: 10px !important; border:0px !important;
+
+
+            <div style=" text-align:center; margin-top:2.6rem;">
+                <img src="/Content/mobile/images/wx_confirm.png" style="height: 5.075rem;">
+            </div>
+
+            <div class="confirmtxt" style=" font-size:1.6rem !important; color:#333333 !important;">
+                <p>@HttpContext.Current.Request["RemindUserContent"]</p>
+            </div>
+
+            <div style=" border-top:1px solid #d4d4d4; margin-top:3rem; " class="aaaaa">
+                <div style="  float:left; width:49.2%; text-align:center; border-right:1px solid #d4d4d4; height:6.68rem;"><input type="button" value="取消" class="ab" style="color:#999999; cursor:pointer; background:none;" /> </div><div style=" float:right; width:50%; text-align:center;"><input type="button" value="确定" class="ab" style="color:#c8161d; cursor:pointer; background:none;" /></div>
+            </div>
+
+
+
+
+        </div>
+
+
+
+        <div id="fade" class="black_overlay"></div>
+
+        <script type="text/javascript">
+var h = $(window).innerHeight();
+$('.container').height(h)
+
+// 定义一个num 用于记录是第几个输入值  初始值-1
+/*
+0 城市  1 市区字母  2--1  3--2  4--3  5--4  6--5   7---6 新能源
+*/
+var num = 0;
+$(function () {
+
+
+
+
+    var isShow = '@string.IsNullOrEmpty(HttpContext.Current.Request["RemindUserContent"])';
+    if (isShow == "True") {
+        $("#divaddWxConfirm").hide();
+        $(".black_overlay").hide();
+    }
+    else {
+        $("#divaddWxConfirm").show();
+        $(".black_overlay").show();
+    }
+
+    $("#divaddWxConfirm").click(function () {
+
+        $("#divaddWxConfirm").hide();
+        $(".black_overlay").hide();
+    });
+
+    var result = false;
+    document.getElementById("xny").style.backgroundImage = 'url(/Content/mobile/images/xny.png)';
+    $(".select_plate_cellcity .weuigrid").click(function () {
+        var txt = $.trim($(this).find(".weuigrid_label").text());
+
+        console.log("12")
+        if (txt == "删") {
+            num = 0;
+            $(".city").text("");
+            $(".select_plate_cellcity").show();
+            $(".select_plate_cell_area").hide();
+            $(".weiwukuang").removeClass("selectwi");
+            document.getElementById("city").className += " selectwi";
+        } else {
+            num++
+            $(".select_plate_cellcity").hide();
+            $(".spanProvinceDescription").text(txt);
+            $(".select_plate_cell_area").show();
+            $(".weiwukuang").removeClass("selectwi");
+            document.getElementById("area").className += " selectwi";
+        }
+    });
+    $(".select_plate_cell_area .weui_grid").click(function () {
+        var txt = $.trim($(this).find(".weui_grid_label").text());
+        $(".select_plate_cellcity").hide();
+        if (txt == "删") {
+            switch (num) {
+                case 1:
+                    deletePublicFun();
+                    $(".spanCityDescription").text("");
+                    $(".select_plate_cellcity").show();
+                    $(".select_plate_cell_area").hide();
+                    $(".weiwukuang").removeClass("selectwi");
+                    document.getElementById("city").className += " selectwi";
+                    num--;
+                    break;
+                case 2:
+                    $(".spannum1").text('');
+                    num--;
+                    $(".weiwukuang").removeClass("selectwi");
+                    document.getElementById("area").className += " selectwi";
+                    break;
+                case 3:
+                    $(".spannum2").text('');
+                    num--;
+                    $(".weiwukuang").removeClass("selectwi");
+                    document.getElementById("are1").className += " selectwi";
+                    break;
+                case 4:
+                    $(".spannum3").text('');
+                    num--;
+                    $(".weiwukuang").removeClass("selectwi");
+                    document.getElementById("are2").className += " selectwi";
+                    break;
+                case 5:
+                    $(".spannum4").text('');
+                    num--;
+                    $(".weiwukuang").removeClass("selectwi");
+                    document.getElementById("are3").className += " selectwi";
+                    break;
+                case 6:
+                    $(".spannum5").text('');
+                    num--;
+                    $(".weiwukuang").removeClass("selectwi");
+                    document.getElementById("are4").className += " selectwi";
+                    break;
+                case 7:
+                    $("#xny").text("");
+                    $(".select_plate_cell_area").hide();
+                    $(".closes").hide();
+                    $("#xny").removeClass("selectwi");
+                    num--;
+                    document.getElementById("xny").style.backgroundImage = 'url(/Content/mobile/images/xny.png)';
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            $(".weiwukuang").removeClass("selectwi");
+            switch (num) {
+                case 0:
+                    $(".spanCityDescription").text(txt);
+                    document.getElementById("are1").className += " selectwi";
+                    num++;
+                    break;
+                case 1:
+                    $(".spanCityDescription").text(txt);
+                    document.getElementById("are1").className += " selectwi";
+                    num++;
+                    break;
+                case 2:
+                    $(".spannum1").text(txt);
+                    num++;
+                    document.getElementById("are2").className += " selectwi";
+                    break;
+                case 3:
+                    $(".spannum2").text(txt);
+                    num++;
+                    document.getElementById("are3").className += " selectwi";
+                    break;
+                case 4:
+                    $(".spannum3").text(txt);
+                    num++;
+                    document.getElementById("are4").className += " selectwi";
+                    break;
+                case 5:
+                    $(".spannum4").text(txt);
+                    num++;
+                    document.getElementById("are5").className += " selectwi";
+                    break;
+                case 6:
+                    $(".spannum5").text(txt);
+                    document.getElementById("are5").className += " selectwi";
+                    break;
+                case 7:
+                    $("#xny").text(txt);
+                    document.getElementById("xny").className += " selectwi";
+                    document.getElementById("xny").style.backgroundImage = '';
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+
+    // 点击选中的公共函数
+    function clickPublicFun() {
+        $(".select_plate_cell_area").show();
+        $(".select_plate_cellcity").hide();
+        $(".closes").show();
+        $(".weiwukuang").removeClass("selectwi");
+    }
+    // 点击删除的公共函数
+    function deletePublicFun() { }
+    document.getElementById("city").onclick = function () {
+        num = 0;
+        $(".select_plate_cellcity").show();
+        $(".select_plate_cell_area").hide();
+        $(".closes").show();
+        $(".weiwukuang").removeClass("selectwi");
+        document.getElementById("city").className += " selectwi";
+    }
+    document.getElementById("area").onclick = function () {
+        num = 1
+        clickPublicFun()
+        document.getElementById("area").className += " selectwi";
+    }
+    document.getElementById("are1").onclick = function () {
+        num = 2
+        clickPublicFun()
+        document.getElementById("are1").className += " selectwi";
+    }
+    document.getElementById("are2").onclick = function () {
+        num = 3
+        clickPublicFun()
+        document.getElementById("are2").className += " selectwi";
+    }
+    document.getElementById("are3").onclick = function () {
+        num = 4
+        clickPublicFun()
+        document.getElementById("are3").className += " selectwi";
+    }
+    document.getElementById("are4").onclick = function () {
+        num = 5
+        clickPublicFun()
+        document.getElementById("are4").className += " selectwi";
+    }
+    document.getElementById("are5").onclick = function () {
+        num = 6
+        clickPublicFun()
+        document.getElementById("are5").className += " selectwi";
+    }
+    document.getElementById("xny").onclick = function () {
+        num = 7
+        clickPublicFun()
+        document.getElementById("xny").className += " selectwi";
+    }
+});
+
+
+
+function aa() {
+    $(".closes").hide();
+    $(".select_plate_cellcity").hide();
+    $(".select_plate_cell_area").hide();
+    $(".weiwukuang").removeClass("selectwi");
+}
+$(".delete").click(function () {
+    $(".spanProvinceDescription").text("");
+})
+
+        </script>
+
+        <script type="text/javascript">
+            window.onresize = function () {
+                calcRam()
+            }
+            function calcRam() {
+                var html = document.querySelector("html");
+                var w = document.documentElement.clientWidth;
+                // 字体大小设置为12px一下，有些浏览器会转换为12px
+                html.style.fontSize = w / 37.5 + "px";
+            }
+            calcRam()
+        </script>
+
+
+
+        <script type="text/javascript">
+            function btnComputeParkingFee() {
+                $("#spanPlateNumberError").text("");
+                var city = $(".spanProvinceDescription").text();
+                var area = $(".spanCityDescription").text();
+                var are1 = $(".spannum1").text();
+                var are2 = $(".spannum2").text();
+                var are3 = $(".spannum3").text();
+                var are4 = $(".spannum4").text();
+                var are5 = $(".spannum5").text();
+                var spannum = $(".spannumn").text();
+                if ((city == "" && city == null) || area == "" || are1 == "" || are2 == "" || are3 == "" || are4 == "" || (are5 == "" && are5 == null && are5 == undefined)) {
+                    $("#spanPlateNumberError").text("请选择省份或车牌号");
+                    return false;
+                }
+                if (spannum.innerHTML == "" || spannum.innerHTML == num) {
+                    var value = city + area + are1 + are2 + are3 + are4 + are5;
+                } else {
+                    var value = city + area + are1 + are2 + are3 + are4 + are5 + spannum;
+                }
+                var parkingId = $("#hiddParkingId").val();
+                location.href = "/ParkingPayment/ComputeParkingFee?licensePlate=" + value + "&parkingId=" + parkingId;
+            }
+            function btnBingd() {
+                location.href = "/ParkingPayment/Register";
+            }
+
+
+        </script>
+
+
+
+
+        <!--[if IE 8]>
+        <style>
+
+        </style>
+        <![endif]-->
+    </body>
+</html>
+
+
+

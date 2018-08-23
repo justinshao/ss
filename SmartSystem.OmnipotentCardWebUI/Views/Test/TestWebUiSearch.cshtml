@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "找停车场";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" id="container">
+            <div class="weui_search_bar" id="search_bar">
+                <form class="weui_search_outer">
+                <div class="weui_search_inner">
+                    <i class="weui_icon_search" style="height:30px; line-height:30px;margin-top:10px"></i>
+                    <input type="search" class="weui_search_input" id="search_input" placeholder="搜索"  style="height:30px; line-height:30px;margin-top:5px"/>
+                    <a href="javascript:" class="weui_icon_clear" id="search_clear"  style="height:30px; line-height:30px;margin-top:5px"></a>
+                </div>
+                <label for="search_input" class="weui_search_text" id="search_text" style="height:30px; line-height:30px">
+                    <i class="weui_icon_search"  style="height:30px; line-height:30px; margin-top:10px"></i><span>搜索</span>
+                </label>
+                </form>
+                <a href="javascript:" class="weui_search_cancel" id="search_cancel"  style="height:30px; line-height:30px;margin-top:5px">取消</a>
+            </div>
+            <div class="weui_cells weui_cells_access search_show" id="search_show">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            实时搜索文本</p>
+                    </div>
+                </div>
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            实时搜索文本</p>
+                    </div>
+                </div>
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            实时搜索文本</p>
+                    </div>
+                </div>
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            实时搜索文本</p>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#search_bar").click(function () {
+            $(this).addClass("weui_search_focusing");
+        });
+        $("#search_input").focus(function () {
+            $("#search_cancel").show();
+            $("#search_clear").show();
+        });
+        $("#search_input").keydown(function () {
+            $("#search_show").show();
+        });
+        $("#search_input").blur(function () {
+            var v = $(this).val();
+            if ($.trim(v) != "") {
+                return false;
+            }
+            $("#search_cancel").hide();
+            $("#search_bar").removeClass("weui_search_focusing");
+        });
+    })
+</script>

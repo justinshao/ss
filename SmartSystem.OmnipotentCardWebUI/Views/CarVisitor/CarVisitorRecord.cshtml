@@ -1,0 +1,104 @@
+﻿@using Common.Core;
+@using Common.Entities.WX;
+@model List<VisitorInfo>
+@{
+    ViewBag.Title = "访客记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+    .weui_media_desc{ margin-bottom:5px;}
+    .weui_media_desc1{ margin-bottom:5px;}
+</style>
+ <div class="row">
+        <!--header-->
+        <div class="header">
+            <div class="pull-left header-left">
+                 <a href="@Url.Action("Index", "CarVisitor")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+             </div>
+            <div class="pull-right header-right">
+                访客记录</div>
+        </div>
+        <div class="top60">
+        </div>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                string VisitorCount = item.VisitorCount == -1 ? "不限" : item.VisitorCount.ToString()+"次";
+            <div class="weui_panel">
+                <div class="weui_panel_hd" style="font-weight: bold">
+                    车牌号：@item.PlateNumber
+                    
+                    @if(item.VisitorState==1){
+                        <span style="float: right">
+                        <a href="javascript:void(0)" class="weui_btn weui_btn_mini weui_btn_warn" onclick="return btnCancelVisitor('@item.RecordID')" style=" margin-top:-5px">取消</a>
+                        &nbsp;&nbsp</span>
+                    }else if(item.VisitorState==2){
+                        <span style="float: right; color:Red">已取消</span>
+                    }
+                    else if(item.VisitorState==3){
+                        <span style="float: right;">已完结</span>
+                    }
+                </div>
+                <div class="weui_panel_bd">
+                    <div class="weui_media_box weui_media_text">
+                        <p class="weui_media_desc">小区名称：@item.VName</p>
+                        <p class="weui_media_desc"> 手机号：@item.VisitorMobilePhone</p>
+                        <p class="weui_media_desc">
+                            开始日期：@item.BeginDate.ToPlatDateTimeString()</p>
+                        <p class="weui_media_desc">
+                            结束日期：@item.EndDate.ToPlatDateTimeString()</p>
+                        <p class="weui_media_desc">可进出次数：@VisitorCount</p>
+                        @if (item.ParkVisitors != null && item.ParkVisitors.ToList().Count > 0)
+                        {
+                            int count = item.ParkVisitors.ToList().Count;
+                            int currIndex = 1;
+                            string strheight = count * 13 + "px";
+                            <p class="weui_media_desc1" style="color: #999999; font-size: 13px">
+                                <span style="float:left; width:66px; height:@strheight;">授权车场：</span>
+                                @foreach (var car in item.ParkVisitors.ToList())
+                                {
+                                    if (count == currIndex)
+                                    {
+                                    <span>@car.PKName (已进出<span>@car.AlreadyVisitorCount</span>次)</span>
+                                    }
+                                    else
+                                    {
+                                    <span>@car.PKName (已进出<span>@car.AlreadyVisitorCount</span>次)</span><br />
+                                    }
+                                    currIndex++;
+                                }
+                            </p>
+                            <div style="clear: both">
+                            </div>
+                        }
+                     
+                        <p class="weui_media_desc">
+                            添加时间：@item.CreateTime.ToPlatDateTimeString()</p>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+        else
+        {
+           <div id="divNotData" style="width: 100%; text-align: center; margin-top: 150px;">
+                <div>
+                    <img src="/Content/mobile/images/list_not_data.png" />
+                </div>
+                <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+                    无访客记录！</div>
+            </div>
+        }
+    </div>
+    <script type="text/javascript">
+        var selectVisitorId;
+        function btnCancelVisitor(visitorId) {
+            selectVisitorId = visitorId;
+            WxConfirm("", "您确定要取消该访客吗？", "SubmitCancelVisitor");
+        }
+        function SubmitCancelVisitor() {
+            location.href = "/CarVisitor/CancelVisitor?visitorId="+selectVisitorId;
+        }
+    </script>

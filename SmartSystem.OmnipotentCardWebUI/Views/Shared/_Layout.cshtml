@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>智慧车场管理系统</title>
+    <script src="/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <link href="/Content/themes/base/easy-ui/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/themes/base/easy-ui/icon.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/smartsystem.css?v=8" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="/Scripts/easyui/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="/Scripts/easyui/easyui-toolbar-extend.js" type="text/javascript"></script>
+</head>
+<body class="easyui-layout">
+    @RenderBody()
+    <script type="text/javascript">
+        $(document).ajaxStart(function () {
+            $.ajax({
+                global: false,
+                type: "POST",
+                url: "/Login/CheckLoginStatus",
+                success: function (data) {
+                    if (data == 0) {
+                        location.href = '/RedirectPage/LoginTimeOut';
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function (e) {
+            var counter = 0;
+            if (window.history && window.history.pushState) {
+                $(window).on('popstate', function () {
+                    window.history.pushState('forward', null, '#');
+                    window.history.forward(1);
+                });
+            }
+            window.history.pushState('forward', null, '#');
+            window.history.forward(1);
+        });
+    </script>
+</body>
+
+</html>

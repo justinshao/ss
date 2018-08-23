@@ -1,0 +1,74 @@
+﻿@using ClassLibrary1
+@model MonthCard
+@{
+    ViewBag.Title = "月卡";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    body{ background-color:#f4f4f4; margin:0px; padding:0px;}
+    .parkingcenter{ width:95%; margin:0 auto;}
+    .plateNumber{ font:PingFang SC; font-size:3.1rem; color:#333333;text-align:center;margin-top:3.1rem;}
+    .listLayout{background:url(../../Content/mobile/images/yueka.png) no-repeat;background-size:100% 100%; -webkit-border-radius: 10px;border-radius: 10px;margin-top:3.1rem; height:20rem;}
+    .listhead { overflow:hidden; height:5rem; line-height:5rem;}
+    .listhead .listhead_left{ float:left;font:PingFang SC; font-size:2rem; color:#FFFFFF; margin-left:2rem;}
+    .pkname{ overflow:hidden; height:5rem; line-height:5rem;}
+    .pkname_center{ font:PingFang SC; font-size:2rem; color:#FFFFFF;text-align:center;}
+    .amount{ overflow:hidden; height:5rem; line-height:5rem;}
+    .amount .amount_center{ font:PingFang SC; font-size:2rem; color:#FFFFFF;text-align:center;}
+    .day{ overflow:hidden; height:5rem; line-height:5rem;} 
+    .day .day_center{ float:right; font:PingFang SC; font-size:2rem; color:#FFFFFF;}
+    .norecord{ position: absolute;left:50%;top:50%;font-size:1.5rem;margin-left:-3.0rem;margin-top:-0.75rem;}
+</style>
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+    }
+    calcRam()
+    function cardInfo(obj, amount, cardid, day, endtime, licenseplate, maxmonth, maxvalue, parkname, starttime, state) {
+        location.href = "/MonthCard/MonthCardDetails?amount=" + amount + "&cardid=" + cardid + "&day=" + day + "&endtime=" + endtime + "&licenseplate=" + licenseplate + "&maxmonth=" + maxmonth + "&maxvalue=" + maxvalue + "&parkname=" + parkname + "&starttime=" + starttime + "&state=" + state;
+//        $.ajax({
+//            type: 'Post',
+//            url: '/MonthCard/MonthCardDetails',
+//            data: "amount=" + amount + "&cardid=" + cardid + "&day=" + day + "&endtime=" + endtime + "&licenseplate=" + licenseplate + "&maxmonth=" + maxmonth + "&maxvalue=" + maxvalue + "&parkname=" + parkname + "&starttime=" + starttime + "&state=" + state,
+//            success: function () {
+//                //window.location.href = "/MonthCard/MonthCardDetails";
+//            }
+//        });
+    }
+</script>
+<div class="parkingcenter">
+@if (Model.Result.Count == 0)
+{
+    <div class="norecord">
+                暂无月卡
+            </div>
+}
+else
+{ 
+    <div class="plateNumber">@Model.Result[0].LicensePlate</div>
+    for (var i = 0; i < Model.Result.Count; i++)
+    {
+        
+        <div class="listLayout" onclick="cardInfo(this,'@Model.Result[i].Amount','@Model.Result[i].CardID','@Model.Result[i].Day','@Model.Result[i].EndTime','@Model.Result[i].LicensePlate','@Model.Result[i].MaxMonth','@Model.Result[i].MaxValue','@Model.Result[i].ParkName','@Model.Result[i].StartTime','@Model.Result[i].State')">
+        @*<a href="/MonthCard/MonthCardDetails?detail=@Model.Result[i]" style="display:inline-block;width:100%;height:20rem;line-height:20rem;"></a>*@
+        <div class="listhead">
+            <div class="listhead_left">固定月卡</div>
+        </div>
+        <div class="pkname">
+            <div class="pkname_center">@Model.Result[i].ParkName</div>
+        </div>
+        <div class="amount">
+            <div class="amount_center">@Model.Result[i].Amount 元/月</div>
+        </div>
+        <div class="day">
+            <div class="day_center">剩余时间： @Model.Result[i].Day<p style="float:right; font:PingFang SC; font-size:2rem; color:#FFFFFF;margin-right:2rem;">天</p></div>
+        </div>
+        </div>
+     }
+}
+</div>

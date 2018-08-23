@@ -1,0 +1,55 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "进出记录";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/reportinout.js")
+
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="center" title="进出纪录" style="padding:2px; ">
+    <div style="margin:3px 0px 3px 5px">
+         <div style=" margin-top:5px">
+         <table>
+            <tr>
+                <td>车场名称：</td><td><input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:140px"/></td>
+                <td>车辆类型：</td><td><select id="selectCarType" style="width: 140px; " class="my_select"><option value="-1">全部</option></select></td>
+                <td>卡片类型：</td><td><select id="selectCardType" style="width: 140px;" class="my_select"><option value="-1">全部</option></select></td>
+                <td>进道口：</td><td><select id="selectGateIn" style="width: 140px;" class="my_select"><option value="-1">全部</option></select></td>
+                <td>出道口：</td><td><select id="selectGateOut" style="width: 140px;" class="my_select"><option value="-1">全部</option></select>  </td>
+            </tr>
+            <tr>
+                <td>当班人员：</td><td><select id="selectOnDutys" style="width: 140px; " class="my_select"><option value="-1">全部</option></select> </td>
+                <td>放行类型：</td><td><select id="selectReleaseType" style="width: 140px; " class="my_select"><option value="-1">全部</option><option value="0">正常放行</option><option value="1">收费放行</option><option value="2">免费放行</option><option value="3">异常放行</option></select></td>
+                <td>停车区域：</td><td><select id="selectArea" style="width: 140px; " class="my_select"><option value="-1">全部</option></select></td>
+                <td>是否出场：</td><td><select id="selectIsExit" style="width: 140px; " class="my_select"><option value="-1">全部</option><option value="0">未出场</option><option value="1">已出场</option></select></td>
+                 <td>车牌号码：</td><td><input class="my_textbox" style="width: 140px; " id="txtPlateNumber" /> </td>
+            </tr>
+            <tr>
+                <td>车主名称：</td><td><input class="my_textbox" style="width: 140px; " id="txtOwner" />   </td>
+                <td>开始时间：</td><td><input class="easyui-datetimebox" type="text" id="txtEntranceTime" style="width:150px;height:25px; line-height:25px"  />  </td>
+                 <td>结束时间：</td><td><input class="easyui-datetimebox" type="text" id="txtExitTime" style="width:150px;height:25px; line-height:25px"  />  </td>
+                <td></td>
+                <td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+            </tr>
+         </table>
+        </div>
+      
+    </div>
+    <div style="height: 84%;">        
+        <table fit="true" id="tableListBox">
+        </table>
+    </div>
+</div>
+</div>
+<div id="DivShowImage" style="display: none">
+    <form id="DivShowImageForm" class="easyui-form">
+    <div style="padding: 10px; background-image='../../Content/images/amg_3.png'" >
+        <table>
+        <tr><td style=" text-align:center"><small>进场图片</small></td><td style=" text-align:center"><small>出场图片</small></td></tr>
+        <tr><td style=" text-align:center; height:100px; width:380px"><img id="EntranceSmallImage" width="380px" height="100px"/></td><td><img id="ExitSmallImage" width="380px" height="100px"/></td></tr>
+        <tr><td><img id="EntranceImage" width="380px" height="280px"/></td><td><img id="ExitImage" width="380px" height="280px"/></td></tr>
+        </table>
+    </div>
+    </form>
+</div>

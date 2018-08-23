@@ -1,0 +1,54 @@
+﻿.parking-box
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding-left: 10px;
+    width: 100%;
+    border-top: 1px solid #b1b1b1;
+    background: #f4f4f4;
+}
+
+.parking-left-box
+{
+    padding: 11px 0px;
+    float: left;
+    width: 80%;
+    height: 70px;
+    overflow: hidden;
+}
+
+.parking-right-box
+{
+    display: inline;
+    float: right;
+    line-height: 70px;
+    width: 20%;
+    text-align: center;
+    text-decoration: none;
+    color: #FFF;
+    background: #0151a0;
+}
+.parking-address
+{
+    height: 20px;
+    font-size: 9px;
+    color: #888;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 280px;
+    height: 20px;
+}
+.parking-box-distance
+{
+    height: 20px;
+    font-size: 9px;
+    color: #888;
+}
+.parking-box-jiantou
+{
+    float: right;
+    margin-top: -55px;
+}
+.weui_cells{ font-size:12px;}

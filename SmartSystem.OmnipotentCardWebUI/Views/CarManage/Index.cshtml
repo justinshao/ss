@@ -1,0 +1,342 @@
+﻿@using ClassLibrary1;
+@model Car
+@{
+    ViewBag.Title = "我的车辆";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section Scripts{
+    <script src="/Scripts/mobile/carmanage.js?v=2" type="text/javascript"></script>
+}
+<style>
+ #aa{
+     color: #888888;
+     text-align: left;
+     font-size: 1.5rem;
+     font: PingFang-SC-Medium;
+     height: 2.5rem;
+     margin-left: 1.25rem;
+}
+ #bb {
+     text-align: center;
+     color: #888888;
+     font-size: 1.75rem;
+     font: PingFang-SC-Medium;
+     margin-top: 15.625rem;
+     margin-bottom: 9.375rem;
+}
+ .ddd {
+     height: 16.25rem ;
+     background-color: #FFFFFF;
+     border-radius: 10px;
+     box-shadow: 0 0 1px #888888;
+     margin: 0rem 1.25rem 1.25rem 1.25rem;
+}
+ .ddd_delete {
+     height: 3.875rem;
+     display:none;
+     position: absolute;
+     float:right;
+     left: 100%;
+     transform: translate(-100%,-50%);
+     padding-right:1.25rem;
+     padding-top:1.0625rem;
+     z-index: 2;
+}
+ .ddd_ft {
+     float: right;
+}
+ .carname {
+     color: #333333;
+     text-align: center;
+     font-size: 3.125rem ;
+     font: PingFang-SC-Medium;
+     padding-top: 6.3375rem;
+}
+ .divWxConfirm {
+     height: 20.75rem;
+     width: 28.75rem;
+     border-radius: 10px;
+     background-color: #fefefe;
+     border-top: 0.0625rem;
+     display: none;
+     position: absolute;
+     float:left;
+     left: 50%;
+     top: 45%;
+     transform: translate(-50%,-50%);
+     z-index: 3;
+}
+ .confirmpic {
+     padding-top: 2rem;
+     padding-left: 12.625rem;
+}
+ .confirmtxt {
+     margin-top: 2.25rem;
+     font-size: 2rem;
+    
+     font: PingFang-SC-Medium;
+     color: #333333;
+     text-align: center;
+     margin-bottom: 3.875rem;
+     
+
+}
+ .confirmbutton {
+     height: 10.875rem;
+     width: 28.75rem;
+}
+ .btnleft {
+     color: #999999;
+     text-align: center;
+     font: PingFang-SC-Medium;
+     font-size: 2.125rem ;
+     float: left;
+     border: none;
+     width: 14.375rem;
+     height: 4.75rem;
+     background-color: #fefefe;
+     border-top: 0.0625rem solid #d4d4d4;
+     border-right: 0.0625rem solid #d4d4d4;
+     border-radius: 0rem 0rem 0rem 1.25rem;
+}
+ .btnright {
+     color: #c8161d;
+     text-align: center;
+     font: PingFang-SC-Medium;
+     font-size: 2.125rem ;
+     float: right;
+     border: none;
+     width: 14.375rem;
+     height: 4.75rem;
+     background-color: #fefefe;
+     border-top: 0.0625rem solid #d4d4d4;
+     border-radius: 0rem 0rem 1.25rem 0rem;
+}
+ .black_overlay {
+     position: fixed;
+     z-index: 1;
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     filter: alpha(opacity=50);
+     opacity: 0.5;
+     overflow: hidden;
+     background-color: #000;
+     display: none;
+}
+ #btnbtn {
+     opacity: 0.3;
+     cursor: not-allowed;
+}
+ .ddd_ft {
+     float: right;
+     padding-right:1.25rem;
+     padding-top:1.5rem;
+}
+ 
+input[type="button"], input[type="submit"], input[type="reset"] {
+-webkit-appearance: none;
+}
+textarea { -webkit-appearance: none;} 
+.btn {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 3%;
+}
+
+.btn button {
+  width: 100%;
+  height: 4.8rem;
+  background-color: #C7161C;
+  color: #fff;
+  border: none;
+  border-radius: .5rem;
+  font-size: 1.6rem;
+}
+</style>
+<script type="text/javascript">
+    function btnAddCar() {
+        location.href = '/CarManage/AddCar';
+    }
+
+</script>
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+    }
+    calcRam()
+</script>
+
+<div id="fade" class="black_overlay">
+</div>
+ 
+<div id="aa">
+    <p>
+        最多添加3个车牌</p>
+</div>
+
+@if(Model.Result.Count==0)
+{
+<div style="width: 100%; " id="divNoCarDataBox">
+    <div id="bb">
+        <p>
+            暂无添加车辆</p>
+    </div>
+
+</div>
+}
+<div class="container">
+
+@if (Model.Result.Count >= 1)    {
+<div class="test one">
+
+<div class="ddd_delete" id="deleteone">
+        <a href="javascript:void(0);" onclick="return btnDeleteMyLicenseplateone()">
+             <img src="/Content/mobile/images/wx_jiebang.png" style="width:9rem;"></a></div>
+            <div class="ddd">
+
+    
+    <div class="ddd_ft">
+        <a href="javascript:void(0);" onclick="btnjiebangone()">
+           <img src="/Content/mobile/images/vehicle_Unbundled@2x.png" style="width:2.5rem ;"></a>
+    </div>
+    <div class="ddd_primary">
+        <p class="carname">
+            @Model.Result[0].LicensePlate</p>
+    </div>
+</div>
+</div>
+    
+    
+ <div class="divWxConfirm one" id="WxConfirmone">
+    <div class="confirmpic one">
+        <img src="/Content/mobile/images/wx_confirm.png" style="height: 3.875rem ;">
+    </div>
+    <div class="confirmtxt one">
+        <p>
+            是否确认解绑 @Model.Result[0].LicensePlate？</p>
+    </div>
+    <div class="confirmbutton one">
+        <div class="buttonleft one">
+            <input type="button" class="btnleft" onclick="btncancelone()" value="取消" />
+        </div>
+        <div class="buttonright one">
+            <input type="button" class="btnright" onclick="btnconfirmone(this,'@Model.Result[0].CarID','@Model.Result[0].LicensePlate')" value="确认" />
+        </div>
+    </div>
+</div>  
+}  
+     
+@if (Model.Result.Count >= 2)  {  
+<div class="test two">
+
+<div class="ddd_delete two" id="deletetwo">
+        <a href="javascript:void(0);" onclick="return btnDeleteMyLicenseplatetwo()">
+            <img src="/Content/mobile/images/wx_jiebang.png" style="width: 9rem;"></a></div>
+<div class="ddd">
+
+    
+    <div class="ddd_ft">
+        <a href="javascript:void(0);" onclick="btnjiebangtwo()">
+            <img src="/Content/mobile/images/vehicle_Unbundled@2x.png" style="width: 2.5rem;"></a>
+    </div>
+    <div class="ddd_primary">
+        <p class="carname">
+            @Model.Result[1].LicensePlate</p>
+    </div>
+</div>
+</div>
+    
+    
+ <div class="divWxConfirm two"id="WxConfirmtwo">
+    <div class="confirmpic two">
+        <img src="/Content/mobile/images/wx_confirm.png" style="height:3.875rem ;">
+    </div>
+    <div class="confirmtxt two" >
+ <p>
+            是否确认解绑 @Model.Result[1].LicensePlate？</p>
+
+    </div>
+    <div class="confirmbutton two">
+        <div class="buttonleft two">
+            <input type="button" class="btnleft" onclick="btncanceltwo()" value="取消" />
+        </div>
+        <div class="buttonright two">
+            <input type="button" class="btnright" onclick="btnconfirmtwo(this,'@Model.Result[1].CarID','@Model.Result[0].LicensePlate')" value="确认" />
+        </div>
+    </div>
+</div>  
+}  
+
+@if (Model.Result.Count == 3) {   
+<div class="test three">
+<div class="ddd_delete three"id="deletethree" >
+        <a href="javascript:void(0);" onclick="return btnDeleteMyLicenseplatethree()">
+             <img src="/Content/mobile/images/wx_jiebang.png" style="width:9rem;"></a></div>
+<div class="ddd">
+
+    
+    <div class="ddd_ft">
+        <a href="javascript:void(0);" onclick="btnjiebangthree()">
+            <img src="/Content/mobile/images/vehicle_Unbundled@2x.png" style="width: 2.5rem;"></a>
+    </div>
+    <div class="ddd_primary">
+        <p class="carname">
+            @Model.Result[2].LicensePlate</p>
+    </div>
+</div>
+</div>
+    
+    
+ <div class="divWxConfirm three" id="WxConfirmthree">
+    <div class="confirmpic three">
+        <img src="/Content/mobile/images/wx_confirm.png" style="height: 3.875rem ;">
+    </div>
+    <div class="confirmtxt three">
+        <p>
+            是否确认解绑 @Model.Result[2].LicensePlate？</p>
+    </div>
+    <div class="confirmbutton three">
+        <div class="buttonleft">
+            <input type="button" class="btnleft" onclick="btncancelthree()" value="取消" />
+        </div>
+        <div class="buttonright three">
+            <input type="button" class="btnright" onclick="btnconfirmthree(this,'@Model.Result[2].CarID','@Model.Result[0].LicensePlate')" value="确认" />
+        </div>
+    </div>
+</div> 
+    
+
+    
+     
+}  
+
+
+
+</div>
+
+
+
+@if (Model.Result.Count == 3)
+{ 
+
+    <div class="btn">
+      <button    id="btnbtn" >添加车辆</button>
+    </div> 
+}
+else
+{
+
+ <div class="btn">
+      <button  onclick="btnAddCar()"  >添加车辆</button>
+    </div>
+}
+<br />
+<br />

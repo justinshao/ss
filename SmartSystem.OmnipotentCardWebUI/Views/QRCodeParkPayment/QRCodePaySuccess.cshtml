@@ -1,0 +1,52 @@
+﻿@using Common.Entities.Order;
+@model OnlineOrder
+@{
+    ViewBag.Title = "支付成功";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+
+<div class="row">
+        <div class="row hn-row" style="text-align: center">
+        <div class="weui_msg top20" style="padding-top: 0px">
+            <div class="weui_icon_area">
+               <i class="weui_icon_msg weui_icon_success"></i>
+            </div>
+            <div class="weui_text_area">
+               <h2 class="weui_msg_title" style="color:#c8161d !important;">支付完成</h2>
+            </div>
+            <p style="color:#888888 !important;">温馨提示:下载APP,停车更便捷,优惠享不停</p>
+        </div>
+    </div>
+    
+@if (Model != null)
+{ 
+        <div class="weui_cells">
+             <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>@Model.PKName</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+            </div>
+             <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>停车时长</p>
+                </div>
+                <div class="weui_cell_ft"> @Model.EntranceTime.GetParkingDuration(DateTime.Now)</div>
+            </div>
+             <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>停车费用</p>
+                </div>
+                <div class="weui_cell_ft" style="color:#c8161d !important;">@Model.Amount</div>
+            </div>
+        </div>
+}
+        <div style="text-align:center; margin-top:2em;">
+            <img src="/Content/mobile/images/qr.png" width="126" height="126" alt="" />
+        </div>
+        <div style="text-align:center;">
+            识别二维码下载APP
+        </div>
+
+</div>

@@ -1,0 +1,103 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "月报表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/statisticsmonth.js?v=1")
+<script>
+    $(function () {
+        $('#txtStartTime').datebox({
+            onShowPanel: function () {// 显示日趋选择对象后再触发弹出月份层的事件，初始化时没有生成月份层    
+                span1.trigger('click'); // 触发click事件弹出月份层    
+                if (!tds1)
+                    setTimeout(function () {// 延时触发获取月份对象，因为上面的事件触发和对象生成有时间间隔    
+                        tds1 = p1.find('div.calendar-menu-month-inner td');
+                        tds1.click(function (e) {
+                            e.stopPropagation(); // 禁止冒泡执行easyui给月份绑定的事件    
+                            var year = /\d{4}/.exec(span1.html())[0]// 得到年份    
+                            , month = parseInt($(this).attr('abbr'), 10) + 1; // 月份    
+                            $('#txtStartTime').datebox('hidePanel')// 隐藏日期对象    
+                            .datebox('setValue', year + '-' + month); // 设置日期的值    
+                        });
+                    }, 0);
+            },
+            parser: function (s) {// 配置parser，返回选择的日期    
+                if (!s)
+                    return new Date();
+                var arr = s.split('-');
+                return new Date(parseInt(arr[0], 10), parseInt(arr[1], 10) - 1, 1);
+            },
+            formatter: function (d) {
+                var month = d.getMonth();
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                if (d.getMonth() == 0) {
+                    return d.getFullYear() - 1 + '-' + 12;
+                } else {
+                    return d.getFullYear() + '-' + month;
+                }
+            } // 配置formatter，只返回年月    
+        });
+        var p1 = $('#txtStartTime').datebox('panel'), // 日期选择对象    
+        tds1 = false, // 日期选择对象中月份    
+        span1 = p1.find('span.calendar-text'); // 显示月份层的触发控件    
+
+
+        $('#txtEndTime').datebox({
+            onShowPanel: function () {// 显示日趋选择对象后再触发弹出月份层的事件，初始化时没有生成月份层    
+                span2.trigger('click'); // 触发click事件弹出月份层    
+                if (!tds2)
+                    setTimeout(function () {// 延时触发获取月份对象，因为上面的事件触发和对象生成有时间间隔    
+                        tds2 = p2.find('div.calendar-menu-month-inner td');
+                        tds2.click(function (e) {
+                            e.stopPropagation(); // 禁止冒泡执行easyui给月份绑定的事件    
+                            var year = /\d{4}/.exec(span2.html())[0]// 得到年份    
+                            , month = parseInt($(this).attr('abbr'), 10) + 1; // 月份    
+                            $('#txtEndTime').datebox('hidePanel')// 隐藏日期对象    
+                            .datebox('setValue', year + '-' + month); // 设置日期的值    
+                        });
+                    }, 0);
+            },
+            parser: function (s) {// 配置parser，返回选择的日期    
+                if (!s)
+                    return new Date();
+                var arr = s.split('-');
+                return new Date(parseInt(arr[0], 10), parseInt(arr[1], 10) - 1, 1);
+            },
+            formatter: function (d) {
+                var month = d.getMonth();
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                if (d.getMonth() == 0) {
+                    return d.getFullYear() - 1 + '-' + 12;
+                } else {
+                    return d.getFullYear() + '-' + month;
+                }
+            } // 配置formatter，只返回年月    
+        });
+        var p2 = $('#txtEndTime').datebox('panel'), // 日期选择对象    
+        tds2 = false, // 日期选择对象中月份    
+        span2 = p2.find('span.calendar-text'); // 显示月份层的触发控件    
+    });
+</script>
+
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="center" title="月报表" style="padding:2px; ">
+     <div style="margin:3px 0px 3px 5px">
+        &nbsp;&nbsp;车场名称：<input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/>
+        &nbsp;开始时间：<input type="text" id="txtStartTime" style="width:100px;height:25px; line-height:25px" />
+        &nbsp;结束时间：<input type="text" id="txtEndTime" style="width:100px;height:25px; line-height:25px"  />
+       
+        &nbsp;<a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a>
+    </div>
+    <div style="height: 94%;">        
+        <table fit="true" id="tableListBox">
+        </table>
+    </div>
+</div>
+</div>
+

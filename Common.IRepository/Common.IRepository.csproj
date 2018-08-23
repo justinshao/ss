@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{695C985E-9F3E-42FF-B20D-74E79585F320}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common.IRepository</RootNamespace>
+    <AssemblyName>Common.IRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AliPay\IAliPayApiConfig.cs" />
+    <Compile Include="BaseData\IBaseCard.cs" />
+    <Compile Include="BaseData\IBaseEmployee.cs" />
+    <Compile Include="BaseData\ICity.cs" />
+    <Compile Include="BaseData\ICompany.cs" />
+    <Compile Include="BaseData\IMessage.cs" />
+    <Compile Include="BaseData\IParking.cs" />
+    <Compile Include="BaseData\IPassRemark.cs" />
+    <Compile Include="BaseData\IVillage.cs" />
+    <Compile Include="BB\PublicDAL.cs" />
+    <Compile Include="BWY\IBWYGateMapping.cs" />
+    <Compile Include="Logs\IExceptions.cs" />
+    <Compile Include="Logs\ILoginLog.cs" />
+    <Compile Include="Logs\IOperateLog.cs" />
+    <Compile Include="Order\IOnlineOrder.cs" />
+    <Compile Include="Park\IEmployeePlate.cs" />
+    <Compile Include="Park\IParkArea.cs" />
+    <Compile Include="Park\IParkBlacklist.cs" />
+    <Compile Include="Park\IParkCarlineInfo.cs" />
+    <Compile Include="Park\IParkBox.cs" />
+    <Compile Include="Park\IParkCarDerate.cs" />
+    <Compile Include="Park\IParkCardSuspendPlan.cs" />
+    <Compile Include="Park\IParkCarModel.cs" />
+    <Compile Include="Park\IParkCarType.cs" />
+    <Compile Include="Park\IParkCarTypeSingle.cs" />
+    <Compile Include="Park\IParkChangeshiftrecord.cs" />
+    <Compile Include="Park\IParkDerate.cs" />
+    <Compile Include="Park\IParkDerateConfig.cs" />
+    <Compile Include="Park\IParkDerateQRcode.cs" />
+    <Compile Include="Park\IParkDevice.cs" />
+    <Compile Include="Park\IParkDeviceDetection.cs" />
+    <Compile Include="Park\IParkEvent.cs" />
+    <Compile Include="Park\IParkFeeRule.cs" />
+    <Compile Include="Park\IParkGate.cs" />
+    <Compile Include="Park\IParkGrant.cs" />
+    <Compile Include="Park\IParkInterim.cs" />
+    <Compile Include="Park\IParkIORecord.cs" />
+    <Compile Include="Park\IParkLpPlan.cs" />
+    <Compile Include="Park\IParkMonthlyCarApply.cs" />
+    <Compile Include="Park\IParkOrder.cs" />
+    <Compile Include="Park\IParkReserveBit.cs" />
+    <Compile Include="Park\IParkSeller.cs" />
+    <Compile Include="Park\IParkSettlement.cs" />
+    <Compile Include="Park\IParkSettlementApprovalFlow.cs" />
+    <Compile Include="Park\IParkSettlementDetails.cs" />
+    <Compile Include="Park\IParkTimeseries.cs" />
+    <Compile Include="Park\IParkVisitor.cs" />
+    <Compile Include="PG\IPGArea.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statistics\IStatistics.cs" />
+    <Compile Include="Statistics\IStatistics_ChangeShift.cs" />
+    <Compile Include="Statistics\IStatistics_Gather.cs" />
+    <Compile Include="Statistics\IStatistics_GatherGate.cs" />
+    <Compile Include="Statistics\IStatistics_GatherLongTime.cs" />
+    <Compile Include="Statistics\ITgOrder.cs" />
+    <Compile Include="Statistics\ItgPerson.cs" />
+    <Compile Include="Users\ISysRoleAuthorize.cs" />
+    <Compile Include="Users\ISysScope.cs" />
+    <Compile Include="Users\ISysScopeAuthorize.cs" />
+    <Compile Include="Users\ISysUser.cs" />
+    <Compile Include="Users\ISysRoles.cs" />
+    <Compile Include="Users\ISysUserRolesMapping.cs" />
+    <Compile Include="Users\ISysUserScopeMapping.cs" />
+    <Compile Include="WeiXin\IAdvanceParking.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IOpinionFeedback.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXAccount.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXApiConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXArticle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXInteractionInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXKeyword.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXMenu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXMenuAccessRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXohters.cs" />
+    <Compile Include="WeiXin\IWXOtherConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWXUser.cs" />
+    <Compile Include="WeiXin\IWXUserLocation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\IWX_LockCar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXKeyword.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.DataAccess\Common.DataAccess.csproj">
+      <Project>{18F0CE73-B168-4D53-BCED-FD6C4E0D4378}</Project>
+      <Name>Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Entities\Common.Entities.csproj">
+      <Project>{2A5BF93F-E241-48AE-905E-712A3152EF8C}</Project>
+      <Name>Common.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

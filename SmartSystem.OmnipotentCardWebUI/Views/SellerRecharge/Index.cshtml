@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "商家充值";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "XFJMMain")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            商家充值</div>
+    </div>
+    <div style="margin-top: 45px">
+    </div>
+    <div class="bd">
+        <div class="weui_grids">
+            <div class="weui_grid weui_grid_cus">
+                <p class="weui_grid_label">
+                    <span style="font-size: 25px; font-weight: bold">50</span> 元
+                </p>
+                <input type="hidden" class="hiddREchargeMoney" value="50" />
+                <i class="weui_icon_success" style="position: absolute; right: 1px; bottom: 1px;">
+                </i>
+            </div>
+            <div class="weui_grid weui_grid_cus">
+                <p class="weui_grid_label">
+                    <span style="font-size: 25px; font-weight: bold">100</span> 元
+                </p>
+                <input type="hidden" class="hiddREchargeMoney" value="100" />
+            </div>
+            <div class="weui_grid weui_grid_cus">
+                <p class="weui_grid_label">
+                    <span style="font-size: 25px; font-weight: bold">200</span> 元
+                </p>
+                <input type="hidden" class="hiddREchargeMoney" value="200" />
+            </div>
+            <div class="weui_grid weui_grid_cus">
+                <p class="weui_grid_label">
+                    <span style="font-size: 25px; font-weight: bold">500</span> 元
+                </p>
+                <input type="hidden" class="hiddREchargeMoney" value="500" />
+            </div>
+            <div class="weui_grid weui_grid_cus">
+                <p class="weui_grid_label">
+                    <span style="font-size: 25px; font-weight: bold">1000</span> 元
+                </p>
+                <input type="hidden" class="hiddREchargeMoney" value="1000" />
+            </div>
+            <div class="weui_grid weui_grid_cus">
+                <p class="weui_grid_label">
+                    <span style="font-size: 25px; font-weight: bold">2000</span> 元
+                </p>
+                <input type="hidden" class="hiddREchargeMoney" value="2000" />
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    其他金额</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="txtRechargeAmount" type="number" placeholder="请输入其他充值金额" />
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("SaveRecharge", "SellerRecharge", FormMethod.Post))
+    {
+        <input type="hidden" id="hidd_Amount" name="Amount" />
+        @Html.Action("Index", "PaymentType", new { preferentialMoney = "0", payMoney = "0", showPreferentialMoney = false, showWaitPayMoney = false })
+    }
+            <i class="weui_icon_success" style="position: absolute; right: 1px; bottom: 1px;
+            display: none"></i>
+</div>
+ <script type="text/javascript">
+     var ingReg = /^[0-9]*$/;
+     $(function () {
+         $(".weui_grids .weui_grid").click(function () {
+             $(".weui_grids").find(".weui_icon_success").remove();
+             var html = $(".weui_icon_success").eq(0).clone();
+             $(this).append(html);
+             $(".weui_grids .weui_icon_success").show();
+             var money = $(this).find("[class=hiddREchargeMoney]").val();
+             $("#hidd_Amount").text(money);
+         });
+
+         $("#btnSubmitPaymentRequest").click(function () {
+             var total_pay_money = $("#txtRechargeAmount").val();
+             if (total_pay_money != "") {
+                 if (total_pay_money == "0" || !$.trim(total_pay_money).match(ingReg)) {
+                     WxAlert("", "输入充值金额不正确");
+                     return false;
+                 } else {
+                     $("#hidd_Amount").val(total_pay_money);
+                 }
+             } else {
+                 var sltAmount = "";
+                 $(".weui_grid_cus").each(function () {
+                     var sltItem = $(this).find(".hiddREchargeMoney").length;
+                     if (sltItem == 1) {
+                         sltAmount = $(this).find("[class=hiddREchargeMoney]").val();
+                         return false;
+                     }
+                 });
+                 if (sltAmount == "") {
+                     WxAlert("", "获取选择的充值金额不正确");
+                     return false;
+                 }
+                 $("#hidd_Amount").val(sltAmount);
+             }
+             $("#loadingSubmitPayToast").show();
+         });
+     })
+ </script>

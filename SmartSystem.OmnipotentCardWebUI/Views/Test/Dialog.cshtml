@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "微信扫码";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+<div class="container hn-main">
+    <div class="row hn-row">
+     @Html.Action("Index", "LicensePlate")
+     <input type="button"  value="btnTest" onclick="return TestOpen()"/>
+      <input type="button"  value="btnTest1" onclick="return TestOpen1()"/>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        alert(addMoth('2013-08-21 ', 7))
+    });
+    function TestOpen() {
+        CusAlert("test", "conent");
+    }
+    function TestOpen1() {
+        CusConfirm("test", "conent", "methodName");
+    }
+    function methodName() {
+        CusAlert("SUCCESS");
+    }
+    function addMoth(d, m) {
+        var ds = d.split('-'), _d = ds[2] - 0;
+        var nextM = new Date(ds[0], ds[1] - 1 + m + 1, 0);
+        var max = nextM.getDate();
+        d = new Date(ds[0], ds[1] - 1 + m, _d > max ? max : _d);
+        return d.toLocaleDateString().match(/\d+/g).join('-')
+    }
+   
+</script>

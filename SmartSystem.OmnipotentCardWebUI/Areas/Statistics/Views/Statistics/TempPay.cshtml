@@ -1,0 +1,64 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "临停缴费";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/temppay.js")
+
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="center" title="临停缴费" style="padding: 2px;">
+        <div style="margin: 3px 0px 3px 5px">
+            <div style="margin-bottom: 5px">
+                <table>
+                    <tr>
+                        <td>车场名称：</td><td><input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/></td>
+                        <td>线上线下：</td><td><select id="selectOnLineOffLine" style="width: 150px; " class="my_select">  
+                                        <option value="-1">全部</option> 
+                                        <option value="0">线下</option>
+                                        <option value="1">线上</option></select></td>
+                        <td>订单来源：</td><td><select id="selectOrderSource" style="width: 150px; " class="my_select">
+                         <option value="-1">全部</option>
+                        <option value="1">微信</option>
+                        <option value="2">APP</option>
+                        <option value="3">中心缴费</option>
+                        <option value="4">岗亭收费</option>
+                        <option value="5">管理处</option>
+                        <option value="6">第三方平台</option>
+                        </select></td>
+                        <td align="right">岗亭名称：</td><td><select id="selectBox" style="width: 150px; " class="my_select"></select> </td>
+                        <td align="right">当班人：</td><td><select id="selectOnDutys" style="width: 120px; " class="my_select"><option value="-1">全部</option></select> </td>
+                    </tr>
+                    <tr>
+                       
+                        <td>开始时间：</td><td><input class="easyui-datetimebox" type="text" id="txtStartTime" style="width: 150px;height:25px; line-height:25px" /></td>
+                        <td>结束时间：</td><td><input class="easyui-datetimebox" type="text" id="txtEndTime" style="width: 150px;height:25px; line-height:25px" /></td>
+                        
+                        <td>车牌号码：</td><td><input class="my_textbox" style="width: 145px;" id="txtPlateNumber" />  </td>
+                        <td align="right">&nbsp;&nbsp;<input type="checkbox" id="cbxdiffamount"/>差异订单</td><td><input type="checkbox" id="cbxzero"/>0元订单&nbsp;&nbsp;<input type="checkbox" id="cbxnoconfirm"/>未确认订单</td>
+                        <td></td><td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+                    </tr>
+                </table>
+               
+            </div>
+           
+        </div>
+        <div style="height: 88%;">
+            <table fit="true" id="tableListBox">
+            </table>
+        </div>
+    </div>
+</div>
+<div id="DivShowImage" style="display: none">
+    <form id="DivShowImageForm" class="easyui-form">
+    <div style="padding: 10px; background-image='../../Content/images/amg_3.png'">
+        <table>
+        <tr><td style=" text-align:center"><small>进场图片</small></td><td style=" text-align:center"><small>出场图片</small></td></tr>
+        <tr><td><img id="EntranceSmallImage" width="380px" height=100px"/></td><td><img id="ExitSmallImage" width="380px" height="100px"/></td></tr>
+        <tr><td><img id="EntranceImage" width="380px" height="280px"/></td><td><img id="ExitImage" width="380px" height="280px"/></td></tr>
+        </table>
+    </div>
+    </form>
+</div>
+
+

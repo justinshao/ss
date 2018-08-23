@@ -1,0 +1,117 @@
+﻿@using IntelligentParking.Model.Order;
+@using IntelligentParking.Pay.WeiXin.Models;
+@using IntelligentParking.Common.Extensions;
+@model PlatformOrderModel
+@{
+    ViewBag.Title = "账号充值支付";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+    WeiXinPaySignModel payModel = ViewBag.PayModel as WeiXinPaySignModel;
+}
+
+@section heads
+{
+    <script type="text/javascript">
+    var data = {
+        "appId": "@payModel.AppId", //公众号名称，由商户传入
+        "timeStamp": "@payModel.Timestamp", //时间戳
+        "nonceStr": "@payModel.Noncestr", //随机串
+        "package": "@payModel.Package",//扩展包
+        "signType": "MD5", //微信签名算法：MD5
+        "paySign": "@payModel.PaySign", //微信签名
+    };
+     //当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        //公众号支付
+        jQuery('#getBrandWCPayRequest').click(function (e) {
+            WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    OrderPaying();
+                } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+
+                } else {
+                    $("#divErrorInfo").show().html(res.err_msg);
+                }
+            });
+
+        });
+    }, false);
+
+    function isWeiXin5() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        var reg = /MicroMessenger\/[5-9]/i;
+        return reg.test(ua);
+    }
+
+    window.onload = function () {
+        if (isWeiXin5() == false) {
+            $("#divPaySubmit").hide();
+            $("#divErrorInfo").show().html("您的微信版本低于5.0，无法使用微信支付功能，请先升级！");
+        }
+    };
+    </script>
+}
+<div class="container hn-main">
+    <div class="row hn-row">
+        <!--header-->
+        <div class="header">
+            <div class="pull-left header-left"></div>
+            <div class="pull-right header-right">账号充值支付</div>
+        </div>
+
+        <!--header-->
+      
+        <!--商品信息_star-->
+
+        <div class="col-md-12 col-xs-12">
+            <div class="information-box">结算信息</div>
+        </div>
+        <div class="package">
+
+            <!--111_star-->
+            <div class="package-box">
+                <div class="pull-left ">充值编号</div>
+                <div class="pull-right ">@Model.Id</div>
+                <div class="clearfix"></div>
+            </div>
+            <!--111_end-->
+            <!--111_star-->
+            <div class="package-box border-bottom-none ">
+                <div class="pull-left ">充值金额</div>
+                <div class="pull-right orange text16">￥@Model.Amount.GetStringYuan() </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--111_end-->
+
+        </div>
+     <div class="text-center" style="margin-top: 16px; display: none" id="divErrorInfo"></div>
+        <!--商品信息_end-->
+        <div style="width:90%; margin:0 auto; margin-top:16px;text-align:center" id="divPaySubmit">
+            <a id="btnCancelOrder" href="javascript:void(0)" class="btn btn-default btn-lg" onclick="return SubmitCancel()">取消支付</a> 
+            &nbsp;&nbsp; <button type="button" id="getBrandWCPayRequest" class="btn btn-danger btn-lg  btn-primary-orange" >立即支付</button>
+        </div>
+        <!--main-->
+    </div>
+    <input type="hidden" id="hiddOrderId" value="@Model.Id"/>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+       function OrderPaying() {
+      
+           var orderId = $("#hiddOrderId").val();
+           var gdata = {};
+           gdata.orderId = orderId;
+           gdata.r = Math.random();
+           $.post("@Url.Action("OrderPaymenting", "WeiXinPayment")", gdata, function (data) {
+               location.href = "/MyAccount/RechargeSuccess?orderId="+orderId;
+           });
+       }
+       function SubmitCancel() {
+           CusConfirm("取消支付提醒", "您确定要取消该支付吗？", "ConfirmSubmitCancel");
+       }
+       function ConfirmSubmitCancel() {
+           var orderId = $("#hiddOrderId").val();
+           location.href = "/WeiXinPayment/CancelOrder?orderId=" + orderId + "";
+       }
+    </script>
+}

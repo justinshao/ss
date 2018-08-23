@@ -1,0 +1,75 @@
+﻿@model SmartSystem.OmnipotentCardWebUI.Models.UserLoginModel
+@{
+    ViewBag.Title = "管理员登录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+    .weui_btn
+    {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+</style>
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+        </div>
+        <div class="pull-right header-right">
+            管理员登录</div>
+    </div>
+    <div class="top60">
+    </div>
+    @using (Html.BeginForm("Index", "AdminLogin", FormMethod.Post))
+    {
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">
+                        用户名</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" name="userAccount" id="userAccount" placeholder="请输入用户名" />
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">
+                        密码</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="password" name="password" id="password" placeholder="请输入密码" />
+                </div>
+            </div>
+            <div class="weui_cell weui_cell_switch">
+                <div class="weui_cell_hd weui_cell_primary">
+                    记住密码</div>
+                <div class="weui_cell_ft">
+                    @{string strchecked = Model.RememberPassword ? "checked=checked" : string.Empty;}
+                    <input class="weui_switch" type="checkbox" @strchecked id="chkRememberPassword"/>
+                    <input type="hidden" id="hiddRememberPassword" name="rememberPassWord" value="true" />
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_tips" style="color: red" id="divError">
+            @Model.ErrorMessage
+        </div>
+        <div class="weui_btn_area">
+            <button type="submit" class="weui_btn weui_btn_primary" id="btnSubmitLogin">
+                登录</button>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#userAccount,#password").keydown(function () {
+            $("#spanError").text("");
+        });
+        $("#btnSubmitLogin").click(function () {
+            if ($("#chkRememberPassword").is(':checked')) {
+                $("#hiddRememberPassword").val("true");
+            } else {
+                $("#hiddRememberPassword").val("false");
+            }
+            return true;
+        });
+    });
+</script>

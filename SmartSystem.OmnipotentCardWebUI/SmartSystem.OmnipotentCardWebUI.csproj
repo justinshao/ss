@@ -1,0 +1,2664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D1002EA-5423-42DD-9CDC-27C4FD6991E2}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartSystem.OmnipotentCardWebUI</RootNamespace>
+    <AssemblyName>SmartSystem.OmnipotentCardWebUI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>14.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AopSdk, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AopSdk.2.0.0\lib\net40\AopSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.Shared.1.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.Web.1.0.1\lib\CrystalDecisions.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="F2FPayDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\F2FPayDll.1.0.0\lib\net40\F2FPayDll.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.7.0\lib\net40\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.0\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.3.0.20105.1\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\AliPay\AliPayAreaRegistration.cs" />
+    <Compile Include="Areas\AliPay\Controllers\AliPayApiConfigController.cs" />
+    <Compile Include="Areas\AliPay\Controllers\AliPayOnlineOrderController.cs" />
+    <Compile Include="Areas\BaseData\BaseDataAreaRegistration.cs" />
+    <Compile Include="Areas\BaseData\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\BaseData\Controllers\MessageController.cs" />
+    <Compile Include="Areas\BaseData\Controllers\VillageController.cs" />
+    <Compile Include="Areas\Log\Controllers\ExceptionController.cs" />
+    <Compile Include="Areas\Log\Controllers\LoginLogController.cs" />
+    <Compile Include="Areas\Log\Controllers\OperateLogController.cs" />
+    <Compile Include="Areas\Log\LogAreaRegistration.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\AdvanceParkingInfoController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXAccountController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXApiConfigController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXArticleController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXKeywordController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXMenuController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXOnlineOrderController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXOpinionFeedbackController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXOtherConfigController.cs" />
+    <Compile Include="Areas\NWeiXin\Controllers\WXPaymentConfigController.cs" />
+    <Compile Include="Areas\NWeiXin\NWeiXinAreaRegistration.cs" />
+    <Compile Include="Areas\Parking\Controllers\AduitMonthlyCarApplyController.cs" />
+    <Compile Include="Areas\Parking\Controllers\BWYParkGateController.cs" />
+    <Compile Include="Areas\Parking\Controllers\CentralFeeController.cs" />
+    <Compile Include="Areas\Parking\Controllers\OnlinePayController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkAreaController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkBackListController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkBoxController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkCar2Controller.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkCarController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkCarDerateQRCodeController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkCarModelController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkCarTypeController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkDerateController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkDerateQRCodeController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkDeviceController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkFeeRuleController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkGateController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkingController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkSellerController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkSettleConfigController.cs" />
+    <Compile Include="Areas\Parking\Controllers\ParkSettleController.cs" />
+    <Compile Include="Areas\Parking\Controllers\TgPersonController.cs" />
+    <Compile Include="Areas\Parking\Models\ParkFeeRuleView.cs" />
+    <Compile Include="Areas\Parking\ParkingAreaRegistration.cs" />
+    <Compile Include="Areas\Statistics\Controllers\DeviceController.cs" />
+    <Compile Include="Areas\Statistics\Controllers\ImageController.cs" />
+    <Compile Include="Areas\Statistics\Controllers\InComeController.cs" />
+    <Compile Include="Areas\Statistics\Controllers\InOutController.cs" />
+    <Compile Include="Areas\Statistics\Controllers\ReportParamsController.cs" />
+    <Compile Include="Areas\Statistics\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\Statistics\Controllers\UserinfoController.cs" />
+    <Compile Include="Areas\Statistics\StatisticsAreaRegistration.cs" />
+    <Compile Include="Areas\User\Controllers\RoleController.cs" />
+    <Compile Include="Areas\User\Controllers\ScopeController.cs" />
+    <Compile Include="Areas\User\Controllers\UserController.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\Admin\AdminAduitCarApplyController.cs" />
+    <Compile Include="Controllers\Admin\AdminCarController.cs" />
+    <Compile Include="Controllers\Admin\AdminHomeController.cs" />
+    <Compile Include="Controllers\Admin\AdminLoginController.cs" />
+    <Compile Include="Controllers\AliPay\AliPayAuthorizeController.cs" />
+    <Compile Include="Controllers\AliPay\AliPaymentController.cs" />
+    <Compile Include="Controllers\AliPay\AliPayNotifyController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\CompanyDataController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Html5\H5AliPaymentController.cs" />
+    <Compile Include="Controllers\Html5\H5BindMobileController.cs" />
+    <Compile Include="Controllers\Html5\H5CardRenewalController.cs" />
+    <Compile Include="Controllers\Html5\H5CarManageController.cs" />
+    <Compile Include="Controllers\Html5\H5CarVisitorController.cs" />
+    <Compile Include="Controllers\Html5\H5HomeController.cs" />
+    <Compile Include="Controllers\Html5\H5LockCarController.cs" />
+    <Compile Include="Controllers\Html5\H5OrderController.cs" />
+    <Compile Include="Controllers\Html5\H5ParkingPaymentController.cs" />
+    <Compile Include="Controllers\Html5\H5PaymentRecordController.cs" />
+    <Compile Include="Controllers\Html5\H5PaymentTypeController.cs" />
+    <Compile Include="Controllers\Html5\H5RequestController.cs" />
+    <Compile Include="Controllers\Html5\H5SellerController.cs" />
+    <Compile Include="Controllers\Html5\H5WeiXinController.cs" />
+    <Compile Include="Controllers\Html5\H5WeiXinPaymentController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OtherApiController.cs" />
+    <Compile Include="Controllers\ParkBoxDataController.cs" />
+    <Compile Include="Controllers\ParkingDataController.cs" />
+    <Compile Include="Controllers\ParkPlateNoController.cs" />
+    <Compile Include="Controllers\PrakAreaDataController.cs" />
+    <Compile Include="Controllers\ParkSellerDataController.cs" />
+    <Compile Include="Controllers\RedirectPageController.cs" />
+    <Compile Include="Controllers\UploadFileController.cs" />
+    <Compile Include="Controllers\VillageDataController.cs" />
+    <Compile Include="Controllers\Visitor\CarVisitorController.cs" />
+    <Compile Include="Controllers\WebApiController.cs" />
+    <Compile Include="Controllers\WeiXinApiController.cs" />
+    <Compile Include="Controllers\WeiXin\AdminCarController.cs" />
+    <Compile Include="Controllers\WeiXin\AdminHomeController.cs" />
+    <Compile Include="Controllers\WeiXin\AdminLoginController.cs" />
+    <Compile Include="Controllers\WeiXin\AdvanceParkingController.cs" />
+    <Compile Include="Controllers\WeiXin\ApiController.cs" />
+    <Compile Include="Controllers\WeiXin\BindMobileController.cs" />
+    <Compile Include="Controllers\WeiXin\CardRenewalController.cs" />
+    <Compile Include="Controllers\WeiXin\CarManageController.cs" />
+    <Compile Include="Controllers\WeiXin\DrawManage2Controller.cs" />
+    <Compile Include="Controllers\WeiXin\DrawPlateController.cs" />
+    <Compile Include="Controllers\WeiXin\ErrorPromptController.cs" />
+    <Compile Include="Controllers\WeiXin\FindInsideCarController.cs" />
+    <Compile Include="Controllers\WeiXin\FindParkingController.cs" />
+    <Compile Include="Controllers\WeiXin\LicensePlateByController.cs" />
+    <Compile Include="Controllers\WeiXin\LicensePlateController.cs" />
+    <Compile Include="Controllers\WeiXin\LoadPromptController.cs" />
+    <Compile Include="Controllers\WeiXin\LockCarController.cs" />
+    <Compile Include="Controllers\WeiXin\MonthCardController.cs" />
+    <Compile Include="Controllers\WeiXin\OtherServiceController.cs" />
+    <Compile Include="Controllers\WeiXin\ParkBitBookingController.cs" />
+    <Compile Include="Controllers\WeiXin\ParkCommonDataController.cs" />
+    <Compile Include="Controllers\WeiXin\ParkingPaymentController.cs" />
+    <Compile Include="Controllers\WeiXin\ParkingRecord2Controller.cs" />
+    <Compile Include="Controllers\WeiXin\ParkingRecordController.cs" />
+    <Compile Include="Controllers\WeiXin\PaymentRecordController.cs" />
+    <Compile Include="Controllers\WeiXin\PaymentTypeController.cs" />
+    <Compile Include="Controllers\WeiXin\PurseDataController.cs" />
+    <Compile Include="Controllers\WeiXin\QRCodeController.cs" />
+    <Compile Include="Controllers\WeiXin\QRCodeDerateController.cs" />
+    <Compile Include="Controllers\WeiXin\QRCodeEntranceController.cs" />
+    <Compile Include="Controllers\WeiXin\QRCodeLoadPromptController.cs" />
+    <Compile Include="Controllers\WeiXin\QRCodeParkPaymentController.cs" />
+    <Compile Include="Controllers\WeiXin\RedirectHandleController.cs" />
+    <Compile Include="Controllers\WeiXin\ScanCodeInOutController.cs" />
+    <Compile Include="Controllers\WeiXin\TestController.cs" />
+    <Compile Include="Controllers\WeiXin\WeiXinAuthorizeController.cs" />
+    <Compile Include="Controllers\WeiXin\WeiXinController.cs" />
+    <Compile Include="Controllers\WeiXin\WeiXinPaymentController.cs" />
+    <Compile Include="Controllers\WeiXin\WeiXinPayNotifyController.cs" />
+    <Compile Include="Controllers\WeiXin\WeiXinShareController.cs" />
+    <Compile Include="Controllers\WeiXin\WxArticleDetailController.cs" />
+    <Compile Include="Controllers\XFJM\SellerRechargeController.cs" />
+    <Compile Include="Controllers\XFJM\XFJMController.cs" />
+    <Compile Include="Controllers\XFJM\XFJMDerateQRCodeController.cs" />
+    <Compile Include="Controllers\XFJM\XFJMLoginController.cs" />
+    <Compile Include="Controllers\XFJM\XFJMMainController.cs" />
+    <Compile Include="Controllers\YinSheng\WxOfficialAccountPayController.cs" />
+    <Compile Include="Controllers\YinSheng\YSAsyncNotifyController.cs" />
+    <Compile Include="Controllers\YinSheng\YSSyncNotifyController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CacheData.cs" />
+    <Compile Include="Models\CheckPurviewAttribute.cs" />
+    <Compile Include="Models\CheckSellerPurviewAttribute.cs" />
+    <Compile Include="Models\CheckWeiXinAdminPurviewAttribute.cs" />
+    <Compile Include="Models\CheckWeiXinPurviewAttribute.cs" />
+    <Compile Include="Models\ErrorFilterAttribute.cs" />
+    <Compile Include="Models\H5LoginPurviewAttribute.cs" />
+    <Compile Include="Models\HtmlHelperExtensions.cs" />
+    <Compile Include="Models\IsWeiXinVisitPurviewAttribute.cs" />
+    <Compile Include="Models\PageBrowseRecordAttribute.cs" />
+    <Compile Include="Models\SystemOperatePurview.cs" />
+    <Compile Include="Models\UserLoginModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\ReportViewer\ReportDataSet.cs">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView.CardExtension.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView.CardExtension.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView.Coupon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView.Coupon.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_Daily.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_Daily.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_DailyGather.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_DailyGather.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_ExceptionRelease.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_ExceptionRelease.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_GateEvents.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_GateEvents.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_InOut.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_InOut.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_Month.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_Month.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_MonthCardInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_MonthCardInfo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_MonthGather.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_MonthGather.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_NoPlateNumber.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_NoPlateNumber.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_OnDuty.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_OnDuty.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_Orders.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_Orders.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_ParkVisitorInfo1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_ParkVisitorInfo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_PlateNumberPrefix.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_PlateNumberPrefix.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_Presence.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_Presence.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_TempPay.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportView_TempPay.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportViewer\ReportView_TempPayPound.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\StatisticsReport.aspx.cs">
+      <DependentUpon>StatisticsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\StatisticsReport.aspx.designer.cs">
+      <DependentUpon>StatisticsReport.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrapv2\assets\css\bootstrap-ie6.css" />
+    <Content Include="Content\bootstrapv2\assets\css\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrapv2\assets\css\bootstrap.css" />
+    <Content Include="Content\bootstrapv2\assets\css\docs.css" />
+    <Content Include="Content\bootstrapv2\assets\css\ie.css" />
+    <Content Include="Content\bootstrapv2\assets\img\bootstrap-docs-readme.png" />
+    <Content Include="Content\bootstrapv2\assets\img\bootstrap-mdo-sfmoma-01.jpg" />
+    <Content Include="Content\bootstrapv2\assets\img\bootstrap-mdo-sfmoma-02.jpg" />
+    <Content Include="Content\bootstrapv2\assets\img\bootstrap-mdo-sfmoma-03.jpg" />
+    <Content Include="Content\bootstrapv2\assets\img\bs-docs-bootstrap-features.png" />
+    <Content Include="Content\bootstrapv2\assets\img\bs-docs-masthead-pattern.png" />
+    <Content Include="Content\bootstrapv2\assets\img\bs-docs-responsive-illustrations.png" />
+    <Content Include="Content\bootstrapv2\assets\img\bs-docs-twitter-github.png" />
+    <Content Include="Content\bootstrapv2\assets\img\glyphicons-halflings-8.png" />
+    <Content Include="Content\bootstrapv2\assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\bootstrapv2\assets\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrapv2\assets\img\grid-baseline-20px.png" />
+    <Content Include="Content\bootstrapv2\assets\img\less-logo-large.png" />
+    <Content Include="Content\bootstrapv2\assets\img\responsive-illustrations.png" />
+    <Content Include="Content\bootstrapv2\assets\js\application.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-affix.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-alert.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-button.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-carousel.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-collapse.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-dropdown.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-modal.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-popover.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-scrollspy.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-tab.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-tooltip.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-transition.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap-typeahead.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap.js" />
+    <Content Include="Content\bootstrapv2\assets\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrapv2\assets\js\google-code-prettify\prettify.css" />
+    <Content Include="Content\bootstrapv2\assets\js\google-code-prettify\prettify.js" />
+    <Content Include="Content\bootstrapv2\assets\js\holder\holder.js" />
+    <Content Include="Content\bootstrapv2\assets\js\html5shiv.js" />
+    <Content Include="Content\bootstrapv2\css\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrapv2\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrapv2\css\bootstrap.css" />
+    <Content Include="Content\bootstrapv2\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrapv2\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\bootstrapv2\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrapv2\js\bootstrap-ie.js" />
+    <Content Include="Content\bootstrapv2\js\bootstrap.js" />
+    <Content Include="Content\bootstrapv2\js\bootstrap.min.js" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_cs.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_da.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_de.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_en.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_es.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_fi.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_fr.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_hu.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_it.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_ja.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_ko.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_nb.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_nl.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_pl.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_pt.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_ru.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_sk.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_sv.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_th.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_tr.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_zh_CN.cab" />
+    <Content Include="Content\crystalreportviewers13\ActiveXControls\PrintControl_res_zh_TW.cab" />
+    <Content Include="Content\crystalreportviewers13\allInOne.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_cs.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_da.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_de.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_en.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_es.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_fi.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_fr.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_hu.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_it.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_ja.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_ko.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_nb.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_nl.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_pl.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_pt.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_ru.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_sk.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_sv.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_th.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_tr.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_zh_CN.js" />
+    <Content Include="Content\crystalreportviewers13\allStrings_zh_TW.js" />
+    <Content Include="Content\crystalreportviewers13\css\cedefault.css" />
+    <Content Include="Content\crystalreportviewers13\css\default.css" />
+    <Content Include="Content\crystalreportviewers13\css\exception.css" />
+    <Content Include="Content\crystalreportviewers13\css\prompting.css" />
+    <Content Include="Content\crystalreportviewers13\html\calendar.html" />
+    <Content Include="Content\crystalreportviewers13\html\calendarbottom.html" />
+    <Content Include="Content\crystalreportviewers13\html\calendartop.html" />
+    <Content Include="Content\crystalreportviewers13\images\buttonl.gif" />
+    <Content Include="Content\crystalreportviewers13\images\buttonm.gif" />
+    <Content Include="Content\crystalreportviewers13\images\buttonr.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive100.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive150.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive200.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive250.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive300.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive350.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive400.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortActive50.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover100.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover150.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover200.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover250.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover300.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover350.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover400.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortHover50.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortInactive100.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortInactive150.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortInactive200.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortInactive250.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortInactive300.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortInactive400.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\DownArrowSortInactive50.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive100.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive150.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive200.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive250.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive300.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive350.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive400.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortActive50.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover100.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover150.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover200.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover250.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover300.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover350.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover400.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortHover50.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortInactive100.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortInactive150.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortInactive200.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortInactive250.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortInactive300.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortInactive400.gif" />
+    <Content Include="Content\crystalreportviewers13\images\isort\UpArrowSortInactive50.gif" />
+    <Content Include="Content\crystalreportviewers13\js\calendar.js" />
+    <Content Include="Content\crystalreportviewers13\js\calendar_param.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewerinclude.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\api.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ArgumentNormalizer.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\bobjcallback.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ButtonList.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Calendar.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Colors.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\common.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\crv.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Dialogs.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\dom.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\encoding.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\event.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\GroupTree.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\GroupTreeListener.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\GroupTreeNode.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\html.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ImageSprites.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\allInOne.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\allInOneBG.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\arrow_button_depressed.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\arrow_button_hover.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\breadcrumbSep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\calendar.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\catalyst.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\clearValues.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\clear_x.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\closePanel.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\delete.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\drill_cursor.cur" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\export.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\filledCircle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\first.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\grouptree_toggle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\hollowCircle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\last.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\leftTriangle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\line.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\logo.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\magnify.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\min.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\next.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\open_parameter_arrow.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\panelHeaderBG.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\panelNavigatorItemHL.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\panelNavigatorItemSelectedBG.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\panel_toggle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\param_datafetching.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\param_dirty.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\param_info.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\param_run.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\param_warning.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\plus.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\prev.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\print.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\refresh.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\rightTriangle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\search.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\separator.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\StackedTab.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\style.css" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_background.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_buttongroup_background.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_buttongroup_left.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_buttongroup_right.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_button_depressed.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_button_hover.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_menuarrow_depressed.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_menuarrow_hover.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_pagenav_buttons.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\toolbar_separator_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\undo.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\up.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\images\WarningPopupTriangle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\initDhtmlLib.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\IOAdapters.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\LeftPanel.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\OptionalParameterUI.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\OptionalParameterValueRow.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\PanelHeader.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\PanelNavigator.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\PanelNavigatorItem.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Parameter.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ParameterController.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ParameterDialog.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ParameterInfoRow.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ParameterPanel.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ParameterPanelToolbar.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ParameterUI.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ParameterValueRow.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\PromptPage.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\RangeField.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ReportAlbum.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ReportPage.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ReportView.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Separator.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\SharedWidgetHolder.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\SignalDisposer.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\StackedPanel.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\StackedTab.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\StateManager.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Statusbar.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_cs.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_da.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_de.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_en.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_es.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_fi.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_fr.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_hu.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_it.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_ja.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_ko.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_nb.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_nl.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_pl.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_pt.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_ru.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_sk.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_sv.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_th.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_tr.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_zh_CN.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\strings_zh_TW.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\TextCombo.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\TextField.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Toolbar.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ToolPanel.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\Viewer.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ViewerFlexParameterAdapter.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\ViewerListener.js" />
+    <Content Include="Content\crystalreportviewers13\js\crviewer\WarningPopup.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\bolist.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\calendar.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\dialog.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\dom.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\empty.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\borders.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\help.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\loading.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\lov.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\min.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\plus.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\print.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\print_fe.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\prompt.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\resizepattern.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\bolist.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\button.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\buttonIcons.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\critical_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\dialogelements.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\dialogframe.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\dialogframeleftright.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\dialogframetopbottom.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\dialogtitle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\down.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\iconsep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\information_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\left.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\menus.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\node.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\progress.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\resize.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\right.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\scroll_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\sep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\sep_solid.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\style.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\style.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\style_fe.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\tabs.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\up.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\wait01.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\wait02.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_coloredline\warning_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\bolist.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\button.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\buttonIcons.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\critical_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\dialogelements.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\dialogframe.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\dialogframeleftright.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\dialogframetopbottom.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\dialogtitle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\down.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\iconsep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\information_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\left.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\menus.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\node.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\progress.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\resize.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\right.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\scroll_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\sep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\sep_solid.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\style.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\style.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\style_fe.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\tabs.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\up.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\wait01.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\wait02.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_corporate\warning_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\bolist.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\button.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\buttonIcons.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\critical_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\dialogelements.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\dialogframe.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\dialogframeleftright.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\dialogframetopbottom.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\dialogtitle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\down.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\iconsep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\information_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\left.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\menus.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\node.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\progress.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\resize.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\right.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\scroll_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\sep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\sep_solid.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\style.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\style.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\style_fe.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\tabs.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\up.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\wait01.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\wait02.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_default\warning_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\background_field.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\background_menusel.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\bolist.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\button.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\buttonIcons.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\critical_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\critical_icon.png" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\dialogelements.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\dialogframe.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\dialogframeleftright.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\dialogframetopbottom.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\dialogtitle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\down.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\hgrab.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\horiz_tabs.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\iconsep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\information_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\left.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\menuitem_check.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\menus.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\node.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\panemenu.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\panetitle.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\progress.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\resize.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\right.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\scroll_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\sep.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\sep_solid.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\style.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\style.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\style_fe.css" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\tabs.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\toolbar_elements.png" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\up.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\vgrab.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\wait01.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\wait02.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\skin_standard\warning_icon.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\swap.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\transp.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\images\tree.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\cs\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\da\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\de\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\en\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\es\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\fi\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\fr\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\hu\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\it\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\ja\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\ko\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\nb\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\nl\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\pl\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\pt\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\ru\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\sk\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\sv\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\th\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\tr\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\zh_CN\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\language\zh_TW\labels.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\lov.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\menu.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\palette.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\prompttree.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\psheet.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\andorwidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\basicDialog.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\blockWhileWait.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\bolist.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\borderswidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\buttons.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\calendar.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\checktree.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\default.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\dim.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\dim_close.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\dim_o.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\dim_open.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\empty.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\eventsDialog.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\fieldswidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\format.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\framezone.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\grabber.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\iconlistpopupwidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\iconscrollmenuwidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\imgtabs.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\inconwidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\infowidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\lov.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\measure.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\measure_o.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\menu.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\navigation.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\palettes.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\pane.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\parent_dialog.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\progressBar.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\prompttree.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\qualif.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\scrolltabs.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\simplelist.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\skinIntl.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\tabs.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\textcombowidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\tooltipwidget.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\treeicons.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\treeview.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\unv_close.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\unv_o.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\unv_open.gif" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\samples\waitDialog.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\treeview.js" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\validator\default.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\validator\validator_res.html" />
+    <Content Include="Content\crystalreportviewers13\js\dhtmllib\waitdialog.js" />
+    <Content Include="Content\crystalreportviewers13\js\dt_param.js" />
+    <Content Include="Content\crystalreportviewers13\js\external\date.js" />
+    <Content Include="Content\crystalreportviewers13\js\FlexParameterBridge.js" />
+    <Content Include="Content\crystalreportviewers13\js\KeyDownEvent.js" />
+    <Content Include="Content\crystalreportviewers13\js\log4javascript\log4javascript.js" />
+    <Content Include="Content\crystalreportviewers13\js\log4javascript\log4javascript_stub.js" />
+    <Content Include="Content\crystalreportviewers13\js\log4javascript\log4javascript_stub_uncompressed.js" />
+    <Content Include="Content\crystalreportviewers13\js\log4javascript\log4javascript_uncompressed.js" />
+    <Content Include="Content\crystalreportviewers13\js\log4javascript\main.css" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\3rdParty.txt" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Async.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Base.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Color.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Controls.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\DateTime.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\DOM.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\DragAndDrop.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Format.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Iter.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\License.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Logging.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\LoggingPane.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\MochiKit.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\MockDOM.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\New.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Signal.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Sortable.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Style.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Test.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\Visual.js" />
+    <Content Include="Content\crystalreportviewers13\js\MochiKit\__package__.js" />
+    <Content Include="Content\crystalreportviewers13\js\previewerror.js" />
+    <Content Include="Content\crystalreportviewers13\js\prompts.js" />
+    <Content Include="Content\crystalreportviewers13\js\prompts_param.js" />
+    <Content Include="Content\crystalreportviewers13\js\swfobject\swfobject.js" />
+    <Content Include="Content\crystalreportviewers13\parameterUIController-compressed.js" />
+    <Content Include="Content\crystalreportviewers13\processindicator.js" />
+    <Content Include="Content\crystalreportviewers13\promptengine-compressed.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\css\promptengine2.css" />
+    <Content Include="Content\crystalreportviewers13\prompting\css\promptengine_default.css" />
+    <Content Include="Content\crystalreportviewers13\prompting\html\calendar.html" />
+    <Content Include="Content\crystalreportviewers13\prompting\html\calendarbottom.html" />
+    <Content Include="Content\crystalreportviewers13\prompting\html\calendartop.html" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\addallfield.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\addallfield_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\addfield.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\addfield_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\back.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\background_field.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\back_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\button.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\button_left_normal.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\button_middle_normal.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\button_right_normal.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\calendar.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\cfilter.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\cfilter_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\dialogelements.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\dialogtitle.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\error.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\errormsg.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\filter.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\filter_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\forward.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\forward_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\info.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\infomsg.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\minus.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\next.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\next_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\plus.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\prev.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\prev_over.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\resize.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\transp.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\warning.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\images\warningmsg.gif" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\initDhtmlLib.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_calendar.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_calendar2.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_prompts.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_prompts2.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_cs.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_da.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_de.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_en.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_es.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_fi.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_fr.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_hu.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_it.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_ja.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_ko.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_nb.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_nl.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_pl.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_pt.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_ru.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_sk.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_sv.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_th.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_tr.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_zh_CN.js" />
+    <Content Include="Content\crystalreportviewers13\prompting\js\promptengine_strings_zh_TW.js" />
+    <Content Include="Content\crystalreportviewers13\urlreporting\activexviewer.js" />
+    <Content Include="Content\crystalreportviewers13\urlreporting\appletviewer.js" />
+    <Content Include="Content\home\home.css" />
+    <Content Include="Content\home\images\fjt.png" />
+    <Content Include="Content\home\images\help.png" />
+    <Content Include="Content\home\images\info.png" />
+    <Content Include="Content\home\images\lefttop.jpg" />
+    <Content Include="Content\home\images\line.gif" />
+    <Content Include="Content\home\images\list.gif" />
+    <Content Include="Content\home\images\menu\alipay.png" />
+    <Content Include="Content\home\images\menu\authority.png" />
+    <Content Include="Content\home\images\menu\basedata.png" />
+    <Content Include="Content\home\images\menu\car.png" />
+    <Content Include="Content\home\images\menu\discount.png" />
+    <Content Include="Content\home\images\menu\log.png" />
+    <Content Include="Content\home\images\menu\parking.png" />
+    <Content Include="Content\home\images\menu\report.png" />
+    <Content Include="Content\home\images\menu\statistics.png" />
+    <Content Include="Content\home\images\menu\tixian.png" />
+    <Content Include="Content\home\images\menu\weixin.png" />
+    <Content Include="Content\home\images\topbg.jpg" />
+    <Content Include="Content\home\images\topbg2.jpg" />
+    <Content Include="Content\home\images\ub1.png" />
+    <Content Include="Content\home\images\user.png" />
+    <Content Include="Content\home\images\userbg.png" />
+    <Content Include="Content\icons\box.png" />
+    <Content Include="Content\icons\calculator.png" />
+    <Content Include="Content\icons\charge.png" />
+    <Content Include="Content\icons\company.png" />
+    <Content Include="Content\icons\daoru.png" />
+    <Content Include="Content\icons\enabled.png" />
+    <Content Include="Content\icons\menu.png" />
+    <Content Include="Content\icons\next_page.png" />
+    <Content Include="Content\icons\no_32px.png" />
+    <Content Include="Content\icons\parking.png" />
+    <Content Include="Content\icons\pkarea.png" />
+    <Content Include="Content\icons\prev_page.png" />
+    <Content Include="Content\icons\query.png" />
+    <Content Include="Content\icons\renewal.png" />
+    <Content Include="Content\icons\resetpassword.png" />
+    <Content Include="Content\icons\restore.png" />
+    <Content Include="Content\icons\role.png" />
+    <Content Include="Content\icons\select.png" />
+    <Content Include="Content\icons\seller.png" />
+    <Content Include="Content\icons\shang.png" />
+    <Content Include="Content\icons\stop.png" />
+    <Content Include="Content\icons\tongdao.png" />
+    <Content Include="Content\icons\uspend.png" />
+    <Content Include="Content\icons\village.png" />
+    <Content Include="Content\icons\xia.png" />
+    <Content Include="Content\icons\yes_32px.png" />
+    <Content Include="Content\images\default_not_image_big.jpg" />
+    <Content Include="Content\images\default_not_image_big.png" />
+    <Content Include="Content\images\default_not_image_small.png" />
+    <Content Include="Content\images\disconnected.png" />
+    <Content Include="Content\images\imageloadmax.png" />
+    <Content Include="Content\images\imageloadsmall.png" />
+    <Content Include="Content\images\iorecord_default_not_image_big.jpg" />
+    <Content Include="Content\images\iorecord_not_select.jpg" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\no.png" />
+    <Content Include="Content\images\not_in_record.jpg" />
+    <Content Include="Content\images\tab_bg1.gif" />
+    <Content Include="Content\images\top\中央收费.png" />
+    <Content Include="Content\images\top\临停缴费.png" />
+    <Content Include="Content\images\top\异常放行.png" />
+    <Content Include="Content\images\top\收入分析.png" />
+    <Content Include="Content\images\top\日报表.png" />
+    <Content Include="Content\images\top\日汇总报表.png" />
+    <Content Include="Content\images\top\缴费记录.png" />
+    <Content Include="Content\images\top\车辆管理.png" />
+    <Content Include="Content\images\top\进出分析.png" />
+    <Content Include="Content\images\top\进出记录.png" />
+    <Content Include="Content\images\weixin\defaultweixinhead.png" />
+    <Content Include="Content\images\weixin\notimage.png" />
+    <Content Include="Content\images\weixin\停车场收费.png" />
+    <Content Include="Content\images\weixin\卡.png" />
+    <Content Include="Content\images\weixin\在场车辆.png" />
+    <Content Include="Content\images\weixin\岗亭.png" />
+    <Content Include="Content\images\weixin\异常数据.png" />
+    <Content Include="Content\images\weixin\日统计.png" />
+    <Content Include="Content\images\weixin\月统计.png" />
+    <Content Include="Content\images\weixin\条件查询.png" />
+    <Content Include="Content\images\weixin\条件查询1.png" />
+    <Content Include="Content\images\weixin\添加.png" />
+    <Content Include="Content\images\weixin\缴费记录.png" />
+    <Content Include="Content\images\weixin\进出记录.png" />
+    <Content Include="Content\images\weixin\退出登录.png" />
+    <Content Include="Content\images\yes.png" />
+    <Content Include="Content\login\article.css" />
+    <Content Include="Content\login\css\animate-custom.css" />
+    <Content Include="Content\login\css\demo.css" />
+    <Content Include="Content\login\css\fonts\BebasNeue-webfont.svg" />
+    <Content Include="Content\login\css\fonts\Dharma Type Font License.txt" />
+    <Content Include="Content\login\css\fonts\fontomas-webfont.svg" />
+    <Content Include="Content\login\css\fonts\franchise-bold-webfont.svg" />
+    <Content Include="Content\login\css\style.css" />
+    <Content Include="Content\login\css\style2.css" />
+    <Content Include="Content\login\css\style3.css" />
+    <Content Include="Content\login\images\loginbg.png" />
+    <Content Include="Content\login\images\loginbg33.png" />
+    <Content Include="Content\login\imagetext.css" />
+    <Content Include="Content\login\img\appbutton_mouseover_bg.png" />
+    <Content Include="Content\login\img\appbutton_mouseover_bg2.png" />
+    <Content Include="Content\login\img\avatar.png" />
+    <Content Include="Content\login\img\dock_bottom_left.png" />
+    <Content Include="Content\login\img\dock_bottom_right.png" />
+    <Content Include="Content\login\img\dock_left.png" />
+    <Content Include="Content\login\img\dock_middle_left.png" />
+    <Content Include="Content\login\img\dock_middle_right.png" />
+    <Content Include="Content\login\img\dock_right.png" />
+    <Content Include="Content\login\img\dock_top_left.png" />
+    <Content Include="Content\login\img\dock_top_right.png" />
+    <Content Include="Content\login\img\dock_vertical.png" />
+    <Content Include="Content\login\img\icon_t1.png" />
+    <Content Include="Content\login\img\icon_t4.png" />
+    <Content Include="Content\login\img\L01.png" />
+    <Content Include="Content\login\img\L02.png" />
+    <Content Include="Content\login\img\L03.png" />
+    <Content Include="Content\login\img\L04.png" />
+    <Content Include="Content\login\img\portal_all_png.png" />
+    <Content Include="Content\login\img\sprite_main_png.png" />
+    <Content Include="Content\login\img\stat.gif" />
+    <Content Include="Content\login\img\stat_002.gif" />
+    <Content Include="Content\login\img\toolbar_bg.png" />
+    <Content Include="Content\login\img\wood1.jpg" />
+    <Content Include="Content\login\main.css" />
+    <Content Include="Content\login\main\images\buttonbg.png" />
+    <Content Include="Content\login\main\images\cloud.png" />
+    <Content Include="Content\login\main\images\lbg.png" />
+    <Content Include="Content\login\main\images\lbg1.png" />
+    <Content Include="Content\login\main\images\libg.png" />
+    <Content Include="Content\login\main\images\login.png" />
+    <Content Include="Content\login\main\images\loginbg1.png" />
+    <Content Include="Content\login\main\images\loginbg3.png" />
+    <Content Include="Content\login\main\images\loginpassword.png" />
+    <Content Include="Content\login\main\images\loginuser.png" />
+    <Content Include="Content\login\main\images\navbg.png" />
+    <Content Include="Content\login\main\style.css" />
+    <Content Include="Content\login\Menu.css" />
+    <Content Include="Content\login\powerFloat.css" />
+    <Content Include="Content\login\smartcity.css" />
+    <Content Include="Content\login\smartMenu.css" />
+    <Content Include="Content\login\themesetting.css" />
+    <Content Include="Content\mobile\findparking.css" />
+    <Content Include="Content\mobile\images\carryout.png" />
+    <Content Include="Content\mobile\images\car_icon.png" />
+    <Content Include="Content\mobile\images\delete_icon.png" />
+    <Content Include="Content\mobile\images\delete_icon_16.png" />
+    <Content Include="Content\mobile\images\handerd.png" />
+    <Content Include="Content\mobile\images\hareCoupon.png" />
+    <Content Include="Content\mobile\images\image.png" />
+    <Content Include="Content\mobile\images\images.png" />
+    <Content Include="Content\mobile\images\list_data_64.png" />
+    <Content Include="Content\mobile\images\list_not_data.png" />
+    <Content Include="Content\mobile\images\list_not_data1.png" />
+    <Content Include="Content\mobile\images\loading.gif" />
+    <Content Include="Content\mobile\images\loadprompt.gif" />
+    <Content Include="Content\mobile\images\ltx.png" />
+    <Content Include="Content\mobile\images\P.png" />
+    <Content Include="Content\mobile\images\parking_default_notimage.png" />
+    <Content Include="Content\mobile\images\parking_hong.png" />
+    <Content Include="Content\mobile\images\parking_lan.png" />
+    <Content Include="Content\mobile\images\parking_lv.png" />
+    <Content Include="Content\mobile\images\parking_right_jiantou.png" />
+    <Content Include="Content\mobile\images\qr.png" />
+    <Content Include="Content\mobile\images\return-2.png" />
+    <Content Include="Content\mobile\images\return-3.png" />
+    <Content Include="Content\mobile\images\return-4.png" />
+    <Content Include="Content\mobile\images\return.png" />
+    <Content Include="Content\mobile\images\return12.png" />
+    <Content Include="Content\mobile\images\time.png" />
+    <Content Include="Content\mobile\images\time1.png" />
+    <Content Include="Content\mobile\images\use.png" />
+    <Content Include="Content\mobile\images\vehicle_Unbundled%402x.png" />
+    <Content Include="Content\mobile\images\wx_car_find_icon.png" />
+    <Content Include="Content\mobile\images\wx_confirm.png" />
+    <Content Include="Content\mobile\images\wx_cp_icon.png" />
+    <Content Include="Content\mobile\images\wx_jiebang.png" />
+    <Content Include="Content\mobile\images\wx_parking_find_icon.png" />
+    <Content Include="Content\mobile\images\wx_sm_icon.png" />
+    <Content Include="Content\mobile\images\wx_sm_icon23.png" />
+    <Content Include="Content\mobile\images\xny.png" />
+    <Content Include="Content\mobile\images\yellowCoupon.png" />
+    <Content Include="Content\mobile\images\yueka.png" />
+    <Content Include="Content\mobile\xfjm\images\beijing.png" />
+    <Content Include="Content\mobile\xfjm\images\but_huang.png" />
+    <Content Include="Content\mobile\xfjm\images\but_lv.png" />
+    <Content Include="Content\mobile\xfjm\images\chegngong.png" />
+    <Content Include="Content\mobile\xfjm\images\dingwei.png" />
+    <Content Include="Content\mobile\xfjm\images\fanhui.png" />
+    <Content Include="Content\mobile\xfjm\images\index.png" />
+    <Content Include="Content\mobile\xfjm\images\jiantou.png" />
+    <Content Include="Content\mobile\xfjm\images\loding.png" />
+    <Content Include="Content\mobile\xfjm\images\mima.png" />
+    <Content Include="Content\mobile\xfjm\images\pic.jpg" />
+    <Content Include="Content\mobile\xfjm\images\shezhi.png" />
+    <Content Include="Content\mobile\xfjm\images\shibai.png" />
+    <Content Include="Content\mobile\xfjm\images\tingche.png" />
+    <Content Include="Content\mobile\xfjm\images\zhanghu.png" />
+    <Content Include="Content\mobile\xfjm\images\打折成功_spec.png" />
+    <Content Include="Content\mobile\xfjm\images\系统设置_spec.png" />
+    <Content Include="Content\mobile\xfjm\images\选择车牌_spec.png" />
+    <Content Include="Content\operamasks\operamasks-ui.js" />
+    <Content Include="Content\operamasks\operamasks-ui.min.js" />
+    <Content Include="Content\operamasks\swf\om-fileupload.swf" />
+    <Content Include="Content\operamasks\themes\default\images\fileupload\cancel.gif" />
+    <Content Include="Content\operamasks\themes\default\images\fileupload\cancel.png" />
+    <Content Include="Content\operamasks\themes\default\images\fileupload\progressbar.png" />
+    <Content Include="Content\operamasks\themes\default\images\header_bg.png" />
+    <Content Include="Content\operamasks\themes\default\images\load.gif" />
+    <Content Include="Content\operamasks\themes\default\images\om-icons-default.png" />
+    <Content Include="Content\operamasks\themes\default\images\om-icons-hover.png" />
+    <Content Include="Content\operamasks\themes\default\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\operamasks\themes\default\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\operamasks\themes\default\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\operamasks\themes\default\images\ui-toolbar-btn.gif" />
+    <Content Include="Content\operamasks\themes\default\images\ui-toolbar-btn.png" />
+    <Content Include="Content\operamasks\themes\default\operamasks-ui.css" />
+    <Content Include="Content\operamasks\themes\default\operamasks-ui.min.css" />
+    <Content Include="Content\PurseAndCoupon.css" />
+    <Content Include="Content\smartsystem.css" />
+    <Content Include="Content\themes\base\easy-ui\black\accordion.css" />
+    <Content Include="Content\themes\base\easy-ui\black\calendar.css" />
+    <Content Include="Content\themes\base\easy-ui\black\combo.css" />
+    <Content Include="Content\themes\base\easy-ui\black\combobox.css" />
+    <Content Include="Content\themes\base\easy-ui\black\datagrid.css" />
+    <Content Include="Content\themes\base\easy-ui\black\datalist.css" />
+    <Content Include="Content\themes\base\easy-ui\black\datebox.css" />
+    <Content Include="Content\themes\base\easy-ui\black\dialog.css" />
+    <Content Include="Content\themes\base\easy-ui\black\easyui.css" />
+    <Content Include="Content\themes\base\easy-ui\black\filebox.css" />
+    <Content Include="Content\themes\base\easy-ui\black\images\accordion_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\blank.gif" />
+    <Content Include="Content\themes\base\easy-ui\black\images\calendar_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\combo_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\datagrid_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\datebox_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\layout_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\linkbutton_bg.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\loading.gif" />
+    <Content Include="Content\themes\base\easy-ui\black\images\menu_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\messager_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\pagination_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\panel_tools.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\searchbox_button.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\slider_handle.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\spinner_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\tabs_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\tree_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\black\images\validatebox_warning.png" />
+    <Content Include="Content\themes\base\easy-ui\black\layout.css" />
+    <Content Include="Content\themes\base\easy-ui\black\linkbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\black\menu.css" />
+    <Content Include="Content\themes\base\easy-ui\black\menubutton.css" />
+    <Content Include="Content\themes\base\easy-ui\black\messager.css" />
+    <Content Include="Content\themes\base\easy-ui\black\numberbox.css" />
+    <Content Include="Content\themes\base\easy-ui\black\pagination.css" />
+    <Content Include="Content\themes\base\easy-ui\black\panel.css" />
+    <Content Include="Content\themes\base\easy-ui\black\progressbar.css" />
+    <Content Include="Content\themes\base\easy-ui\black\propertygrid.css" />
+    <Content Include="Content\themes\base\easy-ui\black\searchbox.css" />
+    <Content Include="Content\themes\base\easy-ui\black\slider.css" />
+    <Content Include="Content\themes\base\easy-ui\black\spinner.css" />
+    <Content Include="Content\themes\base\easy-ui\black\splitbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\black\switchbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\black\tabs.css" />
+    <Content Include="Content\themes\base\easy-ui\black\textbox.css" />
+    <Content Include="Content\themes\base\easy-ui\black\tooltip.css" />
+    <Content Include="Content\themes\base\easy-ui\black\tree.css" />
+    <Content Include="Content\themes\base\easy-ui\black\validatebox.css" />
+    <Content Include="Content\themes\base\easy-ui\black\window.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\accordion.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\calendar.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\combo.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\combobox.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\datagrid.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\datalist.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\datebox.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\dialog.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\easyui.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\filebox.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\accordion_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\blank.gif" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\calendar_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\combo_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\datagrid_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\datebox_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\layout_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\linkbutton_bg.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\loading.gif" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\menu_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\messager_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\pagination_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\panel_tools.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\searchbox_button.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\slider_handle.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\spinner_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\tabs_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\tree_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\images\validatebox_warning.png" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\layout.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\linkbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\menu.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\menubutton.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\messager.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\numberbox.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\pagination.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\panel.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\progressbar.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\propertygrid.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\searchbox.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\slider.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\spinner.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\splitbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\switchbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\tabs.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\textbox.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\tooltip.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\tree.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\validatebox.css" />
+    <Content Include="Content\themes\base\easy-ui\bootstrap\window.css" />
+    <Content Include="Content\themes\base\easy-ui\color.css" />
+    <Content Include="Content\themes\base\easy-ui\default\accordion.css" />
+    <Content Include="Content\themes\base\easy-ui\default\calendar.css" />
+    <Content Include="Content\themes\base\easy-ui\default\combo.css" />
+    <Content Include="Content\themes\base\easy-ui\default\combobox.css" />
+    <Content Include="Content\themes\base\easy-ui\default\datagrid.css" />
+    <Content Include="Content\themes\base\easy-ui\default\datalist.css" />
+    <Content Include="Content\themes\base\easy-ui\default\datebox.css" />
+    <Content Include="Content\themes\base\easy-ui\default\dialog.css" />
+    <Content Include="Content\themes\base\easy-ui\default\easyui.css" />
+    <Content Include="Content\themes\base\easy-ui\default\filebox.css" />
+    <Content Include="Content\themes\base\easy-ui\default\images\accordion_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\blank.gif" />
+    <Content Include="Content\themes\base\easy-ui\default\images\calendar_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\combo_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\datagrid_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\datebox_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\layout_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\linkbutton_bg.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\loading.gif" />
+    <Content Include="Content\themes\base\easy-ui\default\images\menu_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\messager_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\pagination_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\panel_tools.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\searchbox_button.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\slider_handle.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\spinner_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\tabs_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\tree_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\default\images\validatebox_warning.png" />
+    <Content Include="Content\themes\base\easy-ui\default\layout.css" />
+    <Content Include="Content\themes\base\easy-ui\default\linkbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\default\menu.css" />
+    <Content Include="Content\themes\base\easy-ui\default\menubutton.css" />
+    <Content Include="Content\themes\base\easy-ui\default\messager.css" />
+    <Content Include="Content\themes\base\easy-ui\default\numberbox.css" />
+    <Content Include="Content\themes\base\easy-ui\default\pagination.css" />
+    <Content Include="Content\themes\base\easy-ui\default\panel.css" />
+    <Content Include="Content\themes\base\easy-ui\default\progressbar.css" />
+    <Content Include="Content\themes\base\easy-ui\default\propertygrid.css" />
+    <Content Include="Content\themes\base\easy-ui\default\searchbox.css" />
+    <Content Include="Content\themes\base\easy-ui\default\slider.css" />
+    <Content Include="Content\themes\base\easy-ui\default\spinner.css" />
+    <Content Include="Content\themes\base\easy-ui\default\splitbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\default\switchbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\default\tabs.css" />
+    <Content Include="Content\themes\base\easy-ui\default\textbox.css" />
+    <Content Include="Content\themes\base\easy-ui\default\tooltip.css" />
+    <Content Include="Content\themes\base\easy-ui\default\tree.css" />
+    <Content Include="Content\themes\base\easy-ui\default\validatebox.css" />
+    <Content Include="Content\themes\base\easy-ui\default\window.css" />
+    <Content Include="Content\themes\base\easy-ui\icon.css" />
+    <Content Include="Content\themes\base\easy-ui\icons\a_icon.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\a_icon_1.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\back.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\blank.gif" />
+    <Content Include="Content\themes\base\easy-ui\icons\b_icon.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\b_icon_1.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\cancel.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\clear.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\cut.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_daoru.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_huifu.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_icon.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_icon_1.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_qiyong.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_tingzhi.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_xuqi.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\c_zanting.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\edit_add.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\edit_remove.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\filesave.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\filter.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\help.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\kparea_icon.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\large_chart.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\large_clipart.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\large_picture.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\large_shapes.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\large_smartart.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\lock.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\man.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\mini_add.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\mini_calculator.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\mini_edit.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\mini_refresh.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\more.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\no.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\ok.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\pencil.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\print.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\p_icon.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\p_icon_1.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\redo.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\reload.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\search.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\sum.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\s_icon.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\s_icon_1.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\tip.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\undo.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\v_icon.png" />
+    <Content Include="Content\themes\base\easy-ui\icons\v_icon_1.png" />
+    <Content Include="Content\themes\base\easy-ui\material\accordion.css" />
+    <Content Include="Content\themes\base\easy-ui\material\calendar.css" />
+    <Content Include="Content\themes\base\easy-ui\material\combo.css" />
+    <Content Include="Content\themes\base\easy-ui\material\combobox.css" />
+    <Content Include="Content\themes\base\easy-ui\material\datagrid.css" />
+    <Content Include="Content\themes\base\easy-ui\material\datalist.css" />
+    <Content Include="Content\themes\base\easy-ui\material\datebox.css" />
+    <Content Include="Content\themes\base\easy-ui\material\dialog.css" />
+    <Content Include="Content\themes\base\easy-ui\material\easyui.css" />
+    <Content Include="Content\themes\base\easy-ui\material\filebox.css" />
+    <Content Include="Content\themes\base\easy-ui\material\images\accordion_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\blank.gif" />
+    <Content Include="Content\themes\base\easy-ui\material\images\calendar_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\combo_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\datagrid_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\datebox_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\layout_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\linkbutton_bg.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\loading.gif" />
+    <Content Include="Content\themes\base\easy-ui\material\images\menu_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\messager_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\pagination_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\panel_tools.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\searchbox_button.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\slider_handle.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\spinner_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\tabs_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\tree_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\material\images\validatebox_warning.png" />
+    <Content Include="Content\themes\base\easy-ui\material\layout.css" />
+    <Content Include="Content\themes\base\easy-ui\material\linkbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\material\menu.css" />
+    <Content Include="Content\themes\base\easy-ui\material\menubutton.css" />
+    <Content Include="Content\themes\base\easy-ui\material\messager.css" />
+    <Content Include="Content\themes\base\easy-ui\material\numberbox.css" />
+    <Content Include="Content\themes\base\easy-ui\material\pagination.css" />
+    <Content Include="Content\themes\base\easy-ui\material\panel.css" />
+    <Content Include="Content\themes\base\easy-ui\material\progressbar.css" />
+    <Content Include="Content\themes\base\easy-ui\material\propertygrid.css" />
+    <Content Include="Content\themes\base\easy-ui\material\searchbox.css" />
+    <Content Include="Content\themes\base\easy-ui\material\slider.css" />
+    <Content Include="Content\themes\base\easy-ui\material\spinner.css" />
+    <Content Include="Content\themes\base\easy-ui\material\splitbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\material\switchbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\material\tabs.css" />
+    <Content Include="Content\themes\base\easy-ui\material\textbox.css" />
+    <Content Include="Content\themes\base\easy-ui\material\tooltip.css" />
+    <Content Include="Content\themes\base\easy-ui\material\tree.css" />
+    <Content Include="Content\themes\base\easy-ui\material\validatebox.css" />
+    <Content Include="Content\themes\base\easy-ui\material\window.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\accordion.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\calendar.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\combo.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\combobox.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\datagrid.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\datalist.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\datebox.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\dialog.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\easyui.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\filebox.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\accordion_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\blank.gif" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\calendar_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\combo_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\datagrid_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\datebox_arrow.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\layout_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\linkbutton_bg.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\loading.gif" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\menu_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\messager_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\pagination_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\panel_tools.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\searchbox_button.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\slider_handle.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\spinner_arrows.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\tabs_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\tree_icons.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\images\validatebox_warning.png" />
+    <Content Include="Content\themes\base\easy-ui\metro\layout.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\linkbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\menu.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\menubutton.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\messager.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\numberbox.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\pagination.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\panel.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\progressbar.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\propertygrid.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\searchbox.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\slider.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\spinner.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\splitbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\switchbutton.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\tabs.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\textbox.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\tooltip.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\tree.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\validatebox.css" />
+    <Content Include="Content\themes\base\easy-ui\metro\window.css" />
+    <Content Include="Content\themes\base\easy-ui\mobile.css" />
+    <Content Include="Content\ueditor\dialogs\anchor\anchor.html" />
+    <Content Include="Content\ueditor\dialogs\attachment\attachment.css" />
+    <Content Include="Content\ueditor\dialogs\attachment\attachment.html" />
+    <Content Include="Content\ueditor\dialogs\attachment\callbacks.js" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_chm.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_default.png" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_doc.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_exe.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_mp3.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_mv.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_pdf.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_ppt.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_psd.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_rar.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_txt.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeImages\icon_xls.gif" />
+    <Content Include="Content\ueditor\dialogs\attachment\fileTypeMaps.js" />
+    <Content Include="Content\ueditor\dialogs\background\background.css" />
+    <Content Include="Content\ueditor\dialogs\background\background.html" />
+    <Content Include="Content\ueditor\dialogs\background\background.js" />
+    <Content Include="Content\ueditor\dialogs\emotion\emotion.css" />
+    <Content Include="Content\ueditor\dialogs\emotion\emotion.html" />
+    <Content Include="Content\ueditor\dialogs\emotion\emotion.js" />
+    <Content Include="Content\ueditor\dialogs\gmap\gmap.html" />
+    <Content Include="Content\ueditor\dialogs\help\help.css" />
+    <Content Include="Content\ueditor\dialogs\help\help.html" />
+    <Content Include="Content\ueditor\dialogs\help\help.js" />
+    <Content Include="Content\ueditor\dialogs\image\image.css" />
+    <Content Include="Content\ueditor\dialogs\image\image.html" />
+    <Content Include="Content\ueditor\dialogs\image\image.js" />
+    <Content Include="Content\ueditor\dialogs\image\images\center_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\image\images\left_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\image\images\none_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\image\images\right_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\image\imageUploader.swf" />
+    <Content Include="Content\ueditor\dialogs\insertframe\insertframe.html" />
+    <Content Include="Content\ueditor\dialogs\internal.js" />
+    <Content Include="Content\ueditor\dialogs\link\link.html" />
+    <Content Include="Content\ueditor\dialogs\map\map.html" />
+    <Content Include="Content\ueditor\dialogs\music\music.css" />
+    <Content Include="Content\ueditor\dialogs\music\music.html" />
+    <Content Include="Content\ueditor\dialogs\music\music.js" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\addimg.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\brush.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\delimg.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\delimgH.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\empty.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\emptyH.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\eraser.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\redo.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\redoH.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\scale.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\scaleH.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\size.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\undo.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\images\undoH.png" />
+    <Content Include="Content\ueditor\dialogs\scrawl\scrawl.css" />
+    <Content Include="Content\ueditor\dialogs\scrawl\scrawl.html" />
+    <Content Include="Content\ueditor\dialogs\scrawl\scrawl.js" />
+    <Content Include="Content\ueditor\dialogs\searchreplace\searchreplace.html" />
+    <Content Include="Content\ueditor\dialogs\searchreplace\searchreplace.js" />
+    <Content Include="Content\ueditor\dialogs\snapscreen\snapscreen.html" />
+    <Content Include="Content\ueditor\dialogs\spechars\spechars.html" />
+    <Content Include="Content\ueditor\dialogs\spechars\spechars.js" />
+    <Content Include="Content\ueditor\dialogs\table\dragicon.png" />
+    <Content Include="Content\ueditor\dialogs\table\edittable.css" />
+    <Content Include="Content\ueditor\dialogs\table\edittable.html" />
+    <Content Include="Content\ueditor\dialogs\table\edittable.js" />
+    <Content Include="Content\ueditor\dialogs\table\edittd.html" />
+    <Content Include="Content\ueditor\dialogs\table\edittip.html" />
+    <Content Include="Content\ueditor\dialogs\tangram.js" />
+    <Content Include="Content\ueditor\dialogs\template\config.js" />
+    <Content Include="Content\ueditor\dialogs\template\images\bg.gif" />
+    <Content Include="Content\ueditor\dialogs\template\images\pre0.png" />
+    <Content Include="Content\ueditor\dialogs\template\images\pre1.png" />
+    <Content Include="Content\ueditor\dialogs\template\images\pre2.png" />
+    <Content Include="Content\ueditor\dialogs\template\images\pre3.png" />
+    <Content Include="Content\ueditor\dialogs\template\images\pre4.png" />
+    <Content Include="Content\ueditor\dialogs\template\template.css" />
+    <Content Include="Content\ueditor\dialogs\template\template.html" />
+    <Content Include="Content\ueditor\dialogs\template\template.js" />
+    <Content Include="Content\ueditor\dialogs\video\images\center_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\video\images\left_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\video\images\none_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\video\images\right_focus.jpg" />
+    <Content Include="Content\ueditor\dialogs\video\video.css" />
+    <Content Include="Content\ueditor\dialogs\video\video.html" />
+    <Content Include="Content\ueditor\dialogs\video\video.js" />
+    <Content Include="Content\ueditor\dialogs\webapp\webapp.html" />
+    <Content Include="Content\ueditor\dialogs\wordimage\fClipboard_ueditor.swf" />
+    <Content Include="Content\ueditor\dialogs\wordimage\imageUploader.swf" />
+    <Content Include="Content\ueditor\dialogs\wordimage\wordimage.html" />
+    <Content Include="Content\ueditor\dialogs\wordimage\wordimage.js" />
+    <Content Include="Content\ueditor\lang\en\en.js" />
+    <Content Include="Content\ueditor\lang\en\images\addimage.png" />
+    <Content Include="Content\ueditor\lang\en\images\alldeletebtnhoverskin.png" />
+    <Content Include="Content\ueditor\lang\en\images\alldeletebtnupskin.png" />
+    <Content Include="Content\ueditor\lang\en\images\background.png" />
+    <Content Include="Content\ueditor\lang\en\images\button.png" />
+    <Content Include="Content\ueditor\lang\en\images\copy.png" />
+    <Content Include="Content\ueditor\lang\en\images\deletedisable.png" />
+    <Content Include="Content\ueditor\lang\en\images\deleteenable.png" />
+    <Content Include="Content\ueditor\lang\en\images\imglabel.png" />
+    <Content Include="Content\ueditor\lang\en\images\listbackground.png" />
+    <Content Include="Content\ueditor\lang\en\images\localimage.png" />
+    <Content Include="Content\ueditor\lang\en\images\music.png" />
+    <Content Include="Content\ueditor\lang\en\images\rotateleftdisable.png" />
+    <Content Include="Content\ueditor\lang\en\images\rotateleftenable.png" />
+    <Content Include="Content\ueditor\lang\en\images\rotaterightdisable.png" />
+    <Content Include="Content\ueditor\lang\en\images\rotaterightenable.png" />
+    <Content Include="Content\ueditor\lang\en\images\upload.png" />
+    <Content Include="Content\ueditor\lang\zh-cn\images\copy.png" />
+    <Content Include="Content\ueditor\lang\zh-cn\images\imglabel.png" />
+    <Content Include="Content\ueditor\lang\zh-cn\images\localimage.png" />
+    <Content Include="Content\ueditor\lang\zh-cn\images\music.png" />
+    <Content Include="Content\ueditor\lang\zh-cn\images\upload.png" />
+    <Content Include="Content\ueditor\lang\zh-cn\zh-cn.js" />
+    <Content Include="Content\ueditor\themes\default\css\ueditor.css" />
+    <Content Include="Content\ueditor\themes\default\dialogbase.css" />
+    <Content Include="Content\ueditor\themes\default\images\anchor.gif" />
+    <Content Include="Content\ueditor\themes\default\images\arrow.png" />
+    <Content Include="Content\ueditor\themes\default\images\arrow_down.png" />
+    <Content Include="Content\ueditor\themes\default\images\arrow_up.png" />
+    <Content Include="Content\ueditor\themes\default\images\button-bg.gif" />
+    <Content Include="Content\ueditor\themes\default\images\cancelbutton.gif" />
+    <Content Include="Content\ueditor\themes\default\images\cursor_h.gif" />
+    <Content Include="Content\ueditor\themes\default\images\cursor_h.png" />
+    <Content Include="Content\ueditor\themes\default\images\cursor_v.gif" />
+    <Content Include="Content\ueditor\themes\default\images\cursor_v.png" />
+    <Content Include="Content\ueditor\themes\default\images\dialog-title-bg.png" />
+    <Content Include="Content\ueditor\themes\default\images\filescan.png" />
+    <Content Include="Content\ueditor\themes\default\images\highlighted.gif" />
+    <Content Include="Content\ueditor\themes\default\images\icons-all.gif" />
+    <Content Include="Content\ueditor\themes\default\images\icons.gif" />
+    <Content Include="Content\ueditor\themes\default\images\icons.png" />
+    <Content Include="Content\ueditor\themes\default\images\lock.gif" />
+    <Content Include="Content\ueditor\themes\default\images\neweditor-tab-bg.png" />
+    <Content Include="Content\ueditor\themes\default\images\pagebreak.gif" />
+    <Content Include="Content\ueditor\themes\default\images\scale.png" />
+    <Content Include="Content\ueditor\themes\default\images\spacer.gif" />
+    <Content Include="Content\ueditor\themes\default\images\sparator_v.png" />
+    <Content Include="Content\ueditor\themes\default\images\table-cell-align.png" />
+    <Content Include="Content\ueditor\themes\default\images\tangram-colorpicker.png" />
+    <Content Include="Content\ueditor\themes\default\images\toolbar_bg.png" />
+    <Content Include="Content\ueditor\themes\default\images\unhighlighted.gif" />
+    <Content Include="Content\ueditor\themes\default\images\upload.png" />
+    <Content Include="Content\ueditor\themes\default\images\videologo.gif" />
+    <Content Include="Content\ueditor\themes\default\images\word.gif" />
+    <Content Include="Content\ueditor\themes\default\images\wordpaste.png" />
+    <Content Include="Content\ueditor\themes\iframe.css" />
+    <Content Include="Content\ueditor\third-party\codemirror\codemirror.css" />
+    <Content Include="Content\ueditor\third-party\codemirror\codemirror.js" />
+    <Content Include="Content\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" />
+    <Content Include="Content\ueditor\third-party\swfupload\fileprogress.js" />
+    <Content Include="Content\ueditor\third-party\swfupload\swfupload.cookies.js" />
+    <Content Include="Content\ueditor\third-party\swfupload\swfupload.js" />
+    <Content Include="Content\ueditor\third-party\swfupload\swfupload.proxy.js" />
+    <Content Include="Content\ueditor\third-party\swfupload\swfupload.queue.js" />
+    <Content Include="Content\ueditor\third-party\swfupload\swfupload.speed.js" />
+    <Content Include="Content\ueditor\third-party\swfupload\swfupload.swf" />
+    <Content Include="Content\ueditor\third-party\swfupload\swfupload_fp9.swf" />
+    <Content Include="Content\ueditor\third-party\SyntaxHighlighter\shCore.js" />
+    <Content Include="Content\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
+    <Content Include="Content\ueditor\ueditor.all.js" />
+    <Content Include="Content\ueditor\ueditor.all.min.js" />
+    <Content Include="Content\ueditor\ueditor.config.js" />
+    <Content Include="Content\ueditor\ueditor.parse.js" />
+    <Content Include="Content\weixin\article.css" />
+    <Content Include="Content\mobile\common.css" />
+    <Content Include="Content\weixin\login.css" />
+    <Content Include="Content\weixin\payfees.css" />
+    <Content Include="Content\weui-master\dist\example\example.css" />
+    <Content Include="Content\weui-master\dist\example\example.js" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_actionSheet.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_article.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_button.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_cell.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_dialog.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_icons.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_msg.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_panel.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_progress.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_search_bar.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_tab.png" />
+    <Content Include="Content\weui-master\dist\example\images\icon_nav_toast.png" />
+    <Content Include="Content\weui-master\dist\example\images\vcode.jpg" />
+    <Content Include="Content\weui-master\dist\example\index.html" />
+    <Content Include="Content\weui-master\dist\example\router.min.js" />
+    <Content Include="Content\weui-master\dist\example\snapshot\actionSheet.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\button.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\cell.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\dialog1.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\dialog2.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\grid.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\icons.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\progress.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\qrcode.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\result.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\text.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\toast1.png" />
+    <Content Include="Content\weui-master\dist\example\snapshot\toast2.png" />
+    <Content Include="Content\weui-master\dist\example\weui.css" />
+    <Content Include="Content\weui-master\dist\example\weui.min.css" />
+    <Content Include="Content\weui-master\dist\example\zepto.min.js" />
+    <Content Include="Content\weui-master\dist\style\router.min.js" />
+    <Content Include="Content\weui-master\dist\style\weui.css" />
+    <Content Include="Content\weui-master\dist\style\weui.min.css" />
+    <Content Include="Content\weui-master\dist\style\zepto.min.js" />
+    <Content Include="Content\weui-master\gulpfile.js" />
+    <Content Include="Content\weui-master\src\example\example.js" />
+    <Content Include="Content\weui-master\src\example\fragment\actionsheet.html" />
+    <Content Include="Content\weui-master\src\example\fragment\article.html" />
+    <Content Include="Content\weui-master\src\example\fragment\button.html" />
+    <Content Include="Content\weui-master\src\example\fragment\cell.html" />
+    <Content Include="Content\weui-master\src\example\fragment\dialog.html" />
+    <Content Include="Content\weui-master\src\example\fragment\home.html" />
+    <Content Include="Content\weui-master\src\example\fragment\icons.html" />
+    <Content Include="Content\weui-master\src\example\fragment\msg.html" />
+    <Content Include="Content\weui-master\src\example\fragment\navbar.html" />
+    <Content Include="Content\weui-master\src\example\fragment\panel.html" />
+    <Content Include="Content\weui-master\src\example\fragment\progress.html" />
+    <Content Include="Content\weui-master\src\example\fragment\searchbar.html" />
+    <Content Include="Content\weui-master\src\example\fragment\tab.html" />
+    <Content Include="Content\weui-master\src\example\fragment\tabbar.html" />
+    <Content Include="Content\weui-master\src\example\fragment\toast.html" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_actionSheet.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_article.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_button.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_cell.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_dialog.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_icons.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_msg.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_panel.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_progress.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_search_bar.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_tab.png" />
+    <Content Include="Content\weui-master\src\example\images\icon_nav_toast.png" />
+    <Content Include="Content\weui-master\src\example\images\vcode.jpg" />
+    <Content Include="Content\weui-master\src\example\index.html" />
+    <Content Include="Content\weui-master\src\example\router.min.js" />
+    <Content Include="Content\weui-master\src\example\snapshot\button.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\cell.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\dialog1.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\dialog2.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\grid.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\icons.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\progress.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\qrcode.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\result.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\text.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\toast1.png" />
+    <Content Include="Content\weui-master\src\example\snapshot\toast2.png" />
+    <Content Include="Content\weui-master\src\example\weui.css" />
+    <Content Include="Content\weui-master\src\example\weui.min.css" />
+    <Content Include="Content\weui-master\src\example\zepto.min.js" />
+    <Content Include="Content\weui-master\src\style\widget\router.min.js" />
+    <Content Include="Content\weui-master\src\style\widget\weui.css" />
+    <Content Include="Content\weui-master\src\style\widget\weui.min.css" />
+    <Content Include="Content\weui-master\src\style\widget\zepto.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Report\StatisticsReport.aspx" />
+    <Content Include="Scripts\alipay\apiconfig.js" />
+    <Content Include="Scripts\alipay\onlineorder.js" />
+    <Content Include="Scripts\basedata\company.js" />
+    <Content Include="Scripts\basedata\message.js" />
+    <Content Include="Scripts\basedata\tg.js" />
+    <Content Include="Scripts\basedata\village.js" />
+    <Content Include="Scripts\BaseSize.js" />
+    <Content Include="Scripts\bwy\parkgate.js" />
+    <Content Include="Scripts\chart\highcharts.js" />
+    <Content Include="Scripts\chart\jquery.js" />
+    <Content Include="Scripts\DateExtensions.js" />
+    <Content Include="Scripts\easyui\easyui-lang-zh_CN.js" />
+    <Content Include="Scripts\easyui\easyui-toolbar-extend.js" />
+    <Content Include="Scripts\easyui\jquery.easyui.min.js" />
+    <Content Include="Scripts\easyui\tree-extend.js" />
+    <Content Include="Scripts\easyui\tree-searh-extend.js" />
+    <Content Include="Scripts\fileupload\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\fileupload\jquery.fileupload.js" />
+    <Content Include="Scripts\fileupload\jquery.iframe-transport.js" />
+    <Content Include="Scripts\fileupload\vendor\jquery.ui.widget.js" />
+    <Content Include="Scripts\home\home.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\log\exception.js" />
+    <Content Include="Scripts\log\loginlog.js" />
+    <Content Include="Scripts\log\operate.js" />
+    <Content Include="Scripts\mobile\admincommon.js" />
+    <Content Include="Scripts\mobile\baidumap.js" />
+    <Content Include="Scripts\mobile\carmanage.js" />
+    <Content Include="Scripts\mobile\findparking.js" />
+    <Content Include="Scripts\mobile\h5\admincommon.js" />
+    <Content Include="Scripts\mobile\h5\carmanage.js" />
+    <Content Include="Scripts\mobile\h5\lockorunlockcar.js" />
+    <Content Include="Scripts\mobile\loadprompt.js" />
+    <Content Include="Scripts\mobile\lockorunlockcar.js" />
+    <Content Include="Scripts\nweixin\advanceparkinginfo.js" />
+    <Content Include="Scripts\nweixin\apiconfig.js" />
+    <Content Include="Scripts\nweixin\article.js" />
+    <Content Include="Scripts\nweixin\articlemanage.js" />
+    <Content Include="Scripts\nweixin\keyword.js" />
+    <Content Include="Scripts\nweixin\menu.js" />
+    <Content Include="Scripts\nweixin\onlineorder.js" />
+    <Content Include="Scripts\nweixin\opinionfeedback.js" />
+    <Content Include="Scripts\nweixin\otherconfig.js" />
+    <Content Include="Scripts\nweixin\paymentconfig.js" />
+    <Content Include="Scripts\nweixin\wxaccount.js" />
+    <Content Include="Scripts\parking\aduitmonthlycarapply.js" />
+    <Content Include="Scripts\parking\blacklist.js" />
+    <Content Include="Scripts\parking\carmodel.js" />
+    <Content Include="Scripts\parking\cartype.js" />
+    <Content Include="Scripts\parking\cartypesingle.js" />
+    <Content Include="Scripts\parking\centralfee.js" />
+    <Content Include="Scripts\parking\DataGrid.js" />
+    <Content Include="Scripts\parking\feerule.js" />
+    <Content Include="Scripts\parking\gatedevice.js" />
+    <Content Include="Scripts\parking\parkbox.js" />
+    <Content Include="Scripts\parking\parkcar.js" />
+    <Content Include="Scripts\parking\parkcarderateqrcode.js" />
+    <Content Include="Scripts\parking\parkderate.js" />
+    <Content Include="Scripts\parking\parkderateqrcode.js" />
+    <Content Include="Scripts\parking\parkgate.js" />
+    <Content Include="Scripts\parking\parking.js" />
+    <Content Include="Scripts\parking\parkingarea.js" />
+    <Content Include="Scripts\parking\parkseller.js" />
+    <Content Include="Scripts\parking\parksettleconfig.js" />
+    <Content Include="Scripts\statistics\cardextension.js" />
+    <Content Include="Scripts\statistics\common.js" />
+    <Content Include="Scripts\statistics\statisticsdailyedit.js" />
+    <Content Include="Scripts\statistics\monthcardinfo.js" />
+    <Content Include="Scripts\statistics\onlinepay.js" />
+    <Content Include="Scripts\statistics\parkio.js" />
+    <Content Include="Scripts\statistics\parkvisitorinfo.js" />
+    <Content Include="Scripts\statistics\platenumberanalyse.js" />
+    <Content Include="Scripts\statistics\presence.js" />
+    <Content Include="Scripts\statistics\reportexceptionrelease.js" />
+    <Content Include="Scripts\statistics\reportgateevents.js" />
+    <Content Include="Scripts\statistics\reportinout.js" />
+    <Content Include="Scripts\statistics\reportnoplatenumber.js" />
+    <Content Include="Scripts\statistics\reportonduty.js" />
+    <Content Include="Scripts\statistics\reportorders.js" />
+    <Content Include="Scripts\statistics\Settlement.js" />
+    <Content Include="Scripts\statistics\SettlementSetting.js" />
+    <Content Include="Scripts\statistics\statisticscoupon.js" />
+    <Content Include="Scripts\statistics\statisticsdaily.js" />
+    <Content Include="Scripts\statistics\statisticsdailygather.js" />
+    <Content Include="Scripts\statistics\statisticsdevicedetection.js" />
+    <Content Include="Scripts\statistics\statisticsmonth.js" />
+    <Content Include="Scripts\statistics\statisticsmonthgather.js" />
+    <Content Include="Scripts\statistics\statisticsPersontg.js" />
+    <Content Include="Scripts\statistics\temppay.js" />
+    <Content Include="Scripts\statistics\userinfo.js" />
+    <Content Include="Scripts\ueditor\dialogs\anchor\anchor.html" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\attachment.css" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\attachment.html" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\callbacks.js" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_chm.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_default.png" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_doc.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_exe.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_mp3.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_mv.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_pdf.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_ppt.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_psd.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_rar.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_txt.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeImages\icon_xls.gif" />
+    <Content Include="Scripts\ueditor\dialogs\attachment\fileTypeMaps.js" />
+    <Content Include="Scripts\ueditor\dialogs\background\background.css" />
+    <Content Include="Scripts\ueditor\dialogs\background\background.html" />
+    <Content Include="Scripts\ueditor\dialogs\background\background.js" />
+    <Content Include="Scripts\ueditor\dialogs\emotion\emotion.css" />
+    <Content Include="Scripts\ueditor\dialogs\emotion\emotion.html" />
+    <Content Include="Scripts\ueditor\dialogs\emotion\emotion.js" />
+    <Content Include="Scripts\ueditor\dialogs\gmap\gmap.html" />
+    <Content Include="Scripts\ueditor\dialogs\help\help.css" />
+    <Content Include="Scripts\ueditor\dialogs\help\help.html" />
+    <Content Include="Scripts\ueditor\dialogs\help\help.js" />
+    <Content Include="Scripts\ueditor\dialogs\image\image.css" />
+    <Content Include="Scripts\ueditor\dialogs\image\image.html" />
+    <Content Include="Scripts\ueditor\dialogs\image\image.js" />
+    <Content Include="Scripts\ueditor\dialogs\image\images\center_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\image\images\left_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\image\images\none_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\image\images\right_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\image\imageUploader.swf" />
+    <Content Include="Scripts\ueditor\dialogs\insertframe\insertframe.html" />
+    <Content Include="Scripts\ueditor\dialogs\internal.js" />
+    <Content Include="Scripts\ueditor\dialogs\link\link.html" />
+    <Content Include="Scripts\ueditor\dialogs\map\map.html" />
+    <Content Include="Scripts\ueditor\dialogs\music\music.css" />
+    <Content Include="Scripts\ueditor\dialogs\music\music.html" />
+    <Content Include="Scripts\ueditor\dialogs\music\music.js" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\addimg.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\brush.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\delimg.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\delimgH.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\empty.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\emptyH.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\eraser.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\redo.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\redoH.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\scale.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\scaleH.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\size.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\undo.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\images\undoH.png" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\scrawl.css" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\scrawl.html" />
+    <Content Include="Scripts\ueditor\dialogs\scrawl\scrawl.js" />
+    <Content Include="Scripts\ueditor\dialogs\searchreplace\searchreplace.html" />
+    <Content Include="Scripts\ueditor\dialogs\searchreplace\searchreplace.js" />
+    <Content Include="Scripts\ueditor\dialogs\snapscreen\snapscreen.html" />
+    <Content Include="Scripts\ueditor\dialogs\spechars\spechars.html" />
+    <Content Include="Scripts\ueditor\dialogs\spechars\spechars.js" />
+    <Content Include="Scripts\ueditor\dialogs\table\dragicon.png" />
+    <Content Include="Scripts\ueditor\dialogs\table\edittable.css" />
+    <Content Include="Scripts\ueditor\dialogs\table\edittable.html" />
+    <Content Include="Scripts\ueditor\dialogs\table\edittable.js" />
+    <Content Include="Scripts\ueditor\dialogs\table\edittd.html" />
+    <Content Include="Scripts\ueditor\dialogs\table\edittip.html" />
+    <Content Include="Scripts\ueditor\dialogs\tangram.js" />
+    <Content Include="Scripts\ueditor\dialogs\template\config.js" />
+    <Content Include="Scripts\ueditor\dialogs\template\images\bg.gif" />
+    <Content Include="Scripts\ueditor\dialogs\template\images\pre0.png" />
+    <Content Include="Scripts\ueditor\dialogs\template\images\pre1.png" />
+    <Content Include="Scripts\ueditor\dialogs\template\images\pre2.png" />
+    <Content Include="Scripts\ueditor\dialogs\template\images\pre3.png" />
+    <Content Include="Scripts\ueditor\dialogs\template\images\pre4.png" />
+    <Content Include="Scripts\ueditor\dialogs\template\template.css" />
+    <Content Include="Scripts\ueditor\dialogs\template\template.html" />
+    <Content Include="Scripts\ueditor\dialogs\template\template.js" />
+    <Content Include="Scripts\ueditor\dialogs\video\images\center_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\video\images\left_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\video\images\none_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\video\images\right_focus.jpg" />
+    <Content Include="Scripts\ueditor\dialogs\video\video.css" />
+    <Content Include="Scripts\ueditor\dialogs\video\video.html" />
+    <Content Include="Scripts\ueditor\dialogs\video\video.js" />
+    <Content Include="Scripts\ueditor\dialogs\webapp\webapp.html" />
+    <Content Include="Scripts\ueditor\dialogs\wordimage\fClipboard_ueditor.swf" />
+    <Content Include="Scripts\ueditor\dialogs\wordimage\imageUploader.swf" />
+    <Content Include="Scripts\ueditor\dialogs\wordimage\wordimage.html" />
+    <Content Include="Scripts\ueditor\dialogs\wordimage\wordimage.js" />
+    <Content Include="Scripts\ueditor\lang\en\en.js" />
+    <Content Include="Scripts\ueditor\lang\en\images\addimage.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\alldeletebtnhoverskin.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\alldeletebtnupskin.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\background.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\button.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\copy.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\deletedisable.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\deleteenable.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\imglabel.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\listbackground.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\localimage.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\music.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\rotateleftdisable.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\rotateleftenable.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\rotaterightdisable.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\rotaterightenable.png" />
+    <Content Include="Scripts\ueditor\lang\en\images\upload.png" />
+    <Content Include="Scripts\ueditor\lang\zh-cn\images\copy.png" />
+    <Content Include="Scripts\ueditor\lang\zh-cn\images\imglabel.png" />
+    <Content Include="Scripts\ueditor\lang\zh-cn\images\localimage.png" />
+    <Content Include="Scripts\ueditor\lang\zh-cn\images\music.png" />
+    <Content Include="Scripts\ueditor\lang\zh-cn\images\upload.png" />
+    <Content Include="Scripts\ueditor\lang\zh-cn\zh-cn.js" />
+    <Content Include="Scripts\ueditor\themes\default\css\ueditor.css" />
+    <Content Include="Scripts\ueditor\themes\default\dialogbase.css" />
+    <Content Include="Scripts\ueditor\themes\default\images\anchor.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\arrow.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\arrow_down.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\arrow_up.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\button-bg.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\cancelbutton.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\cursor_h.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\cursor_h.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\cursor_v.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\cursor_v.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\dialog-title-bg.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\filescan.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\highlighted.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\icons-all.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\icons.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\icons.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\lock.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\neweditor-tab-bg.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\pagebreak.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\scale.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\spacer.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\sparator_v.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\table-cell-align.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\tangram-colorpicker.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\toolbar_bg.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\unhighlighted.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\upload.png" />
+    <Content Include="Scripts\ueditor\themes\default\images\videologo.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\word.gif" />
+    <Content Include="Scripts\ueditor\themes\default\images\wordpaste.png" />
+    <Content Include="Scripts\ueditor\themes\iframe.css" />
+    <Content Include="Scripts\ueditor\third-party\codemirror\codemirror.css" />
+    <Content Include="Scripts\ueditor\third-party\codemirror\codemirror.js" />
+    <Content Include="Scripts\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\fileprogress.js" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\swfupload.cookies.js" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\swfupload.js" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\swfupload.proxy.js" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\swfupload.queue.js" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\swfupload.speed.js" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\swfupload.swf" />
+    <Content Include="Scripts\ueditor\third-party\swfupload\swfupload_fp9.swf" />
+    <Content Include="Scripts\ueditor\third-party\SyntaxHighlighter\shCore.js" />
+    <Content Include="Scripts\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
+    <Content Include="Scripts\ueditor\ueditor.all.js" />
+    <Content Include="Scripts\ueditor\ueditor.all.min.js" />
+    <Content Include="Scripts\ueditor\ueditor.config.js" />
+    <Content Include="Scripts\ueditor\ueditor.parse.js" />
+    <Content Include="Scripts\users\systemscope.js" />
+    <Content Include="Scripts\users\systemrole.js" />
+    <Content Include="Scripts\users\user.js" />
+    <Content Include="Scripts\weixin\advanceparkinginfo.js" />
+    <Content Include="Scripts\weixin\apiconfig.js" />
+    <Content Include="Scripts\weixin\article.js" />
+    <Content Include="Scripts\weixin\articlemanage.js" />
+    <Content Include="Scripts\weixin\fontsize.js" />
+    <Content Include="Scripts\weixin\keyword.js" />
+    <Content Include="Scripts\weixin\menu.js" />
+    <Content Include="Scripts\weixin\opinionfeedback.js" />
+    <Content Include="Scripts\weixin\otherconfig.js" />
+    <Content Include="Scripts\weixin\paymentconfig.js" />
+    <Content Include="Scripts\weixin\wxaccount.js" />
+    <Content Include="SystemModule.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\AliPay\Views\Shared\" />
+    <Folder Include="Areas\BaseData\Models\" />
+    <Folder Include="Areas\BaseData\Views\Shared\" />
+    <Folder Include="Areas\Log\Models\" />
+    <Folder Include="Areas\Log\Views\Shared\" />
+    <Folder Include="Areas\NWeiXin\Models\" />
+    <Folder Include="Areas\NWeiXin\Views\Shared\" />
+    <Folder Include="Areas\Parking\Views\Shared\" />
+    <Folder Include="Areas\Statistics\Models\" />
+    <Folder Include="Areas\Statistics\Views\Shared\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\Shared\" />
+    <Folder Include="Content\login\skins\aero\ie6\" />
+    <Folder Include="Content\login\skins\black\ie6\" />
+    <Folder Include="Content\login\skins\blue\ie6\" />
+    <Folder Include="Content\login\skins\chrome\" />
+    <Folder Include="Content\login\skins\green\ie6\" />
+    <Folder Include="Content\login\skins\icons\" />
+    <Folder Include="Content\login\skins\idialog\ie6\" />
+    <Folder Include="Content\login\skins\opera\ie6\" />
+    <Folder Include="Content\ueditor\dialogs\emotion\images\" />
+    <Folder Include="Report\ReportFile\" />
+    <Folder Include="Scripts\ueditor\dialogs\emotion\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BaseData\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Parking\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Views\Role\Index.cshtml" />
+    <Content Include="Areas\User\Views\Scope\Index.cshtml" />
+    <Content Include="Areas\BaseData\Views\Company\Index.cshtml" />
+    <Content Include="Areas\BaseData\Views\Village\Index.cshtml" />
+    <Content Include="Areas\User\Views\User\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\Parking\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkArea\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkBox\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkGate\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Web.config" />
+    <Content Include="Areas\Statistics\Views\Statistics\Presence.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkCarType\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkCarModel\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\StatisticsDaily.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\StatisticsMonth.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\StatisticsDailyGather.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\StatisticsMonthGather.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkFeeRule\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\Coupon.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\TempPay.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\CardExtension.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ReportOrders.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ReportOnDuty.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ReportGateEvents.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ReportExceptionRelease.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ReportInOut.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ReportNoPlateNumber.cshtml" />
+    <Content Include="Areas\Statistics\Views\InCome\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\InOut\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkCar\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkBackList\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkSeller\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkDerate\Index.cshtml" />
+    <Content Include="Areas\Log\Views\Web.config" />
+    <Content Include="Areas\Log\Views\Exception\Index.cshtml" />
+    <Content Include="Areas\Log\Views\LoginLog\Index.cshtml" />
+    <Content Include="Areas\Log\Views\OperateLog\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Device\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\CentralFee\Index.cshtml" />
+    <Content Include="Areas\AliPay\Views\Web.config" />
+    <Content Include="Areas\AliPay\Views\AliPayApiConfig\Index.cshtml" />
+    <Content Include="Areas\AliPay\Views\AliPayOnlineOrder\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\Web.config" />
+    <Content Include="Areas\NWeiXin\Views\WXKeyword\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXApiConfig\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXArticle\Edit.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXArticle\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\NWeiXin\Views\WXMenu\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXOtherConfig\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXPaymentConfig\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXOnlineOrder\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXOpinionFeedback\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\WXAccount\Index.cshtml" />
+    <Content Include="Areas\NWeiXin\Views\AdvanceParkingInfo\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\PlateNumberAnalyse.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\MonthCardInfo.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkSettle\Settlement.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkSettle\SettlementAuditing.cshtml" />
+    <Content Include="Areas\Parking\Views\BWYParkGate\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkSettleConfig\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ParkVisitorInfo.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\StatisticsEdit.cshtml" />
+    <Content Include="Areas\Parking\Views\TgPerson\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Userinfo\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\overment.cshtml" />
+    <Content Include="Areas\Parking\Views\MicroPay\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\OnlinePay.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\ParkIO.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkDerateQRCode\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkCar2\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\AduitMonthlyCarApply\Index.cshtml" />
+    <Content Include="Areas\Parking\Views\ParkCarDerateQRCode\Index.cshtml" />
+    <Content Include="Areas\Statistics\Views\Statistics\StatisticsPersontg.cshtml" />
+    <Content Include="Areas\BaseData\Views\Message\Index.cshtml" />
+    <None Include="Content\login\css\fonts\BebasNeue-webfont.eot" />
+    <None Include="Content\login\css\fonts\BebasNeue-webfont.ttf" />
+    <None Include="Content\login\css\fonts\BebasNeue-webfont.woff" />
+    <None Include="Content\login\css\fonts\fontomas-webfont.eot" />
+    <None Include="Content\login\css\fonts\fontomas-webfont.ttf" />
+    <None Include="Content\login\css\fonts\fontomas-webfont.woff" />
+    <None Include="Content\login\css\fonts\franchise-bold-webfont.eot" />
+    <None Include="Content\login\css\fonts\franchise-bold-webfont.ttf" />
+    <None Include="Content\login\css\fonts\franchise-bold-webfont.woff" />
+    <None Include="Content\themes\base\easy-ui\material\images\Thumbs.db" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Main.cshtml" />
+    <None Include="Content\weui-master\.gitignore" />
+    <None Include="Content\weui-master\.travis.yml" />
+    <None Include="Content\weui-master\bower.json" />
+    <None Include="Content\weui-master\CHANGELOG.md" />
+    <None Include="Content\weui-master\CONTRIBUTING.md" />
+    <None Include="Content\weui-master\package.json" />
+    <None Include="Content\weui-master\README.md" />
+    <None Include="Content\weui-master\src\example\example.less" />
+    <None Include="Content\weui-master\src\style\base\fn.less" />
+    <None Include="Content\weui-master\src\style\base\mixin\mobile.less" />
+    <None Include="Content\weui-master\src\style\base\mixin\setArrow.less" />
+    <None Include="Content\weui-master\src\style\base\mixin\setChecked.less" />
+    <None Include="Content\weui-master\src\style\base\mixin\setOnepx.less" />
+    <None Include="Content\weui-master\src\style\base\mixin\text.less" />
+    <None Include="Content\weui-master\src\style\base\reset.less" />
+    <None Include="Content\weui-master\src\style\base\variable\global.less" />
+    <None Include="Content\weui-master\src\style\base\variable\monokai.less" />
+    <None Include="Content\weui-master\src\style\base\variable\weui_button.less" />
+    <None Include="Content\weui-master\src\style\base\variable\weui_cell.less" />
+    <None Include="Content\weui-master\src\style\base\variable\weui_grid.less" />
+    <None Include="Content\weui-master\src\style\base\variable\weui_msg.less" />
+    <None Include="Content\weui-master\src\style\base\variable\weui_progress.less" />
+    <None Include="Content\weui-master\src\style\icon\weui_font.less" />
+    <None Include="Content\weui-master\src\style\icon\weui_icon_font.less" />
+    <None Include="Content\weui-master\src\style\weui.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_button\weui_btn_default.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_button\weui_btn_disabled.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_button\weui_btn_global.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_button\weui_btn_plain.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_button\weui_btn_primary.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_button\weui_btn_warn.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_button\weui_button.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_access.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_cell_global.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_check.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_check\weui_checkbox.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_check\weui_check_common.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_check\weui_radio.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_form.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_form\weui_form_common.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_form\weui_select.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_form\weui_select_after.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_form\weui_select_before.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_form\weui_vcode.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_switch.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_cell\weui_uploader.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_grid\weui_grid.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_media_box\weui_media_box.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_page\weui_article.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_page\weui_msg.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_panel\weui_panel.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_progress\weui_progress.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_searchbar\weui_searchbar.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_tab\navbar.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_tab\tabbar.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_tab\weui_tab.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_tips\weui_actionsheet.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_tips\weui_dialog.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_tips\weui_mask.less" />
+    <None Include="Content\weui-master\src\style\widget\weui_tips\weui_toast.less" />
+    <None Include="Download\车辆导入模板.rar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
+    <None Include="Report\ReportViewer\ReportDataSet.xsc">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Report\ReportViewer\ReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\ReportViewer\ReportDataSet.xss">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+    <Content Include="Views\ParkPlateNo\Index.cshtml" />
+    <Content Include="Views\RedirectPage\LoginTimeOut.cshtml" />
+    <Content Include="Views\RedirectPage\NotPurview.cshtml" />
+    <Content Include="Views\RedirectPage\Error.cshtml" />
+    <Content Include="Views\WxArticleDetail\Index.cshtml" />
+    <Content Include="Views\Shared\_WeiXinLayout.cshtml" />
+    <Content Include="Views\BindTradePassword\Index.cshtml" />
+    <Content Include="Views\CardRenewal\Index.cshtml" />
+    <Content Include="Views\CardRenewal\MonthCardRenewal.cshtml" />
+    <Content Include="Views\CarManage\Index.cshtml" />
+    <Content Include="Views\ErrorPrompt\Error.cshtml" />
+    <Content Include="Views\ErrorPrompt\Index.cshtml" />
+    <Content Include="Views\FindParking\Index.cshtml" />
+    <Content Include="Views\LoadPrompt\Index.cshtml" />
+    <Content Include="Views\LockCar\Index.cshtml" />
+    <Content Include="Views\OtherService\Contact.cshtml" />
+    <Content Include="Views\OtherService\OperatExplanation.cshtml" />
+    <Content Include="Views\OtherService\ProblemFeedback.cshtml" />
+    <Content Include="Views\ParkingPayment\ComputeParkingFee.cshtml" />
+    <Content Include="Views\ParkingPayment\LicensePlatePayment.cshtml" />
+    <Content Include="Views\ParkingPayment\NotNeedPayment.cshtml" />
+    <Content Include="Views\PaymentRecord\Index.cshtml" />
+    <Content Include="Views\PaymentType\Index.cshtml" />
+    <Content Include="Views\Test\Dialog.cshtml" />
+    <Content Include="Views\Test\TestAction.cshtml" />
+    <Content Include="Views\Test\TestWebUI.cshtml" />
+    <Content Include="Views\Test\TestWebUiSearch.cshtml" />
+    <Content Include="Views\WeiXinPayment\MonthCardPayment.cshtml" />
+    <Content Include="Views\WeiXinPayment\ParkCarPayment.cshtml" />
+    <Content Include="Views\WeiXinShare\Index.cshtml" />
+    <Content Include="Views\CardRenewal\PlateNoRenewal.cshtml" />
+    <Content Include="Views\BindMobile\Index.cshtml" />
+    <Content Include="Views\ErrorPrompt\NotPage.cshtml" />
+    <Content Include="Views\Home\Empty.cshtml" />
+    <Content Include="Views\RedirectPage\SystemError.cshtml" />
+    <Content Include="Views\QRCodeParkPayment\Index.cshtml" />
+    <Content Include="Views\QRCodeParkPayment\ComputeParkingFee.cshtml" />
+    <Content Include="Views\QRCodeParkPayment\NotNeedPayment.cshtml" />
+    <Content Include="Views\QRCode\Index.cshtml" />
+    <Content Include="Views\QRCodeLoadPrompt\Index.cshtml" />
+    <Content Include="Views\ScanCodeInOut\InSuccess.cshtml" />
+    <Content Include="Views\AdvanceParking\Index.cshtml" />
+    <Content Include="Views\WeiXinPayment\AdvanceParkingPayment.cshtml" />
+    <Content Include="Views\FindInsideCar\Index.cshtml" />
+    <Content Include="Views\FindInsideCar\InsideCarDetail.cshtml" />
+    <Content Include="Views\AdminHome\Index.cshtml" />
+    <Content Include="Views\QRCodeParkPayment\QRCodePaySuccess.cshtml" />
+    <Content Include="Views\AdminHome\PresentCar.cshtml" />
+    <Content Include="Views\AdminHome\InOutRecord.cshtml" />
+    <Content Include="Views\AdminHome\ParkPaymentRecord.cshtml" />
+    <Content Include="Views\AdminHome\DayGather.cshtml" />
+    <Content Include="Views\AdminHome\DayStatisticsGather.cshtml" />
+    <Content Include="Views\AdminHome\MonthGather.cshtml" />
+    <Content Include="Views\AdminHome\ExceptionRelease.cshtml" />
+    <Content Include="Views\AdminCar\Index.cshtml" />
+    <Content Include="Views\AdminHome\RemotelyOpenGate.cshtml" />
+    <Content Include="Views\ParkBitBooking\Index.cshtml" />
+    <Content Include="Views\ParkBitBooking\SaveBooking.cshtml" />
+    <Content Include="Views\WeiXinPayment\BookingBitNoPayment.cshtml" />
+    <Content Include="Views\ParkBitBooking\PaymentSuccess.cshtml" />
+    <Content Include="Views\ParkBitBooking\BitBookingRecord.cshtml" />
+    <Content Include="Views\WxOfficialAccountPay\ParkPayment.cshtml" />
+    <Content Include="Views\AliPayment\ParkCarPayment.cshtml" />
+    <Content Include="Views\AliPayment\PaySuccess.cshtml" />
+    <Content Include="Views\XFJMLogin\Index.cshtml" />
+    <Content Include="Views\XFJMMain\Index.cshtml" />
+    <Content Include="Views\WeiXinPayment\SellerRechargePayment.cshtml" />
+    <Content Include="Views\SellerRecharge\PaymentSuccess.cshtml" />
+    <Content Include="Views\SellerRecharge\Index.cshtml" />
+    <Content Include="Views\SellerRecharge\RechargeRecord.cshtml" />
+    <Content Include="Views\XFJMMain\DiscountRecord.cshtml" />
+    <Content Include="Views\CarVisitor\Index.cshtml" />
+    <Content Include="Views\CarVisitor\CarVisitorRecord.cshtml" />
+    <Content Include="Views\LicensePlate\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\OtherApi\Index.cshtml" />
+    <Content Include="Views\QRCodeDerate\BrowseError.cshtml" />
+    <Content Include="Views\QRCodeDerate\DerateSuccess.cshtml" />
+    <Content Include="Views\QRCodeDerate\Index.cshtml" />
+    <Content Include="Views\LicensePlateBy\Index.cshtml" />
+    <Content Include="Views\DrawPlate\Index.cshtml" />
+    <Content Include="Views\WeiXinPayment\AccountRechargePayment.cshtml" />
+    <Content Include="Views\WeiXinPayment\GiftCardPayment.cshtml" />
+    <Content Include="Views\ParkingPayment\ComputeNewParkingFee.cshtml" />
+    <Content Include="Views\ParkingPayment\EmptyPage.cshtml" />
+    <Content Include="Views\ParkingPayment\Register.cshtml" />
+    <Content Include="Views\CarManage\AddCar.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ParkingRecord2\Index.cshtml" />
+    <Content Include="Views\ParkingRecord\CXOrder.cshtml" />
+    <Content Include="Views\ParkingRecord\GetParkingList.cshtml" />
+    <Content Include="Views\DrawManage2\Index.cshtml" />
+    <Content Include="Views\WeiXinApi\Index.cshtml" />
+    <Content Include="Views\PurseData\Index.cshtml" />
+    <Content Include="Views\ParkingPayment\Register - 副本 %282%29.cshtml" />
+    <Content Include="Views\ParkingPayment\Register - 副本.cshtml" />
+    <Content Include="Views\PurseData\PurseIndex.cshtml" />
+    <Content Include="Views\PurseData\MyCouponIndex.cshtml" />
+    <Content Include="Views\PurseData\CouponMore.cshtml" />
+    <Content Include="Views\PurseData\NotCouponMore.cshtml" />
+    <Content Include="Views\PurseData\Czmx.cshtml" />
+    <Content Include="Views\MonthCard\Index.cshtml" />
+    <Content Include="Views\MonthCard\MonthCardDetails.cshtml" />
+    <Content Include="Views\MonthCard\MonthCardInfo.cshtml" />
+    <Content Include="Views\MonthCard\MonthCardMX.cshtml" />
+    <Content Include="Views\MonthCard\MonthCardPayment.cshtml" />
+    <Content Include="Views\WeiXinPayment\BalancePayment.cshtml" />
+    <Content Include="Views\PurseData\PaymentSuccess.cshtml" />
+    <Content Include="Views\AdminLogin\Index.cshtml" />
+    <Content Include="Views\AdminLogin\NotPurview.cshtml" />
+    <Content Include="Views\AdminAduitCarApply\Index.cshtml" />
+    <Content Include="Views\AdminAduitCarApply\Passed.cshtml" />
+    <Content Include="Views\AdminAduitCarApply\Refused.cshtml" />
+    <Content Include="Views\H5AliPayment\ParkCarPayment.cshtml" />
+    <Content Include="Views\H5BindMobile\Index.cshtml" />
+    <Content Include="Views\H5CardRenewal\Index.cshtml" />
+    <Content Include="Views\H5CardRenewal\MonthCardRenewal.cshtml" />
+    <Content Include="Views\H5CardRenewal\PlateNoRenewal.cshtml" />
+    <Content Include="Views\H5CarManage\Index.cshtml" />
+    <Content Include="Views\H5CarVisitor\CarVisitorRecord.cshtml" />
+    <Content Include="Views\H5CarVisitor\Index.cshtml" />
+    <Content Include="Views\H5Home\Index.cshtml" />
+    <Content Include="Views\H5LockCar\Index.cshtml" />
+    <Content Include="Views\H5Order\PaySuccess.cshtml" />
+    <Content Include="Views\H5ParkingPayment\ComputeParkingFee.cshtml" />
+    <Content Include="Views\H5ParkingPayment\Index.cshtml" />
+    <Content Include="Views\H5PaymentRecord\Index.cshtml" />
+    <Content Include="Views\H5PaymentType\Index.cshtml" />
+    <Content Include="Views\H5WeiXinPayment\MonthCardPayment.cshtml" />
+    <Content Include="Views\H5WeiXinPayment\ParkCarPayment.cshtml" />
+    <Content Include="Views\H5WeiXinPayment\SellerRechargePayment.cshtml" />
+    <Content Include="Views\MonthlyCarApply\Edit.cshtml" />
+    <Content Include="Views\MonthlyCarApply\Index.cshtml" />
+    <Content Include="Views\ParkRenewals\PaymentSuccess.cshtml" />
+    <Content Include="Views\XFJMDerateQRCode\DerateQRCode.cshtml" />
+    <Content Include="Views\XFJMDerateQRCode\Edit.cshtml" />
+    <Content Include="Views\XFJMDerateQRCode\Index.cshtml" />
+    <Content Include="Report\ReportViewer\ReportView_TempPayPound.rpt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+      <Project>{C09509A2-7D6D-4C67-BB83-7B3E526430F9}</Project>
+      <Name>ClassLibrary1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.CarInOutValidation\Common.CarInOutValidation.csproj">
+      <Project>{90A1A41A-6A64-4B10-9274-36E376F4B8B9}</Project>
+      <Name>Common.CarInOutValidation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Core\Common.Core.csproj">
+      <Project>{EF989F15-C062-4C7D-8B69-8ACE8540C07B}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.DataAccess\Common.DataAccess.csproj">
+      <Project>{18F0CE73-B168-4D53-BCED-FD6C4E0D4378}</Project>
+      <Name>Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Entities\Common.Entities.csproj">
+      <Project>{2A5BF93F-E241-48AE-905E-712A3152EF8C}</Project>
+      <Name>Common.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.ExternalInteractions\Common.ExternalInterface.csproj">
+      <Project>{85FD2DEA-CC79-4062-B77A-60B7050EF0C1}</Project>
+      <Name>Common.ExternalInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Repository\Common.SqlRepository.csproj">
+      <Project>{5DB8CA74-EB69-451D-8BE9-FDF03329C8B5}</Project>
+      <Name>Common.SqlRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Services\Common.Services.csproj">
+      <Project>{68404EB2-1832-477A-BB7B-1E1857844E52}</Project>
+      <Name>Common.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Utilities\Common.Utilities.csproj">
+      <Project>{660F9B65-6AD0-4984-914C-4459C41CA966}</Project>
+      <Name>Common.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartSystem.AliPayServices\SmartSystem.AliPayServices.csproj">
+      <Project>{FFC9D783-E772-4C41-ADA7-AB865996F196}</Project>
+      <Name>SmartSystem.AliPayServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartSystem.Interface.Entities\SmartSystem.Interface.Entities.csproj">
+      <Project>{304503B2-F1E9-49AB-AD92-DD432C1C22D7}</Project>
+      <Name>SmartSystem.Interface.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartSystem.Interface.Services\SmartSystem.Interface.Services.csproj">
+      <Project>{4AB46E76-B1C4-4187-B846-184F62558702}</Project>
+      <Name>SmartSystem.Interface.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartSystem.WeiXinBase\SmartSystem.WeiXinBase.csproj">
+      <Project>{B3C03406-D705-4B42-8DFB-95B90CFE0E74}</Project>
+      <Name>SmartSystem.WeiXinBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartSystem.WeiXinInerface\SmartSystem.WeiXinInerface.csproj">
+      <Project>{4713EA16-E3C3-484C-B77F-CF68A1CACE2F}</Project>
+      <Name>SmartSystem.WeiXinInerface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartSystem.WeiXinInteraction\SmartSystem.WeiXinInteraction.csproj">
+      <Project>{0EDE7F76-6B12-46F9-BABF-CB32A04747FE}</Project>
+      <Name>SmartSystem.WeiXinInteraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartSystem.WeiXinServices\SmartSystem.WeiXinServices.csproj">
+      <Project>{4F0BA735-965A-4AD9-B52A-01951A0C3C0A}</Project>
+      <Name>SmartSystem.WeiXinServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YinSheng.Pay\YinSheng.Pay.csproj">
+      <Project>{dc82b06a-bb95-48a0-8c90-2ccb0bb4d64e}</Project>
+      <Name>YinSheng.Pay</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView.CardExtension.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView.CardExtension.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView.Coupon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView.Coupon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_Daily.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_Daily.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_DailyGather.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_DailyGather.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_ExceptionRelease.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_ExceptionRelease.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_GateEvents.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_GateEvents.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_InOut.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_InOut.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_Month.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_Month.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_MonthCardInfo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_MonthCardInfo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_MonthGather.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_MonthGather.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_NoPlateNumber.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_NoPlateNumber.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_OnDuty.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_OnDuty.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_Orders.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_Orders.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_ParkVisitorInfo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_ParkVisitorInfo1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_PlateNumberPrefix.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_PlateNumberPrefix.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_Presence.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_Presence.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewer\ReportView_TempPay.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportView_TempPay.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>8088</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

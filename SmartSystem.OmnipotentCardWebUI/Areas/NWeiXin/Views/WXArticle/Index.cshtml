@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "图文管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+    <div region="center" title="图文管理" style="padding: 2px;">
+        <table fit="true" id="tableArticle">
+        </table>
+    </div>
+
+</div>
+<script src="/Scripts/nweixin/articlemanage.js?v=5"  type="text/javascript"></script>

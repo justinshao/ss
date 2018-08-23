@@ -1,0 +1,289 @@
+﻿@{
+    ViewBag.Title = "车场管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/parking/parking.js?v=2" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="小区信息" style="width: 250px;">
+        <div style="margin:5px 0px 5px 5px; text-align:left">
+            <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox"/>&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()"/>
+        </div>
+        <ul id="villageTree">
+        </ul>
+    </div>
+    <div region="center" title="车场信息" style="background: #eee;">
+        <table fit="true" id="tableParking">
+        </table>
+    </div>
+</div>
+<div id="divParkingBox" style="display: none">
+    <form id="divParkingBoxForm" class="easyui-form">
+    <div title="车场信息" style="padding: 20px;">
+        <input type="hidden" name="PKID" id="hiddPKID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    车场编号
+                </td>
+                <td>
+                    <input id="PKNo" name="PKNo" required="true" class="easyui-validatebox form-control"
+                        missingmessage="编号不能为空" style="width: 200px" />
+                </td>
+                <td align="right">
+                    车场名称
+                </td>
+                <td>
+                    <input id="PKName" name="PKName" required="true" class="easyui-validatebox form-control"
+                        missingmessage="车场名称不能为空" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    所属小区
+                </td>
+                <td>
+                    <input id="VID" required="true" editable="false" name="VID" class="form-control"
+                        style="width: 200px" missingmessage="请选择对应的小区" />
+                </td>
+                <td align="right">
+                    中心超时时间
+                </td>
+                <td>
+                    <input id="CenterTime" required="true" class="easyui-numberspinner form-control"
+                        data-options="min:0"  name="CenterTime" style="width:200px" missingmessage="不能为空"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    数据保存天数
+                </td>
+                <td>
+                    <input type="text" id="txtDataSaveDays" required="true" class="easyui-numberspinner form-control"
+                        value="90" data-options="min:1" name="DataSaveDays" style="width:200px"  missingmessage="不能为空"/>
+                </td>
+                <td align="right">
+                    图片保存天数
+                </td>
+                <td>
+                    <input type="text" id="txtPictureSaveDays" required="true" class="easyui-numberspinner form-control"
+                        value="90" data-options="min:1" name="PictureSaveDays" style="width:200px"  missingmessage="不能为空"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    联系人
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="LinkMan" name="LinkMan" style="width:200px"/>
+                </td>
+                <td align="right">
+                    联系电话
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="Mobile" name="Mobile" required="true" style="width:200px"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    所在地
+                </td>
+                <td>
+                     <input type="text" class="form-control" id="ProvinceID" lines="true" editable="false" name="ProvinceID" style="width: 90px" />
+                     &nbsp;<input type="text" class="form-control" id="CityID" lines="true" editable="false" name="CityID" style="width: 90px" />
+                </td>
+                <td align="right">
+                    默认车牌 
+                </td>
+                <td>
+                   <input type="hidden" name="DefaultPlate" id="hiddDefaultPlate"/>
+                  @Html.Action("Index", "ParkPlateNo", new { area = "", txtWidth = "90px", needShowHead = false, needShowInput=false })
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    详细地址
+                </td>
+                <td colspan="3">
+                    <input type="text" id="txtAddress" name="Address" class="easyui-validatebox form-control"
+                        style="width: 400px" missingmessage="详细地址不能为空" data-options="prompt:'请输入详细地址'"></input>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    经纬度
+                </td>
+                <td>
+                    <input type="text" id="txtCoordinate" name="Coordinate" class="easyui-validatebox form-control"
+                        missingmessage="经纬度不能为空" data-options="prompt:'格式为：经度,纬度'" style="width:200px"/>
+                </td>
+                <td align="right">
+                    月卡临近
+                </td>
+                <td>
+                    <input type="text" id="txtExpiredAdvanceRemindDay" required="true" class="easyui-numberspinner form-control"
+                        value="7" data-options="min:0" name="ExpiredAdvanceRemindDay" style="width: 80px"  missingmessage="不能为空"/>
+                    天提醒(0表示不提醒)
+                </td>
+            </tr>
+             <tr>
+                <td colspan="2">
+                  &nbsp;&nbsp;  线上支付是否打折
+                    <input type="checkbox" id="IsOnlineDiscount" name="IsOnlineDiscount" value="true" />
+                    <select class="my_select" style="width:80px" name="OnlineDiscount">
+                        <option value="1">1折</option>
+                        <option value="2">2折</option>
+                        <option value="3">3折</option>
+                        <option value="4">4折</option>
+                        <option value="5">5折</option>
+                        <option value="6">6折</option>
+                        <option value="7">7折</option>
+                        <option value="8">8折</option>
+                        <option value="9">9折</option>
+                        <option value="10">10折</option>
+                    </select>
+                </td>
+                <td align="right">
+                    
+                </td>
+                <td>
+                  
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" valign="middle" style="text-align:center">
+                    <input type="checkbox" id="NeedFee" name="NeedFee" value="1"  style="display:none"/><span style="display:none">需要收费</span> 
+                    <input type="checkbox" id="MobilePay" name="MobilePay" value="1" />支持手机支付
+                    <input type="checkbox" id="IsParkingSpace" name="IsParkingSpace" value="1" />支持车位预定
+                    <input type="checkbox" id="IsReverseSeekingVehicle" name="IsReverseSeekingVehicle" value="1" />支持反向寻车
+                    <input type="checkbox" id="MobileLock" name="MobileLock" value="1" />支持手机锁车
+                    <input type="checkbox" id="IsLine" name="IsLine" value="1" />车辆进出是否排队<br/>
+                    <input type="checkbox" id="PoliceFree" name="PoliceFree" value="true" />军警是否需要收费
+                    <input type="checkbox" id="UnconfirmedCalculation" name="UnconfirmedCalculation" value="true" />未确认订单并入确认订单
+                    <input type="checkbox" id="SupportAutoRefund" name="SupportAutoRefund" value="true" />线上支付通知线下失败自动退款<br>
+                    <input type="checkbox" id="IsNoPlateConfirm" name="IsNoPlateConfirm" value="true" />无牌车是否确认入场
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    收费规则描述
+                </td>
+                <td colspan="3">
+                    <input class="easyui-textbox" data-options="multiline:true" name="FeeRemark" style="width: 400px;
+                        height: 40px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    备注
+                </td>
+                <td colspan="3">
+                    <input class="easyui-textbox" data-options="multiline:true" name="Remark" style="width: 400px;
+                        height: 40px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+<div id="divRemarkBox" style="display: none">
+    <form id="divRemarkBoxForm" class="easyui-form">
+    <div title="放行备注" style="padding: 20px;">
+        <input type="hidden" id="hiddPassRemarkRecordID" name="RecordID"/>
+         <input type="hidden" id="hiddPassRemarkPKID" name="PKID"/>
+        <table cellpadding="3" class="table_open_window_edit" style="margin-top: -10px; margin-bottom: 5px;">
+            <tr>
+                <td>
+                    类型：
+                    <input id="sltPassType" class="easyui-combobox" name="PassType"  data-options="valueField:'id',textField:'text',url:'/p/parking/GetPassTypeTreeData'" style="width:80px"/>  
+                </td>
+                <td>
+                    备注：<input id="txtPassRemark" name="Remark" required="true" class="easyui-validatebox form-control"  missingmessage="不能为空" />
+                </td>
+                <td>
+                    <input type="button" class="easyui-linkbutton c1" style="width: 60px; height: 30px; line-height: 30px;" value="添加" onclick="return btnSavePassRemark()" />
+                </td>
+            </tr>
+        </table>
+        <div style="width:450px; height:240px;overflow:auto;overflow-x: hidden">
+            <table fit="true" id="tablePassRemark"></table>
+        </div>
+    </div>
+    </form>
+</div>
+<div id="divDownloadBox" style="display: none">
+     <div title="下载二维码" style="padding: 20px;">
+         <input type="hidden" id="hiddDownloadParkingId" name="ParkingId"/>
+            <table class="my_table">
+               
+                <tbody>
+                    <tr style="background-color:#E0FFFF">
+			            <td style="width:150px">二维码边长(cm)</td>
+			            <td style="width:150px">建议扫描距离(米)</td>
+			            <td style="width:150px">下载链接</td>
+		            </tr>
+		            <tr>
+			            <td>8cm</td><td>0.5m</td><td><a href="#" id="btn258" onclick="return btnDownloadQRCode(this,258)">下载</a></td>
+		            </tr>
+		            <tr>
+			            <td>12cm</td><td>0.8m</td><td><a  href="#" id="btn344" onclick="return btnDownloadQRCode(this,344)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>15cm</td><td>1m</td><td><a  href="#" id="btn430" onclick="return btnDownloadQRCode(this,430)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>30cm</td><td>1.5m</td><td><a  href="#" id="btn860" onclick="return btnDownloadQRCode(this,860)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>50cm</td><td>2.5m</td><td><a  href="#" id="btn1280" onclick="return btnDownloadQRCode(this,1280)">下载</a></td>
+		            </tr>
+	            </tbody>
+            </table>
+    </div>
+</div>
+<div id="divParkDerateBox" style="display: none">
+     <div title="消费减免" style="padding: 20px;">
+        <form id="divParkDerateBoxForm" class="easyui-form">
+            <input type="hidden" id="hiddDerateParkingId" name="PKID"/>
+             <input type="hidden" id="hiddDerateRecordID" name="RecordID"/>
+            <table class="my_table" style="width:100%">
+                <tr>
+                    <td>
+                    消费金额：<input id="txtConsumeStartAmount" name="ConsumeStartAmount" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:1" missingmessage="不能为空" style="width:60px"/>
+                    至<input id="txtConsumeEndAmount" name="ConsumeEndAmount" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:1" missingmessage="不能为空" style="width:60px"/>元
+                    </td>
+                    <td>
+                    类型：
+                    <select class="my_select" style="width:80px" name="DerateType" id="sltDerateType">
+                        <option value="0">折扣</option>
+                        <option value="1">减免金额</option>
+                        <option value="2">减免时间</option>
+                    </select>
+                    </td>
+                    <td>
+                    减免值：<input id="txtDerateValue" name="DerateValue" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:0.1,precision:1" missingmessage="不能为空" style="width:60px"/><span id="spanUnit">折</span>
+                    </td>
+                      <td>
+                        <input type="button" class="easyui-linkbutton c1" style="width: 60px; height: 30px; line-height: 30px;" value="添加" onclick="return btnSaveParkDerate()" id="btnAddDerate"/>
+                        &nbsp;<input type="button" class="easyui-linkbutton c1" style="width: 60px; height: 30px; line-height: 30px; display:none" value="修改" onclick="return UpdateDerateConfig()"  id="btnUpdateDerate"/>
+                        &nbsp;<input type="button" class="easyui-linkbutton c1" style="width: 60px; height: 30px; line-height: 30px; display:none" value="取消" onclick="return CancelUpdateConfig()"  id="btnCancelUpdate"/>
+                    </td>
+                </tr>
+            </table>
+            </form>
+        <table class="my_table"style="width:100%" id="tableDerateConfig">
+             <thead>
+                 <tr style="background-color:#E0FFFF">
+			                <th style="width:40%; text-align:center">消费金额</th>
+			                <th style="width:20%; text-align:center">减免类型</th>
+			                <th style="width:20%; text-align:center">减免值</th>
+                            <th style="width:20%; text-align:center">操作</th>
+		                </tr>
+             </thead>
+                <tbody>
+                  
+	            </tbody>
+
+            </table>
+    </div>
+</div>

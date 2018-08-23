@@ -1,0 +1,218 @@
+﻿@{
+    ViewBag.Title = "访客录入";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left"></div>
+        <div class="pull-right header-right">
+            访客录入</div>
+    </div>
+    <div class="top50">
+    </div>
+    <a href="@Url.Action("CarVisitorRecord", "CarVisitor")" style="float:right; margin-right:20px">访客记录</a>
+    <div style="margin-top:90px;clear:both"> </div>
+     <div class="weui_cells weui_cells_form">
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">小区</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" id="sltVillageId" name="VID">
+                @{
+                    List<Common.Entities.BaseVillage> villages = ViewBag.Villages as List<Common.Entities.BaseVillage>;
+                    foreach (var item in villages)
+                    { 
+                     <option value="@item.VID">@item.VName</option>
+                    }
+                    }
+                </select>
+            </div>
+        </div>
+     </div>
+        <div class="weui_cells_title">授权车场</div>
+        <div class="weui_cells weui_cells_checkbox">
+         
+        </div>
+          @Html.Action("Index", "LicensePlate")
+    <div class="weui_cells weui_cells_form" style="margin-top:-10px">
+       
+        <div class="weui_cell" style="margin-top:0px">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    访客手机号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+               <input class="weui_input" type="number" name="VisitorMobilePhone" id="txtVisitorMobilePhone" placeholder="请输入访客手机号" />
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    开始时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+               <input class="weui_input" type="datetime-local" id="txtStartTime" placeholder="请输入开始时间" name="BeginDate" value="@ViewBag.StartTime"/>
+            </div>
+
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    结束时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+               <input class="weui_input" type="datetime-local" id="txtEndTime" placeholder="请输入结束时间" name="EndDate" value="@ViewBag.EndTime"/>
+            </div>
+        </div>
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">可进出次数</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" id="sltVisitorCount" name="VisitorCount">
+                    <option value="-1">不限</option>
+                    <option value="1">1次</option>
+                    <option value="2">2次</option>
+                    <option value="3">3次</option>
+                    <option value="4">4次</option>
+                    <option value="5">5次</option>
+                    <option value="6">6次</option>
+                    <option value="7">7次</option>
+                    <option value="8">8次</option>
+                    <option value="9">9次</option>
+                    <option value="10">10次</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells_tips" style="color: red" id="divError">
+    </div>
+  
+    <div class="weui_btn_area">
+      @{
+          using (Html.BeginForm("SaveCarVisitor", "CarVisitor", FormMethod.Post))
+          {
+                <input type="hidden" id="hidd_licensePlate" name="plateNo"/>
+                <input type="hidden" id="hidd_startTime" name="startTime"/>
+                <input type="hidden" id="hidd_endTime" name="endTime"/>
+                <input type="hidden" id="hidd_VillageId" name="villageId"/>
+                <input type="hidden" id="hidd_VisitorCount" name="VisitorCount"/>
+                <input type="hidden" id="hidd_ParkingId" name="ParkingIds"/>
+                <input type="hidden" id="hidd_VisitorMobilePhone" name="VisitorMobilePhone"/>
+                <input type="submit" class="weui_btn weui_btn_primary" value="保存" onclick="return btnSubmitData()" />
+          }
+        }
+       
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#sltVillageId").change(function () {
+            LoadParkingData();
+        });
+        LoadParkingData();
+        $("#divPartialPlateNumber").css("margin-top", "0px");
+    });
+    function LoadParkingData() {
+        $(".weui_cells_checkbox").html("");
+        var villageId = $("#sltVillageId").val();
+        if ($.trim(villageId) != "") {
+            var gdata = {};
+            gdata.villageId = villageId;
+            gdata.r = Math.random();
+            $.post("/CarVisitor/GetParkingData", gdata, function (data) {
+                if (data.result) {
+                    if (data.data.length > 0) {
+                        for (var i = 0; i < data.data.length; i++) {
+                            AddCarHtml(data.data[i].PKID, data.data[i].PKName)
+                        }
+                    }
+                } else {
+                    WxAlert("", "获取车场信息失败");
+                }
+            });
+        }
+    }
+    function AddCarHtml(parkingId,parkingName) {
+        var strHtml = "  <label class=\"weui_cell weui_check_label\" for=\"s_" + parkingId + "\">";
+          strHtml+=" <div class=\"weui_cell_hd\">";
+          strHtml += " <input type=\"checkbox\" class=\"weui_check cbx_parking\" name=\"chkparking\" id=\"s_" + parkingId + "\"  value=\"" + parkingId + "\">";
+          strHtml+=" <i class=\"weui_icon_checked\"></i>";
+          strHtml+=" </div>";
+          strHtml+=" <div class=\"weui_cell_bd weui_cell_primary\">";
+          strHtml += " <p>" + parkingName + "</p>";
+          strHtml+=" </div>";
+          strHtml += " </label>";
+          $(".weui_cells_checkbox").append(strHtml);
+    }
+    var moblieReg=/^1[\d]{10}$/;
+    function btnSubmitData() {
+        $("#divError").text("");
+        var villageId = $("#sltVillageId").val();
+        if ($.trim(villageId) == "") {
+            $("#divError").text("请选择小区");
+            return false;
+        }
+        $("#hidd_VillageId").val(villageId);
+        var city = $(".spanProvinceDescription").text();
+        var area = $(".spanCityDescription").text();
+        if (city == "" || area == "") {
+            $("#divError").text("请选择省份");
+            return false;
+        }
+        var licensePlate = $("#txtUserPlateNumber").val();
+        if ($.trim(licensePlate) == "") {
+            $("#divError").text("请输入车牌号");
+            return false;
+        }
+        if (licensePlate.replace(/\s+/g, "").length != 5 && licensePlate.replace(/\s+/g, "").length != 6) {
+            $("#divError").text("车牌号格式不正确");
+            return false;
+        }
+        var plateNo = city + area + licensePlate.replace(/\s+/g, "");
+
+        var len = $("[name=chkparking]:checked").length;
+        if (len == 0) {
+            $("#divError").text("请选择授权车场");
+            return false;
+        }
+        var parks = "";
+        $("[name=chkparking]:checked").each(function () {
+            parks += $(this).val() + ",";
+        });
+        if ($.trim(parks) == "") {
+            $("#divError").text("请选择授权车场");
+            return false;
+        }
+        $("#hidd_ParkingId").val(parks);
+
+
+        var sdate = $("#txtStartTime").val();
+        var edate = $("#txtEndTime").val();
+        if ($.trim(sdate) == "") {
+            $("#divError").text("请选择开始日期");
+            return false;
+        }
+        if ($.trim(edate) == "") {
+            $("#divError").text("请选择结束日期");
+            return false;
+        }
+        if (new Date(sdate) > new Date(edate)) {
+            $("#divError").text("开始日期不能大于结束日期");
+            return false;
+        }
+        var mobilePhone = $("#txtVisitorMobilePhone").val();
+        if ($.trim(mobilePhone) != "" && !$.trim(mobilePhone).match(moblieReg)) {
+            $("#divError").text("访客手机号码格式不正确");
+            return false;
+        }
+        $("#hidd_licensePlate").val(plateNo);
+        $("#hidd_startTime").val(sdate);
+        $("#hidd_endTime").val(edate);
+        $("#hidd_VisitorMobilePhone").val(mobilePhone);
+        $("#hidd_VisitorCount").val($("#sltVisitorCount").val());
+        return true;
+
+    }
+
+</script>

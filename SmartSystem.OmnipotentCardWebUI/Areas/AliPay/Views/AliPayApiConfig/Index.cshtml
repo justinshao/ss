@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "支付宝支付配置";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/alipay/apiconfig.js?v=2" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+    <div region="center" title="支付宝支付配置" style="padding: 2px;">
+        <form id="AliPayApiConfigBox" style="margin-left: 20px; margin-top: 10px; font-size: 12px" method="post">
+        <table cellpadding="5">
+       
+            <tr>
+                <td  align="right" style="width: 100px">
+                    系统名称：
+                </td>
+                <td>
+                    <input  type="text" name="SystemName" style="width: 400px;height:32px"  class="easyui-textbox" id="txtSystemName"/>&nbsp;<span style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="width: 100px">
+                    域名：
+                </td>
+                <td>
+                    <input type="text" name="SystemDomain" class="easyui-textbox" id="txtSystemDomain" style="width: 400px;height:32px"/>&nbsp;<span style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="width: 100px">
+                    支付宝APPID：
+                </td>
+                <td>
+                    <input  name="AppId" class="easyui-textbox" id="txtAppId" style="width: 400px;height:32px"/>&nbsp;<span style="color: Red">*</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="width: 100px">
+                    收款账号：
+                </td>
+                <td>
+                    <input  name="PayeeAccount" class="easyui-textbox" id="txtPayeeAccount" data-options="multiline:true" style="width: 400px;height:32px"/>&nbsp;<span style="color: Red">*</span>
+
+                </td>
+            </tr>
+             <tr>
+                <td  align="right" style="width: 100px">
+                    公钥：
+                </td>
+                <td>
+                    <input  name="PublicKey" class="easyui-textbox" id="txtPublicKey" data-options="multiline:true" style="width: 400px;height:80px"/>&nbsp;<span style="color: Red">*</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="width: 100px">
+                    私钥：
+                </td>
+                <td>
+                    <input  name="PrivateKey" class="easyui-textbox" id="txtPrivateKey" data-options="multiline:true" style="width: 400px;height:150px"/>&nbsp;<span style="color: Red">*</span>
+
+                </td>
+            </tr>
+             <tr>
+                <td  align="right" style="width: 100px">
+                    签名类型：
+                </td>
+                <td>
+                <select name="AliPaySignType" id="sltAliPaySignType" style=" width:100px; height:32px" class="my_select">
+                    <option value="0">RSA</option>
+                    <option value="1">RSA2</option>
+                </select>
+                </td>
+            </tr>
+             <tr>
+                <td  align="right" style="width: 100px">
+                </td>
+                <td>
+                  <input type="checkbox" name="Status" id="chkStatus" value="true"/>是否启用  &nbsp;&nbsp;<input type="checkbox" id="chkSupportSuperiorPay" name="SupportSuperiorPay" value="true"/>支持上级账号支付
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="margin-left: 150px">
+                        <input type="hidden" id="hiddRecordId" name="RecordId"/>
+                        <input type="hidden" id="hiddCompanyID" name="CompanyID"/>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width:150px;height:32px"  onclick="btnSubmitForm()">保 &nbsp;&nbsp;&nbsp;存 &nbsp;</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</div>

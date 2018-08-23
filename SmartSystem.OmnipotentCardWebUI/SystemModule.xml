@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Modules>
+  <Module  ModuleID="PK01" ModuleName="车场管理" SystemDefault="false" ParentID=""/>
+
+  <Module  ModuleID="PK0101" ModuleName="基础信息" SystemDefault="false"  ParentID="PK01"/>
+  
+  <Module  ModuleID="PK010101" ModuleName="单位管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010101" ModuleName="增加" SystemDefault="false"  ParentID="PK010101"/>
+  <Module  ModuleID="PK01010102" ModuleName="修改" SystemDefault="false"  ParentID="PK010101"/>
+  <Module  ModuleID="PK01010103" ModuleName="删除" SystemDefault="false"  ParentID="PK010101"/>
+
+  <Module  ModuleID="PK010102" ModuleName="小区管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010201" ModuleName="增加" SystemDefault="false"  ParentID="PK010102"/>
+  <Module  ModuleID="PK01010202" ModuleName="修改" SystemDefault="false"  ParentID="PK010102"/>
+  <Module  ModuleID="PK01010203" ModuleName="删除" SystemDefault="false"  ParentID="PK010102"/>
+
+  <Module  ModuleID="PK010103" ModuleName="车场管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010301" ModuleName="增加" SystemDefault="false"  ParentID="PK010103"/>
+  <Module  ModuleID="PK01010302" ModuleName="修改" SystemDefault="false"  ParentID="PK010103"/>
+  <Module  ModuleID="PK01010303" ModuleName="删除" SystemDefault="false"  ParentID="PK010103"/>
+  <Module  ModuleID="PK01010304" ModuleName="放行备注" SystemDefault="false"  ParentID="PK010103"/>
+  <Module  ModuleID="PK01010305" ModuleName="下载二维码" SystemDefault="false"  ParentID="PK010103"/>
+  <Module  ModuleID="PK01010306" ModuleName="消费减免" SystemDefault="false"  ParentID="PK010103"/>
+
+  <Module  ModuleID="PK010104" ModuleName="区域管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010401" ModuleName="增加" SystemDefault="false"  ParentID="PK010104"/>
+  <Module  ModuleID="PK01010402" ModuleName="修改" SystemDefault="false"  ParentID="PK010104"/>
+  <Module  ModuleID="PK01010403" ModuleName="删除" SystemDefault="false"  ParentID="PK010104"/>
+
+
+  <Module  ModuleID="PK010105" ModuleName="岗亭管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010501" ModuleName="增加" SystemDefault="false"  ParentID="PK010105"/>
+  <Module  ModuleID="PK01010502" ModuleName="修改" SystemDefault="false"  ParentID="PK010105"/>
+  <Module  ModuleID="PK01010503" ModuleName="删除" SystemDefault="false"  ParentID="PK010105"/>
+
+  <Module  ModuleID="PK010106" ModuleName="通道管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010601" ModuleName="增加" SystemDefault="false"  ParentID="PK010106"/>
+  <Module  ModuleID="PK01010602" ModuleName="修改" SystemDefault="false"  ParentID="PK010106"/>
+  <Module  ModuleID="PK01010603" ModuleName="删除" SystemDefault="false"  ParentID="PK010106"/>
+  <Module  ModuleID="PK01010604" ModuleName="下载二维码" SystemDefault="false"  ParentID="PK010106"/>
+  
+  <Module  ModuleID="PK010107" ModuleName="设备管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010701" ModuleName="增加" SystemDefault="false"  ParentID="PK010107"/>
+  <Module  ModuleID="PK01010702" ModuleName="修改" SystemDefault="false"  ParentID="PK010107"/>
+  <Module  ModuleID="PK01010703" ModuleName="删除" SystemDefault="false"  ParentID="PK010107"/>
+  <Module  ModuleID="PK01010704" ModuleName="修改设备参数" SystemDefault="false"  ParentID="PK010107"/>
+
+  <Module ModuleID="PK010108" ModuleName="推广人员" SystemDefault="false" ParentID="PK0101"/>
+  <Module ModuleID="PK01010801" ModuleName="增加" SystemDefault="false" ParentID="PK010108"/>
+  <Module ModuleID="PK01010802" ModuleName="修改" SystemDefault="false" ParentID="PK010108"/>
+  <Module ModuleID="PK01010803" ModuleName="删除" SystemDefault="false" ParentID="PK010108"/>
+  <Module ModuleID="PK01010804" ModuleName="刷新" SystemDefault="false" ParentID="PK010108"/>
+  <Module ModuleID="PK01010805" ModuleName="下载二维码" SystemDefault="fasle" ParentID="PK010108"/>
+
+
+  <Module  ModuleID="PKBWY01" ModuleName="泊物云岗亭管理" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PKBWY0101" ModuleName="增加" SystemDefault="false"  ParentID="PKBWY01"/>
+  <Module  ModuleID="PKBWY0102" ModuleName="修改" SystemDefault="false"  ParentID="PKBWY01"/>
+  <Module  ModuleID="PKBWY0103" ModuleName="删除" SystemDefault="false"  ParentID="PKBWY01"/>
+  <Module  ModuleID="PKBWY0104" ModuleName="下载二维码" SystemDefault="false"  ParentID="PKBWY01"/>
+
+  <Module  ModuleID="PK010109" ModuleName="客户端通知" SystemDefault="false"  ParentID="PK0101"/>
+  <Module  ModuleID="PK01010901" ModuleName="增加" SystemDefault="false"  ParentID="PK010109"/>
+  <Module  ModuleID="PK01010902" ModuleName="修改" SystemDefault="false"  ParentID="PK010109"/>
+  <Module  ModuleID="PK01010903" ModuleName="删除" SystemDefault="false"  ParentID="PK010109"/>
+  <Module  ModuleID="PK01010904" ModuleName="发送通知" SystemDefault="false"  ParentID="PK010109"/>
+
+  <Module  ModuleID="PK0102" ModuleName="车辆卡片" SystemDefault="false"  ParentID="PK01"/>
+
+  <Module  ModuleID="PK010201" ModuleName="车类管理" SystemDefault="false"  ParentID="PK0102"/>
+  <Module  ModuleID="PK01020101" ModuleName="增加" SystemDefault="false"  ParentID="PK010201"/>
+  <Module  ModuleID="PK01020102" ModuleName="修改" SystemDefault="false"  ParentID="PK010201"/>
+  <Module  ModuleID="PK01020103" ModuleName="单双车牌配置" SystemDefault="false"  ParentID="PK010201"/>
+  <Module  ModuleID="PK01020104" ModuleName="删除" SystemDefault="false"  ParentID="PK010201"/>
+
+  <Module  ModuleID="PK010202" ModuleName="车型管理" SystemDefault="false"  ParentID="PK0102"/>
+  <Module  ModuleID="PK01020201" ModuleName="增加" SystemDefault="false"  ParentID="PK010202"/>
+  <Module  ModuleID="PK01020202" ModuleName="修改" SystemDefault="false"  ParentID="PK010202"/>
+
+
+  <Module  ModuleID="PK010203" ModuleName="收费规则" SystemDefault="false"  ParentID="PK0102"/>
+  <Module  ModuleID="PK01020301" ModuleName="增加" SystemDefault="false"  ParentID="PK010203"/>
+  <Module  ModuleID="PK01020302" ModuleName="修改" SystemDefault="false"  ParentID="PK010203"/>
+  <Module  ModuleID="PK01020303" ModuleName="删除" SystemDefault="false"  ParentID="PK010203"/>
+  <Module  ModuleID="PK01020304" ModuleName="收费测试" SystemDefault="false"  ParentID="PK010203"/>
+
+
+  <Module  ModuleID="PK010204" ModuleName="车辆管理" SystemDefault="false"  ParentID="PK0102"/>
+  <Module  ModuleID="PK01020401" ModuleName="添加" SystemDefault="false"  ParentID="PK010204"/>
+  <Module  ModuleID="PK01020402" ModuleName="修改" SystemDefault="false"  ParentID="PK010204"/>
+  <Module  ModuleID="PK01020403" ModuleName="续期" SystemDefault="false"  ParentID="PK010204"/>
+  <Module  ModuleID="PK01020404" ModuleName="取消授权" SystemDefault="false"  ParentID="PK010204"/>
+  <Module  ModuleID="PK01020405" ModuleName="暂停" SystemDefault="false"  ParentID="PK010204"/>
+  <Module  ModuleID="PK01020406" ModuleName="恢复" SystemDefault="false"  ParentID="PK010204"/>
+  <Module  ModuleID="PK01020407" ModuleName="停用" SystemDefault="false"  ParentID="PK010204"/>
+  <Module  ModuleID="PK01020408" ModuleName="启用" SystemDefault="false"  ParentID="PK010204"/> 
+  
+  <Module  ModuleID="PK010205" ModuleName="黑名单管理" SystemDefault="false"  ParentID="PK0102"/>
+  <Module  ModuleID="PK01020501" ModuleName="增加" SystemDefault="false"  ParentID="PK010205"/>
+  <Module  ModuleID="PK01020502" ModuleName="修改" SystemDefault="false"  ParentID="PK010205"/>
+  <Module  ModuleID="PK01020503" ModuleName="删除" SystemDefault="false"  ParentID="PK010205"/>
+
+  <Module  ModuleID="PK010206" ModuleName="中央缴费" SystemDefault="false"  ParentID="PK0102"/>
+  
+  <Module  ModuleID="PK010207" ModuleName="月租车申请审核" SystemDefault="false"  ParentID="PK0102"/>
+  <Module  ModuleID="PK01020701" ModuleName="审核" SystemDefault="false"  ParentID="PK010207"/>
+  <Module  ModuleID="PK01020702" ModuleName="拒绝" SystemDefault="false"  ParentID="PK010207"/>
+
+  
+  <Module  ModuleID="PK0103" ModuleName="商家优免" SystemDefault="false"  ParentID="PK01"/>
+  
+  <Module  ModuleID="PK010301" ModuleName="商户管理" SystemDefault="false"  ParentID="PK0103"/>
+  <Module  ModuleID="PK01030101" ModuleName="增加" SystemDefault="false"  ParentID="PK010301"/>
+  <Module  ModuleID="PK01030102" ModuleName="修改" SystemDefault="false"  ParentID="PK010301"/>
+  <Module  ModuleID="PK01030103" ModuleName="删除" SystemDefault="false"  ParentID="PK010301"/>
+  <Module  ModuleID="PK01030104" ModuleName="充值" SystemDefault="false"  ParentID="PK010301"/>
+  <Module  ModuleID="PK01030105" ModuleName="重置密码" SystemDefault="false"  ParentID="PK010301"/>
+  
+  <Module  ModuleID="PK010302" ModuleName="优免管理" SystemDefault="false"  ParentID="PK0103"/>
+  <Module  ModuleID="PK01030201" ModuleName="增加" SystemDefault="false"  ParentID="PK010302"/>
+  <Module  ModuleID="PK01030202" ModuleName="修改" SystemDefault="false"  ParentID="PK010302"/>
+  <Module  ModuleID="PK01030203" ModuleName="删除" SystemDefault="false"  ParentID="PK010302"/>
+
+  <Module  ModuleID="PK010303" ModuleName="优免二维码管理" SystemDefault="false"  ParentID="PK0103"/>
+  <Module  ModuleID="PK01030301" ModuleName="查询" SystemDefault="false"  ParentID="PK010303"/>
+  <Module  ModuleID="PK01030302" ModuleName="增加" SystemDefault="false"  ParentID="PK010303"/>
+  <Module  ModuleID="PK01030303" ModuleName="修改" SystemDefault="false"  ParentID="PK010303"/>
+  <Module  ModuleID="PK01030304" ModuleName="删除" SystemDefault="false"  ParentID="PK010303"/>
+  <Module  ModuleID="PK01030305" ModuleName="下载二维码" SystemDefault="false"  ParentID="PK010303"/>
+  
+  <Module  ModuleID="PK010304" ModuleName="优免券发放" SystemDefault="false"  ParentID="PK0103"/>
+  <Module  ModuleID="PK01030401" ModuleName="查询" SystemDefault="false"  ParentID="PK010304"/>
+  <Module  ModuleID="PK01030402" ModuleName="增加" SystemDefault="false"  ParentID="PK010304"/>
+  <Module  ModuleID="PK01030403" ModuleName="修改" SystemDefault="false"  ParentID="PK010304"/>
+  <Module  ModuleID="PK01030404" ModuleName="删除" SystemDefault="false"  ParentID="PK010304"/>
+  <Module  ModuleID="PK01030405" ModuleName="发放优免券" SystemDefault="false"  ParentID="PK010304"/>
+  
+
+  <Module  ModuleID="PK0104" ModuleName="报表信息" SystemDefault="false"  ParentID="PK01"/>
+  <Module  ModuleID="PK010401" ModuleName="在场车辆" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010402" ModuleName="无牌车辆" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010403" ModuleName="进出记录" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010404" ModuleName="异常放行" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010405" ModuleName="通道事件" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010406" ModuleName="当班统计" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010407" ModuleName="订单明细 " SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010409" ModuleName="月卡续费" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010410" ModuleName="临停缴费" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010411" ModuleName="商家优免" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010412" ModuleName="设备状态" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010413" ModuleName="车牌前缀" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010414" ModuleName="月卡信息" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010415" ModuleName="访客信息" SystemDefault="false"  ParentID="PK0104"/>
+  <Module  ModuleID="PK010416" ModuleName="线上支付" SystemDefault="false"  ParentID="PK0104"/>
+
+
+  <Module  ModuleID="PK0105" ModuleName="统计分析" SystemDefault="false"  ParentID="PK01"/>
+  <Module  ModuleID="PK010507" ModuleName="首页统计" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010501" ModuleName="日报表" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010502" ModuleName="月报表" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010503" ModuleName="日汇总报表" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010504" ModuleName="月汇总报表" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010505" ModuleName="收入分析" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010506" ModuleName="进出分析" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010508" ModuleName="车辆进出场数量" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010509" ModuleName="运营数据分析" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK0105050" ModuleName="用户分析" SystemDefault="false"  ParentID="PK0105"/>
+  <Module  ModuleID="PK010510" ModuleName="推广二维码统计" SystemDefault="false"  ParentID="PK0105"/>
+  
+  <Module  ModuleID="PK0106" ModuleName="系统管理" SystemDefault="true"  ParentID="PK01"/>
+  
+  <Module  ModuleID="PK010601" ModuleName="角色管理" SystemDefault="true"  ParentID="PK0106"/>
+  <Module  ModuleID="PK01060101" ModuleName="增加" SystemDefault="true"  ParentID="PK010601"/>
+  <Module  ModuleID="PK01060102" ModuleName="修改" SystemDefault="true"  ParentID="PK010601"/>
+  <Module  ModuleID="PK01060103" ModuleName="删除" SystemDefault="true"  ParentID="PK010601"/>
+  <Module  ModuleID="PK01060104" ModuleName="角色授权" SystemDefault="true"  ParentID="PK010601"/>
+  
+  <Module  ModuleID="PK010602" ModuleName="作用域管理" SystemDefault="true"  ParentID="PK0106"/>
+  <Module  ModuleID="PK01060201" ModuleName="增加" SystemDefault="true"  ParentID="PK010602"/>
+  <Module  ModuleID="PK01060202" ModuleName="修改" SystemDefault="true"  ParentID="PK010602"/>
+  <Module  ModuleID="PK01060203" ModuleName="删除" SystemDefault="true"  ParentID="PK010602"/>
+  <Module  ModuleID="PK01060204" ModuleName="作用域授权" SystemDefault="true"  ParentID="PK010602"/>
+  
+  
+  <Module  ModuleID="PK010603" ModuleName="用户管理" SystemDefault="true"  ParentID="PK0106"/>
+  <Module  ModuleID="PK01060301" ModuleName="增加" SystemDefault="true"  ParentID="PK010603"/>
+  <Module  ModuleID="PK01060302" ModuleName="修改" SystemDefault="true"  ParentID="PK010603"/>
+  <Module  ModuleID="PK01060303" ModuleName="删除" SystemDefault="true"  ParentID="PK010603"/>
+
+  
+  <Module  ModuleID="PK0107" ModuleName="车场岗亭" SystemDefault="false" ParentID="PK01"/>
+  
+  <Module  ModuleID="PK010701" ModuleName="退出权限" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010702" ModuleName="异常放行" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010703" ModuleName="免费放行" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010704" ModuleName="当班详情" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010705" ModuleName="常用工具" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010706" ModuleName="系统设置" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010707" ModuleName="手动出入场" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010708" ModuleName="岗亭打折" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010709" ModuleName="手动放行" SystemDefault="false"  ParentID="PK0107"/>
+  <Module  ModuleID="PK010710" ModuleName="车队模式" SystemDefault="false"  ParentID="PK0107"/>
+
+  <Module  ModuleID="PK0108" ModuleName="日志管理" SystemDefault="false"  ParentID="PK01"/>
+  <Module  ModuleID="PK010801" ModuleName="登录日志" SystemDefault="false"  ParentID="PK0108"/>
+  <Module  ModuleID="PK010802" ModuleName="操作日志" SystemDefault="false"  ParentID="PK0108"/>
+  <Module  ModuleID="PK010803" ModuleName="异常日志" SystemDefault="false"  ParentID="PK0108"/>
+
+  <Module  ModuleID="PK0109" ModuleName="微信管理" SystemDefault="false"  ParentID="PK01"/>
+  <Module  ModuleID="PK010901" ModuleName="微信接口配置" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK010908" ModuleName="微信支付配置" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK010902" ModuleName="微信其他配置" SystemDefault="false"  ParentID="PK0109"/>
+  
+  <Module  ModuleID="PK010903" ModuleName="图文管理" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK01090301" ModuleName="添加" SystemDefault="false"  ParentID="PK010903"/>
+  <Module  ModuleID="PK01090302" ModuleName="修改" SystemDefault="false"  ParentID="PK010903"/>
+  <Module  ModuleID="PK01090303" ModuleName="删除" SystemDefault="false"  ParentID="PK010903"/>
+  
+  <Module  ModuleID="PK010904" ModuleName="关键字管理" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK01090401" ModuleName="添加" SystemDefault="false"  ParentID="PK010904"/>
+  <Module  ModuleID="PK01090402" ModuleName="修改" SystemDefault="false"  ParentID="PK010904"/>
+  <Module  ModuleID="PK01090403" ModuleName="删除" SystemDefault="false"  ParentID="PK010904"/>
+  
+  <Module  ModuleID="PK010905" ModuleName="菜单管理" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK01090501" ModuleName="添加" SystemDefault="false"  ParentID="PK010905"/>
+  <Module  ModuleID="PK01090502" ModuleName="修改" SystemDefault="false"  ParentID="PK010905"/>
+  <Module  ModuleID="PK01090503" ModuleName="删除" SystemDefault="false"  ParentID="PK010905"/>
+  <Module  ModuleID="PK01090504" ModuleName="发布" SystemDefault="false"  ParentID="PK010905"/>
+
+  <Module  ModuleID="PK010906" ModuleName="微信用户" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK010907" ModuleName="车辆信息" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK010909" ModuleName="意见反馈" SystemDefault="false"  ParentID="PK0109"/>
+
+  <Module  ModuleID="PK010910" ModuleName="微信订单管理" SystemDefault="false"  ParentID="PK0109"/>
+  <Module  ModuleID="PK01091001" ModuleName="同步支付结果" SystemDefault="false"  ParentID="PK010910"/>
+  <Module  ModuleID="PK01091002" ModuleName="手动退款" SystemDefault="false"  ParentID="PK010910"/>
+
+  <Module  ModuleID="PK0110" ModuleName="支付宝管理" SystemDefault="false"  ParentID="PK01"/>
+  <Module  ModuleID="PK011001" ModuleName="支付宝接口配置" SystemDefault="false"  ParentID="PK0110"/>
+
+  <Module  ModuleID="PK011002" ModuleName="支付宝订单管理" SystemDefault="false"  ParentID="PK0110"/>
+  <Module  ModuleID="PK01100201" ModuleName="同步支付结果" SystemDefault="false"  ParentID="PK011002"/>
+  <Module  ModuleID="PK01100202" ModuleName="手动退款" SystemDefault="false"  ParentID="PK011002"/>
+
+  <Module  ModuleID="PK0111" ModuleName="车场结算" SystemDefault="false"  ParentID="PK01"/>
+  <Module  ModuleID="PK011101" ModuleName="结算单" SystemDefault="false"  ParentID="PK0111"/>
+  <Module  ModuleID="PK011102" ModuleName="结算流程" SystemDefault="false"  ParentID="PK0111"/>
+  <Module  ModuleID="PK011103" ModuleName="结算配置" SystemDefault="false"  ParentID="PK0111"/>
+  <Module  ModuleID="PK01110301" ModuleName="修改" SystemDefault="false"  ParentID="PK011103"/>
+</Modules>

@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "余额充值";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<script src="/Scripts/BaseSize.js?v=1" type="text/javascript"></script>
+<link href="/Content/PurseAndCoupon.css?4" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+ .controller{margin-top:0.85rem !important}
+
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $('.insert_price').find('li').each(function () {
+            $(this).click(function () {
+                $('.insert_price li').removeClass("active");
+                $(this).addClass('active');
+                $('.pricekuai')[0].innerHTML = this.innerHTML;
+                //$('.pricekuai')[1].innerHTML = 0;
+                $.ajax({
+                    type: "post",
+                    url: '/PurseData/GetSellers',
+                    data: "price=" + this.innerHTML + "",
+                    success: function (data) {
+                        if (data != null) {
+                            $("#selectParks").html("<option value='-1'>不使用优惠券</option>");
+                            $.each(data, function (index, item) {
+                                $("#selectParks").append("<option value='" + item.CouponID + "'>" + item.CouponType + "&nbsp" + item.CutPrice + "</option>");
+
+                            })
+                        }
+                    }
+                });
+                //
+            })
+        })
+        //输入框的值改变时触发
+        $("#inputid").on("input", function (e) {
+            //获取input输入的值
+            $('.insert_price li').removeClass("active");
+            $('.pricekuai')[0].innerHTML = e.delegateTarget.value;
+            $('.pricekuai')[1].innerHTML = "0";
+        });
+
+        //选择触发
+
+
+
+    })
+
+    function paypaynow() {
+        var CouponID = document.getElementById("selectParks");
+        if (CouponID == "" || CouponID == "0.00") {
+            CouponID = "-1";
+        }
+        var money =  $('.pricekuai')[0].innerHTML;
+        if (isNaN(money))
+        {
+            alert("请输入正确的数字");
+            return;
+        }
+
+        location.href = "Czmx?paymoney=" + money + "&CouponID=" + CouponID;
+
+
+    }
+</script>
+
+<div class="head_ye">
+    <div class="head_price">￥@ViewBag.balance</div>
+    <div class="head_mx">
+       <a href="@Url.Action("Index", "PurseData")">查看明细</a>
+    </div>
+</div>
+
+
+
+<div class="insert_price">
+    <ul>
+        <li>50</li>
+        <li class="active">100</li>
+        <li>200</li>
+        <li>300</li>
+        <li>500</li>
+        <li>1000</li>
+    </ul>
+</div>
+
+<div class="otherprice1 controller">
+    <input type="text" value="请输入其他100整数"  id="inputid" onfocus="if (value == '请输入其他100整数') { value = '' }" onblur="if (value == '') { value = '请输入其他100整数' }" onafterpaste="if (this.value.length == 1) { this.value = this.value.replace(/[^1-9]/g, '0') } else { this.value = this.value.replace(/\D/g, '') }" style="text-align:center;border: 0px;font-size:1.8rem"/>
+</div>
+
+<div class="typrice controller">
+    请选择优惠  
+</div>
+
+<div class="otherprice controller">
+     <select class="weui_select" id="selectParks" style=" height:5rem !important; line-height:5rem !important;">
+                        <option value="" selected="selected">不使用优惠券</option>
+                    </select>
+</div>
+
+<div class="static">
+    <div class="stati_pric">
+        <ul>
+            <li class="hj"><span>合计:</span><span class="pricekuai">100</span></li>
+            <li class="yh"><span>优惠:</span><span class="pricekuai"></span></li>
+        </ul>
+    </div>
+    <div class="stati_pay" onclick=paypaynow();>立马支付</div>
+</div>

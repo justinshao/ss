@@ -1,0 +1,117 @@
+﻿@using Common.Entities;
+@model List<SysRoleAuthorize>
+@{
+    ViewBag.Title = "管理员";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+     .weui_grid_icon{width:35px; height:35px;}
+    .weui_grid_icon>img{width:35px; height:35px;}
+</style>
+ <div class="row">
+              <div class="Personal-center-top-box" style="height:80px">
+            <div  style="float: left;">
+                <div class="Personal-center-top-box-left">
+                    <img src="@ViewBag.HeadImage" class="img-circle img-responsive" style="width:64px;height:64px;border-radius:64px"/>
+                </div>
+                <div class="Personal-center-top-box-right">
+                  <p class="text14" style="text-align:center; margin-left:-10px"> @ViewBag.LoginAccount</p>
+                </div>
+            </div>
+            <div style="float: right;">
+              @if (!ViewBag.LoginStatus)
+              {
+                <div style="float: right;"><a href="@Url.Action("Index", "H5BindMobile", new { returnUrl = "/H5Home/Index" })" class="weui_btn weui_btn_mini weui_btn_primary" style=" margin-top:50px">登录</a></div>
+              }
+              </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="top20"></div>
+        <div class="bd">
+            <div class="weui_grids">
+                <a href="@Url.Action("Index", "H5ParkingPayment")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                        <img src="/Content/images/weixin/停车场收费.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        临停缴费
+                    </p>
+                </a>
+                      <a href="@Url.Action("Index", "H5CardRenewal")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                       <img src="/Content/images/weixin/月租续期.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        月租续期
+                    </p>
+                </a>
+                <a href="@Url.Action("Index", "H5PaymentRecord")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                          <img src="/Content/images/weixin/缴费记录.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        缴费记录
+                    </p>
+                </a>
+                <a href="@Url.Action("Index", "H5LockCar")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                          <img src="/Content/images/weixin/锁车解锁.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        锁车解锁
+                    </p>
+                </a>
+                <a href="@Url.Action("Index", "H5CarManage")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                           <img src="/Content/images/weixin/车辆管理.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        车辆管理
+                    </p>
+                </a>
+             
+                 <a href="@Url.Action("Index", "H5CarVisitor")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                          <img src="/Content/images/weixin/访客1.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        访客管理
+                    </p>
+                </a>
+                 <a href="@Url.Action("Index", "FindParking")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/找停车场.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        找停车场
+                    </p>
+                </a>
+               @* <a href="@Url.Action("MonthGather", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/月租车申请.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        月租车申请
+                    </p>
+                </a>
+               <a href="#" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/车场运营.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        车场运营
+                    </p>
+                </a>
+                  <a href="@Url.Action("RemotelyOpenGate", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/打折优惠.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        商家减免
+                    </p>
+                </a>*@
+            </div>
+        </div>
+        <!--main-->
+    </div>

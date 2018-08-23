@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "商家优免管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table_list{border:dashed #AAAAAA; border-width:1px 0px 0px 1px;}
+    .table_list td,th{border:dashed #AAAAAA; border-width:0px 1px 1px 0px; padding:0px 0px; height:20px;}
+    .table_list th{background-color:#F4F4F4;height:20px;}
+</style>
+<script src="/Scripts/DateExtensions.js" type="text/javascript"></script>
+<script src="/Scripts/parking/parkderate.js?v=1" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="商家信息" style="width: 250px;">
+      <div style="margin:5px 0px 5px 5px; text-align:left">
+          <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox"/>&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()"/>
+      </div>
+        <ul id="parkSellerTree" lines="true"></ul>
+    </div>
+    <div region="center" title="优免信息" style="background: #eee;">
+        <table fit="true" id="tableSellerDerate"></table>
+    </div>
+</div>
+<div id="divSellerDerateBox" style="display: none">
+    <form id="divSellerDerateBoxForm" class="easyui-form">
+    <div title="编辑优免" style="padding: 20px;">
+        <input type="hidden" name="DerateID" id="DerateID" />
+        <input type="hidden" name="SellerID" id="SellerID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right" style="width:60px">
+                    所属商家
+                </td>
+                <td>
+                    <input id="txtSellerName" name="SellerName" class="easyui-validatebox form-control" disabled="disabled" style="width:170px"/>
+                </td>
+                <td align="right">
+                    优免名称
+                </td>
+                <td>
+                    <input id="txtName" name="Name" required="true" class="easyui-validatebox form-control" missingmessage="不能为空" style="width:170px"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input type="radio" name="DerateType" checked="checked" value="0" data-desciption="按时缴费"/>按时缴费(全免)&nbsp;
+                    <input type="radio" name="DerateType" value="1" data-desciption="不收取费用"  style=" visibility:collapse"/><span style=" visibility:collapse">不收取费用</span>  &nbsp;
+                    <input type="radio" name="DerateType" value="2" data-desciption="按次收费" />按次收费&nbsp;
+                    <input type="radio" name="DerateType" value="6" data-desciption="特定时段按次收费" />特定时段按次收费&nbsp;
+                    <input type="radio" name="DerateType" value="4" data-desciption="分时段收费" />分时段收费&nbsp;<br />
+                    <input type="radio" name="DerateType" value="5" data-desciption="按收费标准" />按收费标准&nbsp;
+                    <input type="radio" name="DerateType" value="3" data-desciption="按票收费" />按票收费&nbsp;
+                    <input type="radio" name="DerateType" value="7" data-desciption="按票收费(特殊规则)" />按票收费(特殊规则)&nbsp;
+                    <input type="radio" name="DerateType" value="8" data-desciption="减免金额" />减免金额&nbsp;
+                    <input type="radio" name="DerateType" value="9" data-desciption="减免时间" />减免时间&nbsp;
+                     <input type="radio" name="DerateType" value="10" data-desciption="按天减免" />按天减免&nbsp;
+                </td>
+            </tr>
+            <tr class="trDetail tr2 tr3 tr5 tr4 tr6 tr7">
+               <td align="right">
+                    明细设置
+                </td>
+                <td colspan="3">
+                    <div style="width:100%;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+                </td>
+            </tr>
+             <tr  class="trDetail tr2 tr5">
+                <td align="right">
+                    收费标准
+                </td>
+                <td colspan="3">
+                   <input id="cmbFeeRuleID" class="easyui-combobox" name="FeeRuleID"  style="width:250px;"/>
+                </td>
+            </tr>
+              <tr class="trDetail tr6">
+                <td align="right">
+                    特定开始时间
+                </td>
+                <td>
+                   <select  class="form-select-control" style=" width:100px" name="StartTime">
+                    <option value="00:00">00:00</option>
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                   </select>
+                </td>
+                <td align="right">
+                    特定结束时间
+                </td>
+                <td>
+                    <select  class="form-select-control" style=" width:100px" name="EndTime">
+                     <option value="00:00">00:00</option>
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                   </select>
+                </td>
+            </tr>
+
+             <tr class="trDetail tr2 tr6">
+                <td colspan="4">
+                    一次消费收消费场所 <input id="txtDerateMoney" name="DerateMoney" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width:60px"/>元
+                    &nbsp;车主免
+                    <input id="txtFreeTime" name="FreeTimeHour" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:1" missingmessage="不能为空" style="width:60px"/>小时(0表示全免)
+                </td>
+               
+            </tr>
+             <tr class="trDetail tr4">
+                <td colspan="4">
+                    车主最高免<input id="txtMaxFreeHour" name="MaxFreeHour" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:1" missingmessage="不能为空" style="width:60px"/>小时(0表示全免)
+                </td>
+               
+            </tr>
+             <tr class="trDetail tr2 tr3 tr4 tr6 tr7">
+                <td align="right">
+                    免时段规则
+                </td>
+                <td colspan="3">
+                   <select id="sltDerateSwparate" name="DerateSwparate"  class="form-select-control" style="width:120px">
+                        <option value="0" selected="selected">免前面停车时间</option>
+                        <option value="1">免后面停车时间</option>
+                    </select>
+                </td>
+            </tr>
+               <tr class="trDetail tr4">
+                <td colspan="4">
+                    <input id="txtPeriodFreeHour" name="PeriodFreeHour" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:1" missingmessage="不能为空" style="width:60px"/>小时内，
+                    收取商家<input id="txtPeriodFreemoney" name="PeriodFreemoney" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width:60px"/>元
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="return btnAddPeriodFreeRule()">添加</a>
+                </td>
+               
+            </tr>
+              <tr class="trDetail tr7">
+                <td colspan="4">
+                    消费<input id="txtConsumptionMoney" name="ConsumptionMoney" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width:60px"/>元以上，
+                     车主免费停车<input id="txtConsumptionFreeHour" name="ConsumptionFreeHour" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:1" missingmessage="不能为空" style="width:60px"/>小时，
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="return btnAddConsumptionRule()">添加</a>
+                </td>
+               
+            </tr>
+              <tr class="trDetail tr4 tr7">
+                <td colspan="4">
+                   <div style="height:100px; overflow-y:auto;"> 
+                     <table cellpadding="3" class="table_open_window_edit table_list" id="tableDerateIntervar" style=" width:100%;">
+                        <tr><th  style=" width:30%">时间（分钟）</th><th  style=" width:30%">金额（元）</th><th  style=" width:40%">操作</th></tr>
+                    </table>
+                   </div>
+                </td>
+            </tr>
+             <tr class="trDetail tr8">
+                <td colspan="4">
+                    每天收取商家<input id="txtDay" name="DayMoney" required="true" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width:60px"/>元
+                </td>
+               
+            </tr>
+        </table>
+        <input type="hidden" id="hiddDerateIntervar" name="DerateIntervar"/>
+    </div>
+    </form>
+</div>

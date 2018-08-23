@@ -1,0 +1,117 @@
+﻿@using Common.Entities;
+@model List<SysRoleAuthorize>
+@{
+    ViewBag.Title = "管理员";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+     .weui_grid_icon{width:35px; height:35px;}
+    .weui_grid_icon>img{width:35px; height:35px;}
+</style>
+ <div class="row">
+              <div class="Personal-center-top-box" style="height:80px">
+            <div  style="float: left;">
+                <div class="Personal-center-top-box-left">
+                    <img src="@ViewBag.WeiXinHead" class="img-circle img-responsive" style="width:64px;height:64px;border-radius:64px"/>
+                </div>
+                <div class="Personal-center-top-box-right">
+                  <p class="text14" style="text-align:center; margin-left:-10px"> @ViewBag.AdminUserAccount</p>
+                </div>
+            </div>
+            <div style="float: right;">
+              
+                <div style="float: right;"><a href="@Url.Action("Logout", "AdminLogin")" class="weui_btn weui_btn_mini weui_btn_primary" style=" margin-top:50px">退出登录</a></div>
+              </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="top20"></div>
+        <div class="bd">
+            <div class="weui_grids">
+                <a href="@Url.Action("PresentCar", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                        <img src="/Content/images/weixin/在场车辆.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        在场车辆
+                    </p>
+                </a>
+                <a href="@Url.Action("InOutRecord", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                          <img src="/Content/images/weixin/进出记录.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        进出记录
+                    </p>
+                </a>
+                <a href="@Url.Action("ParkPaymentRecord", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                           <img src="/Content/images/weixin/缴费记录.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        临停缴费
+                    </p>
+                </a>
+                   <a href="@Url.Action("ExceptionRelease", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                       <img src="/Content/images/weixin/异常数据.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        异常放行
+                    </p>
+                </a>
+                <a href="@Url.Action("DayGather", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                          <img src="/Content/images/weixin/日统计.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        日统计
+                    </p>
+                </a>
+                <a href="@Url.Action("MonthGather", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/月统计.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        月统计
+                    </p>
+                </a>
+               <a href="#" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/岗亭.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        移动岗亭
+                    </p>
+                </a>
+                  <a href="@Url.Action("RemotelyOpenGate", "AdminHome")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/停车场收费.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        远程开闸
+                    </p>
+                </a>
+                @*  <a href="#" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/卡.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        在线发卡
+                    </p>
+                </a>*@
+                 @if (Model.Exists(p => p.ModuleID == "PK010207"))
+                 { 
+                 <a href="@Url.Action("Index", "AdminAduitCarApply")" class="weui_grid">
+                    <div class="weui_grid_icon">
+                         <img src="/Content/images/weixin/车辆管理.png"/>
+                    </div>
+                    <p class="weui_grid_label">
+                        月租车申请审核
+                    </p>
+                </a>
+                 }
+            </div>
+        </div>
+        <!--main-->
+    </div>

@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "该车辆不需要缴费";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+     .weui_btn_primary
+     {
+        background-color:#c8161d !important;   
+     }
+     
+</style>
+
+<div class="row">
+    <div class="row hn-row" style="text-align: center">
+        <div class="weui_msg top20" style="padding-top: 0px">
+            <div class="weui_icon_area">
+                @if (ViewBag.Type == 0)
+                {
+                    <i class="weui_icon_msg weui_icon_info"></i>
+                }
+                else
+                {
+                    <i class="weui_icon_msg weui_icon_waiting"></i>
+                }
+            </div>
+            <div class="weui_text_area">
+                @if (ViewBag.Type == 0)
+                {
+                    <h2 class="weui_msg_title">
+                        该车辆还不需要缴费</h2>
+                }
+                else
+                {
+                    if (ViewBag.SurplusMinutes < 1)
+                    {
+                    <p class="weui_msg_desc">
+                        请马上开车驶离停车场，<br />
+                        否则还需再进行超时部分的停车费补缴。</p>
+                    }
+                    else
+                    {
+                    <p class="weui_msg_desc">
+                        请您<span>@(((int)ViewBag.SurplusMinutes).ToString())</span>分钟内开车驶离停车场，<br />
+                        否则还需再进行超时部分的停车费补缴。</p>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+    @if (ViewBag.Type == 0)
+    { 
+        <div class="weui_cells">
+            @if (!string.IsNullOrWhiteSpace(ViewBag.LicensePlate))
+            { 
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>
+                            车牌号</p>
+                    </div>
+                    <div class="weui_cell_ft">@ViewBag.LicensePlate &nbsp;<a style="color:#0EA9FB" href="/ParkingPayment/LicensePlatePayment">修改</a></div>
+                </div>
+            }
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        进场时间</p>
+                </div>
+                <div class="weui_cell_ft">@ViewBag.EntranceTime</div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        停车时长</p>
+                </div>
+                <div class="weui_cell_ft">@ViewBag.ParkingTotalDuration</div>
+            </div>
+        </div>
+    }
+    @if (!string.IsNullOrWhiteSpace(ViewBag.BackUrl))
+    {
+        <div style="position: fixed; bottom: 0; left: 0px; right: 0px;">
+            <a href="@ViewBag.BackUrl" class="weui_btn weui_btn_primary">返回</a>
+        </div>
+    }
+</div>

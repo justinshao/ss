@@ -1,0 +1,1438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WXService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_WXService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://proxy-callback.spsing.cn/WXService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://proxy-callback.spsing.cn/WXService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://proxy-callback.spsing.cn/WXService?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="WXService_RegisterAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterAccount" />
+  </wsdl:message>
+  <wsdl:message name="WXService_RegisterAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXBindingMobilePhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXBindingMobilePhone" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXBindingMobilePhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXBindingMobilePhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXUnsubscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXUnsubscribe" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXUnsubscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXUnsubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_QueryWXByOpenId_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWXByOpenId" />
+  </wsdl:message>
+  <wsdl:message name="WXService_QueryWXByOpenId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWXByOpenIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EditWXInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditWXInfo" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EditWXInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditWXInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_QueryAccountByAccountID_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAccountByAccountID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_QueryAccountByAccountID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAccountByAccountIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_QueryAccountByMobilePhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAccountByMobilePhone" />
+  </wsdl:message>
+  <wsdl:message name="WXService_QueryAccountByMobilePhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAccountByMobilePhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EditAccountOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditAccountOption" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EditAccountOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditAccountOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EidtWX_infoVisitDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:EidtWX_infoVisitDate" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EidtWX_infoVisitDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EidtWX_infoVisitDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EidtWX_infoLastPlateNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:EidtWX_infoLastPlateNumber" />
+  </wsdl:message>
+  <wsdl:message name="WXService_EidtWX_infoLastPlateNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EidtWX_infoLastPlateNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkparkinfoList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkparkinfoList" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkparkinfoList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkparkinfoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkparkinByAccountIDList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkparkinByAccountIDList" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkparkinByAccountIDList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkparkinByAccountIDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_AddWX_CarInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddWX_CarInfo" />
+  </wsdl:message>
+  <wsdl:message name="WXService_AddWX_CarInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddWX_CarInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_DelWX_CarInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelWX_CarInfo" />
+  </wsdl:message>
+  <wsdl:message name="WXService_DelWX_CarInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelWX_CarInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetCarInfoByAccountID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarInfoByAccountID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetCarInfoByAccountID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarInfoByAccountIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetCarInfoByPlateNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarInfoByPlateNo" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetCarInfoByPlateNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarInfoByPlateNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetTempCarInfoIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTempCarInfoIn" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetTempCarInfoIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTempCarInfoInResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetMonthCarInfoByAccountID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonthCarInfoByAccountID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetMonthCarInfoByAccountID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonthCarInfoByAccountIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetMonthCarInfoByPlateNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonthCarInfoByPlateNumber" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetMonthCarInfoByPlateNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonthCarInfoByPlateNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetBaseParkinfoByPKID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBaseParkinfoByPKID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetBaseParkinfoByPKID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBaseParkinfoByPKIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetLockCarByAccountID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLockCarByAccountID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetLockCarByAccountID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLockCarByAccountIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXLockCarInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXLockCarInfo" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXLockCarInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXLockCarInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXUlockCarInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXUlockCarInfo" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXUlockCarInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXUlockCarInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_OrderWhetherEffective_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrderWhetherEffective" />
+  </wsdl:message>
+  <wsdl:message name="WXService_OrderWhetherEffective_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OrderWhetherEffectiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_OrderWhetherEffectiveNew_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrderWhetherEffectiveNew" />
+  </wsdl:message>
+  <wsdl:message name="WXService_OrderWhetherEffectiveNew_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OrderWhetherEffectiveNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXMonthlyRenewals_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXMonthlyRenewals" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXMonthlyRenewals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXMonthlyRenewalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTempParkingFee_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXTempParkingFee" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTempParkingFee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXTempParkingFeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTempStopPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXTempStopPayment" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTempStopPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXTempStopPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXScanCodeTempParkingFee_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXScanCodeTempParkingFee" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXScanCodeTempParkingFee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXScanCodeTempParkingFeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXScanCodeTempParkingFeeByGateID_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXScanCodeTempParkingFeeByGateID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXScanCodeTempParkingFeeByGateID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXScanCodeTempParkingFeeByGateIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkOrderTempByAccountID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkOrderTempByAccountID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkOrderTempByAccountID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkOrderTempByAccountIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkOrderMonthByAccountID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkOrderMonthByAccountID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetPkOrderMonthByAccountID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPkOrderMonthByAccountIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetParkDerate_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetParkDerate" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetParkDerate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetParkDerateResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetIORecordByPlateNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetIORecordByPlateNumber" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetIORecordByPlateNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetIORecordByPlateNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXDiscountPlateNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXDiscountPlateNumber" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXDiscountPlateNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXDiscountPlateNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetSellerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetSellerInfo" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetSellerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetSellerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXEditSellerPwd_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXEditSellerPwd" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXEditSellerPwd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXEditSellerPwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetParkCarDerate_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetParkCarDerate" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetParkCarDerate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetParkCarDerateResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetParkCarDerateByVID_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetParkCarDerateByVID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetParkCarDerateByVID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetParkCarDerateByVIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXScanCodeInOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXScanCodeInOut" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXScanCodeInOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXScanCodeInOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetParkVisitor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParkVisitor" />
+  </wsdl:message>
+  <wsdl:message name="WXService_GetParkVisitor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParkVisitorResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_AddParkVisitor_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddParkVisitor" />
+  </wsdl:message>
+  <wsdl:message name="WXService_AddParkVisitor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddParkVisitorResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXRemoteGate_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXRemoteGate" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXRemoteGate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXRemoteGateResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXReservePKBit_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXReservePKBit" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXReservePKBit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXReservePKBitResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXReserveBitPay_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXReserveBitPay" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXReserveBitPay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXReserveBitPayResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetReservePKBit_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetReservePKBit" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXGetReservePKBit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXGetReservePKBitResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXReservePKBitZH_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXReservePKBitZH" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXReservePKBitZH_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXReservePKBitZHResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTestClientProxyConnectionByVID_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXTestClientProxyConnectionByVID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTestClientProxyConnectionByVID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXTestClientProxyConnectionByVIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTestClientProxyConnectionByPKID_InputMessage">
+    <wsdl:part name="parameters" element="tns:WXTestClientProxyConnectionByPKID" />
+  </wsdl:message>
+  <wsdl:message name="WXService_WXTestClientProxyConnectionByPKID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WXTestClientProxyConnectionByPKIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="WXService_SendNotify_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendNotify" />
+  </wsdl:message>
+  <wsdl:message name="WXService_SendNotify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendNotifyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WXService">
+    <wsdl:operation name="RegisterAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/RegisterAccount" message="tns:WXService_RegisterAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/RegisterAccountResponse" message="tns:WXService_RegisterAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXBindingMobilePhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXBindingMobilePhone" message="tns:WXService_WXBindingMobilePhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXBindingMobilePhoneResponse" message="tns:WXService_WXBindingMobilePhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXUnsubscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXUnsubscribe" message="tns:WXService_WXUnsubscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXUnsubscribeResponse" message="tns:WXService_WXUnsubscribe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryWXByOpenId">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/QueryWXByOpenId" message="tns:WXService_QueryWXByOpenId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/QueryWXByOpenIdResponse" message="tns:WXService_QueryWXByOpenId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditWXInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/EditWXInfo" message="tns:WXService_EditWXInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/EditWXInfoResponse" message="tns:WXService_EditWXInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccountByAccountID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/QueryAccountByAccountID" message="tns:WXService_QueryAccountByAccountID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/QueryAccountByAccountIDResponse" message="tns:WXService_QueryAccountByAccountID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccountByMobilePhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/QueryAccountByMobilePhone" message="tns:WXService_QueryAccountByMobilePhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/QueryAccountByMobilePhoneResponse" message="tns:WXService_QueryAccountByMobilePhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditAccountOption">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/EditAccountOption" message="tns:WXService_EditAccountOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/EditAccountOptionResponse" message="tns:WXService_EditAccountOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EidtWX_infoVisitDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/EidtWX_infoVisitDate" message="tns:WXService_EidtWX_infoVisitDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/EidtWX_infoVisitDateResponse" message="tns:WXService_EidtWX_infoVisitDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EidtWX_infoLastPlateNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/EidtWX_infoLastPlateNumber" message="tns:WXService_EidtWX_infoLastPlateNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/EidtWX_infoLastPlateNumberResponse" message="tns:WXService_EidtWX_infoLastPlateNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPkparkinfoList">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetPkparkinfoList" message="tns:WXService_GetPkparkinfoList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetPkparkinfoListResponse" message="tns:WXService_GetPkparkinfoList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPkparkinByAccountIDList">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetPkparkinByAccountIDList" message="tns:WXService_GetPkparkinByAccountIDList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetPkparkinByAccountIDListResponse" message="tns:WXService_GetPkparkinByAccountIDList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddWX_CarInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/AddWX_CarInfo" message="tns:WXService_AddWX_CarInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/AddWX_CarInfoResponse" message="tns:WXService_AddWX_CarInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DelWX_CarInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/DelWX_CarInfo" message="tns:WXService_DelWX_CarInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/DelWX_CarInfoResponse" message="tns:WXService_DelWX_CarInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarInfoByAccountID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetCarInfoByAccountID" message="tns:WXService_GetCarInfoByAccountID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetCarInfoByAccountIDResponse" message="tns:WXService_GetCarInfoByAccountID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarInfoByPlateNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetCarInfoByPlateNo" message="tns:WXService_GetCarInfoByPlateNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetCarInfoByPlateNoResponse" message="tns:WXService_GetCarInfoByPlateNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTempCarInfoIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetTempCarInfoIn" message="tns:WXService_GetTempCarInfoIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetTempCarInfoInResponse" message="tns:WXService_GetTempCarInfoIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthCarInfoByAccountID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetMonthCarInfoByAccountID" message="tns:WXService_GetMonthCarInfoByAccountID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetMonthCarInfoByAccountIDResponse" message="tns:WXService_GetMonthCarInfoByAccountID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthCarInfoByPlateNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetMonthCarInfoByPlateNumber" message="tns:WXService_GetMonthCarInfoByPlateNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetMonthCarInfoByPlateNumberResponse" message="tns:WXService_GetMonthCarInfoByPlateNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBaseParkinfoByPKID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetBaseParkinfoByPKID" message="tns:WXService_GetBaseParkinfoByPKID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetBaseParkinfoByPKIDResponse" message="tns:WXService_GetBaseParkinfoByPKID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLockCarByAccountID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetLockCarByAccountID" message="tns:WXService_GetLockCarByAccountID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetLockCarByAccountIDResponse" message="tns:WXService_GetLockCarByAccountID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXLockCarInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXLockCarInfo" message="tns:WXService_WXLockCarInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXLockCarInfoResponse" message="tns:WXService_WXLockCarInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXUlockCarInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXUlockCarInfo" message="tns:WXService_WXUlockCarInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXUlockCarInfoResponse" message="tns:WXService_WXUlockCarInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderWhetherEffective">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/OrderWhetherEffective" message="tns:WXService_OrderWhetherEffective_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/OrderWhetherEffectiveResponse" message="tns:WXService_OrderWhetherEffective_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderWhetherEffectiveNew">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/OrderWhetherEffectiveNew" message="tns:WXService_OrderWhetherEffectiveNew_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/OrderWhetherEffectiveNewResponse" message="tns:WXService_OrderWhetherEffectiveNew_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXMonthlyRenewals">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXMonthlyRenewals" message="tns:WXService_WXMonthlyRenewals_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXMonthlyRenewalsResponse" message="tns:WXService_WXMonthlyRenewals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXTempParkingFee">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXTempParkingFee" message="tns:WXService_WXTempParkingFee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXTempParkingFeeResponse" message="tns:WXService_WXTempParkingFee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXTempStopPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXTempStopPayment" message="tns:WXService_WXTempStopPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXTempStopPaymentResponse" message="tns:WXService_WXTempStopPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeTempParkingFee">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXScanCodeTempParkingFee" message="tns:WXService_WXScanCodeTempParkingFee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXScanCodeTempParkingFeeResponse" message="tns:WXService_WXScanCodeTempParkingFee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeTempParkingFeeByGateID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXScanCodeTempParkingFeeByGateID" message="tns:WXService_WXScanCodeTempParkingFeeByGateID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXScanCodeTempParkingFeeByGateIDResponse" message="tns:WXService_WXScanCodeTempParkingFeeByGateID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPkOrderTempByAccountID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetPkOrderTempByAccountID" message="tns:WXService_GetPkOrderTempByAccountID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetPkOrderTempByAccountIDResponse" message="tns:WXService_GetPkOrderTempByAccountID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPkOrderMonthByAccountID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetPkOrderMonthByAccountID" message="tns:WXService_GetPkOrderMonthByAccountID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetPkOrderMonthByAccountIDResponse" message="tns:WXService_GetPkOrderMonthByAccountID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkDerate">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXGetParkDerate" message="tns:WXService_WXGetParkDerate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXGetParkDerateResponse" message="tns:WXService_WXGetParkDerate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXGetIORecordByPlateNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXGetIORecordByPlateNumber" message="tns:WXService_WXGetIORecordByPlateNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXGetIORecordByPlateNumberResponse" message="tns:WXService_WXGetIORecordByPlateNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXDiscountPlateNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXDiscountPlateNumber" message="tns:WXService_WXDiscountPlateNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXDiscountPlateNumberResponse" message="tns:WXService_WXDiscountPlateNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXGetSellerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXGetSellerInfo" message="tns:WXService_WXGetSellerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXGetSellerInfoResponse" message="tns:WXService_WXGetSellerInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXEditSellerPwd">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXEditSellerPwd" message="tns:WXService_WXEditSellerPwd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXEditSellerPwdResponse" message="tns:WXService_WXEditSellerPwd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkCarDerate">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXGetParkCarDerate" message="tns:WXService_WXGetParkCarDerate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXGetParkCarDerateResponse" message="tns:WXService_WXGetParkCarDerate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkCarDerateByVID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXGetParkCarDerateByVID" message="tns:WXService_WXGetParkCarDerateByVID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXGetParkCarDerateByVIDResponse" message="tns:WXService_WXGetParkCarDerateByVID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeInOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXScanCodeInOut" message="tns:WXService_WXScanCodeInOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXScanCodeInOutResponse" message="tns:WXService_WXScanCodeInOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParkVisitor">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/GetParkVisitor" message="tns:WXService_GetParkVisitor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/GetParkVisitorResponse" message="tns:WXService_GetParkVisitor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddParkVisitor">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/AddParkVisitor" message="tns:WXService_AddParkVisitor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/AddParkVisitorResponse" message="tns:WXService_AddParkVisitor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXRemoteGate">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXRemoteGate" message="tns:WXService_WXRemoteGate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXRemoteGateResponse" message="tns:WXService_WXRemoteGate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXReservePKBit">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXReservePKBit" message="tns:WXService_WXReservePKBit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXReservePKBitResponse" message="tns:WXService_WXReservePKBit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXReserveBitPay">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXReserveBitPay" message="tns:WXService_WXReserveBitPay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXReserveBitPayResponse" message="tns:WXService_WXReserveBitPay_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXGetReservePKBit">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXGetReservePKBit" message="tns:WXService_WXGetReservePKBit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXGetReservePKBitResponse" message="tns:WXService_WXGetReservePKBit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXReservePKBitZH">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXReservePKBitZH" message="tns:WXService_WXReservePKBitZH_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXReservePKBitZHResponse" message="tns:WXService_WXReservePKBitZH_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXTestClientProxyConnectionByVID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXTestClientProxyConnectionByVID" message="tns:WXService_WXTestClientProxyConnectionByVID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXTestClientProxyConnectionByVIDResponse" message="tns:WXService_WXTestClientProxyConnectionByVID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WXTestClientProxyConnectionByPKID">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/WXTestClientProxyConnectionByPKID" message="tns:WXService_WXTestClientProxyConnectionByPKID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/WXTestClientProxyConnectionByPKIDResponse" message="tns:WXService_WXTestClientProxyConnectionByPKID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendNotify">
+      <wsdl:input wsaw:Action="http://tempuri.org/WXService/SendNotify" message="tns:WXService_SendNotify_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/WXService/SendNotifyResponse" message="tns:WXService_SendNotify_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_WXService" type="tns:WXService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterAccount">
+      <soap:operation soapAction="http://tempuri.org/WXService/RegisterAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXBindingMobilePhone">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXBindingMobilePhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXUnsubscribe">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXUnsubscribe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryWXByOpenId">
+      <soap:operation soapAction="http://tempuri.org/WXService/QueryWXByOpenId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditWXInfo">
+      <soap:operation soapAction="http://tempuri.org/WXService/EditWXInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccountByAccountID">
+      <soap:operation soapAction="http://tempuri.org/WXService/QueryAccountByAccountID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccountByMobilePhone">
+      <soap:operation soapAction="http://tempuri.org/WXService/QueryAccountByMobilePhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAccountOption">
+      <soap:operation soapAction="http://tempuri.org/WXService/EditAccountOption" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EidtWX_infoVisitDate">
+      <soap:operation soapAction="http://tempuri.org/WXService/EidtWX_infoVisitDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EidtWX_infoLastPlateNumber">
+      <soap:operation soapAction="http://tempuri.org/WXService/EidtWX_infoLastPlateNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkparkinfoList">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetPkparkinfoList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkparkinByAccountIDList">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetPkparkinByAccountIDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWX_CarInfo">
+      <soap:operation soapAction="http://tempuri.org/WXService/AddWX_CarInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelWX_CarInfo">
+      <soap:operation soapAction="http://tempuri.org/WXService/DelWX_CarInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarInfoByAccountID">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetCarInfoByAccountID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarInfoByPlateNo">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetCarInfoByPlateNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTempCarInfoIn">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetTempCarInfoIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthCarInfoByAccountID">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetMonthCarInfoByAccountID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthCarInfoByPlateNumber">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetMonthCarInfoByPlateNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBaseParkinfoByPKID">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetBaseParkinfoByPKID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLockCarByAccountID">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetLockCarByAccountID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXLockCarInfo">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXLockCarInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXUlockCarInfo">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXUlockCarInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderWhetherEffective">
+      <soap:operation soapAction="http://tempuri.org/WXService/OrderWhetherEffective" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderWhetherEffectiveNew">
+      <soap:operation soapAction="http://tempuri.org/WXService/OrderWhetherEffectiveNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXMonthlyRenewals">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXMonthlyRenewals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTempParkingFee">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXTempParkingFee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTempStopPayment">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXTempStopPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeTempParkingFee">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXScanCodeTempParkingFee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeTempParkingFeeByGateID">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXScanCodeTempParkingFeeByGateID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkOrderTempByAccountID">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetPkOrderTempByAccountID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkOrderMonthByAccountID">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetPkOrderMonthByAccountID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkDerate">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXGetParkDerate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetIORecordByPlateNumber">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXGetIORecordByPlateNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXDiscountPlateNumber">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXDiscountPlateNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetSellerInfo">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXGetSellerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXEditSellerPwd">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXEditSellerPwd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkCarDerate">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXGetParkCarDerate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkCarDerateByVID">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXGetParkCarDerateByVID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeInOut">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXScanCodeInOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParkVisitor">
+      <soap:operation soapAction="http://tempuri.org/WXService/GetParkVisitor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddParkVisitor">
+      <soap:operation soapAction="http://tempuri.org/WXService/AddParkVisitor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXRemoteGate">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXRemoteGate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXReservePKBit">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXReservePKBit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXReserveBitPay">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXReserveBitPay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetReservePKBit">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXGetReservePKBit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXReservePKBitZH">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXReservePKBitZH" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTestClientProxyConnectionByVID">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXTestClientProxyConnectionByVID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTestClientProxyConnectionByPKID">
+      <soap:operation soapAction="http://tempuri.org/WXService/WXTestClientProxyConnectionByPKID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendNotify">
+      <soap:operation soapAction="http://tempuri.org/WXService/SendNotify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_WXService" type="tns:WXService">
+    <wsp:PolicyReference URI="#NetTcpBinding_WXService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RegisterAccount">
+      <soap12:operation soapAction="http://tempuri.org/WXService/RegisterAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXBindingMobilePhone">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXBindingMobilePhone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXUnsubscribe">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXUnsubscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryWXByOpenId">
+      <soap12:operation soapAction="http://tempuri.org/WXService/QueryWXByOpenId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditWXInfo">
+      <soap12:operation soapAction="http://tempuri.org/WXService/EditWXInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccountByAccountID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/QueryAccountByAccountID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccountByMobilePhone">
+      <soap12:operation soapAction="http://tempuri.org/WXService/QueryAccountByMobilePhone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAccountOption">
+      <soap12:operation soapAction="http://tempuri.org/WXService/EditAccountOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EidtWX_infoVisitDate">
+      <soap12:operation soapAction="http://tempuri.org/WXService/EidtWX_infoVisitDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EidtWX_infoLastPlateNumber">
+      <soap12:operation soapAction="http://tempuri.org/WXService/EidtWX_infoLastPlateNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkparkinfoList">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetPkparkinfoList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkparkinByAccountIDList">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetPkparkinByAccountIDList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWX_CarInfo">
+      <soap12:operation soapAction="http://tempuri.org/WXService/AddWX_CarInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelWX_CarInfo">
+      <soap12:operation soapAction="http://tempuri.org/WXService/DelWX_CarInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarInfoByAccountID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetCarInfoByAccountID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarInfoByPlateNo">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetCarInfoByPlateNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTempCarInfoIn">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetTempCarInfoIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthCarInfoByAccountID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetMonthCarInfoByAccountID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthCarInfoByPlateNumber">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetMonthCarInfoByPlateNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBaseParkinfoByPKID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetBaseParkinfoByPKID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLockCarByAccountID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetLockCarByAccountID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXLockCarInfo">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXLockCarInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXUlockCarInfo">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXUlockCarInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderWhetherEffective">
+      <soap12:operation soapAction="http://tempuri.org/WXService/OrderWhetherEffective" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderWhetherEffectiveNew">
+      <soap12:operation soapAction="http://tempuri.org/WXService/OrderWhetherEffectiveNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXMonthlyRenewals">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXMonthlyRenewals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTempParkingFee">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXTempParkingFee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTempStopPayment">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXTempStopPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeTempParkingFee">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXScanCodeTempParkingFee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeTempParkingFeeByGateID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXScanCodeTempParkingFeeByGateID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkOrderTempByAccountID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetPkOrderTempByAccountID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPkOrderMonthByAccountID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetPkOrderMonthByAccountID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkDerate">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXGetParkDerate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetIORecordByPlateNumber">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXGetIORecordByPlateNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXDiscountPlateNumber">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXDiscountPlateNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetSellerInfo">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXGetSellerInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXEditSellerPwd">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXEditSellerPwd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkCarDerate">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXGetParkCarDerate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetParkCarDerateByVID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXGetParkCarDerateByVID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXScanCodeInOut">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXScanCodeInOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParkVisitor">
+      <soap12:operation soapAction="http://tempuri.org/WXService/GetParkVisitor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddParkVisitor">
+      <soap12:operation soapAction="http://tempuri.org/WXService/AddParkVisitor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXRemoteGate">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXRemoteGate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXReservePKBit">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXReservePKBit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXReserveBitPay">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXReserveBitPay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXGetReservePKBit">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXGetReservePKBit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXReservePKBitZH">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXReservePKBitZH" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTestClientProxyConnectionByVID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXTestClientProxyConnectionByVID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WXTestClientProxyConnectionByPKID">
+      <soap12:operation soapAction="http://tempuri.org/WXService/WXTestClientProxyConnectionByPKID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendNotify">
+      <soap12:operation soapAction="http://tempuri.org/WXService/SendNotify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WXService">
+    <wsdl:port name="BasicHttpBinding_WXService" binding="tns:BasicHttpBinding_WXService">
+      <soap:address location="http://proxy-callback.spsing.cn/WXService" />
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_WXService" binding="tns:NetTcpBinding_WXService">
+      <soap12:address location="net.tcp://proxy-callback.spsing.cn:4508/WXService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://proxy-callback.spsing.cn:4508/WXService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

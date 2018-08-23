@@ -1,0 +1,52 @@
+﻿@using ClassLibrary1;
+@model Car
+@{
+    ViewBag.Title = "月卡";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    body{ background-color:#f4f4f4; margin:0px; padding:0px;}
+    .bb{ text-align: center; color: #888888; font-size: 1.6rem; font: PingFang-SC-Medium; margin-top: 14rem; margin-bottom: 8.5rem;}
+    .parkingcenter{ width:95%; margin:0 auto;}
+    .listLayout{background:#ffffff;-webkit-border-radius: 10px;border-radius: 10px;margin-top:1.5rem; height:14.6rem;}
+    .listLayout .plateNumber{ color: #333333; text-align: center; font-size:2.6rem;font: PingFang SC; padding-top: 4.6rem; }
+    .listLayout .cardXF{ position: absolute;left:50%;margin-left:-4.235rem;font-size:1.5rem; background-color:#ef9449; height:3.38rem !important; margin-top:1rem; width:8.47rem; border-radius: 0.5rem; text-align:center;line-height:3.38rem; cursor:pointer;}
+    .cardMX{ background-color: #c8161d !important;border-radius: 0.5rem; text-align:center;line-height:3.38rem; cursor:pointer;font-size:1.69rem;margin-top:7.3rem;}
+</style>
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+    }
+    calcRam()
+</script>
+<div syle="width:1px; height:5.9rem;"></div>
+<div id="all" class="parkingcenter">
+@if (Model.Result.Count == null)
+{
+<div style="width:100%" id="divNoMonthCard">
+    <div id="bb">
+        <p>暂无月卡</p>
+    </div>
+</div>
+}
+else
+{
+    for (int i = 0; i < Model.Result.Count; i++)
+    {
+    <div class="listLayout">
+        <div class="plateNumber">
+            <p>@Model.Result[i].LicensePlate</p>
+        </div>
+        <div class="cardXF"><a href="/MonthCard/MonthCardInfo?CarID=@Model.Result[i].CarID" style="color:#FFFFFF;display: inline-block;width:100%;height:3.38rem;line-height:3.38rem;">月卡续费</a></div>
+    </div>
+    }   
+    <div class="cardMX">
+        <a href="/MonthCard/MonthCardMX" style="color:#FFFFFF;display:inline-block;width:100%;height:3.38rem;line-height:3.38rem;">包月明细</a>
+    </div>
+}
+</div>

@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "岗亭管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/parking/parkbox.js?v=2" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" border="true" split="true" title="车场区域信息" class="cs-west" style="width: 300px;">
+         <div style="margin:5px 0px 5px 5px; text-align:left">
+            <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox"/>&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()"/>
+        </div>
+        <ul id="ParkAreaTree" lines="true">
+        </ul>
+    </div>
+    <div region="center" title="岗亭信息" style="background: #eee;">
+        <table fit="true" id="tableParkBox">
+        </table>
+    </div>
+</div>
+<div id="divParkBox">
+    <form id="divParkBoxForm" class="easyui-form">
+    <div title="编辑岗亭" style="padding: 20px;">
+        <input type="hidden" name="BoxID" id="BoxID" />
+        <input type="hidden" name="AreaID" id="AreaID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    所属区域
+                </td>
+                <td>
+                    <input id="txtAreaName" name="AreaName" class="easyui-validatebox form-control" disabled="disabled" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    编号
+                </td>
+                <td>
+                    <input id="txtBoxNo" name="BoxNo" required="true" class="easyui-validatebox  form-control"
+                        missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    岗亭主机IP
+                </td>
+                <td>
+                    <input id="txtComputerIP" name="ComputerIP" required="true" class="easyui-validatebox  form-control"
+                        missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    岗亭名称
+                </td>
+                <td>
+                    <input id="txtBoxName" name="BoxName" required="true" class="easyui-validatebox  form-control"
+                        missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    是中心缴费岗亭
+                </td>
+                <td>
+                    <input type="checkbox" id="chkIsCenterPayment" name="IsCenterPayment" value="1" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    备注
+                </td>
+                <td>
+                    <input class="easyui-textbox" data-options="multiline:true" name="Remark" style="width: 170px;
+                        height: 50px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+<div id="divDownloadBox" style="display: none">
+     <div title="下载二维码" style="padding: 20px;">
+         <input type="hidden" id="hiddDownloadBoxId" name="BoxId"/>
+            <table class="my_table">
+               
+                <tbody>
+                    <tr style="background-color:#E0FFFF">
+			            <td style="width:150px">二维码边长(cm)</td>
+			            <td style="width:150px">建议扫描距离(米)</td>
+			            <td style="width:150px">下载链接</td>
+		            </tr>
+		            <tr>
+			            <td>8cm</td><td>0.5m</td><td><a href="#" id="btn258" onclick="return btnDownloadQRCode(this,258)">下载</a></td>
+		            </tr>
+		            <tr>
+			            <td>12cm</td><td>0.8m</td><td><a  href="#" id="btn344" onclick="return btnDownloadQRCode(this,344)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>15cm</td><td>1m</td><td><a  href="#" id="btn430" onclick="return btnDownloadQRCode(this,430)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>30cm</td><td>1.5m</td><td><a  href="#" id="btn860" onclick="return btnDownloadQRCode(this,860)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>50cm</td><td>2.5m</td><td><a  href="#" id="btn1280" onclick="return btnDownloadQRCode(this,1280)">下载</a></td>
+		            </tr>
+	            </tbody>
+            </table>
+    </div>
+</div>

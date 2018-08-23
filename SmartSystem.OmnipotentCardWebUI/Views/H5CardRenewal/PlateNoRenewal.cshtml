@@ -1,0 +1,89 @@
+﻿@using Common.Core;
+@using Common.Entities.WX;
+@model List<ParkUserCarInfo>
+@{
+    ViewBag.Title = "月卡续期";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+         <a href="@Url.Action("Index", "H5CardRenewal")"> <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            月卡续期</div>
+    </div>
+    <div class="top60"> </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            string strState = "<span style=\"float: right;color: Red\">[未知]</span>";
+            if (item.State == 1 || item.State == 0)
+            {
+                strState = "<span style=\"float: right;color: #0EA9FB;font-size: 14px;\">[正常]</span>";
+            }
+            else if (item.State == 2)
+            {
+                strState = "<span style=\"float: right;color: #Red\">[已挂失]</span>";
+            }
+            else if (item.State == 3)
+            {
+                strState = "<span style=\"float: right;color: #Red\">[已停用]</span>";
+            }
+        <div class="weui_panel">
+            <div class="weui_panel_hd" style="font-size: 16px; font-weight: bold">
+                <span>@item.PlateNumber</span>@Html.Raw(strState)</div>
+            <div class="weui_panel_bd">
+                <div class="weui_media_box weui_media_text">
+                    <p class="weui_media_desc">
+                        车场：@item.PKName</p>
+                    @if (item.State != 3)
+                    {
+                        <p class="weui_media_desc" style="height: 30px; line-height: 30px">
+                            @if (item.EndDate == DateTime.MinValue)
+                            {
+                                        <span>您还没有续期过</span> 
+                            }
+                            else if (item.EndDate.AddDays(-3) <= DateTime.Now)
+                            { 
+                                        <span style="color: Red">有效期至：@item.EndDate.ToPlatString()</span>
+                            }
+                            else
+                            { 
+                                <span>有效期至：@item.EndDate.ToPlatString()</span> 
+                            }
+                            @if (item.State == 1 || item.State == 0)
+                            {
+                                if (!item.IsAllowOnlIne)
+                                {
+                                <span style="float: right; color: Red">不支持手机续期</span>
+                                    
+                                }
+                                else
+                                {
+                                <span style="float: right;"><a href="@Url.Action("MonthCardRenewal", "H5CardRenewal", new { source=1,cardId = @item.CardID, plateNo = @item.PlateNumber })" class="weui_btn weui_btn_mini weui_btn_primary">
+                                    续期</a> </span>
+                                }
+
+                            }
+                        </p>
+                          
+                    }
+                </div>
+            </div>
+        </div>
+        }
+    }
+    else
+    { 
+        
+        <div style="width: 100%; text-align: center; margin-top: 150px" id="divNoData">
+            <div>
+                <img src="/Content/mobile/images/list_not_data.png" />
+            </div>
+            <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+                找不到该车牌号！</div>
+        </div>
+    }
+</div>

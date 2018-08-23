@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "二维码管理";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    .weui_media_desc
+    {
+        height: 20px;
+    }
+</style>
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "XFJMMain")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            <a href="@Url.Action("Edit", "XFJMDerateQRCode")" ><img src="/Content/images/weixin/添加.png" width="25" height="25" style="margin-top: 5px" /></a>
+                &nbsp;
+                <a href="javascript:;" id="showActionSheet"><img src="/Content/images/weixin/条件查询.png" width="30" height="30" style="margin-top: 5px" /></a>
+        </div>
+        <span style="float: right; color: #fff">二维码管理&nbsp;&nbsp;</span>
+    </div>
+    <div class="top60"></div>
+
+    <div id="divDataList"></div>
+    <div id="divNotData" style="width: 100%; text-align: center; margin-top: 150px; display:none">
+        <div>
+            <img src="/Content/mobile/images/list_not_data.png" />
+        </div>
+        <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+            无商家打折二维码，您可更改查询条件后重新查询！</div>
+    </div>
+</div>
+<!--BEGIN actionSheet-->
+<div id="actionSheet_wrap">
+    <div class="weui_mask_transition" id="mask">
+    </div>
+    <div class="weui_actionsheet" id="weui_actionsheet">
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        优免规则</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" id="sltParkDerate">
+                        <option value="">所有</option>
+                        @{
+                            List<Common.Utilities.EnumContext> parkDerates = ViewBag.DerateContexts as List<Common.Utilities.EnumContext>;
+                            foreach (var item in parkDerates)
+                            {
+                                <option value="@item.EnumString">@item.Description</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+             <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        状态</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" id="sltStatus">
+                        <option value="">不限</option>
+                        <option value="0">正常</option>
+                        <option value="1">无效</option>
+                    </select>
+                </div>
+            </div>
+           
+@*            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        开始时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="datetime-local" id="txtStartTime" value="@ViewBag.StartTime" placeholder="" />
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        结束时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="datetime-local" id="txtEndTime" value="@ViewBag.EndTime" placeholder="" />
+                </div>
+            </div>*@
+        </div>
+        <div class="weui_actionsheet_action">
+            <div class="weui_actionsheet_cell" id="actionsheet_query">
+                查询</div>
+        </div>
+    </div>
+</div>
+<!--END actionSheet-->
+<script type="text/javascript">
+    var currTotalRow = 0;
+    var currPageIndex = 0;
+    $(function () {
+        $("#showActionSheet").click(function () {
+            var mask = $('#mask');
+            var weuiActionsheet = $('#weui_actionsheet');
+            weuiActionsheet.addClass('weui_actionsheet_toggle');
+            mask.show().addClass('weui_fade_toggle').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+            });
+            $('#actionsheet_query').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+                StartQueryData();
+            });
+            weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+
+            function hideActionSheet(weuiActionsheet, mask) {
+                weuiActionsheet.removeClass('weui_actionsheet_toggle');
+                mask.removeClass('weui_fade_toggle');
+                weuiActionsheet.on('transitionend', function () {
+                    mask.hide();
+                }).on('webkitTransitionEnd', function () {
+                    mask.hide();
+                })
+            }
+        });
+        var a = 0, b = 0, c = 0;
+        window.onscroll = function () {
+            a = $(window).height();
+            b = $(document).scrollTop();
+            c = document.documentElement.scrollTop == 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
+            if (a + b >= c) {
+                SubmitQueryData(currPageIndex + 1);
+            }
+        }
+        StartQueryData();
+    });
+    function StartQueryData() {
+        currTotalRow = 0;
+        currPageIndex = 0;
+        $(".weui_panel").remove();
+        SubmitQueryData(currPageIndex + 1);
+    }
+    function SubmitQueryData(queryPageIndex) {
+        $("#divNotData").hide();
+        var derateId = $("#sltParkDerate").val();
+        var status = $("#sltStatus").val();
+        var gdata = {};
+        gdata.derateId = derateId;
+        gdata.status = status;
+        gdata.page = queryPageIndex;
+        gdata.r = Math.random();
+        $.post("/XFJMDerateQRCode/GetParkDerateQRcodeData", gdata, function (data) {
+            if (data.result) {
+                if (data.data.length > 0) {
+                    currPageIndex = queryPageIndex;
+                    for (var i = 0; i < data.data.length; i++) {
+                        FillParkDerateQRCodeHtml(data.data[i].SellerName, data.data[i].RecordID, data.data[i].UseTimesDes, data.data[i].DerateName, data.data[i].DerateValue, data.data[i].StartTimeToString, data.data[i].EndTimeToString, data.data[i].DataSource, data.data[i].OperatorAccount, data.data[i].Remark, data.data[i].CreateTimeToString, data.data[i].DerateType)
+                    }
+                } else {
+                    if ($(".weui_panel").length == 0) {
+                        $("#divNotData").show();
+                    } else {
+                        WxAlert("", "已经到最后一条记录了");
+                    }
+                }
+            } else {
+                WxAlert("", data.msg);
+            }
+        });
+    }
+    function FillParkDerateQRCodeHtml(SellerName, RecordID, UseTimesDes, DerateName, DerateValue, StartTimeToString, EndTimeToString, DataSource, OperatorAccount, Remark, CreateTimeToString, DerateType) {
+        Remark = Remark == null ? "" : Remark;
+        UseTimesDes = UseTimesDes == null ? "" : UseTimesDes;
+        var tr = " <div class=\"weui_panel\" id=\"div_" + RecordID + "\">";
+        tr += "<div class=\"weui_panel_hd\" style=\"height: 20px\">";
+        tr += "<div style=\"float: left\">" + SellerName + "</div>";
+        tr += " <div style=\"float: right\"><a href=\"javascript:void(0)\" class=\"weui_btn weui_btn_mini weui_btn_warn\" onclick=\"return btnDeleteQRCode('" + RecordID + "')\">删除</a></div></div>";
+        tr += " <div class='weui_panel_bd'><div class='weui_media_box weui_media_text'>";
+        tr += " <p class='weui_media_desc'>优免规则：" + DerateName + "</p>";
+        if (DerateType == 8) {
+            tr += " <p class='weui_media_desc'>优免金额：" + DerateValue + "元</p>";
+        }
+        if (DerateType == 9 || DerateType == 3) {
+            tr += " <p class='weui_media_desc'>优免时间：" + DerateValue + "分钟</p>";
+        }
+        if (DerateType == 10) {
+            tr += " <p class='weui_media_desc'>优免：" + DerateValue + "天</p>";
+        }
+        tr += " <p class=\"weui_media_desc\">可使用次数/已使用次数：" + UseTimesDes + "</p>";
+        tr += " <p class=\"weui_media_desc\">开始时间：" + StartTimeToString + "</p>";
+        tr += " <p class=\"weui_media_desc\">结束时间：" + EndTimeToString + "</p>";
+        tr += "  <p class=\"weui_media_desc\">添加人：" + OperatorAccount + "</p>";
+        tr += "  <p class=\"weui_media_desc\">添加时间：" + CreateTimeToString + "</p>";
+        tr += "  <p class=\"weui_media_desc\">备注：" + Remark + "</p>";
+        tr += "   <ul class=\"weui_media_info\">";
+        tr += "  <li class=\"weui_media_info_meta\"><a href=\"/XFJMDerateQRCode/Edit?recordId=" + RecordID + "\" class=\"weui_btn weui_btn_mini weui_btn_primary\">修改</a></li>";
+        tr += "  <li class=\"weui_media_info_meta weui_media_info_meta_extra\"><a href=\"/XFJMDerateQRCode/AddIdenticalQRCode?recordId=" + RecordID + "\" class=\"weui_btn weui_btn_mini weui_btn_primary\">复制添加二维码</a></li>";
+        tr += "  <li class=\"weui_media_info_meta weui_media_info_meta_extra\"><a href=\"/XFJMDerateQRCode/DerateQRCode?recordId=" + RecordID + "\" class=\"weui_btn weui_btn_mini weui_btn_primary\">查看二维码</a></li>";
+         tr += "   </ul>";
+        tr += "  </div></div>";
+        tr += "</div>"
+        $("#divDataList").append(tr);
+    }
+    var selectDeleteRecordId;
+    function btnDeleteQRCode(recordId) {
+        selectDeleteRecordId = recordId;
+        WxConfirm("", "您确定要删除该二维码吗？", "SubmitDeleteQRCode");
+    }
+    function SubmitDeleteQRCode() {
+        var gdata = {};
+        gdata.recordId = selectDeleteRecordId;
+        gdata.r = Math.random();
+        $.post("/XFJMDerateQRCode/Delete", gdata, function (data) {
+            if (data.result) {
+                $("#div_" + selectDeleteRecordId).remove();
+                WxAlert("", "删除成功!");
+            } else {
+                WxAlert("", data.msg);
+            }
+        });
+    }
+</script>

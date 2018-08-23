@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "黑名单管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/DateExtensions.js" type="text/javascript"></script>
+<script src="/Scripts/parking/blacklist.js?v=1" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="west" split="true" title="车场信息" style="width: 250px;">
+      <div style="margin:5px 0px 5px 5px; text-align:left">
+          <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox"/>&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()"/>
+      </div>
+    <ul id="parkingTree"></ul>
+</div>
+<div region="center" title="黑名单信息" style="padding:2px; ">
+    <div style="margin-bottom: 2px">
+        &nbsp;车牌号：<input class="easyui-textbox" style="width: 100px; height: 25px" id="txtQueryPlateNo" />
+        &nbsp; <a href="javascript:void(0)" id="btnQueryBackListData" class="easyui-linkbutton" style="width: 50px;height: 28px">搜索</a>
+    </div>
+    <div style="height: 95.5%">
+        <table fit="true" id="tableBlackList"></table>
+    </div>
+</div>
+</div>
+<div id="divBlackListBox" style="display:none">
+    <form id="divBlackListBoxForm" class="easyui-form">
+    <div title="编辑车辆黑名单" style="padding: 20px;">
+        <input type="hidden" name="PKID" id="PKID" />
+        <input type="hidden" name="RecordID" id="RecordID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td colspan="2">
+                 <input type="hidden" name="PlateNumber" id="hiddPlateNo" />
+                  @Html.Action("Index", "ParkPlateNo", new { area = "", txtWidth = "100px" })
+                </td>
+            </tr>
+             <tr>
+               <td align="right">
+                    类型：
+                </td>
+                <td >
+                  <input id="cmbStatus" name="Status"  class="easyui-combobox" style=" width:200px"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    原因：
+                </td>
+                <td>
+                 <input id="txtRemark" name="Remark" class="easyui-textbox" data-options="multiline:true" style="width:200px;height:40px">
+                </td>
+            </tr>
+           
+        </table>
+    </div>
+    </form>
+</div>
+

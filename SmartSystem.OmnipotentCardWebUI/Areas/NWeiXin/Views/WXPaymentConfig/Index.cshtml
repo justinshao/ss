@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "微信支付配置";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/nweixin/paymentconfig.js?v=1" type="text/javascript"></script>
+<script src="/Scripts/fileupload/vendor/jquery.ui.widget.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.iframe-transport.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.fileupload.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+<div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+     <div region="center" title="微信支付配置" style="padding: 2px;">
+        <form id="wxPaymentConfigBox" style="margin-left: 20px; margin-top: 10px; font-size: 12px" method="post">
+        <input type="hidden" id="hiddCompanyID" name="CompanyID" />
+        <table cellpadding="5">
+        <tr>
+                <td colspan="2">
+                    <div style="margin-bottom: 5px">
+                        1、带“<span style="color: Red">*</span>”表示必填项</div>
+                    <div style="margin-bottom: 5px">
+                        2、开通微信支付后，登录微信支付商户平台（https://pay.weixin.qq.com）后 可获取和设置 支付密钥、商户号、证书文件路径、证书文件密码</div>
+                    <div style="margin-bottom: 5px">
+                        3、证书文件必须为“apiclient_cert.p12”文件</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 130px">
+                    商户支付密钥：
+                </td>
+                <td>
+                    <input type="password" type="text" name="PartnerKey" style="width: 400px;height:32px"  class="easyui-textbox" id="txtPartnerKey" />&nbsp;<span style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 130px">
+                    商户号：
+                </td>
+                <td>
+                    <input type="text" name="PartnerId" class="easyui-textbox" id="txtPartnerId" style="width: 400px;height:32px"  data-options="prompt:'微信支付商户平台中获取'" />&nbsp;<span style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 130px">
+                    证书文件路径：
+                </td>
+                <td>
+                    
+                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:100px;height:32px"  onclick="btnSelectFile()">上传证书</a><span style="color: Red">*</span> 
+                        <span style="color: #A3A3A3;">微信支付商户平台中下载</span> <span id="spanUploadFileResult"></span>
+                    <input type="hidden" id="hiddCertPath" name="CertPath" />
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 130px">
+                    证书文件密码：
+                </td>
+                <td>
+                    <input type="password" name="CertPwd" class="easyui-textbox" id="txtCertPwd" style="width: 400px;height:32px"  />&nbsp;<span style="color: Red">*</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="margin-left: 150px">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width:150px;height:32px" id="btnSubmitFormData" onclick="btnSubmitForm()">保 &nbsp;&nbsp;&nbsp;存 &nbsp;</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </form>
+        
+    </div>
+</div>
+
+<input type="file" name="files" id="fileupload_input" class="formtext" style="display: none" />

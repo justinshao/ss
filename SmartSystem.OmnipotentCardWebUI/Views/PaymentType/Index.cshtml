@@ -1,0 +1,101 @@
+﻿@if (ViewBag.ShowWaitPayMoney || ViewBag.ShowPreferentialMoney)
+{ 
+    <div class="weui_cells">
+    @if (ViewBag.ShowWaitPayMoney)
+    { 
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>支付金额</p>
+            </div>
+            <div class="weui_cell_ft">¥ <span style="color:Red" data-totalpaymoney="@ViewBag.PayMoney" id="span_total_pay_money">@ViewBag.PayMoney</span></div>
+        </div>
+    }
+    @if (ViewBag.ShowPreferentialMoney)
+    {
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    已优惠</p>
+            </div>
+            <div class="weui_cell_ft">
+                ¥ @ViewBag.PreferentialMoney</div>
+        </div>
+    }
+</div>
+}
+<div class="weui_cells_title fontbold">
+    支付方式</div>
+<div class="weui_cells weui_cells_radio">
+  @if (ViewBag.SourceClient == Common.Entities.Enum.RequestSourceClient.WeiXin)
+  {
+    <label class="weui_cell weui_check_label" for="x_weixinpay">
+        <div class="weui_cell_bd weui_cell_primary">
+            <p>
+                微信支付</p>
+        </div>
+        <div class="weui_cell_ft">
+            <input type="radio" class="weui_check" name="radiopaytype" id="x_weixinpay" value="@((int)Common.Entities.Enum.PaymentChannel.WeiXinPay)" checked="checked"/>
+            <span class="weui_icon_checked"></span>
+        </div>
+    </label>
+  }
+  @if (ViewBag.SourceClient == Common.Entities.Enum.RequestSourceClient.AliPay)
+  {
+    <label class="weui_cell weui_check_label" for="x_weixinpay">
+        <div class="weui_cell_bd weui_cell_primary">
+            <p>
+                支付宝支付</p>
+        </div>
+        <div class="weui_cell_ft">
+            <input type="radio" class="weui_check" name="radiopaytype" id="x_alipay" value="@((int)Common.Entities.Enum.PaymentChannel.AliPay)" checked="checked"/>
+            <span class="weui_icon_checked"></span>
+        </div>
+    </label>
+  }
+</div>
+<div style="margin-top: 70px"></div>
+<div class="settlement-bottom-box">
+<button type="submit" class="weui_btn weui_btn_primary" id="btnSubmitPaymentRequest">立即支付</button>
+</div>
+
+@* <div class="settlement-bottom-box">
+   <div class="pull-left" style="margin-left:10px;margin-top:2px; line-height:25px">
+        <div style="font-size:15px; font-weight:bold">应支付金额：<span style="color:Red">¥ </span><span style="color:Red" data-totalpaymoney="@ViewBag.PayMoney" id="span_total_pay_money">@ViewBag.PayMoney</span></div>
+        <div style="font-size:13px;color:#888"><span>已优惠：¥ @ViewBag.PreferentialMoney</span> &nbsp;&nbsp;</div>
+    </div>
+    <button type="submit" class="pull-right choose-btn pull-right-payment" style="margin-right:0px;" id="btnSubmitPaymentRequest">立即支付</button>
+</div>*@
+<div id="loadingSubmitPayToast" class="weui_loading_toast" style="display: none;">
+    <div class="weui_mask_transparent">
+    </div>
+    <div class="weui_toast">
+        <div class="weui_loading">
+            <div class="weui_loading_leaf weui_loading_leaf_0">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_1">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_2">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_3">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_4">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_5">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_6">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_7">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_8">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_9">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_10">
+            </div>
+            <div class="weui_loading_leaf weui_loading_leaf_11">
+            </div>
+        </div>
+        <p class="weui_toast_content">
+            提交中...</p>
+    </div>
+</div>

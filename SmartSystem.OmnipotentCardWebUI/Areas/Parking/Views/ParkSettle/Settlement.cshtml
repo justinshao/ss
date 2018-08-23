@@ -1,0 +1,75 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "结算单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/Settlement.js")
+
+<div class="easyui-layout"  fit="true">
+<div region="center" title="结算单" style="padding:2px; ">
+    <div style="margin:3px 0px 3px 5px">
+          <div style="margin-bottom: 5px">  
+            <table>
+                <tr>
+                    <td align="right">车场名称：</td><td><input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/></td>
+                    <td>结算帐期：</td><td><select id="selectPriod" style="width: 140px;" class="my_select"><option value="-1">全部</option></select></td>
+                    <td>帐单状态：</td><td><select id="selectStatus" style="width: 140px;" class="my_select">
+                    <option value="-1">全部</option>
+                    <option value="0">待审批(车场)</option>
+                    <option value="1">待审批(平台)</option>
+                    <option value="2">待转款</option>
+                    <option value="3">已付款</option>
+                    <option value="4">已收款</option>
+                    </select></td>
+                    <td></td><td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+                    <td></td><td><a href="javascript:void(0)" id="btnApply" class="easyui-linkbutton" style="width: 80px;height: 28px">结算申请</a></td>
+               </tr>
+            </table>  
+         </div>
+    </div>
+    <div style="height: 88%;">        
+        <table fit="true" id="tableListBox" >
+        </table>
+    </div>
+</div>
+<div id="divAuditing" style="display: none">
+    <form id="divAuditingForm" class="easyui-form">
+    <div title="结算申请" style="padding: 20px;">
+        <input type="hidden" name="CPID" id="hiddCPID" />
+        <input type="hidden" name="IsCal" id="IsCal" />
+         <input type="hidden" name="txtMaxAmount" id="txtMaxAmount" />
+         <input type="hidden" name="txtMinAmount" id="txtMinAmount" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right" id="txtAuditingRemark" colspan="2" style=" font-size:12px; color:Red; font-weight:bold; text-align:left">
+                    上次结算时间：2818-01-01 22:22:22
+                </td>
+            </tr>
+            
+            <tr>
+                <td align="right">开始时间：</td><td><input class="easyui-datetimebox my_datetimebox" type="text" id="txtStartTime" style="width:150px;height:25px; line-height:25px"  /></td>
+                  </tr>
+              <tr>
+                <td align="right">结束时间：</td><td><input class="easyui-datetimebox my_datetimebox" type="text" id="txtEndTime" style="width:150px;height:25px; line-height:25px"  /></td>
+             </tr>
+             <tr>
+                <td align="right">结算金额：</td><td><input class="my_textbox" style="width: 140px; " disabled id="txtTotalAmount" /></td><td><a href="javascript:void(0)" id="btnCalAmount" class="easyui-linkbutton">计算金额</a></td>
+             </tr>
+             <tr>
+                <td align="right">  手续费：</td><td><input class="my_textbox" style="width: 140px; " disabled id="txtFeeAmount" /></td><td><span style=" font-size:12px; color:Red; font-weight:bold; text-align:left" id="spanMinAmount">(最小提现金额500)</span></td>
+             </tr>
+              <tr>
+                <td align="right">应结金额：</td><td><input class="my_textbox" style="width: 140px; " disabled id="txtReceiveAmount" /></td><td><span style=" font-size:12px; color:Red; font-weight:bold; text-align:left" id="spanMaxAmount">(最大提现金额500)</span></td>
+             </tr>
+             <tr>
+                <td align="right">备注：</td><td colspan=2><input class="easyui-textbox" data-options="multiline:true"  id="txtRemark" style="width:250px;height:40px"></td>
+             </tr>
+            <tr class="trUserInfo">
+               <td></td><td><a href="javascript:void(0)" id="btnBuildSettlement" class="easyui-linkbutton" style="width: 80px;height: 28px">生成结算单</a></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+

@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "关键字管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+    <div region="center" title="图文管理" style="background: #eee;">
+          <table fit="true" id="tableKeyword">
+        </table>
+    </div>
+</div>
+<div id="divKeywordBox" style="display:none">
+    <form id="divKeywordBoxForm" class="easyui-form">
+    <div title="编辑关键字" style="padding: 20px;">
+        <input type="hidden" name="ID" id="ID" />
+        <input type="hidden" name="CompanyID" id="hiddCompanyID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    关键词
+                </td>
+                <td>
+                    <input id="txtKeyword" name="Keyword" required="true" style="width: 230px; height: 25px" class="easyui-validatebox form-control"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    匹配类型
+                </td>
+                <td>
+                     <select class="easyui-combobox" style="width: 230px; height: 25px" name="MatchType" id="cmbMatchType">
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    回复类型
+                </td>
+                <td>
+                 <select class="easyui-combobox" style="width: 230px; height: 25px" name="KeywordType" id="cmbKeywordType">
+                </select>
+                </td>
+            </tr>
+             <tr class="trArticle" style="display:none">
+                <td align="right">
+                    回复图文
+                </td>
+                <td>
+                    <select class="easyui-combobox" style="width: 230px; height: 25px" name="ArticleGroupID" id="cmbArticleGroupID">
+                </select>
+                </td>
+            </tr>
+            <tr class="trText" style="display:none">
+                <td align="right">
+                    回复内容
+                </td>
+                <td>
+                     <input class="easyui-textbox" data-options="multiline:true" name="Text" id="txtText" style="width: 230px;
+                        height: 150px" />
+                </td>
+            </tr>
+         
+        </table>
+    </div>
+    </form>
+</div>
+<script src="/Scripts/nweixin/keyword.js?v=3"  type="text/javascript"></script>

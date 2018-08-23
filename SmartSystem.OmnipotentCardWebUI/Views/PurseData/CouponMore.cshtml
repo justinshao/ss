@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "优惠券详情";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<script src="/Scripts/BaseSize.js?v=1" type="text/javascript"></script>
+<link href="/Content/PurseAndCoupon.css" rel="stylesheet" type="text/css" />
+
+<div class="yhjxq">
+        <ul> 
+            <li style=" margin-top:1.2rem;"><div class="yhjxq_left" style=" font-size:1.7rem !important;">优惠价格: </div>  <div  class="yhjxq_right" style=" color:#e8161d">@ViewBag.cut  元</div> </li>
+            <li><div class="yhjxq_left">有效期: </div>  <div class="yhjxq_right">@ViewBag.timestr - @ViewBag.timeend</div> </li>
+            <li><div class="yhjxq_left">使用范围:</div>  <div class="yhjxq_right">@ViewBag.brife</div></li>
+            <li><div class="yhjxq_left">优惠类型:</div>  <div class="yhjxq_right">@ViewBag.coupontype</div> </li>
+            <li><div class="yhjxq_left">特殊说明:</div>  <div class="yhjxq_right">@ViewBag.activityname</div> </li>
+        </ul>
+</div>

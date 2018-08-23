@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "登录超时";
+}
+<div style="height:400px;line-height:400px;overflow:hidden; width:100%; text-align:center">
+    <h2>您未登陆或登录已超时，系统将在&nbsp;<span id="spanTime" style="color:Red;">3</span>&nbsp;秒后跳转到登录页面 &nbsp;<a href="/Login/Index" style="font-size:15px">立即跳转</a></h2>
+</div>
+<script type="text/javascript">
+    var i = 3;
+    function Timer() {
+        if (i == 0) {
+            parent.window.location.href = '/Login/Index';
+        } else {
+            $("#spanTime").text(i);
+        }
+        
+        i--;
+        setTimeout("Timer()", 1000);
+    }
+    Timer();  
+</script>
+

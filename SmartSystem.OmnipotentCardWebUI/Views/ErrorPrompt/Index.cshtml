@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "系统提示";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+  <div class="row">
+     
+     <div class="weui_msg top20" style="padding-top:0px">
+            <div class="weui_icon_area">
+                <i class="weui_icon_msg weui_icon_warn"></i>
+            </div>
+            <div class="weui_text_area">
+                <h3 class="weui_msg_title">@ViewBag.ErrorMessage</h3>
+                <p class="weui_msg_desc">@ViewBag.CustomerServicePhone</p>
+            </div>
+        </div>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(ViewBag.BackUrl))
+    {
+       <div style="position:fixed;bottom:0; left:0px; right:0px;">
+        <a href="@ViewBag.BackUrl" class="weui_btn weui_btn_primary">返回</a>
+       </div>
+    }
+    else { 
+     <div style="position:fixed;bottom:0; left:0px; right:0px;">
+        <a href="javascript:void(0)" id="getCloseWindowRequest" class="weui_btn weui_btn_primary">返回</a>
+       </div>
+    }
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: '@ViewBag.AppId',
+        timestamp: '@ViewBag.Timestamp',
+        nonceStr: '@ViewBag.NonceStr',
+        signature: '@ViewBag.Signature',
+        jsApiList: [
+            'closeWindow',
+        ]
+    });
+    document.querySelector('#getCloseWindowRequest').onclick = function () {
+        wx.closeWindow();
+    };
+</script>
+

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "车辆管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#parkingTree').tree({
+            url: '/ParkingData/GetParkingTreeData',
+            onSelect: function () {
+                   
+            }
+        })
+    })
+    function aa() {
+        alert("a");
+    }
+</script>
+
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+    <div region="west" split="true" title="车场信息" style="width: 250px;">
+        <div style="margin:5px 0px 5px 5px; text-align:left">
+            <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox" />&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()" />
+        </div>
+        <ul id="parkingTree"></ul>
+    </div>
+
+    <div region="center" title="车辆信息" style="padding:2px;">
+        <div>23</div>
+        <div style="width:100px; height:100px; border:1px solid #ff00ff;" onclick="aa();"></div>
+    </div>
+</div>

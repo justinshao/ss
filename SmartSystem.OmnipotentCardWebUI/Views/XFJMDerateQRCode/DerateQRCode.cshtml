@@ -1,0 +1,61 @@
+﻿@using Common.Entities.Parking;
+@model ParkDerateQRcode
+@{
+    ViewBag.Title = "折扣二维码";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "XFJMDerateQRCode")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            折扣二维码</div>
+    </div>
+    <div style="margin-top: 45px">
+    </div>
+    <div style="margin-left: 5px; margin-right: 5px">
+        <div style="color: Red">
+            1、点击右上角功能列表，可将该二维码分享给待打折车主</div>
+        <div style="color: Red">
+            2、车主长按二维码在弹出框中选择识别二维码</div>
+        <div style="color: Red">
+            3、跳转页面后输入待打折的车牌号</div>
+    </div>
+    <div style="width: 100%; text-align: center; margin-top: 10px">
+        <img  class="img-thumbnail" style="width:200px" src="data:image/png;base64,@Model.ImageData"/></div>
+    <div style="margin-top: 20px">
+    </div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    商家名称</p>
+            </div>
+            <div class="weui_cell_ft">@Model.SellerName</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    优免规则</p>
+            </div>
+            <div class="weui_cell_ft">@Model.DerateName</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    有效开始时间</p>
+            </div>
+            <div class="weui_cell_ft">@Model.StartTime.ToPlatDateTimeString()</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    有效结束时间</p>
+            </div>
+            <div class="weui_cell_ft">@Model.EndTime.ToPlatDateTimeString()</div>
+        </div>
+    </div>
+</div>
+ @Html.Action("Index", "WeiXinShare", new { shareaction = @ViewBag.ShareAction, companyid = ViewBag.CompanyID, title = "消费减免二维码", description="智能停车场,扫码打折方便快捷" })

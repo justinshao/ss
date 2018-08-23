@@ -1,0 +1,171 @@
+﻿@{
+    ViewBag.Title = "商家充值记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    .weui_media_desc
+    {
+        height: 20px;
+    }
+</style>
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "XFJMMain")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            <a href="javascript:;" id="showActionSheet">
+                <img src="/Content/images/weixin/条件查询.png" width="30" height="30" style="margin-top: 5px" /></a>
+        </div>
+        <span style="float: right; color: #fff">商家充值记录&nbsp;&nbsp;</span>
+    </div>
+    <div class="top60">
+    </div>
+    <div id="divDataList"></div>
+    <div id="divNotData" style="width: 100%; text-align: center; margin-top: 150px; display:none">
+        <div>
+            <img src="/Content/mobile/images/list_not_data.png" />
+        </div>
+        <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+            无商家充值记录，您可更改查询条件后重新查询！</div>
+    </div>
+</div>
+<!--BEGIN actionSheet-->
+<div id="actionSheet_wrap">
+    <div class="weui_mask_transition" id="mask">
+    </div>
+    <div class="weui_actionsheet" id="weui_actionsheet">
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        来源</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" id="sltOrderSource">
+                        <option value="-1">所有</option>
+                        @{
+                            List<Common.Utilities.EnumContext> orderSources =ViewBag.OrderSource as List<Common.Utilities.EnumContext>;
+                            foreach (var item in orderSources)
+                            {
+                                <option value="@item.EnumValue">@item.Description</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        开始时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="datetime-local" id="txtStartTime" value="@ViewBag.StartTime" placeholder="" />
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        结束时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="datetime-local" id="txtEndTime" value="@ViewBag.EndTime" placeholder="" />
+                </div>
+            </div>
+        </div>
+        <div class="weui_actionsheet_action">
+            <div class="weui_actionsheet_cell" id="actionsheet_query">
+                查询</div>
+        </div>
+    </div>
+</div>
+<!--END actionSheet-->
+<script type="text/javascript">
+    var currTotalRow = 0;
+    var currPageIndex = 0;
+    $(function () {
+        $("#showActionSheet").click(function () {
+            var mask = $('#mask');
+            var weuiActionsheet = $('#weui_actionsheet');
+            weuiActionsheet.addClass('weui_actionsheet_toggle');
+            mask.show().addClass('weui_fade_toggle').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+            });
+            $('#actionsheet_query').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+                StartQueryData();
+            });
+            weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+
+            function hideActionSheet(weuiActionsheet, mask) {
+                weuiActionsheet.removeClass('weui_actionsheet_toggle');
+                mask.removeClass('weui_fade_toggle');
+                weuiActionsheet.on('transitionend', function () {
+                    mask.hide();
+                }).on('webkitTransitionEnd', function () {
+                    mask.hide();
+                })
+            }
+        });
+        var a = 0, b = 0, c = 0;
+        window.onscroll = function () {
+            a = $(window).height();
+            b = $(document).scrollTop();
+            c = document.documentElement.scrollTop == 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
+            if (a + b >= c) {
+                SubmitQueryData(currPageIndex + 1);
+            }
+        }
+        StartQueryData();
+    });
+    function StartQueryData() {
+        currTotalRow = 0;
+        currPageIndex = 0;
+        $(".weui_panel").remove();
+        SubmitQueryData(currPageIndex + 1);
+    }
+    function SubmitQueryData(queryPageIndex) {
+        $("#divNotData").hide();
+        var orderSource = $("#sltOrderSource").val();
+        var startTime = $("#txtStartTime").val();
+        var endTime = $("#txtEndTime").val();
+        var gdata = {};
+        gdata.orderSource = orderSource;
+        gdata.starttime = startTime;
+        gdata.endtime = endTime;
+        gdata.page = queryPageIndex;
+        gdata.r = Math.random();
+        $.post("/SellerRecharge/GetRechargeRecordData", gdata, function (data) {
+            if (data.result) {
+                if (data.data.length > 0) {
+                    currPageIndex = queryPageIndex;
+                    for (var i = 0; i < data.data.length; i++) {
+                        FillSellerRechargeHtml(data.data[i].OrderNo,data.data[i].PayWay, data.data[i].Amount, data.data[i].OrderSource, data.data[i].OrderTime, data.data[i].Balance)
+                    }
+                } else {
+                    if ($(".weui_panel").length == 0) {
+                        $("#divNotData").show();
+                    } else {
+                        WxAlert("", "已经到最后一条记录了");
+                    }
+                }
+            } else {
+                WxAlert("", data.msg);
+            }
+        });
+    }
+    function FillSellerRechargeHtml(OrderNo, PayWay, Amount, OrderSource, OrderTime, Balance) {
+        var tr = " <div class=\"weui_panel\">";
+        tr += "<div class=\"weui_panel_hd\" style=\"height: 20px\">";
+        tr += "<div style=\"float: left\">" + OrderNo + "</div>";
+        tr += "   <div style=\"float: right\"></div></div>";
+        tr += " <div class='weui_panel_bd'><div class='weui_media_box weui_media_text'>";
+        tr += " <p class='weui_media_desc'>充值金额：" + Amount + "</p>";
+        tr += " <p class=\"weui_media_desc\">余额：" + Balance + "</p>";
+        tr += " <p class=\"weui_media_desc\">支付方式：" + PayWay + "</p>";
+        tr += " <p class=\"weui_media_desc\">充值来源：" + OrderSource + "</p>";
+        tr += "  <p class=\"weui_media_desc\">充值时间：" + OrderTime + "</p>";
+        tr += " </div></div>";
+        tr += "</div>"
+        $("#divDataList").append(tr);
+    }
+</script>

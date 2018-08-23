@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "作用域管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/users/systemscope.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="west"  title="作用域" style="width: 25%" collapsible="false">
+<div style="padding:5px 0;">
+             @if (ViewBag.AddScope)
+            { 
+                <a href="#" class="easyui-linkbutton" id="btnAdd" data-options="iconCls:'icon-add'">添加</a>
+            }
+            @if (ViewBag.UpdateScope)
+            { 
+                <a href="#" class="easyui-linkbutton" id="btnUpdate" data-options="iconCls:'icon-edit'">
+                    修改</a>
+            }
+            @if (ViewBag.DeleteScope)
+            { 
+                <a href="#" class="easyui-linkbutton" id="btnDelete" data-options="iconCls:'icon-remove'">
+                    删除</a>
+            }
+            
+		<a href="#" class="easyui-linkbutton" id="btnReload" data-options="iconCls:'icon-reload'">刷新</a>
+	</div>
+
+    <ul id="treeScope" lines="true"> </ul>
+</div>
+<div region="center" title="作用域授权小区" style="width: 70%">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north'" style="height: 40px">
+                <div style="margin: 5px 0px 5px 10px">
+                @if (ViewBag.ScopeAuthorizeVillage)
+                { 
+                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="return btnScopeAuthorizeVillage()">确认授权</a>
+                }
+                </div>
+            </div>
+
+            <div data-options="region:'center',border:false">
+               <ul id="treeScopeVillage" style="margin:20px 0 0 10px" lines="true"></ul>
+            </div>
+        </div>
+</div>
+</div>
+<div id="editScopeBox" style="display:none">
+    <form id="editScopeBoxForm" class="easyui-form">
+    <div title="编辑作用域" style="padding: 20px;">
+        <input type="hidden" name="ASID" id="hiddASID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    作用域名称：
+                </td>
+                <td>
+                    <input id="txtASName" name="ASName" required="true" class="easyui-textbox form-control" style="width:150px"  missingmessage="不能为空" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+

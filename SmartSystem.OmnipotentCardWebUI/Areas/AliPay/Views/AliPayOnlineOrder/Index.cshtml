@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "支付宝订单信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/DateExtensions.js" type="text/javascript"></script>
+<script src="/Scripts/alipay/onlineorder.js?v=3" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+    <div region="center" title="支付宝订单信息" style="padding: 2px;">
+    <div style="margin: 5px 0px 5px 5px">
+      &nbsp;<span style="font-size: 12px">所属车场</span>：
+            <input id="cmbParking" name="ParkingId" class="easyui-combobox" style="width: 120px;line-height: 25px; height: 25px" />
+        &nbsp;<span style="font-size: 12px">订单号</span>：<input class="easyui-textbox" style="width: 135px;
+            height: 25px" id="txtOrderId" />
+        &nbsp;<span style="font-size: 12px">车牌号</span>：@Html.Action("Index", "ParkPlateNo", new { area = "", txtWidth = "70px", needShowHead = false })
+        &nbsp;<span style="font-size: 12px">订单状态</span>：
+        <input id="cmbOrderStatus" name="Status" class="easyui-combobox" style="width: 120px;
+            line-height: 25px; height: 25px" /><br>
+        <div style="margin-top: 5px">
+            &nbsp;<span style="font-size: 12px">订单类型</span>：
+            <input id="cmbOrderType" name="OrderType" class="easyui-combobox" style="width: 120px;
+                line-height: 25px; height: 25px" />
+            &nbsp;<span style="font-size: 12px">订单时间</span>：<input class="easyui-datetimebox"
+                style="width: 150px; height: 25px" id="txtOrderStartTime" />
+            <span style="font-size: 12px">至</span>
+            <input class="easyui-datetimebox" style="width: 150px; height: 25px" id="txtOrderEndTime" />
+             @if(ViewBag.NeedShowBWYParking)
+            {
+                 <input type="hidden" id="hiddNeedShowBWYParking" value="@ViewBag.NeedShowBWYParking"/>
+                  <span style="font-size: 12px">所属外部车场：</span>
+            <input id="cmExternalPKID" name="ExternalPKID" class="easyui-combobox" style="width: 120px;line-height: 25px; height: 25px" />
+            }
+            &nbsp; <a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 50px;
+                height: 28px">搜索</a>
+        </div>
+    </div>
+    <div style="height: 89%">
+        <table fit="true" id="tableOrder">
+        </table>
+    </div>
+    </div>
+    <input type="hidden" id="hiddDefaultStartDate" value="@ViewBag.DefaultStartDate" />
+    <input type="hidden" id="hiddDefaultEndDate" value="@ViewBag.DefaultEndDate" />
+</div>

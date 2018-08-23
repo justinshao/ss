@@ -1,0 +1,31 @@
+﻿ @{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ViewPage1</title>
+</head>
+<script type="text/javascript" src="../../../../Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    function tj(a, b, c) {
+        var parkingId = "";
+        $.ajax({
+            type: "POST",
+            url: "/MicroPay/pay",
+            data: "a=" + a + "&b=" + b + "&c=" + c + "",
+            async: true,
+            success: function (data) {
+                $('#tableCompany').treegrid('reload');
+            }
+        });
+    }
+    </script>
+<body>
+       <div style="width:100px;height:30px;border:1px solid #ff00ff;" onclick="tj('test','1','134718782904235766')";></div>
+</body>
+</html>
+
+

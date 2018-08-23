@@ -1,0 +1,102 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  background-color: #F4F4F4;
+  font-family: "方正兰亭黑";
+}
+
+/*  */
+
+.footer_msg {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #666;
+  margin-top: 4rem;
+}
+
+.godown {
+  color: #f0252b;
+  font-size: 1.4rem;
+}
+
+/* car_list */
+
+.car_list {
+  overflow-x: scroll;
+  padding: 4rem 0 4rem 3rem;
+  box-sizing: border-box;
+  display: flex;
+  /* flex-wrap: nowrap; */
+  background-color: #F4F4F4;
+  -webkit-overflow-scrolling: touch;
+}
+
+.car_list .list {
+  text-align: center;
+  width: 30rem !important;
+  margin-right: 2rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 2px #eee;
+}
+
+.car_list:last-child {
+  margin-right: 4rem !important;
+}
+
+.top {
+  height: 26.5rem;
+  background-color: #f0252b;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding-top: 5rem;
+  box-sizing: border-box;
+}
+
+.top p:nth-child(1) {
+  font-size: 1.9rem;
+  color: #fff;
+}
+
+.top p:nth-child(2) {
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.top p:nth-child(3) {
+  font-size: 2.85rem;
+  color: #fff;
+  margin-top: 5.5rem;
+}
+
+.top p:nth-child(4) {
+  font-size: 2.1rem;
+  color: #f0252b;
+  display: inline-block;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  border-radius: .3rem;
+  margin-top: 2rem;
+  background-color: #fff;
+}
+
+.bottom {
+  height: 9.5rem;
+  padding: 0 6.8rem;
+  background-color: #fff;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.bottom button {
+  width: 16.2rem;
+  height: 4rem;
+  border: 1px solid #f0252b;
+  border-radius: .5rem;
+  color: #f0252b;
+  font-size: 1.8rem;
+  background-color: #fff;
+  margin-top: 2.5rem;
+}

@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "优免券发放";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table_list
+    {
+        border: dashed #AAAAAA;
+        border-width: 1px 0px 0px 1px;
+    }
+    .table_list td, th
+    {
+        border: dashed #AAAAAA;
+        border-width: 0px 1px 1px 0px;
+        padding: 0px 0px;
+        height: 20px;
+    }
+    .table_list th
+    {
+        background-color: #F4F4F4;
+        height: 20px;
+    }
+</style>
+<script src="/Scripts/DateExtensions.js" type="text/javascript"></script>
+<script src="/Scripts/parking/parkcarderateqrcode.js?v=2" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="商家信息" style="width: 250px;">
+        <div style="margin: 5px 0px 5px 5px; text-align: left">
+            <input type="text" id="txtSearchTreeContent" style="width: 150px" class="my_textbox" />&nbsp;<input
+                type="button" style="width: 60px; height: 28px" value="搜索" class="easyui-linkbutton"
+                onclick="btnSearchTreeContent()" />
+        </div>
+        <ul id="parkSellerTree" lines="true">
+        </ul>
+    </div>
+    <div region="center" title="优免券发放" style="background: #eee;">
+        <div style="margin: 3px 0px 3px 10px">
+            &nbsp;<span>优免规则</span>：<input class="easyui-combobox" id="cmbQueryParkDerate" style="width: 150px" />
+            &nbsp;<span>状态</span>：<select id="sltStatus" style="width: 100px" class="my_select">
+                <option value="">不限</option>
+                <option value="0">正常</option>
+                <option value="1">无效</option>
+            </select>
+            &nbsp;<span>来源</span>：<select id="sltDerateQRCodeSource" style="width: 100px" class="my_select">
+                <option value="">不限</option>
+                <option value="0">管理处</option>
+                <option value="1">消费打折端</option>
+            </select>
+            &nbsp; <a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 50px;
+                height: 28px" onclick="return LoadParkQRCodeDerate()">查询</a>
+        </div>
+        <div style="height: 94.5%">
+            <table fit="true" id="tableQRCodeDerate">
+            </table>
+        </div>
+    </div>
+</div>
+<div id="divDerateQRCodeBox" style="display: none">
+    <form id="divDerateQRCodeBoxForm" class="easyui-form">
+    <div title="编辑优免二维码" style="padding: 20px;">
+        <input type="hidden" name="RecordID" id="RecordID" />
+        <input type="hidden" name="CanUseTimes" id="CanUseTimes" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right" style="width: 60px">
+                    优免规则
+                </td>
+                <td>
+                    <input class="easyui-combobox" name="DerateID" id="cmbEtidParkDerate" style="width: 150px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <span id="spanDerateValueDes">优免值</span>
+                </td>
+                <td>
+                    <input id="txtDerateValue" name="DerateValue" required="true" class="easyui-numberspinner form-control"
+                        value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width: 150px" /><span
+                            id="spanUnitDes"></span>
+                </td>
+            </tr>
+@*            <tr>
+                <td align="right">
+                    开始时间
+                </td>
+                <td>
+                    <input id="txtStartTime" name="StartTime" required="true" class="easyui-datetimebox  form-control"
+                        style="width: 150px" missingmessage="不能为空" />
+                </td>
+            </tr>*@
+            <tr>
+                <td align="right" style="width: 60px">
+                    所属车场
+                </td>
+                <td>
+                    <input class="easyui-combobox" name="PKID" id="cmbPKID" style="width: 150px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    券有效期至
+                </td>
+                <td>
+                    <input id="txtEndTime" name="EndTime" required="true" class="easyui-datetimebox  form-control"
+                        style="width: 150px" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    备注：
+                </td>
+                <td>
+                    <textarea name="Remark" id="txtRemark" class="easyui-validatebox  form-control" rows="2"
+                        style="width: 150px"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+<div id="divGrantDerateQRCodeBox" style="display: none">
+    <form id="divGrantDerateQRCodeBoxForm" class="easyui-form">
+    <div title="优免发券" style="padding: 10px; text-align: center;">
+        <input type="hidden" name="qid" id="hiddGrantDerateRecordID" />
+        <input type="hidden" name="vid" id="hiddGrantDerateVID" />
+        <input type="hidden" name="sellerName" id="hiddGrantDerateSellerName" />
+        <input type="hidden" name="derateName" id="hiddGrantDerateDerateName" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    发券数量
+                </td>
+                <td>
+                    <input id="txtNumber" name="number" required="true" class="easyui-numberspinner form-control"
+                        value="0" data-options="min:0,increment:1" missingmessage="不能为空" style="width: 150px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+<input type="hidden" id="hiddDefaultStartTime" value="@ViewBag.DefaultStartTime"/>
+<input  type="hidden" id="hiddDefaultEndTime" value="@ViewBag.DefaultEndTime"/>

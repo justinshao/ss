@@ -1,0 +1,36 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "月卡续期";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/cardextension.js")
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="center" title="月卡续期" style="padding: 2px; ">
+        <div style="margin: 3px 0px 3px 5px">
+            <div style="margin-bottom: 5px">
+                <table>
+                    <tr>
+                        <td align="right">车场名称：</td><td><input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/></td>
+                        <td align="right">线上线下：</td><td><select id="selectOnLineOffLine" style="width: 150px; " class="my_select"><option value="-1">全部</option><option value="0">线下</option><option value="1">线上</option></select> </td>
+                        <td align="right">车主名称：</td><td><input class="my_textbox" style="width: 150px; " id="txtOwner" /></td>
+                    </tr>
+                     <tr>
+                      
+                        <td align="right">车牌号码：</td><td><input class="my_textbox" style="width: 150px;" id="txtPlateNumber" />  </td>
+                        <td align="right">开始时间：</td><td><input class="easyui-datetimebox" type="text" id="txtStartTime" style="width: 150px;height:25px; line-height:25px" /></td>
+                        <td align="right">结束时间：</td><td><input class="easyui-datetimebox" type="text" id="txtEndTime" style="width: 150px;height:25px; line-height:25px" /></td>
+                        <td></td><td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="height: 88%;">
+            <table fit="true" id="tableListBox">
+            </table>
+        </div>
+    </div>
+</div>
+
+

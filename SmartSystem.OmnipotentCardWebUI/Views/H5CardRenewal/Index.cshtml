@@ -1,0 +1,172 @@
+﻿@using Common.Core;
+@using Common.Entities.WX;
+@model List<ParkUserCarInfo>
+@{
+    ViewBag.Title = "月卡续期";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+         <a href="@Url.Action("Index", "H5Home")"> <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            月卡续期</div>
+    </div>
+    <div style="margin-top: 45px">
+    </div>
+    <div class="weui_tab">
+        <div class="weui_navbar">
+            <div class="weui_navbar_item weui_bar_item_on" id="divPlateNo" data-type="0">
+                根据车牌号续期
+            </div>
+            <div class="weui_navbar_item"  id="divCardNo"  data-type="1">
+                根据月租车续期
+            </div>
+        </div>
+        <div class="weui_tab_bd temprecord">
+            @Html.Action("Index", "LicensePlate")
+            <div class="top10">
+            </div>
+            <input type="button" class="weui_btn weui_btn_primary" onclick="return btnRenewal()" value="去续期" />
+        </div>
+        <div class="weui_tab_bd monthrecord" style="display: none">
+            <div class="top50"></div>
+
+                 <div class="weui_cells weui_cells_access">
+                    <a class="weui_cell" href="/H5BindMobile/Index?returnUrl=/H5CardRenewal/Index_ShowItem=1">
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p id="spanMobile"></p>
+                        </div>
+                        <div class="weui_cell_ft">点击修改</div>
+                    </a>
+                   
+                </div>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    string strState = "<span style=\"float: right;color: Red\">[未知]</span>";
+                    if (item.State == 1 || item.State == 0)
+                    {
+                        strState = "<span style=\"float: right;color: #0EA9FB;font-size: 14px;\">[正常]</span>";
+                    }
+                    else if (item.State == 2)
+                    {
+                        strState = "<span style=\"float: right;color: #Red\">[已挂失]</span>";
+                    }
+                    else if (item.State == 3)
+                    {
+                        strState = "<span style=\"float: right;color: #Red\">[已停用]</span>";
+                    }
+                <div class="weui_panel">
+                    <div class="weui_panel_hd" style="font-size: 16px; font-weight: bold">
+                        <span>@item.PlateNumber</span>@Html.Raw(strState)</div>
+                    <div class="weui_panel_bd">
+                        <div class="weui_media_box weui_media_text">
+                            <p class="weui_media_desc">
+                                车场：@item.PKName</p>
+                            @if (item.State != 3)
+                            {
+                                <p class="weui_media_desc" style="height: 30px; line-height: 30px">
+                                    @if (item.EndDate == DateTime.MinValue)
+                                    {
+                                        <span>您还没有续期过</span> 
+                                    }
+                                    else if (item.EndDate.AddDays(-3) <= DateTime.Now)
+                                    { 
+                                        <span style="color: Red">有效期至：@item.EndDate.ToPlatString()</span>
+                                    }
+                                    else
+                                    { 
+                                        <span>有效期至：@item.EndDate.ToPlatString()</span> 
+                                    }
+                                    @if (item.State == 1 || item.State == 0)
+                                    {
+                                        if (!item.IsAllowOnlIne)
+                                        {
+                                        <span style="float: right; color: Red">不支持手机续期</span>
+                                    
+                                        }
+                                        else
+                                        {
+                                        <span style="float: right"><a href="@Url.Action("MonthCardRenewal", "H5CardRenewal", new { cardId = @item.CardID })" class="weui_btn weui_btn_mini weui_btn_primary">
+                                            续期</a> </span>
+                                        }
+
+                                    }
+                                </p>
+                          
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+            else
+            { 
+        
+                <div style="width: 100%; text-align: center; margin-top: 150px" id="divNoData">
+                    <div>
+                        <img src="/Content/mobile/images/list_not_data.png" />
+                    </div>
+                    <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+                        您暂无月卡信息！</div>
+                </div>
+            }
+        </div>
+    </div>
+    <input type="hidden" id="hiddDefaultShowItem" value="@ViewBag.DefaultShowItem" />
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".weui_navbar_item").click(function () {
+            $(".weui_navbar_item").removeClass("weui_bar_item_on");
+            $(this).addClass("weui_bar_item_on");
+            var type = $(this).attr("data-type");
+            if (type == "0") {
+                $(".temprecord").show();
+                $(".monthrecord").hide();
+            } else {
+                var sdata = {};
+                sdata.r = Math.random();
+                $.post("/H5CardRenewal/CheckBindMobile", sdata, function (data) {
+                    if (data.result) {
+                        $(".temprecord").hide();
+                        $(".monthrecord").show();
+                        $("#spanMobile").text("手机号：" + data.msg);
+                    } else {
+                        location.href = "/H5BindMobile/Index?returnUrl=/H5CardRenewal/Index_ShowItem=1";
+                    }
+                });
+            }
+        });
+        var item = $("#hiddDefaultShowItem").val();
+        if (item == "0") {
+            $("#divPlateNo").click();
+        } else {
+            $("#divCardNo").click();
+        }
+    });
+    function btnRenewal() {
+        $("#spanPlateNumberError").text("");
+        var city = $(".spanProvinceDescription").text();
+        var area = $(".spanCityDescription").text();
+        if (city == "" || area == "") {
+            $(".select_plate_cell_city").show();
+            $("#spanPlateNumberError").text("请选择省份");
+            return false;
+        }
+        var licensePlate = $("#txtUserPlateNumber").val();
+        if ($.trim(licensePlate) == "") {
+            $("#spanPlateNumberError").text("请输入车牌号");
+            return false;
+        }
+        if (licensePlate.replace(/\s+/g, "").length != 5 && licensePlate.replace(/\s+/g, "").length != 6) {
+            $("#spanPlateNumberError").text("车牌号格式不正确");
+            return false;
+        }
+        var value = $.trim(city) + $.trim(area) + licensePlate.replace(/\s+/g, "");
+        location.href = "/H5CardRenewal/PlateNoRenewal?plateNo=" + value;
+    }
+</script>

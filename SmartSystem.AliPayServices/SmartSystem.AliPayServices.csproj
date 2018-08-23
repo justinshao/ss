@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FFC9D783-E772-4C41-ADA7-AB865996F196}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartSystem.AliPayServices</RootNamespace>
+    <AssemblyName>SmartSystem.AliPayServices</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AopSdk, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AopSdk.2.0.0\lib\net40\AopSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="F2FPayDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\F2FPayDll.1.0.0\lib\net40\F2FPayDll.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.7.0\lib\LitJson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AliPayApiServices.cs" />
+    <Compile Include="AliPayParam.cs" />
+    <Compile Include="AliPayPay.cs" />
+    <Compile Include="Entities\AlipayTradeOrderModel.cs" />
+    <Compile Include="Entities\PreAliPayOrderModel.cs" />
+    <Compile Include="lib\Config.cs" />
+    <Compile Include="lib\Data.cs" />
+    <Compile Include="lib\Exception.cs" />
+    <Compile Include="lib\HttpService.cs" />
+    <Compile Include="lib\Log.cs" />
+    <Compile Include="lib\Notify.cs" />
+    <Compile Include="lib\WxPayApi.cs" />
+    <Compile Include="MicroPay.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Core\Common.Core.csproj">
+      <Project>{EF989F15-C062-4C7D-8B69-8ACE8540C07B}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Entities\Common.Entities.csproj">
+      <Project>{2A5BF93F-E241-48AE-905E-712A3152EF8C}</Project>
+      <Name>Common.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Services\Common.Services.csproj">
+      <Project>{68404EB2-1832-477A-BB7B-1E1857844E52}</Project>
+      <Name>Common.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Utilities\Common.Utilities.csproj">
+      <Project>{660F9B65-6AD0-4984-914C-4459C41CA966}</Project>
+      <Name>Common.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

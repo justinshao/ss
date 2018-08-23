@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "中央收费";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    body
+    {
+        margin: 0;
+        font-family: 微软雅黑;
+    }
+    #flow-box
+    {
+        margin: 10px auto 0 auto;
+        padding: 0;
+        position: relative;
+    }
+    #flow-box li
+    {
+        width: 190px;
+        position: absolute;
+        padding: 10px;
+        border: solid 1px #efefef;
+        list-style: none;
+        opacity: 0;
+        -moz-opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-transition: opacity 500ms ease-in-out;
+        -moz-transition: opacity 500ms ease-in-out;
+        -o-transition: opaicty 500ms ease-in-out;
+        transition: opaicty 500ms ease-in-out;
+    }
+    #flow-box li img
+    {
+        width: 100%;
+    }
+    #flow-box li a
+    {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: #333;
+        line-height: 18px;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+    .loadwrap
+    {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .divsmile
+    {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        border: 1px solid #F00;
+        background: #FFF;
+        z-index: 3;
+    }
+    .l-btn-icon
+    {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        margin-top: 0px;
+        top: 1%;
+    }
+ .my_table td{height:26px; line-height:26px; }
+</style>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div id="divleft" data-options="region:'west'" title="进场记录" style="width: 60%; height:500px; padding: 10px">
+        <div style="margin: 5px 0px 5px 10px">
+            &nbsp;<span style="font-size: 12px">所在车场</span>： <input id="cmbParkingId" class="easyui-combobox" editable=false style=" width:100px"/>
+            &nbsp;<span style="font-size: 12px">车牌号</span>：<input class="easyui-textbox" style="width: 80px;
+                height: 25px" id="txtPlateNumber" />
+            &nbsp;&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-query'"
+                style="height: 25px; width:60px" onclick="return btnSubmitQueryPage()">&nbsp;查&nbsp;询</a>
+                <div style="float:right; margin-right:10px"><span style=" margin-top:40px">共<span id="spanRecordTotalCount">0</span>条,<span id="spanPageIndex">0</span>/<span id="spanTotalPageSize">0</span>页&nbsp;</span><a href="javascript:void(0)" data-options="iconCls:'icon-prev-page',disabled:true" class="easyui-linkbutton" id="aPrevPage">&nbsp;上一页</a>&nbsp;<a href="javascript:void(0)" data-options="iconCls:'icon-next-page',disabled:true" class="easyui-linkbutton" id="aNextPage">&nbsp;上一页</a></div>
+        </div>
+        <ul id="flow-box">
+        </ul>
+
+    </div>
+                     
+    <div data-options="region:'center'" title="进场明细">
+        <div style="position: relative; width: 100%; margin-top: 10px; text-align: center">
+            <img src="/Content/images/iorecord_not_select.jpg" style="width: 95%;" id="bigImgEntrance"/>
+            <div style="max-height: 50px; position: absolute; bottom: 2px; right: 20px; z-index: 999; display:none" id="divSmallImgEntrance">
+                <img src=""  id="smallImgEntrance"/>
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <table class="my_table" style="width: 95%; margin-left: 10px">
+                <tr>
+                    <td style="text-align: right; background: #E8E8E8; width:80px; font-size: 14px;">
+                        进场时间
+                    </td>
+                    <td colspan="3" style="font-weight: bold; font-size: 16px; text-align:left">
+                        <input type="hidden" id="hiddDetailRecordId"/>
+                        &nbsp;<span id="spanEntranceTime"></span>
+                    </td>
+                    
+                </tr>
+                 <tr>
+                    <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        出场时间
+                    </td>
+                    <td colspan="3" style="font-weight: bold; font-size: 16px; text-align:left">
+                        &nbsp;<span id="spanOutTime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        停车时长
+                    </td>
+                    <td style="font-weight: bold; font-size: 16px; text-align:left; width:30%">
+                      &nbsp;<span id="spanTotalDuration"></span>
+                    </td>
+                    <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        车牌号
+                    </td>
+                    <td style="font-weight: bold; font-size: 16px; text-align:left">
+                        &nbsp;<span id="spanPlateNumber"></span>
+                    </td>
+                    
+                </tr>
+                <tr>
+                <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        车型
+                    </td>
+                    <td colspan="3" style="text-align:left">
+                       &nbsp;<input id="cmbCarModel" class="easyui-combobox"  editable=false style="height:25px; line-height:25px"/>
+                    </td>
+                </tr>
+                <tr>
+                     <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        已缴费
+                    </td>
+                    <td style="font-weight: bold; text-align:left">
+                         &nbsp;<span id="spanPaySuccess"  style=" font-size: 16px;"></span>&nbsp;<span class="spanUnit" style="display:none">元</span>
+                    </td>
+                    <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        本次应收
+                    </td>
+                    <td style="font-weight: bold; text-align:left">
+                          &nbsp;<span id="spanTotalFee" style=" font-size: 16px;"></span>&nbsp;<span class="spanUnit" style="display:none">元</span>
+                    </td>
+
+                </tr>
+                <tr>
+                   <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        本次优惠
+                    </td>
+                    <td style="font-weight: bold; text-align:left">
+                        &nbsp;<span id="spanDiscountAmount" style=" font-size: 16px;"></span>&nbsp;<span class="spanUnit" style="display:none">元</span>
+                    </td>
+                    <td style="text-align: right; background: #E8E8E8; width:80px;font-size: 14px;">
+                        本次待缴
+                    </td>
+                    <td style="font-weight: bold; text-align:left">
+                        &nbsp;<span style="color: Red;font-size: 25px;" id="spanWaitPay"></span>&nbsp;<span class="spanUnit" style="display:none">元</span>
+                    </td>
+                   
+                </tr>
+            </table>
+            <div style="margin-top: 20px; text-align: center">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-status-no-32'"
+                    style="height: 40px; width: 180px" onclick="return ClearIORecordDetial()">&nbsp;&nbsp;&nbsp;取&nbsp;&nbsp;消</a> &nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-status-yes-32'"
+                    style="height: 40px; width: 180px"  id="btnSubmitTollRelease" onclick="return btnTollRelease()">&nbsp;&nbsp;&nbsp;收费放行</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Scripts/parking/centralfee.js?v=2" type="text/javascript"></script>

@@ -1,0 +1,278 @@
+﻿@{
+    ViewBag.Title = "Main";
+}
+<link href="../../Content/learunui-accordion.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/Chart/jquery.js"></script>
+<script src="/Scripts/Chart/highcharts.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.easyui.min.js" type="text/javascript"></script>
+<div class="easyui-layout" fit="true">   
+	<div data-options="region:'center'" >
+        <table style="width:100%" id="tx">
+            <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div class="easyui-panel" title="车场收入" style="width:100%;height:350px;background:white;">
+                                    <div id="divOnLineDay30">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div class="easyui-panel" title="应收 实收 临停缴费 长租续期" style="width:100%;height:350px;background:white;">
+                                    <div id="divTempAmountDay15" style=" height:100%;">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+          @*  <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div class="easyui-panel" title="实收与长租续费" style="width:100%;height:350px;background:white;">
+                                    <div id="divExtendAmountDay15" style=" height:100%;">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>*@
+                <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:50%">
+                                <div class="easyui-panel" title="6个月手机支付金额" style="width:100%;height:350px;background:white;">
+                                    <div id="divOnLineDay7">
+                                    </div>
+                                </div>
+                            </td>
+                            <td >
+                                 <div class="easyui-panel" title="车场临停量(Top5)" style="width:100%;height:350px;background:white;float:left">
+                                     <div id="divTempOneWeek">
+                                     </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+              <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:50%">
+                                <div class="easyui-panel" title="进场类型占比" style="width:100%;height:350px;background:white;float:left">
+                                     <div id="divCardType">
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="easyui-panel" title="放行类型占比" style="width:100%;height:350px;background:white;">
+                                    <div id="divReleaseType">
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+	</div>
+</div>
+<script type="text/javascript">
+
+    //近7天线上支付金额
+    var chartExtendAmountDay15;
+    var chartTempDay15
+    var chartTempAmountDay15;
+    var chartonlinedday7;
+    var chartCardType;
+    var chartReleaseType;
+    var chartTempTop5;
+    var chartpeak;
+    var arrayreleasetype;
+    var arraycardtype;
+    var categoriesonline;
+    var arrayonline;
+    var categoriestop5;
+    var arraytop5;
+    var parkingname;
+    var arraypeak;
+    var categoriespeak;
+
+    var arrayonlineday30;
+    var arrayallamountday30;
+    var arraytempamountday30;
+    var arraycardextendday30;
+    var categorieonlineday30;
+    var arraytempday15;
+    //现金缴费
+    var arraycashday30;
+    //实收
+    var arraypayamountday15;
+    //应收
+    var arrayreceivableamountday15;
+    var width = window.screen.width;
+    width = (width - 60 - 90 - 238) / 6;
+    $(".Task").css({ width: width });
+    //初始化数据
+    function IniData() {
+        $.ajax({
+            type: "post",
+            url: '/Home/Get_HomeData',
+            async: true,
+            success: function (data) {
+                if (data != null) {
+                    arrayreleasetype = [];
+                    arraycardtype = [];
+                    categoriesonline = [];
+                    arrayonline = [];
+                    categoriestop5 = [];
+                    arraytop5 = [];
+                    arraypeak = [];
+                    categoriespeak = [];
+                    arrayonlineday30 = [];
+                    categorieonlineday30 = [];
+                    arrayallamountday30 = [];
+                    arraytempamountday30 = [];
+                    arraycardextendday30 = [];
+                    arraytempday15 = [];
+                    arraycashday30 = [];
+                    arraypayamountday15 = [];
+                    arrayreceivableamountday15 = [];
+                    var isfirst = true;
+                    $.each(data.ReleaseType, function (index, item) {
+                        if (isfirst) {
+                            arrayreleasetype.push({ name: item.KeyName, y: item.Key_Value, sliced: true, selected: true });
+                            isfirst = false;
+                        }
+                        else {
+                            arrayreleasetype.push([item.KeyName, item.KeyValue2]);
+                        }
+                    })
+                    isfirst = true;
+                    $.each(data.EntranceCardType, function (index, item) {
+                        if (isfirst) {
+                            arraycardtype.push({ name: item.KeyName, y: item.Key_Value, sliced: true, selected: true });
+                            isfirst = false;
+                        }
+                        else {
+                            arraycardtype.push([item.KeyName, item.KeyValue2]);
+                        }
+                    })
+                    $.each(data.GatherMonth12, function (index, item) {
+                        arrayonline.push(item.OnLine_Amount);
+                        categoriesonline.push(item.KeyName);
+                    })
+                    $.each(data.GatherDaily30, function (index, item) {
+                        arrayonlineday30.push(item.OnLine_Amount);
+                        arrayallamountday30.push(item.Real_Amount);
+                        arraytempamountday30.push(item.Temp_Amount + item.OnLineTemp_Amount);
+                        arraycardextendday30.push(item.MonthCardExtend_Amount + item.OnLineMonthCardExtend_Amount);
+                        categorieonlineday30.push(item.KeyName);
+                        arraytempday15.push(item.Temp_Card);
+                        arraycashday30.push(item.Cash_Amount);
+                        arraypayamountday15.push(item.Real_Amount);
+                        arrayreceivableamountday15.push(item.Receivable_Amount);
+                    })
+                    $.each(data.ParkTempTop5, function (index, item) {
+                        arraytop5.push(item.Key_Value);
+                        categoriestop5.push(item.KeyName);
+                    })
+
+                    //临停车场前5
+                    chartTempTop5 = new Highcharts.Chart({
+                        chart: { renderTo: 'divTempOneWeek', type: 'column', height: 300 },
+                        title: { text: '临停量' },
+                        subtitle: { text: '临停量 Top5' },
+                        xAxis: { categories: categoriestop5 },
+                        yAxis: { min: 0, title: { text: '临停次数'} },
+
+                        tooltip: { formatter: function () { return '' + this.x + ': ' + this.y + ' (次)'; } },
+                        plotOptions: { column: { pointPadding: 0.2, borderWidth: 0} },
+                        series: [{ name: '临停次数', data: arraytop5}]
+                    });
+                    //车场收入
+                    divOnLineDay30 = new Highcharts.Chart({
+                        chart: { renderTo: 'divOnLineDay30', type: 'column', height: 310 },
+                        title: { text: '车场收入', x: 0 },
+                        subtitle: { text: '近15天收入', x: 0 },
+                        xAxis: { categories: categorieonlineday30 },
+                        yAxis: { min: 0, title: { text: '收费金额' }, plotLines: [{ value: 0, width: 1, color: '#808080'}] },
+                        tooltip: { formatter: function () { return '<b>' + this.series.name + "：" + this.y + ' 元</b>'; } },
+                        series: [{ name: '应收金额', data: arrayreceivableamountday15 }, { name: '实收金额', data: arraypayamountday15 }, { name: '线上缴费', data: arrayonlineday30 }, { name: '现金缴费', data: arraycashday30}]
+                    });
+                    //临停缴费与实收
+                    chartTempAmountDay15 = new Highcharts.Chart({
+                        chart: { renderTo: 'divTempAmountDay15', type: 'line', height: 310 },
+                        title: { text: '应收 实收 临停缴费 长租续期', x: 0 },
+                        subtitle: { text: '近15天收费类型', x: 0 },
+                        xAxis: { categories: categorieonlineday30 },
+                        yAxis: { min: 0, title: { text: '缴费金额' }, plotLines: [{ value: 0, width: 1, color: '#808080'}] },
+
+                        tooltip: { formatter: function () { return '<b>' + this.x + "：" + this.y + ' 元</b>'; } },
+                        series: [{ name: '应收金额', data: arrayreceivableamountday15 }, { name: '实收金额', data: arraypayamountday15 }, { name: '临停缴费', data: arraytempamountday30 }, { name: '长租续费', data: arraycardextendday30}]
+                    });
+                    //                    //长租续费与实收
+                    //                    chartExtendAmountDay15 = new Highcharts.Chart({
+                    //                        chart: { renderTo: 'divExtendAmountDay15', type: 'line', height: 310 },
+                    //                        title: { text: '实收与长租续费', x: 0 },
+                    //                        subtitle: { text: '近15天实收与长租续费', x: 0 },
+                    //                        xAxis: { categories: categorieonlineday30 },
+                    //                        yAxis: { min: 0, title: { text: '缴费金额' }, plotLines: [{ value: 0, width: 1, color: '#808080'}] },
+                    //                        tooltip: { formatter: function () { return '<b>' + this.x + "：" + this.y + ' 元</b>'; } },
+                    //                        series: [{ name: '实收金额', data: arraypayamountday15 }, { name: '长租续费', data: arraycardextendday30}]
+                    //                    });
+                    //线上支付
+                    chartonlinedday7 = new Highcharts.Chart({
+                        chart: { renderTo: 'divOnLineDay7', type: 'line', height: 300 },
+                        title: { text: '手机支付', x: 0 },
+                        subtitle: { text: '近6个月手机支付金额', x: 0 },
+                        xAxis: { categories: categoriesonline },
+                        yAxis: { min: 0, title: { text: '手机支付金额' }, plotLines: [{ value: 0, width: 1, color: '#808080'}] },
+                        tooltip: { formatter: function () { return '<b>' + this.series.name + "：" + this.y + ' 元</b>'; } },
+                        series: [{ name: '手机支付', data: arrayonline}]
+                    });
+                    //进场类型
+                    chartCardType = new Highcharts.Chart({
+                        chart: { renderTo: 'divCardType', plotBackgroundColor: null, plotBorderWidth: null, height: 310, plotShadow: false, margin: [50, 0, 0, 0] },
+                        title: { text: '进场类型' },
+                        tooltip: { formatter: function () { return '<b>' + this.point.name + "：" + this.y + '</b>'; } },
+                        plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: { enabled: true, color: '#000000', connectorColor: '#000000', formatter: function () { return '<b>' + this.point.name + '</b>：' + this.percentage.toFixed(2) + ' %'; } }} },
+                        series: [{ type: 'pie', name: 'pie', data: arraycardtype}]
+                    });
+                    //放行类型
+                    chartReleaseType = new Highcharts.Chart({
+                        chart: { renderTo: 'divReleaseType', plotBackgroundColor: null, plotBorderWidth: null, height: 310, plotShadow: false, margin: [50, 0, 0, 0] },
+                        title: { text: '放行类型' },
+                        tooltip: { formatter: function () { return '<b>' + this.point.name + "：" + this.y + '</b>'; } },
+                        plotOptions: { pie: { allowPointSelect: true, cursor: 'pointer', dataLabels: { enabled: true, color: '#000000', connectorColor: '#000000', formatter: function () { return '<b>' + this.point.name + '</b>：' + this.percentage.toFixed(2) + ' %'; } }} },
+                        series: [{ type: 'pie', name: 'pie', data: arrayreleasetype}]
+                    });
+                }
+            }
+        });
+
+    }
+    var processbar = null;
+    $(function () {
+        IniData();
+    });
+</script>
+

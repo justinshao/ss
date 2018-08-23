@@ -1,0 +1,44 @@
+﻿@using Common.Entities.Order;
+@model OnlineOrder
+@{
+    ViewBag.Title = "支付成功";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <div class="row hn-row" style="text-align: center">
+        <div class="weui_msg top20" style="padding-top: 0px">
+            <div class="weui_icon_area">
+               <i class="weui_icon_msg weui_icon_success"></i>
+            </div>
+            <div class="weui_text_area">
+               <h2 class="weui_msg_title">缴费成功</h2>
+            </div>
+        </div>
+    </div>
+    @if (Model!=null)
+    { 
+        <div class="weui_cells">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>订单号</p>
+                </div>
+                <div class="weui_cell_ft">@Model.OrderID</div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>车牌号</p>
+                </div>
+                <div class="weui_cell_ft">@Model.PlateNo</div>
+            </div>
+             <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>支付金额</p>
+                </div>
+                <div class="weui_cell_ft">@Model.Amount</div>
+            </div>
+        </div>
+    }
+</div>
+<div style="position:fixed;bottom:0; left:0px; right:0px;">
+<a href="@Url.Action("Index", "H5Home")" id="getCloseWindowRequest" class="weui_btn weui_btn_primary">确定</a>
+</div>

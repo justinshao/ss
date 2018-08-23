@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "我的车辆";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+        <a href="@Url.Action("Index", "H5Home")"> <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            我的车辆</div>
+    </div>
+    <div class="top70">
+    </div>
+    @Html.Action("Index", "LicensePlate")
+    <div class="top10">
+    </div>
+    <input type="button" class="weui_btn weui_btn_primary" onclick="return btnAddMyCar()" value="添加车辆" />
+    <div class="top30"></div>
+    <div class="weui_cells carlist">
+    </div>
+    <div style="width: 100%; text-align: center; display: none" id="divNoCarDataBox">
+        <i class="weui_icon_warn"></i>&nbsp;您暂无车辆信息！
+    </div>
+</div>
+@section Scripts{
+    <script src="/Scripts/mobile/h5/carmanage.js?v=1" type="text/javascript"></script>
+}

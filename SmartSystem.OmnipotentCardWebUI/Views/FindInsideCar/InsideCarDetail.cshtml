@@ -1,0 +1,79 @@
+﻿@using Common.Entities.WX;
+@model List<CarParkingResult>
+@{
+    ViewBag.Title = "内部车明细";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+    .weui_media_desc
+    {
+        margin-bottom: 6px;
+    }
+</style>
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "FindInsideCar")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            内部车明细</div>
+    </div>
+    <div style="margin-top: 45px">
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            string plateNoDes = string.IsNullOrWhiteSpace(item.ParkLot) ? "无" : item.ParkLot;
+        <div class="weui_panel">
+            <div class="weui_panel_hd" style="font-weight: bold">
+                车场：@item.ParkingName<span style="float: right; color: #5bc0de">[@item.CarTypeName]</span></div>
+            <div class="weui_panel_bd">
+                <div class="weui_media_box weui_media_text">
+                    <p class="weui_media_desc">
+                        小区：@item.VillageName</p>
+                    <p class="weui_media_desc">
+                        车牌号：@item.PlateNo</p>
+                    <p class="weui_media_desc">
+                        车位号：@plateNoDes</p>
+                    @if (item.EndTime!=DateTime.MinValue)
+                    {
+                        if (item.StartTime != DateTime.MinValue)
+                        { 
+                        <p class="weui_media_desc">
+                            开始时间：@item.StartTime.ToString("yyyy-MM-dd")</p>
+                        }
+                        if (item.EndTime != DateTime.MinValue)
+                        {
+                            if (item.EndTime.Date < DateTime.Now.Date) { 
+                             <p class="weui_media_desc">结束时间：<span style="color:Red">@item.EndTime.ToString("yyyy-MM-dd")</span></p>
+                            }
+                            else
+                            {
+                                 <p class="weui_media_desc">结束时间：@item.EndTime.ToString("yyyy-MM-dd")</p>
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        <p class="weui_media_desc">
+                            有效期：未续期</p>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+    }
+    else
+    { 
+        <div style="width: 100%; text-align: center; margin-top: 100px">
+            <div>
+                <img src="/Content/mobile/images/list_not_data.png" />
+            </div>
+            <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+                暂无该车内部明细！</div>
+        </div>
+    }
+</div>

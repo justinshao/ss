@@ -1,0 +1,123 @@
+﻿@using SmartSystem.WeiXinServices.Payment;
+@using Common.Entities.Order;
+@model OnlineOrder
+@{
+    ViewBag.Title = "临停缴费";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", " H5ParkingPayment")"><img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            停车费支付</div>
+    </div>
+    <!--header-->
+    <!--main-->
+    <div class="time-box">
+            <img src="/Content/mobile/images/time1.png" width="18" height="18" alt=""/>
+            支付剩余时间：<span id="spanTime">00分钟00秒</span>
+     </div>
+    <div class="weui_cells_title">
+        结算信息</div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    订单编号</p>
+            </div>
+            <div class="weui_cell_ft">@Model.OrderID</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    支付金额</p>
+            </div>
+            <div class="weui_cell_ft">
+                ¥ @Model.Amount 元</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    支付方式</p>
+            </div>
+            <div class="weui_cell_ft">
+                支付宝</div>
+        </div>
+    </div>
+    <div class="text-center" style="margin-top: 10px; display: none; text-align: center; color:Red" id="divPayTimeOut">
+        已超过支付时限
+    </div>
+   
+    <div id="btnSubmitaymentBox">
+        <div class="top30"></div>
+        <a href="javascript:void(0)" id="btnSubmitAliPayRequest" class="weui_btn weui_btn_primary"> 立即支付</a></div>
+    <div id="againPaymentBox" style="display: none">
+     <div class="top10"></div>
+        <a href="/H5ParkingPayment/ComputeParkingFee?licensePlate=@Model.PlateNo" class="weui_btn weui_btn_default"> 重新支付</a>
+       </div>
+</div>
+<input type="hidden" id="hiddExitTime" value="@ViewBag.MaxWaitTime"/>
+<input type="hidden" id="hiddOrderId" value="@Model.OrderID" />
+<input type="hidden" id="hiddReturnUrl" value="@ViewBag.ReturnUrl" />
+<input type="hidden" id="hiddPrepayId" value="@Model.PrepayId" />
+@section Scripts{
+    <script type="text/javascript">
+
+       $(function () {
+           CheckPayTime();
+           setInterval("CheckPayTime()", 1000);
+           $("#btnSubmitAliPayRequest").click(function(){
+                tradePay($("#hiddPrepayId").val());
+           });
+       });
+         // 由于js的载入是异步的，所以可以通过该方法，当AlipayJSBridgeReady事件发生后，再执行callback方法
+        function ready(callback) {
+            if (window.AlipayJSBridge) {
+                callback && callback();
+            } else {
+                document.addEventListener('AlipayJSBridgeReady', callback, false);
+            }
+        }
+        function tradePay(tradeNO) {
+            ready(function () {
+                // 通过传入交易号唤起快捷调用方式(注意tradeNO大小写严格)
+                AlipayJSBridge.call("tradePay", {
+                    tradeNO: tradeNO
+                }, function (data) {
+                    if ("9000" == data.resultCode) {
+                        location.href = "/H5Order/PaySuccess?orderId=" + $("#hiddOrderId").val();
+                    } else {
+                        WxAlert("", "支付失败[" + data.resultCode + "]");
+                    }
+                });
+            });
+        }
+       function CheckPayTime() {
+           var gdata = {};
+           gdata.orderId = $("#hiddOrderId").val();
+           gdata.eTime = $("#hiddExitTime").val();
+           gdata.r = Math.random();
+           $.post("@Url.Action("CheckPayTimeOut", "H5AliPayment")", gdata, function (data) {
+               if (data.result == false) {
+                   $("#spanTime").text(data.msg);
+                   $("#divPayTimeOut").show();
+                   $("#btnSubmitaymentBox").hide();
+                   $("#againPaymentBox").show();
+                   AsynCancelOrder();
+               } else {
+                   $("#getBrandWCPayRequest").show();
+                   $("#spanTime").text(data.msg);
+               }
+           });
+       }
+       function AsynCancelOrder(){
+          var gdata = {};
+           gdata.orderId = $("#hiddOrderId").val();
+            gdata.r = Math.random();
+           $.post("@Url.Action("AsynCancelOrder", "H5AliPayment")", gdata, function (data) {});
+       }
+    </script>
+}

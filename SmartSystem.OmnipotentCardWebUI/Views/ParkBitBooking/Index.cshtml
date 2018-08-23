@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "车位预订";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+        </div>
+        <div class="pull-right header-right">
+            车位预订</div>
+    </div>
+    <div class="top60">
+    </div>
+    <div class="weui_cells weui_cells_form">
+        @Html.Action("Index", "LicensePlate", new { plateNumber = ViewBag.PlateNumber })
+          <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">
+                    车场</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" id="selectParks">
+                </select>
+            </div>
+        </div>
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">
+                    区域</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" id="selectArea">
+                </select>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    开始时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="datetime-local" id="txtStartTime" placeholder="请输入开始时间" name="StartTime" />
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    结束时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="datetime-local" id="txtEndTime" placeholder="请输入结束时间" name="EndTime" />
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells_tips" style="color: red" id="divError">
+    </div>
+    <div class="weui_btn_area">
+       @using (Html.BeginForm("SaveBooking", "ParkBitBooking", FormMethod.Post))
+            {
+            <input type="hidden" id="hidd_licensePlate" name="plateNo" />
+            <input type="hidden" id="hidd_startTime" name="startTime" />
+            <input type="hidden" id="hidd_endTime" name="endTime" />
+            <input type="hidden" id="hidd_parkingId" name="parkingId" />
+            <input type="hidden" id="hidd_areaId" name="areaId" />
+            <input type="submit" class="weui_btn weui_btn_primary" value="提交预订" onclick="return btnSubmitData()" />
+             <a href="@Url.Action("BitBookingRecord", "ParkBitBooking")" class="weui_btn weui_btn_plain_primary">查看预约记录</a>
+            }
+    </div>
+         
+</div>
+<script src="/Scripts/mobile/admincommon.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    function btnSubmitData() {
+        $("#divError").text("");
+        var parking = $("#selectParks").val();
+        if ($.trim(parking) == "") {
+            $("#divError").text("请选择车场");
+            return false;
+        }
+        $("#hidd_parkingId").val(parking);
+
+        var areaId = $("#selectArea").val();
+        if ($.trim(areaId) == "") {
+            $("#divError").text("请选择区域");
+            return false;
+        }
+        $("#hidd_areaId").val(areaId);
+
+        var city = $(".spanProvinceDescription").text();
+        var area = $(".spanCityDescription").text();
+        if (city == "" || area == "") {
+            $("#divError").text("请选择省份");
+            return false;
+        }
+        var licensePlate = $("#txtUserPlateNumber").val();
+        if ($.trim(licensePlate) == "") {
+            $("#divError").text("请输入车牌号");
+            return false;
+        }
+        if (licensePlate.replace(/\s+/g, "").length != 5 && licensePlate.replace(/\s+/g, "").length != 6) {
+            $("#divError").text("车牌号格式不正确");
+            return false;
+        }
+        var plateNo = city + area + licensePlate.replace(/\s+/g, "");
+
+        var sdate = $("#txtStartTime").val();
+        var edate = $("#txtEndTime").val();
+        if ($.trim(sdate) == "") {
+            $("#divError").text("请选择开始日期");
+            return false;
+        }
+        if ($.trim(edate) == "") {
+            $("#divError").text("请选择结束日期");
+            return false;
+        }
+        if (new Date(sdate) > new Date(edate)) {
+            $("#divError").text("开始日期不能大于结束日期");
+            return false;
+        }
+
+        $("#hidd_licensePlate").val(plateNo);
+        $("#hidd_startTime").val(sdate);
+        $("#hidd_endTime").val(edate);
+        $("#hidd_amount").val(amount);
+        return true;
+
+    }
+    $(function () {
+        $("#selectParks").change(function () {
+            GetAreasNotAll();
+        });
+        GetAllPark();
+    });
+    function GetAllPark() {
+        $.ajax({
+            type: "post",
+            url: '/ParkCommonData/GetAllParks',
+            async: false,
+            success: function (data) {
+                if (data != null) {
+                    $.each(data, function (index, item) {
+                        $("#selectParks").append("<option value='" + item.PKID + "'>" + item.PKName + "</option>");
+                    })
+                    GetAreasNotAll();
+                }
+            }
+        });
+    }
+</script>

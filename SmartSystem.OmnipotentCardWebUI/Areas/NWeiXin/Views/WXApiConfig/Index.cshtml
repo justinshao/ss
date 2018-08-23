@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "微信基础配置";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/nweixin/apiconfig.js?v=2" type="text/javascript"></script>
+<script src="/Scripts/fileupload/vendor/jquery.ui.widget.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.iframe-transport.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.fileupload.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+ <div region="center" title="微信基础配置" style="padding: 2px;">
+        <form id="wxApiConfigBox" style="margin-left: 20px; margin-top: 10px; font-size: 12px" method="post">
+        <input type="hidden" id="hiddCompanyID" name="CompanyID"/>
+        <table cellpadding="5">
+          <tr>
+                <td colspan="2">
+                 <div style="margin-bottom: 5px">
+                        1、填写资料请必须前往"https://mp.weixin.qq.com"申请<span  style="color: Red; font-weight:bold">微信服务号</span></div>
+                    <div style="margin-bottom: 5px">
+                        2、带“<span style="color: Red">*</span>”表示必填项</div>
+                    <div style="margin-bottom: 5px">
+                        3、以下参数必须与申请的服务号的参数一致</div>
+                  
+                </td>
+            </tr>
+             <tr>
+                <td style="width: 140px">
+                    微信配置验证文件：
+                </td>
+                <td>
+                     
+                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:130px;height:32px"  onclick="btnSelectVerification()"> 上传验证文件</a><span id="spanverificationresult" style="color:#3A5FCD; font-weight:bold"></span> &nbsp(txt文件，公众号提交基础配置时获取,只需要上传一次)&nbsp
+                   
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 140px">
+                    微信公众号名称：
+                </td>
+                <td>
+                    <input type="text" class="easyui-textbox" name="SystemName" id="txtSystemName" style="width: 400px;height:32px"  data-options="prompt:'需与所申请的公众号名称一致'" />&nbsp;<span style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 140px">
+                    微信域名：
+                </td>
+                <td>
+                    <input type="text" class="easyui-textbox" name="Domain" id="txtDomain" style="width: 400px;height:32px"  data-options="prompt:'必须以http://或https://开头'" />&nbsp;<span
+                        style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 140px">
+                    微信服务器IP：
+                </td>
+                <td>
+                    <input type="text" class="easyui-textbox" name="ServerIP" id="txtServerIP" style="width: 400px;height:32px"  data-options="prompt:' 微信程序所发布的服务器IP'" />&nbsp;<span
+                        style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 140px">
+                    微信开发者AppId：
+                </td>
+                <td>
+                    <input type="text" class="easyui-textbox" name="AppId" id="txtAppId" style="width: 400px;height:32px"  data-options="prompt:'微信公众平台下 开发->基本配置中的应用ID'" />&nbsp;<span
+                        style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 140px">
+                    微信开发者AppSecret：
+                </td>
+                <td>
+                    <input type="text" class="easyui-textbox" name="AppSecret" style="width: 400px;height:32px" id="txtAppSecret"  data-options="prompt:'微信公众平台下 开发->基本配置中的应用密钥'" />&nbsp;<span
+                        style="color: Red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 140px">
+                    微信开发者Token：
+                </td>
+                <td>
+                    <input type="text" class="easyui-textbox" name="Token" id="txtToken" style="width: 400px;height:32px"  data-options="prompt:'微信公众平台下 开发->基本配置中服务器配置下的令牌'" />&nbsp;<span
+                        style="color: Red">*</span>
+                </td>
+            </tr>
+             <tr>
+                <td  align="right" style="width: 140px">
+                </td>
+                <td>
+                  <input type="checkbox" name="Status" id="chkStatus" value="true"/>是否启用  &nbsp;&nbsp;<input type="checkbox"  id="chkSupportSuperiorPay"  name="SupportSuperiorPay" value="true"/>支持上级账号支付
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 140px">
+                    微信LOGO：
+                </td>
+                <td>
+                    
+                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:100px;height:32px"  onclick="btnSelectWeiXin()">上传图片</a>(100px*100px)&nbsp;<span
+                        style="color: Red">*</span> <span id="spanUploadWeiXinLogoResult"></span><span style="color: #A3A3A3;">
+                            做为分享时的LOGO等</span>
+                    <div>
+                        <input type="hidden" name="SystemLogo" id="hiddSystemLogo" />
+                        <img src="" id="imgLogo" style="display: none; width: 60px; height: 60px" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="margin-left: 150px">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width:150px;height:32px"  onclick="btnSubmitForm()">保 &nbsp;&nbsp;&nbsp;存 &nbsp;</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+
+</div>
+<input type="file" name="files" id="fileupload_weixinlogo" class="formtext" style="display: none" />
+<input type="file" name="files" id="fileupload_verification" class="formtext" style="display: none" />

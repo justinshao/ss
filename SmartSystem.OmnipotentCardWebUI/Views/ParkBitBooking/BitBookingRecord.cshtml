@@ -1,0 +1,90 @@
+﻿@using Common.Entities.WX;
+@using Common.Core;
+@using Common.Entities.Parking;
+@model List<ParkReserveBit>
+@{
+    ViewBag.Title = "车位预约记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+    .weui_media_desc{ margin-bottom:6px;}
+</style>
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "ParkBitBooking")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            <a href="javascript:;" id="showActionSheet">
+                <img src="/Content/images/weixin/条件查询.png" width="30" height="30" style="margin-top: 5px" /></a>
+        </div>
+        <span style="float: right; color: #fff">车位预约记录&nbsp;&nbsp;</span>
+    </div>
+    <div style="margin-top: 45px">
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+        <div class="weui_panel">
+            <div class="weui_panel_hd" style="font-size: 14px; font-weight: bold">
+                车场：@item.PKName</div>
+            <div class="weui_panel_bd">
+                <div class="weui_media_box weui_media_text">
+                    <p class="weui_media_desc">
+                        车&nbsp;&nbsp;牌&nbsp;&nbsp;号：@item.PlateNumber</p>
+                    <p class="weui_media_desc">
+                       车&nbsp;&nbsp;位&nbsp;&nbsp;号：@item.BitNo</p>
+                      
+                        @switch(item.Status){
+                            case 0:{
+                                  <p class="weui_media_desc">预约状态： <span style="color:#0EA9FB">预约成功</span></p>
+                                break;
+                            }
+                            case 1:
+                                {
+                                 <p class="weui_media_desc">预约状态： 已取消</p>
+                                    break;
+                                }
+                            case 2:
+                                {
+                                 <p class="weui_media_desc">预约状态： <span style="color:Red">车场拒绝</span></p>
+                                    break;
+                                }
+                            case 3:
+                                {
+                                 <p class="weui_media_desc">预约状态： 已进出</p>
+                                    break;
+                                }
+                            case 4:
+                                {
+                                 <p class="weui_media_desc">预约状态： 未生效</p>
+                                    break;
+                                }
+                        }
+                      
+                    <p class="weui_media_desc">
+                        开始时间：@item.StartTime.ToyyyyMMddHHmmss()</p>
+                    <p class="weui_media_desc">
+                        结束时间：@item.EndTime.ToyyyyMMddHHmmss()</p>
+                    <p class="weui_media_desc">
+                        预约时间：@item.CreateTime.ToyyyyMMddHHmmss()</p>
+                        <p class="weui_media_desc">
+                        备注：@item.Remark</p>
+                </div>
+            </div>
+        </div>
+        }
+    }
+    else
+    {
+        <div style="width: 100%; text-align: center; margin-top: 100px">
+            <div>
+                <img src="/Content/mobile/images/list_not_data.png" />
+            </div>
+            <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+                暂无车位预约记录！</div>
+        </div>
+    }
+</div>

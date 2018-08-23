@@ -1,0 +1,89 @@
+﻿@using Common.Entities.Parking;
+@model List<ParkMonthlyCarApply>
+           
+@{
+    ViewBag.Title = "月租申请管理";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    .weui_media_desc
+    {
+        height: 20px;
+    }
+</style>
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+        </div>
+        <div class="pull-right header-right">
+            <a href="@Url.Action("Edit", "MonthlyCarApply")" ><img src="/Content/images/weixin/添加.png" width="25" height="25" style="margin-top: 8px" /></a>
+        </div>
+        <span style="float: right; color: #fff">月租申请管理&nbsp;&nbsp;</span>
+    </div>
+    <div class="top60"></div>
+    @if (Model != null && Model.Count > 0)
+    {
+    <div id="divDataList">
+        @foreach (var item in Model) { 
+            <div class="weui_panel">
+                <div class="weui_panel_hd" style="height: 20px">
+                    <div style="float: left">@item.PKName</div>
+                    @if(item.ApplyStatus == Common.Entities.MonthlyCarApplyStatus.Applying)
+                    {
+                        <div style="float: right"><a href="javascript:void(0)" class="weui_btn weui_btn_mini weui_btn_warn"  onclick="return btnCancel('@item.RecordID')">取消</a></div>
+                     }
+                      @if (item.ApplyStatus == Common.Entities.MonthlyCarApplyStatus.Refused)
+                      {
+                        <div style="float: right"><a href="@Url.Action("Edit", "MonthlyCarApply", new { recordId =item.RecordID})" class="weui_btn weui_btn_mini weui_btn_primary" onclick="return btnAgainApply('@item.RecordID')">重新申请</a></div>
+                     }
+                </div>
+                <div class='weui_panel_bd'>
+                    <div class='weui_media_box weui_media_text'>
+                        <p class='weui_media_desc'>车牌号：@item.PlateNo</p>
+                        <p class='weui_media_desc'>车类：@item.CarTypeName</p>
+                        <p class='weui_media_desc'>车型：@item.CarModelName</p>
+                        <p class='weui_media_desc'>申请人名称：@item.ApplyName</p>
+                        <p class='weui_media_desc'>申请人电话：@item.ApplyMoblie</p>
+                        <p class='weui_media_desc'>车位号：@item.PKLot</p>
+                        <p class='weui_media_desc'>地址：@item.FamilyAddress</p>
+                        <p class='weui_media_desc'>申请人备注：@item.ApplyRemark</p>
+                        @if (item.ApplyStatus == Common.Entities.MonthlyCarApplyStatus.Passed) {
+                         <p class='weui_media_desc'>状态：<span style="color:#0EA9FB">@item.ApplyStatus.GetDescription()</span></p>
+                        }
+                        else if (item.ApplyStatus == Common.Entities.MonthlyCarApplyStatus.Refused)
+                        { 
+                              <p class='weui_media_desc'>状态：<span style="color:red">@item.ApplyStatus.GetDescription()</span></p>
+                             <p class='weui_media_desc'>审核备注：@item.AuditRemark</p>
+                        }
+                        else
+                        {
+                          <p class='weui_media_desc'>状态：@item.ApplyStatus.GetDescription()</p>
+                        }
+                        <p class='weui_media_desc'>申请时间：@item.ApplyDateTime.ToPlatDateTimeString()</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    }
+    else
+    {
+    <div id="divNotData" style="width: 100%; text-align: center; margin-top: 150px;">
+        <div>
+            <img src="/Content/mobile/images/list_not_data.png" />
+        </div>
+        <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+            暂无无月租申请信息！</div>
+    </div>
+    }
+</div>
+<script type="text/javascript">
+    var selectDeleteRecordId;
+    function btnCancel(recordId) {
+        selectDeleteRecordId = recordId;
+        WxConfirm("", "您确定要取消该申请吗？", "SubmitCancel");
+    }
+    function SubmitCancel() {
+        location.href = "/MonthlyCarApply/Delete?recordId=" + selectDeleteRecordId;
+    }
+</script>

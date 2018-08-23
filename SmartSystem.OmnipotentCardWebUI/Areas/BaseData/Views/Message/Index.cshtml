@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "客户端通知";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/basedata/message.js?v=4" type="text/javascript"></script>
+<div class="easyui-layout" fit="true">
+    <div region="center" title="客户端通知" style="padding:2px; ">
+        <div>
+            <table> 
+                <tr>
+                    <td align="right">通知内容：</td>
+                    <td><input class="my_textbox" style="width: 150px;" id="txtMessage" /></td>
+                    <td align="right">开始时间：</td>
+                    <td><input class="easyui-datetimebox my_datetimebox" type="text" id="txtStartTime" style="width:150px;height:25px; line-height:25px" /></td>
+                    <td align="right">结束时间：</td>
+                    <td><input class="easyui-datetimebox my_datetimebox" type="text" id="txtEndTime" style="width:150px;height:25px; line-height:25px" /></td>
+                    <td></td>
+                    <td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+                </tr> 
+            </table>
+        </div>
+        <div style="height: 90%;">
+            <table fit="true" id="tablemessage"></table>
+        </div>
+    </div>
+</div>
+
+
+<div id="divMessageBox" style="display: none">
+    <form id="divMessageBoxForm" class="easyui-form">
+        <div title="客户端通知信息" style="padding: 20px;">
+            <input type="hidden" name="RecordID" id="RecordID" />
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr>
+                    <td align="right">
+                        通知标题
+                    </td>
+                    <td>
+                        <input id="MessageTitle" name="MessageTitle" required="true" class="easyui-validatebox form-control" missingmessage="通知标题不能为空" style="width: 200px" />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">
+                        通知内容：
+                    </td>
+                    <td>
+                        <input id="MessageTxt" name="MessageTxt" class="easyui-textbox" data-options="multiline:true" style="width:200px;height:200px">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form> 
+</div>

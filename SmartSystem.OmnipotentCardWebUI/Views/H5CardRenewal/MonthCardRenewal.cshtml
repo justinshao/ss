@@ -1,0 +1,190 @@
+﻿@using Common.Core;
+@using Common.Entities.WX;
+@model ParkUserCarInfo
+@{
+    ViewBag.Title = "月卡续期";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+    select
+    {
+        direction: rtl;
+    }
+    select option
+    {
+        direction: ltr;
+    }
+</style>
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "H5CardRenewal")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            月卡续期</div>
+    </div>
+    <div style="margin-top: 60px">
+    </div>
+    <div class="weui_cells_title fontbold">
+        月卡信息</div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    车牌号</p>
+            </div>
+            <div class="weui_cell_ft">@Model.PlateNumber</div>
+        </div>
+        <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        停车场</p>
+                </div>
+                <div class="weui_cell_ft">@Model.PKName</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    有效期至</p>
+            </div>
+            <div class="weui_cell_ft">
+                @{
+                    string oldEnd = string.Empty;
+                    string oldEndDes = string.Empty;
+                    if (Model.EndDate != DateTime.MinValue)
+                    {
+                        oldEndDes = Model.EndDate.ToPlatString();
+                        oldEnd = Model.EndDate.ToPlatString();
+                    }
+                }
+                <input type="hidden" id="hiddoriginalValidity" value="@oldEnd"/>
+                @oldEndDes
+            </div>
+        </div>
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">
+                    续期月数</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select ui-select" name="select2" id="sltRenewalMonthNumber" style="text-align: right">
+                @{  
+                    Dictionary<int, string> monthDic = ViewBag.CardRenewalMonthDic as Dictionary<int, string>;
+                    foreach(var item in monthDic){
+                         <option value="@item.Key">@item.Value</option>
+                    }
+                 }
+                   
+                </select>
+            </div>
+        </div>
+        <div class="weui_cell renewalshow">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    应付金额</p>
+            </div>
+            <div class="weui_cell_ft" id="divpaymoney">
+                0</div>
+        </div>
+        <div class="weui_cell renewalshow">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    续费后有效期至</p>
+            </div>
+            <div class="weui_cell_ft" id="divaftervalidity">
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("SubmitMonthRenewals", "H5CardRenewal", FormMethod.Post))
+    {
+        <input type="hidden" id="hidd_id" name="cardId" value="@Model.CardID"/>
+        <input type="hidden" id="hidd_paymoney" name="paymoney" />
+        <input type="hidden" id="hidd_paytype" name="paytype" />
+        <input type="hidden" id="hidd_afterdate" name="afterdate" />
+        <input type="hidden" id="hidd_month" name="month" />
+        <input type="hidden" id="hidd_plateno" name="plateno" value="@Model.PlateNumber"/>
+        <input type="hidden" id="hidd_source" name="source" value="@ViewBag.Source"/>
+        @Html.Action("Index", "PaymentType", new { preferentialMoney = "0", payMoney = "0", showPreferentialMoney = false })
+    }
+</div>
+<input type="hidden" id="hiddMonthMoney" value="@Model.Amount"/>
+<input type="hidden" id="hiddSelectMonth" value="@ViewBag.SelectMonth"/>
+<input type="hidden" id="hiddSelectPayType" value="@ViewBag.SelectPayType"/>
+<input type="hidden" id="hiddSystemDate" value="@ViewBag.SystemDate"/>
+@{
+    string oldStart = string.Empty;
+    if (Model.BeginDate != DateTime.MinValue)
+    {
+        oldStart = Model.BeginDate.ToPlatString();
+    }
+}
+<input type="hidden" id="hiddOldBeginDate" value="@oldStart"/>
+<script type="text/javascript">
+    $(function () {
+        $("#sltRenewalMonthNumber").change(function () {
+            var value = $(this).val();
+            ComputeRenewal(value);
+        });
+        $("#btnSubmitPaymentRequest").click(function () {
+            var afterdate = $("#hidd_afterdate").val();
+            if (afterdate == "") {
+                WxAlert("", "请选择续费月数");
+                return false;
+            }
+
+            var total_pay_money = $("#span_total_pay_money").text();
+            if (total_pay_money == "" || parseFloat(total_pay_money) <= 0) {
+                WxAlert("", "支付金额不正确");
+                return false;
+            }
+            $("#hidd_paymoney").val(total_pay_money);
+
+            var paytype = $("[name=radiopaytype]:checked").val();
+            $("#hidd_paytype").val(paytype);
+
+            var month = $("#sltRenewalMonthNumber").val();
+            $("#hidd_month").val(month);
+            $("#loadingSubmitPayToast").show();
+        });
+        var month = $("#hiddSelectMonth").val();
+        if ($.trim(month) != "") {
+            $("#sltRenewalMonthNumber").val(selectMonth)
+        } else {
+            month = $("#sltRenewalMonthNumber").val();
+        }
+        var selectPayType = $("#hiddSelectPayType").val();
+        if ($.trim(selectPayType) != "") {
+            $("input[type=radio][name=radiopaytype][value=" + selectPayType + "]").attr("checked", 'checked')
+        }
+        ComputeRenewal(month);
+    })
+    function ComputeRenewal(month) {
+        $("#spanAlreadyPaymentBox").hide();
+        var money = $("#hiddMonthMoney").val();
+        var totalmoney = parseFloat(month) * parseFloat(money);
+        $("#divpaymoney").text("¥ " + totalmoney);
+        $("#span_total_pay_money").text(totalmoney);
+
+        var originalValidity = $("#hiddoriginalValidity").val();
+        var beginDate = $("#hiddOldBeginDate").val();
+        var mnumber = parseInt(month);
+        $.ajax({
+            type: "post",
+            url: '/H5CardRenewal/CalculateNewEndDate',
+            data: "beginDate=" + beginDate + "&endDate=" + originalValidity + "&month=" + mnumber,
+            success: function (data) {
+                if (data != null) {
+                    var now = new Date(data)
+                    var dates = data.split('-');
+                    var date1 = dates[0] + "年" + dates[1] + "月" + dates[2] + "日";
+                    $("#hidd_afterdate").val(data);
+                    $("#divaftervalidity").text(date1);
+                    $(".renewalshow").show();
+                }
+            }
+        });
+
+    }
+</script>

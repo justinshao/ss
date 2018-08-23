@@ -1,0 +1,125 @@
+﻿@using ClassLibrary1
+@model ParkingList
+@{
+    ViewBag.Title = "停车记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+<style type="text/css">
+     body{ background-color:#f4f4f4; margin:0px; padding:0px;}
+    .layout{}
+    .headereee{}
+    .headereee ul{ list-style-type:none; margin:0px; padding:0px; color:#c8161d; overflow:hidden;}
+    .headereee li{ list-style-type:none; margin:0px; padding:0px; float:left; width:33.3333333%; text-align:center; height:5.2rem; line-height:5.2rem; font-size:1.9rem; cursor:pointer;background-color:#fff;} 
+    .parkingcenter{ width:95%; margin:0 auto;}
+    .listLayout{background:#ffffff;-webkit-border-radius: 10px;border-radius: 10px;margin-top:1.5rem; height:16.9rem;}
+    .listhead { overflow:hidden; height:5rem; line-height:5rem;}
+    .listhead .listhead_left{ float:left; font-size:1.75rem; margin-left:0.3rem;}
+    .listhead .listhead_right{float:right; font-size:1.5rem; color:#c8161d;margin-right:1.3rem;}
+    .listhead .listhead_right1{float:right; font-size:1.5rem; color:#c8161d;margin-right:1.3rem;}
+    .listcenter{ overflow:hidden; height:5rem; line-height:5rem;}
+    .listcenter .listcenter_left{ float:left; font-size:1.5rem; margin-left:2.9rem;}
+    .listcenter .listcenter_left1{ float:left; font-size:1.5rem;margin-left:0.5rem;}
+    .listcenter .listcenter_left2{ float:left; font-size:1.5rem;margin-left:0.5rem;}
+    .listcenter .listhead_1{ float:left;font-size:1.5rem;margin-left:0.5rem;}
+    .listcenter .listcenter_center{ float:left; font-size:1.5rem;}
+    .listcenter .listcenter_right{ float:right; font-size:1.5rem; margin-right:1.3rem;}
+    .paynow{ overflow:hidden; border-top:1px solid #d4d4d4;margin-left:1.3rem; margin-right:1.3rem;height:6.9rem;line-height:6.9rem;}
+    .paynow .paynow_right{ float:right; font-size:1.9rem; border:1px solid #c8161d; height:3.75rem !important; height:3.75rem important;line-height:3.75rem; margin-top:1.57rem; width:10.2rem; border-radius: 0.5rem; text-align:center; cursor:pointer; color:#c8161d;}
+    .paynow .paynow_right1{ float:right; font-size:1.9rem; border:1px solid #333333; height:3.75rem !important; height:3.75rem important;line-height:3.75rem; margin-top:1.57rem; width:10.2rem; border-radius: 0.5rem; text-align:center; cursor:pointer; color:#999999;}
+    .contury{border-bottom:0.5rem solid #c8161d;  color:#c8161d;}
+    .divimage{float:left; margin-left:1.3rem;width:1.75rem;height:1.75rem;margin-top:0.5rem;}
+    .norecord{ position: absolute;left:50%;top:50%;font-size:1.5rem;}
+</style>
+
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+    }
+    calcRam()
+    $(document).ready(function () {
+        $('#aa li a').each(function () {
+            if ($($(this))[0].href == String(window.location)) {
+                $('#aa li').removeClass("contury");
+                $(this).parent().addClass('contury');
+                this.style.color = "#c8161d";
+            }
+        });
+    });
+
+</script>
+
+<div id="headsss" class="headereee">
+        <ul id="aa">
+            <li  class="contury" ><a href="/ParkingRecord/GetParkingList?Status=-1" style="display: inline-block;width:100%;height:5.2rem;line-height:5.2rem;">全部  </a></li>
+            <li  class=""        ><a href="/ParkingRecord/GetParkingList?Status=1" style="display: inline-block;width:100%;height:5.2rem;line-height:5.2rem;">待出场</a></li>
+            <li  class=""        ><a href="/ParkingRecord/GetParkingList?Status=3" style="display: inline-block;width:100%;height:5.2rem;line-height:5.2rem;">已出场</a></li>
+        </ul>                               
+</div>
+
+
+
+    <div syle="width:1px; height:5.9rem;"></div>
+    <div id="all" class="parkingcenter">
+    <!-- 循环开始 -->
+    @if (Model.Result.List == null)
+        {
+            <div class="norecord">
+                暂无停车记录
+            </div>
+        }
+     else{
+     for(int i=0;i< Model.Result.List.Count;i++)
+     {
+       <div class="listLayout">
+            <div class="listhead">
+            <div class="divimage"><img src="../../Content/mobile/images/ltx.png" width="100%" height="100%" /></div> <div class="listhead_left">@Model.Result.List[i].ParkingName</div>
+                @if (Model.Result.List[i].Status == 1)
+                {
+                    <div class="listhead_right">待出场</div>
+                }
+                else
+                {
+                    <div class="listhead_right1">已出场</div>//样式
+                }
+            </div>
+
+            <div class="listcenter">
+                <div class="listcenter_left">@Model.Result.List[i].LicensePlate</div>
+                <div class="listhead_1">|</div>
+                @if (Model.Result.List[i].Status == 2)
+                {
+                    <a class="listcenter_left2">预约</a>
+                    
+                }
+                else
+                {
+                    <a class="listcenter_left1">停车</a>
+                    
+                }
+                <div class="listcenter_center">@Model.Result.List[i].Time</div>
+                <div class="listcenter_right">￥@Model.Result.List[i].Price</div>
+            </div>
+            <div class="paynow">
+                @if (Model.Result.List[i].Status == 1)
+                {
+                    <div class="paynow_right"><a href="/ParkingPayment/ComputeParkingFee?licensePlate=@Model.Result.List[0].LicensePlate" style="color:#c8161d;display: inline-block;width:100%;height:3.75rem;line-height:3.75rem;">立刻支付</a></div>
+                }
+                else if (Model.Result.List[i].Status == 3)
+                {
+                    <div class="paynow_right1"><a href="/ParkingRecord/CXOrder?orderID=@Model.Result.List[0].OrderID&type=@Model.Result.List[0].Type" style="display: inline-block;width:100%;height:3.75rem;line-height:3.75rem;">查看详情</a></div>
+                }
+              </div>
+       </div>
+    <!-- 循环结束 -->
+         }
+    }
+
+    </div>
+
+

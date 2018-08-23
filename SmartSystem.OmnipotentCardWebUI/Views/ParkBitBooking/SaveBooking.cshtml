@@ -1,0 +1,122 @@
+﻿@using Common.Core;
+@using Common.Entities.WX;
+@model WXReserveBitResult
+@{
+    ViewBag.Title = "车位预约支付";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    .weui_grid_cus
+    {
+        width: 25%;
+        height: 60px;
+        background-color: #fff;
+    }
+    .weui_grid_cus p
+    {
+        line-height: 14px;
+    }
+</style>
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "ParkBitBooking")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            车位预约支付</div>
+    </div>
+    <div style="margin-top: 60px">
+    </div>
+    <div class="weui_cells_title fontbold">
+        预约信息</div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    预约车场</p>
+            </div>
+            <div class="weui_cell_ft">@ViewBag.ParkingName</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    预约区域</p>
+            </div>
+            <div class="weui_cell_ft">@ViewBag.AreaName</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    车牌号</p>
+            </div>
+            <div class="weui_cell_ft">@ViewBag.PlateNo</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    预约入场时间</p>
+            </div>
+            <div class="weui_cell_ft">
+                @ViewBag.StartTime</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    预约出场时间</p>
+            </div>
+            <div class="weui_cell_ft">
+                @ViewBag.EndTime
+            </div>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.BitNo))
+        { 
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        预约车位号</p>
+                </div>
+                <div class="weui_cell_ft">
+                    @Model.BitNo
+                </div>
+            </div>
+        }
+    </div>
+    @{
+        using (Html.BeginForm("SubmitBookingPayment", "ParkBitBooking", FormMethod.Post))
+        {
+            
+        <input type="hidden" id="hidd_ReserveID" name="CardId" value="@Model.Order.ReserveID"/>
+        <input type="hidden" id="hidd_OrderID" name="PayDetailID" value="@Model.Order.OrderID"/>
+        <input type="hidden" id="hidd_PKID" name="PKID" value="@Model.Order.PKID"/>
+        <input type="hidden" id="hidd_Amount" name="Amount" value="@Model.Order.Amount"/>
+        <input type="hidden" id="hidd_PlateNo" name="PlateNo" value="@ViewBag.PlateNo"/>
+        <input type="hidden" id="hidd_StartTime" name="BookingStartTime" value="@ViewBag.StartTime"/>
+        <input type="hidden" id="hidd_EndTime" name="BookingEndTime" value="@ViewBag.EndTime"/>
+        <input type="hidden" id="hidd_AreaId" name="BookingAreaID" value="@ViewBag.AreaId"/>
+        <input type="hidden" id="hidd_BitNo" name="BookingBitNo" value="@Model.BitNo"/>
+        <input type="hidden" id="hidd_PKName" name="PKName" value="@ViewBag.ParkingName"/>
+        <input type="hidden" id="hidd_PayChannel" name="PaymentChannel" />
+        <input type="hidden" id="hidd_PayeeChannel" name="PayeeChannel" />
+        @Html.Action("Index", "PaymentType", new { preferentialMoney = 0, payMoney = Model.Order.Amount, showPreferentialMoney = false, alreadyPayment = 0 })
+        }
+    }
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmitPaymentRequest").click(function () {
+            var total_pay_money = $("#span_total_pay_money").text();
+            if (total_pay_money == "" || parseFloat(total_pay_money) <= 0) {
+                WxAlert("", "支付金额不正确");
+                return false;
+            }
+            var paytype = $("[name=radiopaytype]:checked").val();
+            $("#hidd_PayChannel").val(paytype);
+            $("#hidd_PayeeChannel").val(paytype);
+            $("#loadingSubmitPayToast").show();
+        });
+    })
+
+</script>

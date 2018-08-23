@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "微信帐户信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/statistics/common.js?v=new Date()" type="text/javascript"></script>
+<script src="/Scripts/nweixin/wxaccount.js?v=new Date()" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany">
+        </ul>
+    </div>
+    <div region="center" title="微信用户" style="padding: 2px;">
+        <div style="margin: 3px 0px 3px 5px">
+            <div style="margin-bottom: 5px">
+                <table>
+                    <tr>
+                        <td align="right">
+                            帐户名称：
+                        </td>
+                        <td>
+                            <input class="my_textbox" style="width: 80px;" id="txtAccountName" />
+                        </td>
+                        <td align="right">
+                            移动电话：
+                        </td>
+                        <td>
+                            <input class="my_textbox" style="width: 100px;" id="txtMobile" />
+                        </td>
+                        <td align="right">
+                            关注时间：
+                        </td>
+                        <td>
+                            <input class="easyui-datetimebox" type="text" id="txtStartTime" style="width: 150px;
+                                height: 25px; line-height: 25px" />
+                        </td>
+                        <td align="right">
+                            至
+                        </td>
+                        <td>
+                            <input class="easyui-datetimebox" type="text" id="txtEndTime" style="width: 150px;
+                                height: 25px; line-height: 25px" />
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;
+                                height: 28px;">查询</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="height: 92%;">
+            <table fit="true" id="tableListBox">
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "意见反馈";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="container hn-main">
+    <div class="row hn-row">
+        <div class="header">
+            <div class="pull-left header-left">
+            </div>
+            <div class="pull-right header-right">
+                意见反馈</div>
+        </div>
+        <div class="top60">
+        </div>
+        <div><img src="/Content/weixin/images/bsg_head.png" class="img-thumbnail"/></div>
+        @using (Html.BeginForm("SaveProblem", "OtherService", FormMethod.Post))
+        { 
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <textarea class="weui_textarea" name="content" style="height: 150px" placeholder="您有什么意见，快来告诉我吧。"
+                            rows="3"></textarea>
+                        <div class="weui_textarea_counter">
+                            <span id="spanlen">0</span>/200</div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui_btn_area">
+                <input type="submit" class="weui_btn weui_btn_primary" value="提交" id="btnSubmitData" />
+            </div>
+        }
+    <div class="top30"></div>
+    <div class="weui_panel">
+    <div style="text-align:center; margin-top:15px">常见问题</div>
+        <div class="weui_panel_hd" style="color: red">
+            注意：请提前支付停车费，若到达闸口才支付，有可能出现停车场没有收到支付通知，导致让你再次支付停车费的情况。</div>
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_text">
+              一、如何缴停车费
+              <div style="font-size:13px; color:#A8A8A8">
+                &nbsp;&nbsp; 关注微信公众账号，点击菜单“临停缴费”输入车牌点击“确认支付”按钮->确认支付信息（仅提供微信支付方式） 点击“提交支付”按钮->
+                点击支付“立即支付”按钮->输入微信支付密码->支付完成（必须在车场规定的时间内离场，否则会产生格外的费用）
+              </div>
+            </div>
+        </div>
+          <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_text">
+              二、我是月租车怎么续期
+              <div style="font-size:13px; color:#A8A8A8">
+                &nbsp;&nbsp; 点击菜单“月卡续期”->选择续期车辆(如无车辆信息请到管理处登记处理)->选择续期月数，确认支付金额无误后点击“确认支付”按钮（仅提供微信支付方式）->
+                点击支付“立即支付”按钮->输入微信支付密码->续期完成
+              </div>
+            </div>
+        </div>
+         <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_text">
+              三、锁车解锁
+              <div style="font-size:13px; color:#A8A8A8">
+                1、点击“锁车解锁”按钮->对相应车辆进行锁车解锁（只有管理处登记过的车辆才有改功能）；<br>
+                2、只有在停车场内的才能锁车，锁车后请在车辆出场前解锁，否则无法离开车场；
+              </div>
+            </div>
+        </div>
+           <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_text">
+              四、怎么查看缴费记录
+              <div style="font-size:13px; color:#A8A8A8">
+                &nbsp;&nbsp;点击菜单“缴费记录” 查看月卡续期和临停缴费记录
+              </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmitData").click(function () {
+                var content = $(".weui_textarea").val();
+                if ($.trim(content) == "") {
+                    CusAlert("", "请输入内容");
+                    return false;
+                }
+                return true;
+            });
+            $(".weui_textarea").keyup(function () {
+                var value = $(this).val();
+                if ($.trim(value) != "") {
+                    if ($.trim(value).length <= 200) {
+                        $("#spanlen").text($.trim(value).length);
+                    } else {
+                        value = value.substring(0, 200);
+                        $(this).val(value)
+                        $("#spanlen").text("200");
+                    }
+                } else {
+                    $("#spanlen").text("0");
+                }
+            });
+        });
+    </script>
+}

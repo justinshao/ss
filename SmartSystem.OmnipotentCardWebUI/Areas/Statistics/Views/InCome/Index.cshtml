@@ -1,0 +1,194 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "收入分析";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+<script type="text/javascript" src="/Scripts/chart/jquery.js"></script>
+<script src="/Scripts/chart/highcharts.js" type="text/javascript"></script>
+<div class="easyui-layout" fit="true">   
+	<div data-options="region:'center'">
+        <div style=" text-align:right;margin-top:5px; margin-right:5px"><select id="selectParks" style="width: 150px; height: 25px;" class="my_select"></select></div>
+        <table style="width:100%">
+           
+            <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div class="easyui-panel" title="实收与应收" style="width:100%;height:430px;background:white;">
+                                   <div id="realandreceivable"></div>	
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div class="easyui-panel" title="现金支付 手机支付" style="width:100%;height:430px;background:white;">
+                                    <div id="cashandonline"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+              <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div class="easyui-panel" title="长租续费" style="width:100%;height:430px;background:white;">
+                                    <div id="cardextend"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:50%">
+                                <div class="easyui-panel" title="车场收入同比分布图" style="width:100%;height:350px;background:white;float:left">
+                                    <div id="yoy"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="easyui-panel" title="车场收入环比分布图" style="width:100%;height:350px;background:white;">
+                                   <div id="mom" ></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+	</div>
+</div>
+<script type="text/javascript">
+    //环比
+    var chartyoy;
+    var yoyrealamount = [];
+    var catagrayyoy = [];
+    //同比
+    var chartmom;
+    var momrealamount = [];
+    var catagraymom = [];
+    //实收与应收
+    var arrayreal = [];
+    var arrayreceivable = []
+    var chartrealandreceivableamount;
+    var catagrayrealandreceivable = [];
+    //现金支付与手机支付
+    var catagraycashandonline = [];
+    var arraycash = [];
+    var arrayonline = [];
+    var chartcashandonline;
+    //长租续期
+    var categraycardextend;
+    var arraycardextend = [];
+    var chartcardextend;
+    //初始化数据
+    function IniData() {
+        var parkingid = $("#selectParks").val();
+        $.ajax({
+            type: "post",
+            url: '/S/InCome/Search_InCome',
+            data: "parkingid=" + parkingid,
+            async: false,
+            success: function (data) {
+                if (data != null) {
+                    yoyrealamount = [];
+                    catagrayyoy = [];
+                    $.each(data.YOY, function (index, item) {
+                        yoyrealamount.push(item.Real_Amount);
+                        catagrayyoy.push(item.KeyName);
+                    })
+
+                    momrealamount = [];
+                    catagraymom = [];
+                    $.each(data.MOM, function (index, item) {
+                        momrealamount.push(item.Real_Amount);
+                        catagraymom.push(item.KeyName);
+                    })
+
+                    catagrayrealandreceivable = [];
+                    arrayreal = [];
+                    arrayonline = [];
+                    arrayreceivable = [];
+                    arraycardextend = [];
+                    catagraycashandonline = [];
+                    categraycardextend = [];
+                    $.each(data.GatherMonth12, function (index, item) {
+                        arrayreal.push(item.Real_Amount);
+                        arrayonline.push(item.Real_Amount);
+                        arraycash.push(item.Cash_Amount);
+                        arrayreceivable.push(item.Receivable_Amount);
+                        arraycardextend.push(item.OnLineMonthCardExtend_Amount + item.MonthCardExtend_Amount);
+                        catagrayrealandreceivable.push(item.KeyName);
+                        catagraycashandonline.push(item.KeyName);
+                        categraycardextend.push(item.KeyName);
+                    })
+
+
+                }
+            }
+        });
+        chartyoy = new Highcharts.Chart({
+            chart: { renderTo: 'yoy', type: 'column', height: 320 },
+            title: { text: '同比分析', x: 0 },
+            xAxis: { categories: catagrayyoy },
+            yAxis: {min: 0,title: {text: '金额'},plotLines: [{value: 0,width: 2,color: '#808080'}]},
+            tooltip: { formatter: function () { return '<b>' + this.series.name + "：" + this.y + '</b><br/><br/>'; } },
+            series: [{ name: '实收金额', data: yoyrealamount }]
+        });
+        chartmom = new Highcharts.Chart({
+            chart: { renderTo: 'mom', type: 'column', height: 320 },
+            title: { text: '环比分析', x: 0 },
+            xAxis: { categories: catagraymom },
+            yAxis: {min: 0,title: {text: '金额'},plotLines: [{value: 0,width: 2,color: '#808080'}]},
+            tooltip: { formatter: function () { return '<b>' + this.series.name + "：" + this.y + '</b><br/><br/>'; } },
+            series: [{ name: '实收金额', data: momrealamount }]
+        });
+        chartrealandreceivableamount = new Highcharts.Chart({
+            chart: { renderTo: 'realandreceivable', type: 'line' },
+            title: { text: '实收与应收', x: 0 },
+            subtitle: { text: '近12个月实收与应收', x: 0 },
+            xAxis: { categories: catagrayrealandreceivable },
+            yAxis: {min: 0,title: {  text: '金额' },plotLines: [{value: 0,width: 2,color: '#808080'}]},
+            tooltip: { formatter: function () { return '<b>' + this.series.name + "：" + this.y + '</b><br/><br/>'; } },
+            series: [{ name: '实收', data: arrayreal },{ name: '应收', data: arrayreceivable}]
+        });
+        chartcashandonline = new Highcharts.Chart({
+            chart: { renderTo: 'cashandonline', type: 'line' },
+            title: { text: '现金额支付与手机支付', x: 0 },
+            subtitle: { text: '近12个月现金额支付与手机支付', x: 0 },
+            xAxis: { categories: catagraycashandonline },
+            yAxis: {min: 0,title: {text: '金额'},plotLines: [{value: 0,width: 2,color: '#808080'}]},
+            tooltip: { formatter: function () { return '<b>' + this.series.name + "：" + this.y + '</b><br/><br/>'; } },
+            series: [{ name: '手机支付', data: arrayonline }, { name: '现金收费', data: arraycash}]
+        });
+        chartcardextend = new Highcharts.Chart({
+            chart: { renderTo: 'cardextend', type: 'line' },
+            title: { text: '长租续期', x: 0 },
+            subtitle: { text: '近12个月长租续期与实收', x: 0 },
+            xAxis: { categories: categraycardextend },
+            yAxis: {min: 0,title: {text: '金额'},plotLines: [{value: 0,width: 2,color: '#808080'}]},
+            tooltip: { formatter: function () { return '<b>' + this.series.name + "：" + this.y + '</b><br/><br/>'; } },
+            series: [ { name: '长租续期', data: arraycardextend}]
+        });
+    }
+    $(function () {
+        GetParks();
+        IniData();
+        $("#selectParks").change(function () {
+            IniData();
+        })
+    });
+</script>

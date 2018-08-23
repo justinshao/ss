@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "包月明细";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@model ClassLibrary1.CardDetail
+<style type="text/css">
+    #bb
+    {
+        text-align: center;
+        color: #888888;
+        font-size: 1.5rem;
+        margin-top: 15.625rem;
+        margin-bottom: 9.375rem;
+    }
+    #dd
+    {
+        height: 12.875rem;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        margin: 0.9375rem 1.25rem 0rem 1.25rem;
+        padding: 2.125rem 1.375rem 0rem 1.375rem;
+    }
+    #pkname 
+    {
+        font-size: 1.875rem;
+        color: #555555;
+        margin-bottom:1.4125rem ;
+    }
+    #line{ height:2rem; }
+    #platename 
+    {
+        font-size: 1.875rem;
+        color: #555555;
+        float:left;
+    }
+    #monthmoney 
+    {
+        font-size: 1.875rem;
+        color: #555555;
+        float:right;
+    }
+    #paytime 
+    {
+        font-size: 1.5rem;
+        color: #888888;
+        padding:2rem 1.375rem 0rem 0rem;
+    }
+</style>
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+    }
+    calcRam()
+</script>
+@if (Model.Result.List.Count == 0)
+{
+<div style="width: 100%; " id="divNoDataBox">
+    <div id="bb">
+        <p>
+            暂无缴费记录</p>
+    </div>
+</div>
+}
+else
+{
+    for (int i = 0; i < Model.Result.List.Count; i++)
+    {  
+<div id="dd">
+    <div id="pkname">
+        <p>
+            @Model.Result.List[i].Title</p>
+    </div>
+<div id="line">
+    <div id="platename">
+        <p>
+           @Model.Result.List[i].LicensePlate</p>
+    </div>
+    <div id="monthmoney">
+        <p>
+            @Model.Result.List[i].Price 元</p>
+    </div>
+</div>
+    <div id="paytime"><p>@Model.Result.List[i].CreateTime</p></div>
+</div>
+    }
+}

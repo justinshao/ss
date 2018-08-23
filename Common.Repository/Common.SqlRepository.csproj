@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DB8CA74-EB69-451D-8BE9-FDF03329C8B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common.SqlRepository</RootNamespace>
+    <AssemblyName>Common.SqlRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.3.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.3.2\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AliPay\AliPayApiConfigDAL.cs" />
+    <Compile Include="BaseDAL.cs" />
+    <Compile Include="BaseData\BaseCardDAL.cs" />
+    <Compile Include="BaseData\BaseEmployeeDAL.cs" />
+    <Compile Include="BaseData\CityDAL.cs" />
+    <Compile Include="BaseData\CompanyDAL.cs" />
+    <Compile Include="BaseData\MessageDAL.cs" />
+    <Compile Include="BaseData\ParkingDAL.cs" />
+    <Compile Include="BaseData\PassRemarkDAL.cs" />
+    <Compile Include="BaseData\VillageDAL.cs" />
+    <Compile Include="BWY\BWYGateMappingDAL.cs" />
+    <Compile Include="Logs\ExceptionsDAL.cs" />
+    <Compile Include="Logs\LoginLogDAL.cs" />
+    <Compile Include="Logs\OperateLogDAL.cs" />
+    <Compile Include="Order\OnlineOrderDAL.cs" />
+    <Compile Include="Park\EmployeePlateDAL.cs" />
+    <Compile Include="Park\ParkCarlineInfoDAL.cs" />
+    <Compile Include="Park\ParkCarDerateDAL.cs" />
+    <Compile Include="Park\ParkCardSuspendPlanDAL.cs" />
+    <Compile Include="Park\ParkCarTypeSingleDAL.cs" />
+    <Compile Include="Park\ParkChangeshiftrecordDAL.cs" />
+    <Compile Include="Park\ParkAreaDAL.cs" />
+    <Compile Include="Park\ParkBlacklistDAL.cs" />
+    <Compile Include="Park\ParkBoxDAL.cs" />
+    <Compile Include="Park\ParkCarModelDAL.cs" />
+    <Compile Include="Park\ParkCarTypeDAL.cs" />
+    <Compile Include="Park\ParkDerateConfigDAL.cs" />
+    <Compile Include="Park\ParkDerateDAL.cs" />
+    <Compile Include="Park\ParkDerateQRcodeDAL.cs" />
+    <Compile Include="Park\ParkDeviceDAL.cs" />
+    <Compile Include="Park\ParkDeviceDetectionDAL.cs" />
+    <Compile Include="Park\ParkEventDAL.cs" />
+    <Compile Include="Park\ParkFeeRuleDAL.cs" />
+    <Compile Include="Park\ParkGateDAL.cs" />
+    <Compile Include="Park\ParkGrantDAL.cs" />
+    <Compile Include="Park\ParkInterimDAL.cs" />
+    <Compile Include="Park\ParkIORecordDAL.cs" />
+    <Compile Include="Park\ParkLpPlanDAL.cs" />
+    <Compile Include="Park\ParkMonthlyCarApplyDAL.cs" />
+    <Compile Include="Park\ParkOrderDAL.cs" />
+    <Compile Include="Park\ParkReserveBitDAL.cs" />
+    <Compile Include="Park\ParkSellerDAL.cs" />
+    <Compile Include="Park\ParkSettlementApprovalFlowDAL.cs" />
+    <Compile Include="Park\ParkSettlementDAL.cs" />
+    <Compile Include="Park\ParkSettlementDetailsDAL.cs" />
+    <Compile Include="Park\ParkTimeseriesDAL.cs" />
+    <Compile Include="Park\ParkVisitorDAL.cs" />
+    <Compile Include="PG\PGAreaDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statistics\StatisticsDAL.cs" />
+    <Compile Include="Statistics\Statistics_ChangeShiftDAL.cs" />
+    <Compile Include="Statistics\Statistics_GatherDAL.cs" />
+    <Compile Include="Statistics\Statistics_GatherGateDAL.cs" />
+    <Compile Include="Statistics\Statistics_GatherLongTimeDAL.cs" />
+    <Compile Include="Statistics\TgOrderDAL.cs" />
+    <Compile Include="Statistics\tgPersonDAL.cs" />
+    <Compile Include="Users\SysRoleAuthorizeDAL.cs" />
+    <Compile Include="Users\SysRolesDAL.cs" />
+    <Compile Include="Users\SysScopeAuthorizeDAL.cs" />
+    <Compile Include="Users\SysScopeDAL.cs" />
+    <Compile Include="Users\SysUserDAL.cs" />
+    <Compile Include="Users\SysUserRolesMappingDAL.cs" />
+    <Compile Include="Users\SysUserScopeMappingDAL.cs" />
+    <Compile Include="WeiXin\AdvanceParkingDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\changeOrdesr.cs" />
+    <Compile Include="WeiXin\WXAccountDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXApiConfigDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXArticleDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXInteractionInfoDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXKeywordDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXMenuAccessRecordDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXMenuDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXOpinionFeedbackDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXOtherConfigDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WXothersDAL.cs" />
+    <Compile Include="WeiXin\WXUserDAL.cs" />
+    <Compile Include="WeiXin\WXUserLocationDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeiXin\WX_LockCarDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Core\Common.Core.csproj">
+      <Project>{EF989F15-C062-4C7D-8B69-8ACE8540C07B}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.DataAccess\Common.DataAccess.csproj">
+      <Project>{18F0CE73-B168-4D53-BCED-FD6C4E0D4378}</Project>
+      <Name>Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Entities\Common.Entities.csproj">
+      <Project>{2A5BF93F-E241-48AE-905E-712A3152EF8C}</Project>
+      <Name>Common.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.IRepository\Common.IRepository.csproj">
+      <Project>{695C985E-9F3E-42FF-B20D-74E79585F320}</Project>
+      <Name>Common.IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Utilities\Common.Utilities.csproj">
+      <Project>{660F9B65-6AD0-4984-914C-4459C41CA966}</Project>
+      <Name>Common.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

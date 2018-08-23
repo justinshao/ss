@@ -1,0 +1,135 @@
+﻿@model List<string>
+    @{
+        Layout = null;
+
+    }
+    <html>
+        <head><title>
+           微信绑定手机
+        </title>
+            <meta name="viewport" content="initial-scale=0,maximum-scale=0,minimum-scale=0,user-scalable=no">
+    <link rel="stylesheet" href="@Url.Content("/Content/weixin/login.css")" />
+    <script src="@Url.Content("/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("/Scripts/weixin/fontsize.js")"></script>
+        
+        </head>
+    <body>
+            
+    <script type="text/javascript">
+        $(function () {
+            // 设置默认高度
+            var w = document.documentElement.clientWidth
+            var c_h = $(window).height()
+            $(".container").css({
+                "min-height": c_h + "px"
+            })
+            // 获取焦点
+            $("input").focus(function () {
+                var formTag = $(this).parents(".form")[0]
+                $(formTag).css({
+                    'border-bottom': '1px solid #c8161d'
+                })
+            })
+            // 失去焦点
+            $("input").blur(function () {
+                var formTag = $(this).parents(".form")[0]
+                $(formTag).css({
+                    'border-bottom': '1px solid #bfbfbf'
+                })
+            });
+        })
+        var i = 60;
+        var int;
+        function aa() {
+            if (i > 0) {
+                $("#btn").attr("onclick", "null");
+                $("#btn").text("重新获取(" + i-- + ")");
+                $("#btn").css("background", "#9f9f9f");
+            } else {
+                window.clearInterval(int);
+                document.getElementById("btn").disabled = false;
+                $("#btn").text("获取验证码");
+                $("#btn").attr("onclick", "getPhoneCode()");
+                i = 60;
+                $("#btn").css("background", "#C7161C");
+            }
+        }
+
+        function getPhoneCode() {
+            var phoneId = $("#phone").val();
+            if (phoneId == "") {
+                alert("请输入手机号");
+                return false;
+            }
+
+
+            $.post('/ParkingPayment/PhoneCode?Id=' + phoneId,
+                function (data) {
+                    console.log(data);
+                    if (data.Status == "1") {
+                        window.clearInterval(int); //防止重复提交
+                        int = setInterval(aa, 1000);
+                    } else {
+                        //$.messager.alert('系统提示', data.Result, 'error');
+                        alert(data.Result);
+                    }
+
+                });
+        }
+
+        function getBingding() {
+
+            var phone = $("#phone").val().trim();
+            var code = $("#code").val().trim();
+
+            if (phone == "" || code == "") {
+                alert("请完善信息")
+                return;
+            } else if (!/^1\d{10}$/.test(phone)) {
+                alert("请检查手机号");
+                return;
+            }
+            $.post('/ParkingPayment/WeixinBingPhone?phone=' + phone + '&code=' + code + '',
+                function (data) {
+
+                    if (data.Status == "1") {
+                        window.location.href = data.Url;
+                    } else {
+                        alert(data.Result);
+                        //$.messager.alert('系统提示', data.Result, 'error');
+                    }
+
+                });
+
+        }
+
+
+    </script>
+
+    <div class="container">
+        <div class="form form_phone">
+            <p class="top_title">手机号</p>
+            <p class="bottom">
+                <span class="phone_left left">+86</span>
+                <input class="right phone" type="number" id="phone" placeholder="手机号">
+            </p>
+        </div>
+        <div class="form form_code">
+            <p class="top_title">验证码</p>
+            <p class="bottom">
+                <input type="text" id="code" class="code left" placeholder="四位">
+                <span class="right get_code" id="btn" onclick="getPhoneCode()">获取验证码</span>
+            </p>
+        </div>
+        
+        <div class="footer">
+            <button onclick="getBingding()">绑定手机</button>
+        </div>
+    </div>
+
+        </body>
+    </html>
+
+
+
+

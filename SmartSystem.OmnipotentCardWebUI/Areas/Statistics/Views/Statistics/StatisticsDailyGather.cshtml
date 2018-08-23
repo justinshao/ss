@@ -1,0 +1,25 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "日汇总报表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/statisticsdailygather.js")
+
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="center" title="汇总日报表" style="padding:2px; ">
+     <div style="margin:3px 0px 3px 5px">        
+        &nbsp;&nbsp;车场名称：<input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/>
+        &nbsp;开始时间：<input class="easyui-datebox" type="text" id="txtStartTime" style="width:120px;height:25px; line-height:25px"  />
+        &nbsp;结束时间：<input class="easyui-datebox" type="text" id="txtEndTime" style="width:120px;height:25px; line-height:25px"  />
+        &nbsp;<a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a>
+    </div>
+    <div style="height: 94%;">        
+        <table fit="true" id="tableListBox">
+        </table>
+    </div>
+</div>
+</div>
+
+
+

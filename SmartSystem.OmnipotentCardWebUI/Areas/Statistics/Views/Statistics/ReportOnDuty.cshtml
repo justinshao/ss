@@ -1,0 +1,27 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "ReportOnDuty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/reportonduty.js")
+
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="center" title="当班统计" style="padding:2px; ">
+     <div style="margin:3px 0px 3px 5px"> 
+        <div style=" margin-top:5px">      
+        &nbsp;车场名称：<input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:140px"/>
+         &nbsp;当班人：<select id="selectOnDutys" style="width: 100px; " class="my_select"><option value="-1">全部</option></select> 
+         &nbsp;<td align="right">岗亭名称：</td><td><select id="selectBox" style="width: 150px; " class="my_select"></select> </td>
+        &nbsp;开始时间：<input class="easyui-datetimebox" type="text" id="txtStartTime" style="width:150px;height:25px; line-height:25px"  />    
+        &nbsp;结束时间：<input class="easyui-datetimebox" type="text" id="txtEndTime" style="width:150px;height:25px; line-height:25px"  />
+        &nbsp;<a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a>
+        </div>
+    </div>
+    <div style="height: 94%;">        
+        <table fit="true" id="tableListBox">
+        </table>
+    </div>
+</div>
+</div>
+

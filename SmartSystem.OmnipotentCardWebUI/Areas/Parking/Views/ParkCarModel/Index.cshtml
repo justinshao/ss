@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "车型管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/parking/carmodel.js?v=1" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="车场信息" style="width: 250px;">
+        <div style="margin: 5px 0px 5px 5px; text-align: left">
+            <input type="text" id="txtSearchTreeContent" style="width: 150px" class="my_textbox" />&nbsp;<input
+                type="button" style="width: 60px; height: 28px" value="搜索" class="easyui-linkbutton"
+                onclick="btnSearchTreeContent()" />
+        </div>
+        <ul id="parkingTree">
+        </ul>
+    </div>
+    <div region="center" title="车型信息" style="background: #eee;">
+        <table fit="true" id="tableCarModel">
+        </table>
+    </div>
+</div>
+<div id="divCarModelBox">
+    <form id="divCarModelBoxForm" class="easyui-form">
+    <div title="车型管理" style="padding: 20px;">
+        <input type="hidden" name="CarModelID" id="CarModelID" />
+        <input type="hidden" name="PKID" id="PKID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    车型名称
+                </td>
+                <td>
+                    <input id="CarModelName" name="CarModelName" required="true" class="easyui-validatebox form-control"
+                        missingmessage="车类型不能为空" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    车牌颜色
+                </td>
+                <td>
+                    <select name="PlateColor" class="form-select-control" style="width:70px">
+                        <option value="无">无</option>
+                        <option value="蓝">蓝</option>
+                        <option value="黄">黄</option>
+                    </select>
+                    &nbsp;
+                    <input type="checkbox" id="IsDefaultSelected" name="IsDefault" value="1" />是否为默认车型
+                </td>
+            </tr>
+        </table>
+        <div id="p" class="easyui-panel" title="按时段最大收费" style="width: 450px; height: 80px;
+            padding: 10px;">
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr class="tr_content0_other">
+                    <td>
+                        <input id="MaxUseMoney" name="MaxUseMoney" required="true" class="easyui-numberspinner"
+                            data-options="min:0" value="0" style="width: 80px" />(0为不限额) &nbsp;<input type="checkbox"
+                                id="IsNaturalDaySelected" name="IsNaturalDay" value="true" />是否为自然天
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="p1" class="easyui-panel" title="按白天黑夜最大收费" style="width: 450px; height: 130px;
+            padding: 10px;">
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr class="tr_content0_other">
+                    <td>
+                        白天收费限额
+                        <input id="txtDayMaxMoney" name="DayMaxMoney" class="easyui-numberspinner form-control"
+                            value="0" data-options="min:0,increment:1,precision:1" style="width: 60px" />元(0不限额)
+                         &nbsp;白天时间<input class="easyui-timespinner" name="DayStartTime" style="width: 60px;" />
+                        至<input class="easyui-timespinner" name="DayEndTime" style="width: 60px;" />
+                    </td>
+                </tr>
+                <tr class="tr_content0_other">
+                    <td>
+                        夜晚收费限额
+                        <input id="txtNightMaxMoney" name="NightMaxMoney" class="easyui-numberspinner form-control"
+                            value="0" data-options="min:0,increment:1,precision:1" style="width: 60px" />元(0不限额)
+                         &nbsp;夜晚时间<input class="easyui-timespinner" name="NightStartTime" style="width: 60px;" />
+                        至<input class="easyui-timespinner" name="NightEndTime" style="width: 60px;" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+</div>

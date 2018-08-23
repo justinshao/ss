@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "系统提示";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row" style="text-align: center">
+    <div class="weui_msg top20" style="padding-top: 0px">
+        <div class="weui_icon_area">
+            <i class="weui_icon_msg weui_icon_warn"></i>
+        </div>
+        <div class="weui_text_area">
+            <p class="weui_msg_desc">@ViewBag.ErrorMessage</p>
+        </div>
+    </div>
+</div>

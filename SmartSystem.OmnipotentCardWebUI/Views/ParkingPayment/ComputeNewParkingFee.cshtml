@@ -1,0 +1,62 @@
+﻿@using ClassLibrary1
+@model PresenceOrderList
+@{
+    ViewBag.Title = "停车记录";
+    Layout = null;
+}
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.0, user-scalable=0">
+    <meta name="author" content="SnowBeatRain">
+    <title>停车缴费</title>
+    <link rel="stylesheet" href="@Url.Content("/Content/weixin/payfees.css")" />
+    <script src="@Url.Content("/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("/Scripts/weixin/fontsize.js")"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="car_list">
+
+            @foreach(var order in Model.Result){
+            <div class="list">
+                <div class="top">
+                    <p>@order.LicensePlate</p>
+                    <p>@order.ParkName</p>
+                    <p>
+                        <span style="font-size: 2.35rem">￥</span>@order.Price
+                    </p>
+                    <p>@order.TimeString</p>
+                </div>
+                <div class="bottom">
+                    <button onclick="gotoPay('@order.LicensePlate');">去缴费</button>
+                </div>
+            </div>
+            }
+            
+            <!-- 右侧白边 -->
+            <div class="rigth_slider">&nbsp;</div>
+        </div>
+        <div class="footer_msg">
+            <p>更快的进出体验，更全的停车服务，尽在SPS停车APP</p>
+            <p class="godown">去下载！</p>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" language="javascript">
+  var w = document.documentElement.clientWidth
+  var c_h = $(window).height()
+  $(".container").css({
+    "min-height": c_h + "px"
+  })
+
+  function gotoPay(licenseNo)
+  {
+      window.location.href = "/ParkingPayment/ComputeParkingFee?licensePlate=" + licenseNo;
+  }
+</script>
+<html>

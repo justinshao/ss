@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "单位管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/basedata/company.js?v=1" type="text/javascript"></script>
+<div class="easyui-layout" fit="true">
+    <div region="center" title="公司信息" style="padding:2px; ">
+        <div>
+            <table>
+                <tr>
+                    <td align="right">单位名称：</td>
+                    <td><input class="my_textbox" style="width: 150px;" id="txtcompany" /></td>
+                    <td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+                </tr>
+            </table>
+        </div>
+        <div style="height: 90%;">
+            <table fit="true" id="tableCompany"></table>
+        </div>
+    </div>
+</div>
+
+
+<div id="divCompanyBox" style="display: none">
+    <form id="divCompanyBoxForm" class="easyui-form">
+    <div title="公司信息" style="padding: 20px;">
+        <input type="hidden" name="CPID" id="hiddCPID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    公司名称
+                </td>
+                <td>
+                    <input id="txtCPName" name="CPName" required="true" class="easyui-validatebox form-control" missingmessage="公司名称不能为空" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    属于
+                </td>
+                <td>
+                    <input id="MasterID" lines="true" class="form-control" editable="false" name="MasterID" value="0" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    联系人
+                </td>
+                <td>
+                    <input type="text" id="txtLinkMan" name="LinkMan" class="easyui-validatebox form-control" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    联系电话
+                </td>
+                <td>
+                    <input type="text" id="txtMobile" name="Mobile"  class="easyui-validatebox form-control" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    省
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="ProvinceID" lines="true" editable="false" name="ProvinceID" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    市/县
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="CityID" lines="true" editable="false" name="CityID" style="width: 200px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    公司地址
+                </td>
+                <td>
+                    <input class="easyui-textbox" data-options="multiline:true"  name="Address" style="width:200px;height:40px">
+                </td>
+            </tr>
+            <tr class="trUserInfo">
+                <td align="right">
+                    登录名
+                </td>
+                <td>
+                    <input type="text" id="txtUserAccount" name="UserAccount" class="easyui-validatebox form-control"  missingmessage="不能为空" style="width: 200px" />
+                </td>
+            </tr>
+            <tr class="trUserInfo">
+                <td align="right">
+                    登录密码
+                </td>
+                <td>
+                    <input type="password" id="txtUserPassword" name="UserPassword" class="easyui-validatebox form-control" missingmessage="不能为空" style="width: 200px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+    <input type="hidden" id="hiddCurrUserCompayId" value="@ViewBag.CurrUserCompayId" />
+</div>

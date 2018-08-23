@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "用户分析报表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../../../../Scripts/statistics/common.js?v=new Date()" type="text/javascript"></script>
+<script src="../../../../Scripts/statistics/userinfo.js?v=new Date()" type="text/javascript"></script>
+
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="center" title="用户分析报表" style="padding:2px; ">
+     <div style="margin:3px 0px 3px 5px">       
+        &nbsp;&nbsp;推广人员名称：<select id="selectParks" style="width: 150px;" class="my_select"></select>
+        &nbsp;开始时间：<input class="easyui-datebox" type="text" id="txtStartTime" style="width:120px;height:25px; line-height:25px"  />
+        &nbsp;结束时间：<input class="easyui-datebox" type="text" id="txtEndTime" style="width:120px;height:25px; line-height:25px"  />
+        &nbsp;<a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a>&nbsp;<a href="javascript:void(0)" id="" class=""></a>
+    </div>
+
+    <div style="height: 94%;">        
+        <table fit="true" id="tableListBox">
+        </table>
+    </div>
+</div>
+</div>

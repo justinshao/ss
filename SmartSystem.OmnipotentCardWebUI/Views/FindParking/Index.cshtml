@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "找停车场";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<link href="/Content/mobile/findparking.css" rel="stylesheet" type="text/css" />
+<link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css"
+    rel="stylesheet" type="text/css" />
+<div class="row">
+    <div class="weui_search_bar" id="search_bar">
+        <form class="weui_search_outer">
+        <div class="weui_search_inner">
+            <i class="weui_icon_search" style="height: 30px; line-height: 30px; margin-top: 8px">
+            </i>
+            <input type="search" class="weui_search_input" id="search_input" placeholder="搜索"
+                style="height: 30px; line-height: 30px; margin-top: 3px" />
+            <a href="javascript:" class="weui_icon_clear" id="search_clear" style="height: 30px;
+                line-height: 30px; margin-top: 5px"></a>
+        </div>
+        <label for="search_input" class="weui_search_text" id="search_text" style="height: 30px;
+            line-height: 30px">
+            <i class="weui_icon_search" style="height: 35px; line-height: 35px; margin-top: 10px">
+            </i><span>搜索</span>
+        </label>
+        </form>
+        <a href="javascript:" class="weui_search_cancel" id="search_cancel" style="height: 30px;
+            line-height: 30px; margin-top: 5px">取消</a>
+    </div>
+    <div class="weui_cells weui_cells_access search_show" id="search_show" style="margin-top: 0px">
+    </div>
+    <div id="parkingmap" style="height: 750px;">
+    </div>
+
+</div>
+<!--BEGIN actionSheet-->
+    <div id="actionSheet_wrap">
+    <div class="weui_mask_transition" id="mask"></div>
+    <div class="weui_actionsheet" id="weui_actionsheet">
+         <div class="weui_cells">
+         <div class="weui_cell">
+              <div class="weui_media_hd">
+                    <img class="weui_media_appmsg_thumb" id="imgParking" src="/Content/mobile/images/parking_default_notimage.png" style="max-height:90px">
+                </div>
+                <div class="weui_media_bd">
+                    <h3 class="weui_media_title" style="margin-left:10px">车场：<span id="spanParkingName"></span></h3>
+
+                    <p class="weui_media_desc" style="margin-left:10px; color:#8a8a8a; margin-bottom:5px" id="spanDistanceDes"></p>
+
+                    <p class="weui_media_desc" style="margin-left:10px; color:#8a8a8a">地址：<span  id="spanAddress"></span></p>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        总车位数：<span id="spanTotalCarBitNum"></span></p>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        剩余车位数：<span id="spanSpaceBitNum"></span></p>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        车场类型：<span id="spanParkTypeDes"></span></p>
+                </div>
+            </div>
+                        <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        价格描述：<span id="spanPriceInfoDes"></span></p>
+                </div>
+            </div>
+         
+
+        </div>
+        <div class="weui_actionsheet_action">
+                      <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group" style="text-align:center">
+            <a id="actionsheet_cancel" class="btn weui_btn weui_btn_mini weui_btn_default" style=" height:40px; width:47%; line-height:40px;" >取消</a> 
+            <a class="btn weui_btn weui_btn_mini weui_btn_primary"  style=" height:40px; width:47%;line-height:40px" id="anavigation">到这里去</a>
+        </div>
+        </div>
+    </div>
+</div>
+<!--END actionSheet-->
+<input type="hidden" id="hiddWeiXinLocation" value="@ViewBag.LocationLatLng" />
+<input type="hidden" id="hiddSearchLocation" value="" />
+<input type="hidden" id="hiddCityName" value="@ViewBag.CityName" />
+<input type="hidden" id="hiddIsWeiXinLocation" value="@ViewBag.IsWeiXinLocation" />
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=@ViewBag.BaiDuMapAk"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>
+<script src="/Scripts/mobile/baidumap.js?v=2" type="text/javascript"></script>
+<script src="/Scripts/mobile/findparking.js?v=2" type="text/javascript"></script>

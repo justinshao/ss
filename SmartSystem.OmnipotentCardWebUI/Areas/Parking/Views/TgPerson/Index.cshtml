@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "推广人员";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/basedata/tg.js?v=2" type="text/javascript"></script>
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="center" title="推广二维码管理" style="padding:2px;">
+    @*<div style="margin:3px 0px 3px 5px">
+        &nbsp;车场名称：<input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/>
+        &nbsp;<a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a>
+    </div>*@
+    <div style="height: 94%;">
+        <table fit="true" id="tablePerson"></table>
+    </div>
+</div>
+</div>
+<div id="divPersontgBox" style="display: none">
+    <form id="divPersontgBoxForm" class="easyui-form">
+        <div title="人员信息" style="padding: 20px;">
+            <input type="hidden" name="PKID" id="PKID" />
+            <input type="hidden" name="PKName" id="PKName" />
+            <input type="hidden" name="id" id="id" />
+            <table cellpadding="3" class="table_open_window_edit">
+                <tr>
+                    <td align="right">
+                        车场名称
+                    </td>
+                    <td>
+                        <input id="selectParks" name="selectParks" class="easyui-combobox" style="width:200px" missingmessage="车场不能为空" />
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        人员名称
+                    </td>
+                    <td>
+                        <input id="txtPName" name="name" required="true" class="easyui-validatebox form-control" missingmessage="名称不能为空" style="width: 200px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        联系电话
+                    </td>
+                    <td>
+                        <input type="text" id="lxdh" name="phone" class="easyui-validatebox form-control" style="width: 200px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        备注
+                    </td>
+                    <td>
+                        <input type="text" id="bz" name="bz" class="easyui-validatebox form-control" style="width: 200px" />
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+
+ 
+</div>
+
+
+<div id="divDownloadBox" style="display: none">
+    <div title="下载二维码" style="padding: 20px;">
+        <input type="hidden" id="hiddDownloadPersonId" name="PersonId" />
+        <input type="hidden" id="hiddDownloadParkingId" name="ParkingId" />
+        <table class="my_table">
+
+            <tbody>
+                <tr style="background-color:#E0FFFF">
+                    <td style="width:150px">二维码边长(cm)</td>
+                    <td style="width:150px">建议扫描距离(米)</td>
+                    <td style="width:150px">下载链接</td>
+                </tr>
+                <tr>
+                    <td>8cm</td>
+                    <td>0.5m</td>
+                    <td><a href="#" id="btn258" onclick="return btnDownloadQRCode(this,258)">下载</a></td>
+                </tr>
+                <tr>
+                    <td>12cm</td>
+                    <td>0.8m</td>
+                    <td><a href="#" id="btn344" onclick="return btnDownloadQRCode(this,344)">下载</a></td>
+                </tr>
+                <tr>
+                    <td>15cm</td>
+                    <td>1m</td>
+                    <td><a href="#" id="btn430" onclick="return btnDownloadQRCode(this,430)">下载</a></td>
+                </tr>
+                <tr>
+                    <td>30cm</td>
+                    <td>1.5m</td>
+                    <td><a href="#" id="btn860" onclick="return btnDownloadQRCode(this,860)">下载</a></td>
+                </tr>
+                <tr>
+                    <td>50cm</td>
+                    <td>2.5m</td>
+                    <td><a href="#" id="btn1280" onclick="return btnDownloadQRCode(this,1280)">下载</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

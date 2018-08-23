@@ -1,0 +1,152 @@
+﻿@using SmartSystem.WeiXinServices.Payment;
+@using YinSheng.Pay;
+@using Common.Entities.Order;
+@model OnlineOrder
+@{
+    ViewBag.Title = "临停缴费";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+    PayDictionary payModel = ViewBag.PayDictionary as PayDictionary;
+}
+<style type="text/css">
+     .weui_btn_primary
+     {
+         background-color:#c8161d !important;   
+     }
+</style>
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+            @if (ViewBag.Source == 0)
+            { 
+                <a href="@Url.Action("ComputeParkingFee", "ParkingPayment", new { licensePlate = @Model.PlateNo })">
+                    <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+            }
+            else
+            {
+                <a href="@Url.Action("ComputeParkingFee", "QRCodeParkPayment", new { licensePlate = @Model.PlateNo })">
+                    <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+            }
+        </div>
+        <div class="pull-right header-right">
+            停车费支付</div>
+    </div>
+    <!--header-->
+    <!--main-->
+    <div class="time-box">
+        <img src="/Content/mobile/images/time1.png" width="18" height="18" alt="" />
+        支付剩余时间：<span id="spanTime">00分钟00秒</span>
+    </div>
+    <div class="weui_cells_title">
+        结算信息</div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    订单编号</p>
+            </div>
+            <div class="weui_cell_ft">@Model.OrderID</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    支付金额</p>
+            </div>
+            <div class="weui_cell_ft">
+                ¥ @Model.Amount 元</div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                    支付方式</p>
+            </div>
+            <div class="weui_cell_ft">
+                微信支付</div>
+        </div>
+    </div>
+    <div class="text-center" style="margin-top: 10px; display: none; text-align: center;
+        color: Red" id="divPayTimeOut">
+        已超过支付时限
+    </div>
+    <div id="btnSubmitaymentBox">
+        <div class="top30">
+        </div>
+        <form id="pay_form" action="https://mertest.ysepay.com/openapi_gateway/gateway.do" method="post">
+            <input type="hidden" id="hidd_method" name="method" value="@payModel["method"]"/>
+           <input type="hidden" id="hidd_partner_id" name="partner_id" value="@payModel["partner_id"]"/>
+           <input type="hidden" id="hidd_timestamp" name="timestamp" value="@payModel["timestamp"]"/>
+           <input type="hidden" id="hidd_charset" name="charset" value="@payModel["charset"]"/>
+           <input type="hidden" id="hidd_sign_type" name="sign_type" value="@payModel["sign_type"]"/>
+           <input type="hidden" id="hidd_version" name="version" value="@payModel["version"]"/>
+           <input type="hidden" id="hidd_notify_url" name="notify_url" value="@payModel["notify_url"]"/>
+           <input type="hidden" id="hidd_return_url" name="return_url" value="@payModel["return_url"]"/>
+           <input type="hidden" id="hidd_seller_id" name="seller_id" value="@payModel["seller_id"]"/>
+           <input type="hidden" id="hidd_timeout_express" name="timeout_express" value="@payModel["timeout_express"]"/>
+           <input type="hidden" id="hidd_seller_name" name="seller_name" value="@payModel["seller_name"]"/>
+           <input type="hidden" id="hidd_business_code" name="business_code" value="@payModel["business_code"]"/>
+           <input type="hidden" id="hidd_extra_common_param" name="extra_common_param" value="@payModel["extra_common_param"]"/>
+           <input type="hidden" id="hidd_open_id" name="open_id" value="@payModel["open_id"]"/>
+           <input type="hidden" id="hidd_out_trade_no" name="out_trade_no" value="@payModel["out_trade_no"]"/>
+           <input type="hidden" id="hidd_subject" name="subject" value="@payModel["subject"]"/>
+           <input type="hidden" id="hidd_total_amount" name="total_amount" value="@payModel["total_amount"]"/>
+           <input type="hidden" id="hidd_sign" name="sign" value="@payModel["sign"]"/>
+            <a href="javascript:void(0)" class="weui_btn weui_btn_primary" id="btnSubmitPayment">立即支付</a>
+        </form>
+    </div>
+    <div id="againPaymentBox" style="display: none">
+        <div class="top10">
+        </div>
+        @if (ViewBag.Source == 0)
+        { 
+            <a href="/ParkingPayment/ComputeParkingFee?licensePlate=@Model.PlateNo" class="weui_btn weui_btn_default">
+                重新支付</a>
+            
+        }
+        else
+        { 
+            <a href="/QRCodeParkPayment/ComputeParkingFee?licensePlate=@Model.PlateNo" class="weui_btn weui_btn_default">
+                重新支付</a>
+            
+        }
+    </div>
+</div>
+<input type="hidden" id="hiddExitTime" value="@ViewBag.MaxWaitTime"/>
+<input type="hidden" id="hiddOrderId" value="@Model.OrderID" />
+<input type="hidden" id="hiddReturnUrl" value="@ViewBag.ReturnUrl" />
+@section Scripts{
+    <script type="text/javascript">
+
+       $(function () {
+           CheckPayTime();
+           setInterval("CheckPayTime()", 1000);
+            $("#btnSubmitPayment").click(function(){
+                document.getElementById("pay_form").submit();
+            });
+       });
+       function CheckPayTime() {
+           var gdata = {};
+           gdata.orderId = $("#hiddOrderId").val();
+           gdata.eTime = $("#hiddExitTime").val();
+           gdata.r = Math.random();
+           $.post("@Url.Action("CheckPayTimeOut", "WeiXinPayment")", gdata, function (data) {
+               if (data.result == false) {
+                   $("#spanTime").text(data.msg);
+                   $("#divPayTimeOut").show();
+                   $("#btnSubmitaymentBox").hide();
+                   $("#againPaymentBox").show();
+                   AsynCancelOrder();
+               } else {
+                   $("#getBrandWCPayRequest").show();
+                   $("#spanTime").text(data.msg);
+               }
+           });
+       }
+       function AsynCancelOrder(){
+          var gdata = {};
+           gdata.orderId = $("#hiddOrderId").val();
+            gdata.r = Math.random();
+           $.post("@Url.Action("AsynCancelOrder", "WeiXinPayment")", gdata, function (data) {});
+       }
+        
+    </script>
+}

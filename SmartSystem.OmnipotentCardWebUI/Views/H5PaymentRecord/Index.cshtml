@@ -1,0 +1,133 @@
+﻿@using Common.Entities.WX;
+@using Common.Core;
+@{
+    ViewBag.Title = "缴费记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@{
+    List<PkOrderTemp> tempOrders = ViewBag.TempOrders as List<PkOrderTemp>;
+    List<PkOrderMonth> monthOrders = ViewBag.MonthOrders as List<PkOrderMonth>;
+}
+<style>
+    .weui_media_desc{ margin-bottom:6px;}
+</style>
+<div class="row">
+        <div class="header">
+            <div class="pull-left header-left">
+                <a href="@Url.Action("Index", "H5Home")"> <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+            </div>
+            <div class="pull-right header-right">
+                缴费记录</div>
+        </div>
+        <div style="margin-top:45px">
+        </div>
+    <div class="weui_tab">
+        <div class="weui_navbar">
+            <div class="weui_navbar_item weui_bar_item_on"  id="divParkPayRecord" data-type="0">
+                临停缴费记录
+            </div>
+            <div class="weui_navbar_item"  id="divMonthPayRecord" data-type="1">
+                月卡续期记录
+            </div>
+        </div>
+        <div class="weui_tab_bd temprecord">
+            @if (tempOrders != null && tempOrders.Count > 0)
+            {
+                foreach (var item in tempOrders)
+                {
+                <div class="weui_panel">
+                    <div class="weui_panel_hd" style="font-size: 14px; font-weight: bold">
+                        缴费编号：@item.OnlineOrderNo.ToString()</div>
+                    <div class="weui_panel_bd">
+                        <div class="weui_media_box weui_media_text">
+                            <p class="weui_media_desc">
+                                车&nbsp;&nbsp;牌&nbsp;&nbsp;号：@item.PlateNumber</p>
+                            <p class="weui_media_desc">
+                                入场时间：@item.EntranceDate.ToPlatDateTimeString()</p>
+                            <p class="weui_media_desc">
+                                停车时长：@item.MinuteNum.GetParkingDuration()</p>
+                            <p class="weui_media_desc">
+                                缴费金额：@item.Amount 元</p>
+                            <p class="weui_media_desc">
+                                缴费时间：@item.PayTime.ToyyyyMMddHHmmss()</p>
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+            else
+            {
+              <div style="width: 100%; text-align: center;margin-top:100px">
+                <div>
+                    <img src="/Content/mobile/images/list_not_data.png" />
+                </div>
+                <div style="color: #8a8a8a; font-size: 12px;margin-top:20px">
+                    暂无临停缴费记录！</div>
+            </div>
+            }
+        </div>
+        <div class="weui_tab_bd monthrecord"  style="display:none">
+        <div class="top50">
+        </div>
+            @if (monthOrders != null && monthOrders.Count > 0)
+            {
+                foreach (var item in monthOrders)
+                { 
+                <div class="weui_panel">
+                          <div class="weui_panel_hd" style="font-size: 14px; font-weight: bold">
+                        续期编号：@item.OnlineOrderNo.ToString()</div>
+                    <div class="weui_panel_bd">
+                        <div class="weui_media_box weui_media_text">
+                            <p class="weui_media_desc">
+                                车&nbsp;&nbsp;牌&nbsp;&nbsp;号：@item.PlateNumber</p>
+                            <p class="weui_media_desc">
+                                车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场：@item.PKName</p>
+                            <p class="weui_media_desc">
+                                续费月数：@item.MonthNum.ToMonthDes()</p>
+                            <p class="weui_media_desc">
+                                续费金额：@item.PayAmount 元</p>
+                            <p class="weui_media_desc">
+                                有效期至：@item.NewUsefulDate.ToPlatString()</p>
+                            <p class="weui_media_desc">
+                                续费时间：@item.PayTime.ToPlatDateTimeString()</p>
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+            else
+            {
+              <div style="width: 100%; text-align: center;margin-top:150px">
+                <div>
+                    <img src="/Content/mobile/images/list_not_data.png" />
+                </div>
+                <div style="color: #8a8a8a; font-size: 12px;margin-top:20px">
+                    暂无月卡续期记录！</div>
+            </div>
+            }
+        </div>
+    </div>
+    <input type="hidden" id="hiddDefaultShowItem" value="@ViewBag.DefaultShowItem" />
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".weui_navbar_item").click(function () {
+            $(".weui_navbar_item").removeClass("weui_bar_item_on");
+            $(this).addClass("weui_bar_item_on");
+            var type = $(this).attr("data-type");
+            if (type == "0") {
+                $(".temprecord").show();
+                $(".monthrecord").hide();
+            } else {
+                $(".temprecord").hide();
+                $(".monthrecord").show();
+            }
+        });
+        var item = $("#hiddDefaultShowItem").val();
+        if (item == "0") {
+            $("#divParkPayRecord").click();
+        } else {
+            $("#divMonthPayRecord").click();
+        }
+    });
+</script>

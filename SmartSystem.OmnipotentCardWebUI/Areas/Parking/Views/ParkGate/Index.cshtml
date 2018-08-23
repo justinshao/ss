@@ -1,0 +1,425 @@
+﻿@{
+    ViewBag.Title = "通道管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/parking/parkgate.js?v=3" type="text/javascript"></script>
+<script src="/Scripts/parking/gatedevice.js?v=2" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="west" border="true" split="true" title="岗亭信息" class="cs-west" style="width: 300px;">
+  <div style="margin:5px 0px 5px 5px; text-align:left">
+            <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox"/>&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()"/>
+        </div>
+<ul id="parkBoxTree" lines="true"></ul>
+</div>
+<div region="center" title="通道信息" style="background: #eee;">
+    <div style="width: 100%; height: 50%">
+        <table fit="true" id="tableParkGate"></table>
+    </div>
+    <div style="width: 100%; height: 50%">
+    <div class="panel-title" style=" background:#E0ECFF; height:30px; line-height:30px">设备信息</div>
+        <table fit="true" id="tableGateDevice">
+        </table>
+    </div>
+</div>
+</div>
+<div id="divGateBox" style="display:none">
+    <form id="divGateBoxForm" class="easyui-form">
+    <div title="编辑岗亭" style="padding: 20px;">
+        <input type="hidden" name="BoxID" id="BoxID" />
+        <input type="hidden" name="GateID" id="GateID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    所属岗亭
+                </td>
+                <td>
+                    <input id="txtBoxName" name="BoxName" class="easyui-validatebox form-control" disabled="disabled" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    编号
+                </td>
+                <td>
+                    <input id="txtGateNo" name="GateNo" required="true" class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    通道名称
+                </td>
+                <td>
+                    <input id="txtGateName" name="GateName" required="true" class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    进出方向
+                </td>
+                <td>
+                    <select name="IoState" id="sltIoState" style="width:100px" editable="false" class="form-select-control">
+                        <option value="1" selected="selected">进</option>
+                        <option value="2">出</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="checkbox" id="ckbIsTempInOut" name="IsTempInOut" value="1"/>临停是否允许进出 &nbsp;<input type="checkbox" id="ckbIsNeedCapturePaper" name="IsNeedCapturePaper" value="true"/>开启身份验证<br>
+                    <input type="checkbox" id="ckbIsEnterConfirm"  name="IsEnterConfirm" value="1"/>入场确认(选中时以车辆类型中设置为准，未选时入场不需要确认)<br>
+                    <input type="checkbox" id="ckbOpenPlateBlurryMatch"  name="OpenPlateBlurryMatch" value="1"/>进出开启模糊识别（识别车牌时仅首位或末位不匹配时可进出）<br>
+                    <input type="checkbox" id="ckbPlateNumberAndCard" name="PlateNumberAndCard" value="true"/>是否卡加车牌
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    备注
+                </td>
+                <td>
+                  <input class="easyui-textbox" data-options="multiline:true" name="Remark" style="width: 200px; height: 50px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+<div id="divDeviceBox" style="display:none">
+    <form id="divDeviceBoxForm" class="easyui-form">
+    <div title="编辑设备" style="padding: 20px;">
+        <input type="hidden" name="DeviceID"/>
+        <input type="hidden" name="GateID"/>
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    设备编号
+                </td>
+                <td>
+                    <input id="txtDeviceNo" name="DeviceNo"  class="easyui-validatebox  form-control" data-options="prompt:'不能为空.',required:true"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    设备类型
+                </td>
+                <td>
+                    <input id="cmbDeviceType" name="DeviceType" editable="false" style=" width:150px"/>  
+                </td>
+            </tr>
+            <tr class="trbk">
+                <td align="right">
+                    板卡类型
+                </td>
+                <td>
+                    <input id="cmbDeviceTypeBK" name="ControllerType" editable="false" style=" width:150px"/>  
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    通讯类型
+                </td>
+                <td>
+                    <input id="cmbPortType" name="PortType" editable="false" style=" width:150px"/>  
+                </td>
+            </tr>
+            <tr class="trall cklx" style="display: none">
+                <td align="right">
+                    网络编号
+                </td>
+                <td>
+                    <input id="txtNetID" name="NetID" class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr class="trall cklx" style="display: none">
+                <td align="right">
+                    串口号
+                </td>
+                <td>
+                    <select name="SerialPort" id="cmbSerialPort" editable="false"  class="form-select-control">
+                        <option value="COM1">COM1</option>
+                        <option value="COM2">COM2</option>
+                        <option value="COM3">COM3</option>
+                        <option value="COM4">COM4</option>
+                        <option value="COM5">COM5</option>
+                        <option value="COM6">COM6</option>
+                        <option value="COM7">COM7</option>
+                        <option value="COM8">COM8</option>
+                        <option value="COM9">COM9</option>
+                        <option value="COM10">COM10</option>
+                        <option value="COM11">COM11</option>
+                        <option value="COM12">COM12</option>
+                        <option value="COM13">COM13</option>
+                        <option value="COM14">COM14</option>
+                        <option value="COM15">COM15</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="trall cklx" style="display: none">
+                <td align="right">
+                    波特率
+                </td>
+                <td>
+                    <select name="Baudrate" id="cmbBaudrate"  editable="false" class="form-select-control">
+                        <option value="2400">2400</option>
+                        <option value="4800">4800</option>
+                        <option value="9600" selected="selected">9600</option>
+                        <option value="19200">19200</option>
+                        <option value="38400">38400</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="trall tcpiplx" style="display: none">
+                <td align="right">
+                    IP地址
+                </td>
+                <td>
+                    <input id="txtIpAddr" name="IpAddr" class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr class="trall tcpiplx" style="display: none">
+                <td align="right">
+                    端口号
+                </td>
+                <td>
+                    <input id="txtIpPort" name="IpPort" class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+              <tr class="trall tcpiplx" style="display: none">
+                <td align="right">
+                    脱机端口号
+                </td>
+                <td>
+                    <input id="txtOfflinePort" name="OfflinePort" class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+           <tr class="trother">
+                <td align="right">
+                    用户名
+                </td>
+                <td>
+                    <input id="txtUserName" name="UserName" class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+             <tr class="trother">
+                <td align="right">
+                    密码
+                </td>
+                <td>
+                    <input id="txtUserPwd" name="UserPwd"  class="easyui-validatebox  form-control" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    显示模式
+                </td>
+                <td>
+                   <select name="DisplayMode" id="sltDisplayMode" editable="false" class="form-select-control" style="width:150px">
+                       <option value="0"  selected="selected">横屏</option>
+                        <option value="1" >竖屏</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input type="checkbox" name="IsCapture" id="chkIsCapture" value="true"/> 是否相机抓拍
+                     &nbsp;<input type="checkbox"  name="IsSVoice"  id="chkIsSVoice" value="true"/> 是否智能语音<br>
+                     &nbsp;<input type="checkbox"  name="IsCarBit"  id="chkIsCarBit" value="true"/> 是否车位显示屏
+                     <span id="spanIsContestDev" >&nbsp;<input type="checkbox"  name="IsContestDev"  id="chkIsContestDev" value="true"/> 是否包含控制器</span>
+                    <br /> &nbsp;<input type="checkbox"  name="IsMonitor"  id="chkIsMonitor" value="true"/> 是否监控相机(勾选后相机不做流程处理只做监控)
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+<div id="divDownloadBox" style="display: none">
+     <div title="下载二维码" style="padding: 20px;">
+         <input type="hidden" id="hiddDownloadGateId" name="GateId"/>
+            <table class="my_table">
+               
+                <tbody>
+                    <tr style="background-color:#E0FFFF">
+			            <td style="width:150px">二维码边长(cm)</td>
+			            <td style="width:150px">建议扫描距离(米)</td>
+			            <td style="width:150px">下载链接</td>
+		            </tr>
+		            <tr>
+			            <td>8cm</td><td>0.5m</td><td><a href="#" id="btn258" onclick="return btnDownloadQRCode(this,258)">下载</a></td>
+		            </tr>
+		            <tr>
+			            <td>12cm</td><td>0.8m</td><td><a  href="#" id="btn344" onclick="return btnDownloadQRCode(this,344)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>15cm</td><td>1m</td><td><a  href="#" id="btn430" onclick="return btnDownloadQRCode(this,430)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>30cm</td><td>1.5m</td><td><a  href="#" id="btn860" onclick="return btnDownloadQRCode(this,860)">下载</a></td>
+		            </tr>
+                     <tr>
+			            <td>50cm</td><td>2.5m</td><td><a  href="#" id="btn1280" onclick="return btnDownloadQRCode(this,1280)">下载</a></td>
+		            </tr>
+	            </tbody>
+            </table>
+    </div>
+</div>
+
+<div id="divParkDeviceParamBox" style="display:none">
+    <form id="divParkDeviceParamBoxForm" class="easyui-form">
+    <div title="设备参数" style="padding: 20px;">
+        <input type="hidden" name="DeviceID" id="hiddParamDeviceID" />
+        <input type="hidden" name="RecordID" id="hiddParamRecordID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    月卡认证模式
+                </td>
+                <td>
+                    <select name="VipMode" id="sltVipMode" style="width:100px" editable="false" class="form-select-control">
+                        <option value="1" selected="selected">卡或车牌</option>
+                        <option value="2">卡+车牌</option>
+                    </select>
+                </td>
+                  <td align="right">
+                    临时卡认证模式
+                </td>
+                <td>
+                    <select name="TempMode" id="sltTempMode" style="width:100px" editable="false" class="form-select-control">
+                        <option value="1" selected="selected">卡或车牌</option>
+                        <option value="2">卡+车牌</option>
+                    </select>
+                </td>
+            </tr>
+             <tr>
+                <td align="right">
+                    脱机模式下
+                </td>
+                <td>
+                    <select name="NetOffMode" id="sltNetOffMode" style="width:100px" editable="false" class="form-select-control">
+                       <option value="0">禁止月卡和临停进入</option>
+                        <option value="1"  selected="selected">只禁止临停进入</option>
+                        <option value="2">只禁止月卡进入</option>
+                    </select>
+                </td>
+                <td align="right">
+                    月卡脱机多次进入
+                </td>
+                <td>
+                    <select name="VipDevMultIn" id="sltVipDevMultIn" style="width:100px" editable="false" class="form-select-control">
+                       <option value="0">禁止</option>
+                        <option value="1"  selected="selected">允许</option>
+                    </select>
+                </td>
+            </tr>
+             <tr>
+                <td align="right">
+                    军警免费
+                </td>
+                <td>
+                    <select name="PloicFree" id="sltPloicFree" style="width:100px" editable="false" class="form-select-control">
+                       <option value="0">禁止</option>
+                        <option value="1"  selected="selected">允许</option>
+                    </select>
+                </td>
+                <td align="right">
+                    月卡到期开始提醒
+                </td>
+                <td>
+                    <input id="txtVipDutyDay" name="VipDutyDay" required="true" style="width:100px" class="easyui-numberspinner form-control" value="7" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    过期用户通行
+                </td>
+                <td>
+                     <select name="OverDutyYorN" id="sltOverDutyYorN" style="width:100px" editable="false" class="form-select-control">
+                       <option value="0">禁止</option>
+                        <option value="1"  selected="selected">允许</option>
+                    </select>
+                </td>
+                  <td align="right">
+                    过期用户天数
+                </td>
+                <td>
+                    <input id="txtOverDutyDay" name="OverDutyDay" required="true" style="width:100px" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    系统编号
+                </td>
+                <td>
+                 <input id="txtSysID" name="SysID" required="true" style="width:100px" class="easyui-numberspinner form-control" value="1" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+                  <td align="right">
+                    设备编号
+                </td>
+                <td>
+                    <input id="txtDevID" name="DevID" required="true" style="width:100px" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+            </tr>
+              <tr>
+                <td align="right">
+                    入口通道总数
+                </td>
+                <td>
+                 <input id="txtSysInDev" name="SysInDev" required="true" style="width:100px" class="easyui-numberspinner form-control" value="1" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+                  <td align="right">
+                    出口通道总数
+                </td>
+                <td>
+                    <input id="txtSysOutDev" name="SysOutDev" required="true" style="width:100px" class="easyui-numberspinner form-control" value="1" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+            </tr>
+               <tr>
+                <td align="right">
+                    车位数
+                </td>
+                <td>
+                 <input id="txtSysParkNumber" name="SysParkNumber" required="true" style="width:100px" class="easyui-numberspinner form-control" value="1000" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+                  <td align="right">
+                    进出方向
+                </td>
+                <td>
+                    <select name="DevInorOut" id="sltDevInorOut" style="width:100px" editable="false" class="form-select-control">
+                       <option value="0"  selected="selected">入口</option>
+                        <option value="1" >出口</option>
+                    </select>
+                </td>
+            </tr>
+              <tr>
+                <td align="right">
+                    进出间隔
+                </td>
+                <td>
+                 <input id="txtSwipeInterval" name="SwipeInterval" required="true" style="width:100px" class="easyui-numberspinner form-control" value="10" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+                  <td align="right">
+                    未识别卡类型
+                </td>
+                <td>
+                    <select name="UnKonwCardType" id="sltUnKonwCardType" style="width:100px" editable="false" class="form-select-control">
+                       <option value="0"  selected="selected">月卡</option>
+                        <option value="1" >临时卡类型</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    外接屏数量
+                </td>
+                <td>
+                    <input id="txtLEDNumber" name="LEDNumber" required="true" style="width:100px" class="easyui-numberspinner form-control" value="4" data-options="min:0,increment:1" missingmessage="不能为空" />
+                </td>
+                  <td align="right">
+                </td>
+                <td>
+                   
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>

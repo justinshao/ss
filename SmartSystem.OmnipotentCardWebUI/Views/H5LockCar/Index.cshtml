@@ -1,0 +1,64 @@
+﻿@using Common.Entities.WX;
+@model List<WX_LockCar>
+@{
+    ViewBag.Title = "锁车解锁";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+        <a href="@Url.Action("Index", "H5Home")"> <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            锁车解锁</div>
+    </div>
+    <div class="top70">
+    </div>
+    @if (Model != null && Model.Count > 0)
+    { 
+        <div class="weui_cells">
+            @foreach (var item in Model)
+            { 
+                <div class="weui_cell">
+                    <div class="weui_cell_hd">
+                        <img src="/Content/mobile/images/car_icon.png" alt="" style="width: 20px; margin-right: 5px;
+                            display: block" /></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p class="carname">
+                            @item.PlateNumber</p>
+                    </div>
+                    @if (item.Status == 1)
+                    {
+                        <div class="weui_cell_ft">
+                            <input type="hidden" id="hiddStatus" value="@item.Status" />
+                            <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_warn" onclick="return btnUnLockOrLockCar(this,'@item.PKID','@item.PlateNumber','@item.VID')">
+                                解锁</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="weui_cell_ft">
+                            <input type="hidden" id="hiddStatus" value="@item.Status" />
+                            <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary" onclick="return btnUnLockOrLockCar(this,'@item.PKID','@item.PlateNumber','@item.VID')">
+                                锁车</a>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+    else
+    { 
+        <div style="width: 100%; text-align: center;margin-top:150px" id="divNoData">
+            <div>
+                <img src="/Content/mobile/images/list_not_data.png?v=1" />
+            </div>
+            <div style="color: #8a8a8a; font-size: 12px;margin-top:20px">
+                暂无可锁车或待解锁的车辆信息！</div>
+        </div>
+    }
+</div>
+@section Scripts{
+    <script src="/Scripts/mobile/h5/lockorunlockcar.js" type="text/javascript"></script>
+}

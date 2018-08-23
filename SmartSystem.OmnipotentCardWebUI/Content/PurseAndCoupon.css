@@ -1,0 +1,45 @@
+﻿body{ background:#f4f4f4;}
+.myCoupon{ height:6.13rem; background:#fff; overflow:hidden;}
+.myCoupon ul{ margin:0px; padding:0px; list-style-type:none; list-style-type:none;}
+.myCoupon li{ margin:0px; padding:0px; list-style-type:none; display:block; float:left; color:#666666; list-style-type:none; text-align:center; width:24.8%; text-align:center; font-size:1.5rem; height:5.93rem; line-height:5.93rem; background:#ffffff; cursor:pointer;}  
+.purse .yz{ display:block; float:right; margin-right:1.5rem; color:#666666;}
+
+/* 优惠券
+-----------------------------------------------------------*/
+.activity{ border-bottom:0.3rem solid #e8161d; color:#e8161d !important;}
+.mycoupons .mycountright{width:5.5rem; height:3rem; color:#fff;font-size:1.5rem !important; float:right;  border-radius:0.5rem; border:0.138rem solid #fff; line-height:3rem; margin-top:3.25rem; margin-right:1.8rem; text-align:center; cursor:pointer;}
+.mycoupons .mycountleft{ float:left; color:#fff; margin-left:1.5rem;}
+.mycountleft .pricesc{ font-size:1.5rem !important; margin-top:1.5rem; font-weight:bold; }
+.mycountleft .pricesong{ font-size:1.1rem important; margin-top:0.25rem;}
+.mycountleft .priyxq{ font-size:1.1rem important; margin-top:0.65rem;}
+.mycoupons .mycountrightygq{ float:right; margin-right:1.55rem; margin-top:1.9rem;}
+
+.yhjxq{ background:#fff; overflow:hidden;border-radius:0.5rem; height:27rem; margin-left:1.5rem; margin-right:1.5rem; margin-top:2rem;}
+.yhjxq ul{ list-style-type:none; margin:0px; padding:0px;}
+.yhjxq li{ list-style-type:none; margin:0px; padding:0px; list-style-type:none; height:3.5rem; line-height:3.5rem; font-size:1.5rem;}
+.yhjxq .yhjxq_left{ float:left; margin-left:1.2rem; font-size:1.5rem;}
+.yhjxq .yhjxq_right{ float:right; margin-right:1.7rem; font-size:1.5rem;}
+
+/* 余额充值
+-----------------------------------------------------------*/
+.head_ye{ height:15.75rem; background:black; width:100%; color:#fff; text-align:center;}
+.head_ye .head_price{ font-size:4.86rem; padding-top:3.25rem;}
+.head_ye .head_mx{ font-size:1.5rem; cursor:pointer; width:8.5rem; height:3rem; border:0.05rem solid #fff; border-radius:0.5rem; text-align:center; line-height:3rem; margin:0 auto;}
+.insert_price li{ list-style-type:none; margin:0px; padding:0px; float:left; background:#cacaca; width:11rem; height:6rem; text-align:center; line-height:6rem;margin-left:1.159rem; margin-top:1.35rem; border-radius:0.5rem; cursor:pointer;}
+.insert_price ul{ list-style-type:none; margin:0px; padding:0px;}
+.insert_price{ margin-top:1.2rem; overflow:hidden; font-size:1.5rem;}
+.active{ background:#F6CF49 !important;}
+.otherprice1 { width:35.1rem; height:5rem; color:#b4b4b4; font: PingFang SC;outline: none; text-align: center; line-height:5rem;  background:#ffffff;  border-radius:0.5rem; margin-left:1.159rem;}
+.otherprice{width:35.1rem; height:5rem; color:#b4b4b4; font: PingFang SC;outline: none; text-align: center; line-height:5rem;  background:#ffffff; font-size:1.5rem;  border-radius:0.5rem; margin-left:1.159rem;}
+.typrice{ height:2rem; color:#b4b4b4;  font-size:1.5rem; line-height:2rem;  margin-left:1.159rem;}
+.static{margin-top:2.15rem; overflow:hidden; height:6.25rem; line-height:6.25rem; font-size:1.5rem; background:#fff;}
+.static .stati_pric{ float:left;}
+.stati_pric li,ul{ margin:0px; padding:0px; list-style-type:none;}
+.stati_pric li{ display:block; float:left; margin-left:2rem;}
+.static .stati_pay{ float:right; width:14.6rem; height:6.25rem; background:#e8161d; text-align:center; color:#fff; font-weight:bold; cursor:pointer;}
+.static .yh{ font-size:1.1rem;}
+.stati_pric font{ color:#F6CF49;}
+.pricekuai{color:#F6CF49;}
+
+
+

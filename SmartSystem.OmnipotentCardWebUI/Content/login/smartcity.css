@@ -1,0 +1,82 @@
+﻿.table_open_window_edit tr
+{
+    height: 25px;
+    line-height: 25px;
+}
+.table_open_window_edit tr > td > input.form-control
+{
+    height: 20px;
+    line-height: 20px;
+    width: 200px;
+}
+.table_open_window_edit tr > td > select
+{
+    height: 25px;
+    line-height: 25px;
+    width: 200px;
+}
+.table_open_window_edit tr > td > input[type=checkbox]
+{
+    vertical-align: middle;
+}
+ .smartcity_tabs
+    {
+        float: left;
+        width: 542px;
+        margin: 0 auto;
+        border-bottom: 1px #C7C7CD solid;
+        background: #d5d5d5;
+        background-position: left;
+        background-repeat: repeat-y;
+        margin-bottom: 2px;
+    }
+    .smartcity_tabs .smartcity_tabtitle
+    {
+        clear: both;
+        height: 26px;
+        overflow: hidden;
+        background-color:#E0ECFF;
+    }
+    .smartcity_tabs .smartcity_tabtitle ul
+    {
+        margin: 0;
+        padding: 0;
+    }
+    .smartcity_tabs .smartcity_tabtitle li
+    {
+        float: left;
+        width: 60px;
+        cursor: pointer;
+        padding-top: 6px;
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-bottom: 7px;
+        list-style-type: none;
+        text-align:center;
+    }
+    .smartcity_tabs .smartcity_tabtitle .active
+    {
+        background: url(/Content/images/tab_bg1.gif) left -25px no-repeat;
+        border-left: 1px #C7C7CD solid;
+        border-top: 1px #C7C7CD solid;
+        border-bottom: 1px #fff solid;
+    }
+    .smartcity_tabs .smartcity_tabtitle .normal
+    {
+        background: url(/Content/images/tab_bg1.gif);
+        border-top: 1px #C7C7CD solid;
+        border-bottom: 1px #C7C7CD solid;
+    }
+    .smartcity_tabs .smartcity_tabcontent
+    {
+        width: auto;
+        background: #fff;
+        margin: 0px auto;
+        padding: 10px 0 0 0;
+        border-right: 1px #C7C7CD solid;
+        border-left: 1px #C7C7CD solid;
+    }
+    .none
+    {
+        display: none;
+    }

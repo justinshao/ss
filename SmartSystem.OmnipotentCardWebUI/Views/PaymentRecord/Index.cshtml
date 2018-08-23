@@ -1,0 +1,137 @@
+﻿<style type="text/css">
+    .tdControl{border:solid #add9c0; border-width:0px 1px 1px 0px; padding:10px 10px;}
+    .tablebox{border:solid #add9c0; border-width:1px 0px 0px 1px;}
+    .proSelectControl,.txtControlCity{text-decoration:none;}
+</style>
+@{
+    string currControlId = string.Format("{0}_{1}", @ViewBag.SelectControlId, @ViewBag.TxtControlId);
+    }
+   @if (ViewBag.NeedShowHead)
+   {
+    <span> 车牌号：</span>
+   }
+<a href="#" class="easyui-menubutton" id="@ViewBag.SelectControlId" data-options="menu:'#@currControlId'">粤B</a>
+    @if (ViewBag.NeedShowInput) { 
+         <input id="@ViewBag.TxtControlId" class="easyui-validatebox form-control my_textbox" style="width:@ViewBag.Width" />
+    }
+
+<div id='@currControlId' class="menu-content" style="padding:10px;text-align:left">
+	<table class="tablebox">
+        <tr class="trProvinceControl">
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">京</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">津</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">沪</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">渝</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">冀</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">豫</a></td>
+        </tr>
+        <tr class="trProvinceControl">
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">云</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">辽</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">黑</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">湘</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">皖</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">鲁</a></td>
+        </tr>
+        <tr class="trProvinceControl">
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">新</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">苏</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">浙</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">赣</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">鄂</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">桂</a></td>
+        </tr>
+        <tr class="trProvinceControl">
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">甘</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">晋</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">蒙</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">吉</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">闽</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">贵</a></td>
+        </tr>
+        <tr class="trProvinceControl">
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">粤</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">青</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">藏</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">川</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">宁</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">琼</a></td>
+        </tr>
+        <tr class="trProvinceControl">
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">陕</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">港</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">澳</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="proSelectControl" data-currControlId="@currControlId">使</a></td>
+            <td class="tdControl"></td>
+            <td class="tdControl"></td>
+        </tr>
+          <tr class="trCityControl" style="display:none">
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">A</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">B</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">C</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">D</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">E</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">F</a></td>
+        </tr>
+        <tr class="trCityControl" style="display:none">
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">G</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">H</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">I</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">J</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">K</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">L</a></td>
+        </tr>
+        <tr class="trCityControl" style="display:none">
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">M</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">N</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">0</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">P</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">Q</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">R</a></td>
+        </tr>
+         <tr class="trCityControl" style="display:none">
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">S</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">T</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">U</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">V</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">W</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">X</a></td>
+        </tr>
+         <tr class="trCityControl" style="display:none">
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">Y</a></td>
+            <td class="tdControl"><a href="javascript:void(0)" class="txtControlCity" data-currControlId="@currControlId">Z</a></td>
+            <td class="tdControl"></td>
+            <td class="tdControl"></td>
+            <td class="tdControl"></td>
+            <td class="tdControl"></td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".proSelectControl").click(function () {
+            var province = $(this).text();
+            var id = $(this).attr("data-currControlId");
+            $(this).parents(".tablebox").find(".trProvinceControl").hide();
+            $(this).parents(".tablebox").find(".trCityControl").show();
+            var txt = $("#@ViewBag.SelectControlId").find(".l-btn-text").text();
+            if (txt.length == 2) {
+                province = province + txt.substr(1, 1);
+            }
+            $("#@ViewBag.SelectControlId").find(".l-btn-text").text(province);
+        })
+        $(".txtControlCity").click(function () {
+            var city = $(this).text();
+            var id = $(this).attr("data-currControlId");
+            var province = $("#@ViewBag.SelectControlId").find(".l-btn-text").text();
+            if (province.length == 2) {
+                city = province.substr(0, 1) + city;
+            }
+            $("#@ViewBag.SelectControlId").find(".l-btn-text").text(city);
+            $("#@ViewBag.PlateNumberId").focus();
+            $(this).parents(".menu-content").eq(0).mouseout();
+            $(this).parents(".tablebox").find(".trProvinceControl").show();
+            $(this).parents(".tablebox").find(".trCityControl").hide();
+        })
+    })
+</script>

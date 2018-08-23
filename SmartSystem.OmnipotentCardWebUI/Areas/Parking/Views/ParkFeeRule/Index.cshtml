@@ -1,0 +1,423 @@
+﻿@{
+    ViewBag.Title = "收费规则管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/DateExtensions.js" type="text/javascript"></script>
+<script src="/Scripts/parking/feerule.js?v=2" type="text/javascript"></script>
+<script src="/Scripts/fileupload/vendor/jquery.ui.widget.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.iframe-transport.js" type="text/javascript"></script>
+<script src="/Scripts/fileupload/jquery.fileupload.js" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<style type="text/css">
+    .table_open_window_edit tr > td > input.form-control
+    {
+        width: 120px;
+    }
+    .table_open_window_edit tr > td > select
+    {
+        width: 120px;
+    }
+</style>
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+    <div region="west" split="true" title="车场信息" style="width: 250px;">
+              <div style="margin:5px 0px 5px 5px; text-align:left">
+            <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox"/>&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()"/>
+        </div>
+        <ul id="parkingTree">
+        </ul>
+    </div>
+  
+    <div region="center" title="收费规则管理" style="background: #eee;">
+     
+        <table fit="true" id="tableFeeRule">
+        </table>
+    </div>
+</div>
+<div id="divFeeRuleBox" style="display: none">
+    <form id="divFeeRuleBoxForm" class="easyui-form">
+    <div title="编辑收费规则" style="padding: 20px;">
+        <input type="hidden" name="ParkingID" id="ParkingID" />
+        <input type="hidden" name="FeeRuleID" id="FeeRuleID" />
+        <input type="hidden" name="RuleText" id="hiddFeeRuleText" />
+        <table cellpadding="3" class="table_open_window_edit" style="width: 100%">
+            <tr>
+                <td align="right">
+                    收费规则名称
+                </td>
+                <td>
+                    <input id="txtRuleName" name="RuleName" required="true" class="easyui-validatebox form-control"
+                        missingmessage="不能为空" />
+                </td>
+                <td align="right">
+                    车型
+                </td>
+                <td>
+                    <input id="cmbCarModelID" name="CarModelID" style="width: 120px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    循环计费方式
+                </td>
+                <td>
+                    <input id="cmbFeeType" name="FeeType" style="width: 120px" />
+                </td>
+                <td align="right">
+                    车类
+                </td>
+                <td>
+                    <input id="cmbCarTypeID" name="CarTypeID" style="width: 120px" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    应用区域
+                </td>
+                <td>
+                    <input id="cmbAreaID" name="AreaID" style="width: 120px" />
+                </td>
+                <td align="right">
+                是否脱机
+                </td>
+                <td>
+                    <input type="checkbox" name="IsOffline" id="chkIsOffline" value="true"/>
+                </td>
+            </tr>
+        </table>
+        <!-- 选项卡开始 -->
+        <div class="smartsystem_tabs" style="margin-top: 20px">
+            <!-- 标题开始 -->
+            <div class="smartsystem_tabtitle">
+                <ul id="myTab0">
+                    <li class="active" onclick="btnSelectTabs(this,0);">白天</li>
+                    <li class="normal" onclick="btnSelectTabs(this,1);" style="display: none">黑夜</li>
+                </ul>
+            </div>
+            <!-- 内容开始 -->
+            <div class="smartsystem_tabcontent">
+                <div id="mytab0_content0">
+                    <table cellpadding="3" class="table_open_window_edit" style="width: 100%">
+                        <tr class="tr_content0_other">
+                            <td align="right">
+                                循环计费包含
+                            </td>
+                            <td>
+                                <input id="cmbFirstLoopType" name="FirstLoopType" style="width: 120px" />
+                            </td>
+                            <td align="right">
+                                收费限额
+                            </td>
+                            <td>
+                                <input id="txtFirstLimit" name="FirstLimit" required="true" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0,increment:1,precision:2" missingmessage="不能为空" />
+                            </td>
+                        </tr>
+                        <tr class="trDayAndLastTime tr_content0_other" style="display: none">
+                            <td align="right">
+                                白天时间
+                            </td>
+                            <td>
+                                <select style="width: 40px" id="sltDayStartHour" class="form-select-control">
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07" selected="selected">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>：
+                                <select style="width: 40px" id="sltDayStartMinute" class="form-select-control">
+                                    <option value="00">00</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                                到
+                                <select style="width: 40px" id="sltDayEndHour" class="form-select-control">
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19" selected="selected">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                </select>：
+                                <select style="width: 40px" id="sltDayEndMinute" class="form-select-control">
+                                    <option value="00">00</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </td>
+                            <td align="right">
+                                跨段是否补时
+                            </td>
+                            <td>
+                                <select name="FirstSupplement" id="sltFirstSupplement" class="form-select-control">
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="tr_content0_other">
+                            <td align="right">
+                                免费时长
+                            </td>
+                            <td>
+                                <input id="txtFirstFreeTime" name="FirstFreeTime" required="true" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0,increment:1" missingmessage="不能为空" />分钟
+                            </td>
+                            <td align="right">
+                                计费设置
+                            </td>
+                            <td>
+                                <input id="cmbFirstFeeRuleTypes" name="FirstFeeRuleTypes" style="width: 120px" />
+                            </td>
+                        </tr>
+                        <tr class="tr_content0_other">
+                            <td align="right">
+                                停车时长
+                            </td>
+                            <td>
+                                <input id="txtFirstFirstTime" name="FirstFirstTime" required="true" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" missingmessage="不能为空" />分钟内
+                            </td>
+                            <td align="right">
+                                收费
+                            </td>
+                            <td>
+                                <input id="txtFirstFirstFee" name="FirstFirstFee" required="true" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0,increment:1,precision:2" missingmessage="不能为空" />元
+                            </td>
+                        </tr>
+                        <tr class="FirstNumberOfTimes tr_content0_other" style="display: none">
+                            <td align="right">
+                                超过后
+                            </td>
+                            <td>
+                                <input id="txtFirstLoop1PerTime" name="FirstLoop1PerTime" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" />分钟
+                            </td>
+                            <td align="right">
+                                收费
+                            </td>
+                            <td>
+                                <input id="txtFirstLoop1PerFee" name="FirstLoop1PerFee" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0,increment:1,precision:2" />元
+                            </td>
+                        </tr>
+                        <tr class="FirstNumberOfTimes tr_content0_other" style="display: none">
+                            <td colspan="4" style="text-align: center">
+                                停车时长
+                                <input id="txtFirstLoop2Start" name="FirstLoop2Start" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" style="width: 80px" />分钟后 每
+                                <input id="txtFirstLoop2PerTime" name="FirstLoop2PerTime" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" style="width: 80px" />分钟 &nbsp;收费<input id="txtFirstLoop2PerFee"
+                                        name="FirstLoop2PerFee" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:2"
+                                        style="width: 80px" />元
+                            </td>
+                        </tr>
+                        <tr class="tr_content0_feerulefile" style="display:none">
+                             <td align="right">
+                                收费规则文件
+                            </td>
+                            <td colspan="3">
+                             <input type="file" name="files" id="fileupload_feerule" class="formtext" style="display: none" />
+                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:130px;height:32px"  onclick="btnSelectFeeRuleFile()"> 上传收费规则文件</a><span id="spanfeeruleresult" style="color:#3A5FCD; font-weight:bold"></span> 
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="hidden" id="hiddFirstStartTime" name="FirstStartTime" />
+                    <input type="hidden" id="hiddFirstEndTime" name="FirstEndTime" />
+                    <div style="height: 20px">&nbsp;</div>
+                </div>
+                <div id="mytab0_content1" class="none">
+                    <table cellpadding="3" class="table_open_window_edit" style="width: 100%">
+                        <tr>
+                            <td align="right">
+                                循环计费包含
+                            </td>
+                            <td>
+                                <input id="cmbLastLoopType" name="LastLoopType" style="width: 120px" />
+                            </td>
+                            <td align="right">
+                                收费限额
+                            </td>
+                            <td>
+                                <input id="txtLastLimit" name="LastLimit" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0,increment:1,precision:2" />
+                            </td>
+                        </tr>
+                        <tr class="trDayAndLastTime" style="display: none">
+                            <td align="right">
+                                夜间时间
+                            </td>
+                            <td>
+                                <select style="width: 40px" disabled="disabled" id="sltLastStartHour" class="form-select-control">
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19" selected="selected">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                </select>：
+                                <select style="width: 40px" disabled="disabled" id="sltLastStartMinute" class="form-select-control">
+                                    <option value="00">00</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                                到
+                                <select style="width: 40px" disabled="disabled" id="sltLastEndHour" class="form-select-control">
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07" selected="selected">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>：
+                                <select style="width: 40px" disabled="disabled" id="sltLastEndMinute" class="form-select-control">
+                                    <option value="00">00</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </td>
+                            <td align="right">
+                                跨段是否补时
+                            </td>
+                            <td>
+                                <select name="LastSupplement" id="sltLastSupplement" disabled="disabled" class="form-select-control">
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                免费时长
+                            </td>
+                            <td>
+                                <input id="txtLastFreeTime" name="LastFreeTime" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" />分钟
+                            </td>
+                            <td align="right">
+                                计费设置
+                            </td>
+                            <td>
+                                <input id="cmbLastFeeRuleTypes" name="LastFeeRuleTypes" style="width: 120px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                停车时长
+                            </td>
+                            <td>
+                                <input id="txtLastFirstTime" name="LastFirstTime" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" />分钟内
+                            </td>
+                            <td align="right">
+                                收费
+                            </td>
+                            <td>
+                                <input id="txtLastFirstFee" name="LastFirstFee" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0,increment:1,precision:2" />元
+                            </td>
+                        </tr>
+                        <tr class="LastNumberOfTimes" style="display: none">
+                            <td align="right">
+                                超过后
+                            </td>
+                            <td>
+                                <input id="txtLastLoop1PerTime" name="LastLoop1PerTime" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" />分钟
+                            </td>
+                            <td align="right">
+                                收费
+                            </td>
+                            <td>
+                                <input id="txtLastLoop1PerFee" name="LastLoop1PerFee" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0,increment:1,precision:2" />元
+                            </td>
+                        </tr>
+                        <tr class="LastNumberOfTimes" style="display: none">
+                            <td colspan="4" style="text-align: center">
+                                停车时长
+                                <input id="txtLastLoop2Start" name="LastLoop2Start" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" style="width: 80px" />分钟后 每
+                                <input id="txtLastLoop2PerTime" name="LastLoop2PerTime" class="easyui-numberspinner form-control"
+                                    value="0" data-options="min:0" style="width: 80px" />分钟 &nbsp;收费<input id="txtLastLoop2PerFee"
+                                        name="LastLoop2PerFee" class="easyui-numberspinner form-control" value="0" data-options="min:0,increment:1,precision:2"
+                                        style="width: 80px" />元
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="hidden" id="hiddLastStartTime" name="LastStartTime" />
+                    <input type="hidden" id="hiddLastEndTime" name="LastEndTime" />
+                    <div style="height: 20px">
+                        &nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- 选项卡结束 -->
+    </div>
+    </form>
+</div>
+<div id="divCalculateFeeBox" style="display: none">
+    <form id="divCalculateFeeBoxForm" class="easyui-form">
+    <div title="收费测试" style="padding: 20px;">
+        <input type="hidden" name="FeeRuleID" id="hiddCalculateFeeRuleID" />
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right">
+                    开始时间
+                </td>
+                <td>
+                    <input id="txtCalculateStartTime" name="StartTime" required="true" class="easyui-datetimebox form-control"
+                        style="width: 200px; height: 30px; line-height: 30px" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    结束时间
+                </td>
+                <td>
+                    <input id="txtCalculateEndTime" name="EndTime" required="true" class="easyui-datetimebox form-control"
+                        style="width: 200px; height: 30px; line-height: 30px" missingmessage="不能为空" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    收费金额
+                </td>
+                <td>
+                    <input id="txtCalculateFeeResult" disabled="disabled" class="easyui-validatebox form-control"
+                        style="width: 200px" />(元)
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>

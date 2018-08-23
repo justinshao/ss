@@ -1,0 +1,20 @@
+﻿@using Common.Entities.WX;
+@model WX_Article
+@{
+    ViewBag.Title = @Model.Title;
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+        </div>
+        <div class="pull-right header-right">
+            图文明细</div>
+    </div>
+    <div class="top70"></div>
+    <div>
+        @Html.Raw(Model.Text);
+    </div>
+</div>
+

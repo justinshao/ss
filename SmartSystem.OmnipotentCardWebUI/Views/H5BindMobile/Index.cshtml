@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "绑定手机号码";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style>
+    .weui_btn
+    {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+</style>
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@ViewBag.ReturnUrl">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a></div>
+        <div class="pull-right header-right">
+            绑定手机号码</div>
+    </div>
+    <div class="top60">
+    </div>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    手机号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="number" name="phone" id="txtphone" placeholder="请输入手机号" />
+            </div>
+        </div>
+        <div class="weui_cell weui_vcode">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    验证码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="number" name="code" id="txtcode" placeholder="请输入验证码" />
+            </div>
+            <div class="weui_cell_ft">
+                <input type="button" class="weui_btn weui_btn_primary" id="btnSubmitGetCode" onclick="return btnGetMobileCode()"
+                    value="获取验证码" />
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells_tips" style="color: red" id="divError">
+    </div>
+    <div class="weui_cells_tips">
+        * 必须填写自己的手机号；</div>
+    <div class="weui_cells_tips">
+        * 此手机号码作为获取月卡的唯一标识；</div>
+    <div class="weui_btn_area">
+        <input type="button" class="weui_btn weui_btn_primary" value="确定" onclick="return btnSubmitData()" />
+    </div>
+    <input type="hidden" value="@ViewBag.ReturnUrl" id="returnUrl" />
+</div>
+<script type="text/javascript">
+    var phoneReg = /^1[0-9]{10}$/;
+    var timer = null;
+    function btnGetMobileCode() {
+        $("#divError").text("");
+        var phone = $("#txtphone").val();
+        if ($.trim(phone) == "" || !$.trim(phone).match(phoneReg)) {
+            $("#divError").text("手机号格式不正确");
+            return false;
+        }
+
+        var sdata = {};
+        sdata.mobile = phone;
+        sdata.r = Math.random();
+        $.post("/H5BindMobile/GetMobileCode", sdata, function (data) {
+            if (!data.result) {
+                $("#divError").text(data.msg);
+            } else {
+                surplusSeconds = -1;
+                TimerGetSurplusTime();
+                timer = setInterval("TimerGetSurplusTime()", 1000);
+            }
+        });
+    }
+    var surplusSeconds = -1;
+    function TimerGetSurplusTime() {
+        var gdata = {};
+        gdata.seconds = surplusSeconds;
+        gdata.r = Math.random();
+        $.post("/H5BindMobile/GetNextSurplusTime", gdata, function (data) {
+            if (data.result == false) {
+                surplusSeconds = data.data;
+                var msg = data.data + "s后可重新获取";
+                $("#btnSubmitGetCode").attr("disabled", "disabled").val(msg)
+                    .removeClass("weui_btn_plain_primary").addClass("weui_btn_disabled").addClass("weui_btn_default");
+            } else {
+                surplusSeconds = -1;
+                clearInterval(timer)
+                $("#btnSubmitGetCode").removeAttr("disabled").val("获取验证码")
+                  .removeClass("weui_btn_disabled").removeClass("weui_btn_default").addClass("weui_btn_plain_primary");
+            }
+        });
+    }
+    function btnSubmitData() {
+        $("#divError").text("");
+        var phone = $("#txtphone").val();
+        if ($.trim(phone) == "" || !$.trim(phone).match(phoneReg)) {
+            $("#divError").text("手机号格式不正确");
+            return false;
+        }
+        var code = $("#txtcode").val();
+        if ($.trim(code) == "") {
+            $("#divError").text("验证码格式不正确");
+            return false;
+        }
+        var gdata = {};
+        gdata.phone = phone;
+        gdata.code = code;
+        gdata.r = Math.random();
+        $.post("/H5BindMobile/SaveBindMobile", gdata, function (data) {
+            if (data.result) {
+                var returnurl = $("#returnUrl").val();
+                if ($.trim(returnurl) != "") {
+                    location.href = returnurl;
+                } else {
+                    WxAlert("", "绑定成功");
+                }
+            } else {
+                WxAlert("", data.msg);
+            }
+        });
+    }
+
+</script>

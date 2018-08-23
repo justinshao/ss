@@ -1,0 +1,48 @@
+﻿@using SmartSystem.OmnipotentCardWebUI.Models
+@{
+    ViewBag.Title = "结算单审批流程定义";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ReferenceScriptHtml("/Scripts/statistics/common.js")
+@Html.ReferenceScriptHtml("/Scripts/statistics/SettlementSetting.js")
+<div class="easyui-layout"  fit="true">
+<div region="center" title="结算单审批流程定义" style="padding:2px; ">
+    <div style="margin:3px 0px 3px 5px">
+          <div style="margin-bottom: 5px">  
+            <table>
+                <tr>
+                    <td align="right">车场名称：</td><td><input id="selectParks" name="ParkingId" class="easyui-combobox"  style=" width:150px"/></td>
+                   <td></td><td><a href="javascript:void(0)" id="btnQueryData" class="easyui-linkbutton" style="width: 80px;height: 28px">查询</a></td>
+               </tr>
+            </table>  
+         </div>
+    </div>
+    <div style="height: 88%;">        
+        <table fit="true" id="tableListBox" >
+        </table>
+    </div>
+</div>
+<div id="divAuditing" style="display: none">
+    <form id="divAuditingForm" class="easyui-form">
+    <div title="流程审批人" style="padding: 20px;">
+        <table cellpadding="3" class="table_open_window_edit">
+            <tr>
+                <td align="right" id="txtAuditingRemark" colspan="2" style=" font-size:12px; color:Red; font-weight:bold; text-align:left">
+                    审批流程名：
+                </td>
+            </tr>
+            <tr>
+                <td align="right">审批人员：</td>
+                <td>
+                    @*<input id="selectUsers" name="selectAllUsers" class="easyui-combobox"  style=" width:150px"></input>*@
+                    <select id="selectUsers" name="selectAllUsers" class="my_select" style=" width:150px"></select>
+                </td>
+            </tr>
+            <tr class="trUserInfo">
+               <td></td><td><a href="javascript:void(0)" id="btnSave" class="easyui-linkbutton" style="width: 80px;height: 28px">保存</a></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+

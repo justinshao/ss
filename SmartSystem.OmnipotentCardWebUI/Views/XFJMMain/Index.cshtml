@@ -1,0 +1,385 @@
+﻿@using Common.Entities
+@{
+    ViewBag.Title = "商家减免";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    body
+    {
+        background-color: #fbf9fe;
+    }
+</style>
+<div class="row">
+    <div style="height: 80px; background-image: url(/Content/mobile/xfjm/images/beijing.png)">
+        <div style="float: left;">
+            <div class="Personal-center-top-box-left">
+                <img src="/Content/mobile/xfjm/images/tingche.png" style="height: 70px; margin: 5px 0px 10px 20px"
+                    class="img-circle img-responsive" />
+            </div>
+            <div class="Personal-center-top-box-right" style="margin-left: -8px">
+                <p class="text14">
+                </p>
+            </div>
+        </div>
+        <div style="float: right; margin: 20px 25px 0px 0px">
+            <div style="color: #fff; font-size: 13px">
+                商家名称：@ViewBag.SellerName</div>
+            <div style="color: #fff; font-size: 13px">
+                可用余额：<span id="spanSellerBalance">@ViewBag.SellerBalance</span></div>
+            <div>
+@*                <a href="@Url.Action("RechargeRecord", "SellerRecharge")" class="weui_btn weui_btn_mini weui_btn_yellow" style="background-color: #6CAB61">
+                    充值记录</a> <a href="@Url.Action("Index", "SellerRecharge")" class="weui_btn weui_btn_mini weui_btn_primary">
+                        我要充值</a>*@
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    <div class="weui_tab">
+    <div class="weui_tab_bd"></div>
+    <div class="weui_tabbar">
+        <a href="@Url.Action("RechargeRecord", "SellerRecharge")" class="weui_tabbar_item weui_bar_item_on">
+            <div class="weui_tabbar_icon">
+                 <img src="/Content/images/weixin/充值记录.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">充值记录</p>
+        </a>
+        <a href="@Url.Action("Index", "SellerRecharge")" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="/Content/images/weixin/充值.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">我要充值</p>
+        </a>
+        <a href="@Url.Action("DiscountRecord", "XFJMMain")" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                 <img src="/Content/images/weixin/记录.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">打折记录</p>
+        </a>
+        <a href="@Url.Action("Index", "XFJMDerateQRCode")" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="/Content/images/weixin/二维码.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">打折二维码</p>
+        </a>
+    </div>
+</div>
+    <div class="weui_cells" style="margin-top: 5px">
+        <div class="weui_cell weui_vcode">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    打折车牌号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" id="txtWaitDeratePlate" placeholder="最少4位" />
+            </div>
+            <div class="weui_cell_ft">
+                <a href="javascript:;" style="width: 100px" class="weui_btn weui_btn_primary" onclick="return SubmitQueryData()">
+                    查询</a>
+            </div>
+        </div>
+    </div>
+    <div id="divEntranceRecords" style="margin-top: 5px">
+    </div>
+    @*   <div class="weui_cells carEntranceRecord" style="margin-top:0px; text-align:center"> <div  style="height:170px"><img src="/Content/mobile/xfjm/images/beijing.png" class="img-thumbnail"/><span style="position: absolute; left: 1px; bottom: 30px;">车牌号：</span><span  style="position: absolute; left: 1px; bottom: 1px;">进场时间：</span><span  style="position: absolute; right: 1px; bottom: 1px; color:Red">已打折</span> </div> </div>
+      <div class="weui_cells carEntranceRecord" style="margin-top:5px; text-align:center">
+      <div style="height:170px"><img src="/Content/mobile/xfjm/images/beijing.png" class="img-thumbnail"/></div>
+   </div>*@
+    <div id="divNotData" style="width: 100%; text-align: center; margin-top: 50px; display: none">
+        <div>
+            <img src="/Content/mobile/images/list_not_data.png" />
+        </div>
+        <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+            无符合条件的进出记录！</div>
+    </div>
+    <div id="divParkDeratesSuccess" style="width: 100%; text-align: center; margin-top: 50px;
+        display: none">
+        <div>
+            <img src="/Content/mobile/xfjm/images/chegngong.png" class="img-thumbnail" style="width: 140px" />
+        </div>
+        <div style="color: #8a8a8a; font-size: 15px; margin-top: 20px">
+            消费打折成功！</div>
+    </div>
+</div>
+<!--BEGIN actionSheet-->
+<div id="actionSheet_wrap">
+    <div class="weui_mask_transition" id="mask">
+    </div>
+    <div class="weui_actionsheet" id="weui_actionsheet">
+        <div class="weui_cells">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        车牌号</p>
+                </div>
+                <div class="weui_cell_ft">
+                    <span id="spanPlateNumber"></span>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        进场时间</p>
+                </div>
+                <div class="weui_cell_ft">
+                    <span id="spanEntranceTime"></span>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        在场时长</p>
+                </div>
+                <div class="weui_cell_ft">
+                    <span id="spanTotalDuration"></span>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        状态</p>
+                </div>
+                <div class="weui_cell_ft">
+                    <span id="spanDerateStatus"></span>
+                </div>
+            </div>
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        优免规则</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" id="sltParkDerates">
+                        @{
+                            List<ParkDerate> parkDerates = ViewBag.ParkDerates as List<ParkDerate>;
+                            if (parkDerates!=null){
+                                foreach (var item in parkDerates)
+                                {
+                                    string derateValue = string.Format("{0},{1}", (int)item.DerateType, item.DerateID);
+                                <option value="@derateValue">@item.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="weui_cell" id="divDerateValue">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label" style="width: 150px">
+                        <span id="spanDerateTypeDes">减免时间(分钟)</span></label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" id="txtDerateValue" placeholder="请输入减免值" />
+                </div>
+            </div>
+        </div>
+        <div class="weui_actionsheet_action">
+            <div class="weui_actionsheet_cell">
+                <input type="hidden" id="hiddSelectCarRecordId" />
+                <a href="javascript:void(0);" class="weui_btn weui_btn_primary" id="actionsheet_Discount">
+                    打折</a> <a href="javascript:void(0);" class="weui_btn weui_btn_default" id="actionsheet_Close"
+                        style="display: none">关闭</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END actionSheet-->
+<script type="text/javascript">
+    function SubmitQueryData() {
+        var plateNo = $("#txtWaitDeratePlate").val(); ;
+        if ($.trim(plateNo).length < 4) {
+            WxAlert("", "车牌号不能小于4位");
+            return false;
+        }
+        OpenCommonLoading("");
+        $("#divNotData").hide();
+        $("#divParkDeratesSuccess").hide();
+        var gdata = {};
+        gdata.plateNumber = plateNo;
+        gdata.r = Math.random();
+        $.post("/XFJMMain/GetWaitDiscountCar", gdata, function (data) {
+            CloseCommonLoading();
+            if (data.result) {
+                if (data.data.length > 0) {
+                    $("#divEntranceRecords").html("").show();
+                    for (var i = 0; i < data.data.length; i++) {
+                        AddCarRecordHtml(data.data[i].RecordID, data.data[i].PlateNumber, data.data[i].EntranceTimeToString, data.data[i].IsDiscount, data.data[i].InimgData, data.data[i].LongTime)
+                    }
+                } else {
+                    $("#divEntranceRecords").hide();
+                    $("#divParkDeratesSuccess").hide();
+                    $("#divNotData").show();
+                }
+            } else {
+                WxAlert("", "查询在场车辆记录失败");
+            }
+        });
+    }
+    function ChangeParkDerate() {
+        var derate = $("#sltParkDerates").val();
+        if ($.trim(derate) == "") {
+            return false;
+        }
+        $("#txtDerateValue").val("0");
+        var derateType = derate.split(',')[0];
+        if (derateType == "8") {
+            $('#spanDerateTypeDes').html('优免金额(元)');
+            $("#divDerateValue").show();
+
+        } else if (derateType == "9" || derateType == "3") {
+            $('#spanDerateTypeDes').html('优免时间(分钟)');
+            $("#divDerateValue").show();
+        }
+        else if (derateType == "10") {
+            $('#spanDerateTypeDes').html('优免(天)');
+            $("#divDerateValue").show();
+        }
+         else {
+            $("#divDerateValue").hide();
+        }
+    }
+    $(function () {
+        $("#sltParkDerates").change(function () {
+            ChangeParkDerate();
+        });
+        ChangeParkDerate();
+
+    });
+    var intReg = /^[1-9]\d*$/;
+    function SelectEntranceRecord(obj, recordId, plateNumber, entranceTime, isDiscount, LongTime) {
+        $("#hiddSelectCarRecordId").val(recordId);
+        $("#spanPlateNumber").html(plateNumber);
+        $("#spanEntranceTime").text(entranceTime);
+        var isDiscountDes = isDiscount ? "已打折" : "未打折";
+        $("#spanDerateStatus").text(isDiscountDes);
+        $("#spanTotalDuration").text(LongTime);
+        if (isDiscount) {
+            $("#spanDerateStatus").css("color", "red");
+            $("#actionsheet_Close").show();
+            $("#actionsheet_Discount").hide();
+        } else {
+            $("#spanDerateStatus").css("color", "#d9d9d9");
+            $("#actionsheet_Close").hide();
+            $("#actionsheet_Discount").show();
+        }
+        var mask = $('#mask');
+        var weuiActionsheet = $('#weui_actionsheet');
+        weuiActionsheet.addClass('weui_actionsheet_toggle');
+        mask.show().addClass('weui_fade_toggle').one('click', function () {
+            hideActionSheet(weuiActionsheet, mask);
+        });
+        $('#actionsheet_Discount').unbind();
+        $('#actionsheet_Discount').click(function () {
+            $("#actionsheet_Discount").hide();
+            var derate = $("#sltParkDerates").val();
+            if ($.trim(derate) == "") {
+                WxAlert("", "请选择优免规则");
+                $("#actionsheet_Discount").show();
+                return false;
+            }
+            var derates = derate.split(',');
+            var derateValue = $("#txtDerateValue").val();
+            var derateType = derates[0];
+            if ((derateType == "8" || derateType == "9" || derateType == "3" || derateType == "10") && !$.trim(derateValue).match(intReg)) {
+                WxAlert("", "减免值格式不正确");
+                $("#actionsheet_Discount").show();
+                return false;
+            }
+            var recordId = $("#hiddSelectCarRecordId").val();
+            if ($.trim(recordId) == "") {
+                WxAlert("", "获取车辆进出记录编号失败");
+                $("#actionsheet_Discount").show();
+                return false;
+            }
+            OpenCommonLoading("");
+            $.ajax({
+                type: "post",
+                url: '/XFJMMain/Discount',
+                data: { IORecordID: recordId, DerateID: derates[1], DerateMoney: derateValue },
+                error: function () { $("#actionsheet_Discount").show(); WxAlert("", "提交数据到服务器失败"); },
+                success: function (data) {
+                    $("#actionsheet_Discount").show();
+                    CloseCommonLoading();
+                    switch (data.data.Result) {
+                        case -1:
+                            WxAlert("消息", "消费打折失败(打折出现异常)");
+                            break;
+                        case 1:
+                            //WxAlert('消息', '消费打折成功');
+                            hideActionSheet(weuiActionsheet, mask);
+                            $("#divEntranceRecords").hide();
+                            $("#divParkDeratesSuccess").show();
+                            $("#divNotData").hide();
+                            GetSellerBalance();
+                            break;
+                        case 2:
+                            WxAlert("消息", "消费打折失败(找不到进出记录信息)");
+                            break;
+                        case 3:
+                            WxAlert('消息', '消费打折失败(车辆已出场)');
+                            break;
+                        case 4:
+                            WxAlert('消息', '消费打折失败(车辆已打折)');
+                            break;
+                        case 5:
+                            WxAlert('消息', '消费打折失败(找不到优免规则)');
+                            break;
+                        case 6:
+                            WxAlert('消息', '消费打折失败(找不到商家信息)');
+                            break;
+                        case 7:
+                            WxAlert("", "消费打折失败(商家可用余额不足)");
+                            break;
+                        case 8:
+                            WxAlert('消息', '消费打折失败(操作数据库失败)');
+                            break;
+                        case 9:
+                            WxAlert('消息', '该车辆已无需收费');
+                            break;
+                    }
+                }
+            });
+        });
+        $('#actionsheet_Close').one('click', function () {
+            hideActionSheet(weuiActionsheet, mask);
+        });
+
+        weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+
+        function hideActionSheet(weuiActionsheet, mask) {
+            weuiActionsheet.removeClass('weui_actionsheet_toggle');
+            mask.removeClass('weui_fade_toggle');
+            weuiActionsheet.on('transitionend', function () {
+                mask.hide();
+            }).on('webkitTransitionEnd', function () {
+                mask.hide();
+            })
+        }
+    }
+    function AddCarRecordHtml(recordId, plateNumber, entranceTime, isDiscount, imagebase64, LongTime) {
+        var discountDes = isDiscount ? "已打折" : "";
+        if ($.trim(imagebase64) == "") {
+            imagebase64 = "/Content/images/default_not_image_small.png";
+        }
+        else {
+            imagebase64 = "data:image/png;base64," + imagebase64;
+        }
+        var tr = $('<div class="weui_cells" style="margin-top:0px;margin-bottom:5px; text-align:center" onclick="return SelectEntranceRecord(this,' + "'" + recordId + "'" + ',' + "'" + plateNumber + "'" + ',' + "'" + entranceTime + "'" + ',' + "" + isDiscount + "" + ',' + "'" + LongTime + "'" + ')"> <div ><img src="' + imagebase64 + '" class="img-thumbnail"  style="height:300px"/><span style="position: absolute; left: 10px; bottom: 25px;color:red">车牌号：' + plateNumber + '</span><span  style="position: absolute; left: 10px; bottom: 5px;color:red">进场时间：' + entranceTime + '</span><span  style="position: absolute; right: 10px; bottom: 5px; color:Red">' + discountDes + '</span> </div> </div>');
+        $("#divEntranceRecords").append(tr);
+    }
+    $(function () {
+        setInterval("GetSellerBalance()", 60000);
+        GetSellerBalance();
+    })
+    function GetSellerBalance() {
+        $.ajax({
+            type: "post",
+            url: '/XFJMMain/GetSellerBalance',
+            success: function (data) {
+                if (data.result) {
+                    $("#spanSellerBalance").text(data.data);
+                }
+            }
+        });
+    }
+</script>

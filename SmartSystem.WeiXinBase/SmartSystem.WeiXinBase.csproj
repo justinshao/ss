@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B3C03406-D705-4B42-8DFB-95B90CFE0E74}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartSystem.WeiXinBase</RootNamespace>
+    <AssemblyName>SmartSystem.WeiXinBase</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.0\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessTokenContainer.cs" />
+    <Compile Include="Conversation.cs" />
+    <Compile Include="Entities\AdvApi\GroupCreate.cs" />
+    <Compile Include="Entities\AdvApi\GroupId.cs" />
+    <Compile Include="Entities\AdvApi\GroupItem.cs" />
+    <Compile Include="Entities\AdvApi\GroupList.cs" />
+    <Compile Include="Entities\AdvApi\OAuthAccessToken.cs" />
+    <Compile Include="Entities\AdvApi\OAuthScope.cs" />
+    <Compile Include="Entities\AdvApi\OAuthUserInfo.cs" />
+    <Compile Include="Entities\AdvApi\QrCode.cs" />
+    <Compile Include="Entities\AdvApi\SendAllNews.cs" />
+    <Compile Include="Entities\AdvApi\SendAllNewsCreate.cs" />
+    <Compile Include="Entities\AdvApi\SendAllResult.cs" />
+    <Compile Include="Entities\AdvApi\Templete.cs" />
+    <Compile Include="Entities\AdvApi\UserGet.cs" />
+    <Compile Include="Entities\AdvApi\UserInfo.cs" />
+    <Compile Include="Entities\AdvApi\UserOpenIdList.cs" />
+    <Compile Include="Entities\Api\AccessToken.cs" />
+    <Compile Include="Entities\Api\JsapiTicket.cs" />
+    <Compile Include="Entities\Api\MediaUpload.cs" />
+    <Compile Include="Entities\CardResult.cs" />
+    <Compile Include="Entities\ImgUploadResult.cs" />
+    <Compile Include="Entities\IWBase.cs" />
+    <Compile Include="Entities\Menu\BaseButton.cs" />
+    <Compile Include="Entities\Menu\FullButton.cs" />
+    <Compile Include="Entities\Menu\IBaseButton.cs" />
+    <Compile Include="Entities\Menu\MainButton.cs" />
+    <Compile Include="Entities\Menu\MinIprogramButton.cs" />
+    <Compile Include="Entities\Menu\SingleButton.cs" />
+    <Compile Include="Entities\Menu\SingleClickButton.cs" />
+    <Compile Include="Entities\Menu\SingleViewButton.cs" />
+    <Compile Include="Entities\Menu\SubButton.cs" />
+    <Compile Include="Entities\Menu\WButtonType.cs" />
+    <Compile Include="Entities\PoiListResult.cs" />
+    <Compile Include="Entities\ReqCard.cs" />
+    <Compile Include="Entities\Request\Event\EventType.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventBase.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventCard.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventClick.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventLocation.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventMasssendJobFinish.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventScan.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventSubscribe.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventUnSubscribe.cs" />
+    <Compile Include="Entities\Request\Event\WReqEventView.cs" />
+    <Compile Include="Entities\Request\IWReqBase.cs" />
+    <Compile Include="Entities\Request\WReqBase.cs" />
+    <Compile Include="Entities\Request\WReqImage.cs" />
+    <Compile Include="Entities\Request\WReqLink.cs" />
+    <Compile Include="Entities\Request\WReqLocation.cs" />
+    <Compile Include="Entities\Request\WReqText.cs" />
+    <Compile Include="Entities\Request\WReqType.cs" />
+    <Compile Include="Entities\Request\WRequestFactory.cs" />
+    <Compile Include="Entities\Request\WReqVideo.cs" />
+    <Compile Include="Entities\Request\WReqVoice.cs" />
+    <Compile Include="Entities\ResCode.cs" />
+    <Compile Include="Entities\ResError.cs" />
+    <Compile Include="Entities\Response\Article.cs" />
+    <Compile Include="Entities\Response\Image.cs" />
+    <Compile Include="Entities\Response\IWRespBase.cs" />
+    <Compile Include="Entities\Response\Music.cs" />
+    <Compile Include="Entities\Response\Video.cs" />
+    <Compile Include="Entities\Response\Voice.cs" />
+    <Compile Include="Entities\Response\WRespBase.cs" />
+    <Compile Include="Entities\Response\WRespImage.cs" />
+    <Compile Include="Entities\Response\WRespMusic.cs" />
+    <Compile Include="Entities\Response\WRespNews.cs" />
+    <Compile Include="Entities\Response\WResponseFactory.cs" />
+    <Compile Include="Entities\Response\WRespText.cs" />
+    <Compile Include="Entities\Response\WRespType.cs" />
+    <Compile Include="Entities\Response\WRespVideo.cs" />
+    <Compile Include="Entities\Response\WRespVoice.cs" />
+    <Compile Include="Entities\WBase.cs" />
+    <Compile Include="Entities\WExt.cs" />
+    <Compile Include="Entities\WxXml.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedPack\ReqSendGroupRedPack.cs" />
+    <Compile Include="RedPack\ReqSendRedPack.cs" />
+    <Compile Include="RedPack\ReqSendRedPackBase.cs" />
+    <Compile Include="RedPack\RspSendRedPack.cs" />
+    <Compile Include="RedPack\WxRedPackPayServices.cs" />
+    <Compile Include="WxAdvApi.cs" />
+    <Compile Include="WxApi.cs" />
+    <Compile Include="WxHttp.cs" />
+    <Compile Include="WxService.cs" />
+    <Compile Include="WxUrl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Core\Common.Core.csproj">
+      <Project>{EF989F15-C062-4C7D-8B69-8ACE8540C07B}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Entities\Common.Entities.csproj">
+      <Project>{2A5BF93F-E241-48AE-905E-712A3152EF8C}</Project>
+      <Name>Common.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Services\Common.Services.csproj">
+      <Project>{68404EB2-1832-477A-BB7B-1E1857844E52}</Project>
+      <Name>Common.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Utilities\Common.Utilities.csproj">
+      <Project>{660F9B65-6AD0-4984-914C-4459C41CA966}</Project>
+      <Name>Common.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

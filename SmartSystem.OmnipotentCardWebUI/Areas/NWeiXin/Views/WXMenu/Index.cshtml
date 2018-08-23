@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "菜单管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="easyui-layout" style="height: 500px; width: 500px" fit="true">
+<div region="west" split="true" title="单位信息" style="width: 250px;">
+        <ul id="treeCompany"></ul>
+    </div>
+    <div region="center" title="菜单管理" style="padding: 2px;">
+        <div style="margin:5px 0px 5px">
+       
+        1.可创建最多<span style="font-weight: bold; color: Red">3 个一级菜单</span>，每个一级菜单下最多可创建 <span
+            style="font-weight: bold; color: Red">5 个二级菜单</span>。<br />
+        2.选择菜单可以对菜单进行修改，但最终只有<strong style="font-weight: bold">“发布菜单”</strong>后才会生效。公众平台限制了每天的发布次数。<br />
+    </div>
+        <table fit="true" id="tableMenu">
+        </table>
+    </div>
+</div>
+<div id="divMenuBox" style="display: none">
+    <form id="divMenuBoxForm" class="easyui-form">
+    <div title="编辑菜单" style="padding: 20px;">
+        <input type="hidden" name="ID" id="ID" />
+        <input type="hidden" name="CompanyID" id="hiddCompanyID" />
+        <div style="margin-bottom: 10px">
+            <div>
+                菜单名称：<span style="color: #A8A8A8">*(菜单名称可输入8个字符！)</span></div>
+            <input class="easyui-validatebox my_textbox" required="true" name="MenuName" id="txtMenuName"
+                style="width: 295px; height: 20px" />
+        </div>
+        <div id="divMenu" style="margin-bottom: 10px">
+            <div>
+                所属菜单：<span style="color: #A8A8A8">*不选则为一级菜单</span></div>
+            <select class="easyui-combobox" style="width: 300px; height: 28px" name="MasterID"
+                id="cmbMasterID">
+            </select>
+        </div>
+        <div style="margin-bottom: 10px">
+            <div>
+                排序号：<span style="color: #A8A8A8">*(越小越靠前)</span></div>
+            <input class="easyui-numberbox my_textbox" required="true" name="Sort" id="txtSort" value="0"
+                data-options="min:0,precision:0" style="width: 300px; height: 28px" />
+        </div>
+        <div id="divMenuType" style="margin-bottom: 10px">
+            <div>
+                菜单类型：<span style="color: #A8A8A8">*</span></div>
+            <select class="easyui-combobox" style="width: 300px; height: 28px" name="MenuType"
+                id="cmbMenuType">
+            </select>
+        </div>
+         <div class="divMinIprogram" style="display: none; margin-bottom: 10px">
+            <div>
+                小程序AppID：<span style="color: #A8A8A8">*（仅认证公众号可配置）</span></div>
+            <input class="easyui-textbox my_textbox" name="MinIprogramAppId" id="txtMinIprogramAppId" style="width: 300px; height: 28px" />
+        </div>
+           <div class="divMinIprogram" style="display: none; margin-bottom: 10px">
+            <div>
+                小程序的页面路径：<span style="color: #A8A8A8">*(格式如：pages/index/index)</span></div>
+            <input class="easyui-textbox my_textbox" name="MinIprogramPagePath" id="txtMinIprogramPagePath" style="width: 300px; height: 28px" />
+        </div>
+        <div id="divUrl" style="display: none; margin-bottom: 10px">
+            <div>
+                链接URL：<span style="color: #A8A8A8" id="spanUrlDes">*必须是以http://开头的URL格式</span></div>
+            <input class="easyui-textbox my_textbox" name="Url" id="txtUrl" style="width: 300px; height: 28px" />
+        </div>
+        <div id="divKeyword" style="display: none; margin-bottom: 10px">
+            <div>
+                关键字：<span style="color: #A8A8A8">*</span></div>
+            <select class="easyui-combobox" style="width: 300px; height: 28px" name="KeywordId"
+                id="cmbKeywordId">
+            </select>
+        </div>
+        <div id="divModule" style="display: none; margin-bottom: 10px">
+            <div>
+                系统模块：<span style="color: #A8A8A8">*</span></div>
+            <select class="easyui-combobox" style="width: 300px; height: 28px" name="Module"
+                id="cmdModule">
+            </select>
+        </div>
+    </div>
+    </form>
+</div>
+<script src="/Scripts/nweixin/menu.js?v=2" type="text/javascript"></script>

@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "预停车";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+<div class="row">
+    <!--header-->
+    <div class="header">
+        <div class="pull-left header-left"></div>
+        <div class="pull-right header-right">
+            预停车</div>
+    </div>
+    <div class="top60">
+    </div>
+
+    <div class="weui_cells weui_cells_form">
+         @Html.Action("Index", "LicensePlate")
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    开始时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+               <input class="weui_input" type="datetime-local" id="txtStartTime" placeholder="请输入开始时间" name="StartTime" />
+            </div>
+
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    结束时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+               <input class="weui_input" type="datetime-local" id="txtEndTime" placeholder="请输入结束时间" name="EndTime" />
+            </div>
+
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">
+                    预支付金额</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+               <input class="weui_input" type="number" name="Amount" id="txtAmount" placeholder="请输入预支付金额" />
+            </div>
+
+        </div>
+    </div>
+    <div class="weui_cells_tips" style="color: red" id="divError">
+    </div>
+  
+    <div class="weui_btn_area">
+      @{
+          using (Html.BeginForm("SaveAdvanceParking", "AdvanceParking", FormMethod.Post))
+            {
+                <input type="hidden" id="hidd_licensePlate" name="plateNo"/>
+                <input type="hidden" id="hidd_startTime" name="startTime"/>
+                <input type="hidden" id="hidd_endTime" name="endTime"/>
+                <input type="hidden" id="hidd_amount" name="amount"/>
+                <input type="submit" class="weui_btn weui_btn_primary" value="确认支付" onclick="return btnSubmitData()" />
+            }
+        }
+       
+    </div>
+</div>
+<script type="text/javascript">
+
+    var regAmount = /^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/;
+    function btnSubmitData() {
+        $("#divError").text("");
+
+        var city = $(".spanProvinceDescription").text();
+        var area = $(".spanCityDescription").text();
+        if (city == "" || area == "") {
+            $("#divError").text("请选择省份");
+            return false;
+        }
+        var licensePlate = $("#txtUserPlateNumber").val();
+        if ($.trim(licensePlate) == "") {
+            $("#divError").text("请输入车牌号");
+            return false;
+        }
+        if (licensePlate.replace(/\s+/g, "").length != 5 && licensePlate.replace(/\s+/g, "").length != 6) {
+            $("#divError").text("车牌号格式不正确");
+            return false;
+        }
+        var plateNo = city + area + licensePlate.replace(/\s+/g, "");
+
+        var sdate = $("#txtStartTime").val();
+        var edate = $("#txtEndTime").val();
+        if ($.trim(sdate) == "") {
+            $("#divError").text("请选择开始日期");
+            return false;
+        }
+        if ($.trim(edate) == "") {
+            $("#divError").text("请选择结束日期");
+            return false;
+        }
+        if (new Date(sdate) > new Date(edate)) {
+            $("#divError").text("开始日期不能大于结束日期");
+            return false;
+        }
+        var amount = $("#txtAmount").val();
+        if (!$.trim(amount).match(regAmount)) {
+            $("#divError").text("预支付金额格式不正确");
+            return false;
+        }
+        $("#hidd_licensePlate").val(plateNo);
+        $("#hidd_startTime").val(sdate);
+        $("#hidd_endTime").val(edate);
+        $("#hidd_amount").val(amount);
+        return true;
+      
+    }
+
+</script>

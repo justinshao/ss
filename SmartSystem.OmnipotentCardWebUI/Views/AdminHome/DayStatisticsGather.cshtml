@@ -1,0 +1,184 @@
+﻿@using Common.Entities;
+@{
+    ViewBag.Title = "日汇总";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    .weui_media_desc
+    {
+        height: 20px;
+    }
+</style>
+<div class="row">
+    <div class="header">
+        <div class="pull-left header-left">
+            <a href="@Url.Action("Index", "AdminHome")">
+                <img src="/Content/mobile/images/return.png" width="15" height="26" alt="" /></a>
+        </div>
+        <div class="pull-right header-right">
+            <a href="javascript:;" id="showActionSheet">
+                <img src="/Content/images/weixin/条件查询.png" width="30" height="30" style="margin-top: 5px" /></a>
+        </div>
+        <span style="float: right; color: #fff">日汇总&nbsp;&nbsp;</span>
+    </div>
+    <div class="top60">
+    </div>
+    <div id="divDataList">
+    </div>
+    <div id="divNotData" style="width: 100%; text-align: center; margin-top: 150px; display: none">
+        <div>
+            <img src="/Content/mobile/images/list_not_data.png" />
+        </div>
+        <div style="color: #8a8a8a; font-size: 12px; margin-top: 20px">
+            无符合条件的记录，您可以修改条件后重试！</div>
+    </div>
+</div>
+<!--BEGIN actionSheet-->
+<div id="actionSheet_wrap">
+    <div class="weui_mask_transition" id="mask">
+    </div>
+    <div class="weui_actionsheet" id="weui_actionsheet">
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        所在车场</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" id="selectParks">
+                        <option value="" selected="selected">全部</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        开始时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="date" id="txtStartTime" value="@ViewBag.StartTime" placeholder="" />
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">
+                        结束时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="date" id="txtEndTime" value="@ViewBag.EndTime" placeholder="" />
+                </div>
+            </div>
+        </div>
+        <div class="weui_actionsheet_action">
+            <div class="weui_actionsheet_cell" id="actionsheet_query">
+                查询</div>
+        </div>
+    </div>
+</div>
+<div id="loadingSubmitPayToast" class="weui_loading_toast" style="display:none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <div class="weui_loading">
+            <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+        </div>
+        <p class="weui_toast_content">查询中，请稍等...</p>
+    </div>
+</div>
+<script src="/Scripts/mobile/admincommon.js" type="text/javascript"></script>
+<!--END actionSheet-->
+<script type="text/javascript">
+    var currTotalRow = 0;
+    var currPageIndex = 0;
+    $(function () {
+        $("#showActionSheet").click(function () {
+            var mask = $('#mask');
+            var weuiActionsheet = $('#weui_actionsheet');
+            weuiActionsheet.addClass('weui_actionsheet_toggle');
+            mask.show().addClass('weui_fade_toggle').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+            });
+            $('#actionsheet_query').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+                StartQueryData();
+            });
+            weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+
+            function hideActionSheet(weuiActionsheet, mask) {
+                weuiActionsheet.removeClass('weui_actionsheet_toggle');
+                mask.removeClass('weui_fade_toggle');
+                weuiActionsheet.on('transitionend', function () {
+                    mask.hide();
+                }).on('webkitTransitionEnd', function () {
+                    mask.hide();
+                })
+            }
+        });
+        var a = 0, b = 0, c = 0;
+        window.onscroll = function () {
+            a = $(window).height();
+            b = $(document).scrollTop();
+            c = document.documentElement.scrollTop == 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
+            if (a + b >= c) {
+                SubmitQueryData(currPageIndex + 1);
+            }
+        }
+        BindQueryData();
+        StartQueryData();
+    });
+    function BindQueryData() {
+        GetParks();
+    }
+    function StartQueryData() {
+        currTotalRow = 0;
+        currPageIndex = 0;
+        $(".weui_panel").remove();
+        SubmitQueryData(currPageIndex + 1);
+    }
+    function SubmitQueryData(queryPageIndex) {
+        $("#loadingSubmitPayToast").show();
+        $("#divNotData").hide();
+
+        var parkingid = $("#selectParks").val();
+        var startTime = $("#txtStartTime").val();
+        var endTime = $("#txtEndTime").val();
+
+        var gdata = {};
+        gdata.parkingid = parkingid;
+        gdata.starttime = startTime;
+        gdata.endtime = endTime;
+        gdata.page = queryPageIndex;
+        gdata.r = Math.random();
+        $.post("/AdminHome/GetDayGatherData", gdata, function (data) {
+
+        });
+    }
+    function FillPresentCarHtml(ParkingName, KeyName, Receivable_Amount, Real_Amount, Diff_Amount, Entrance_Count, Exit_Count, ReleaseType_Normal, ReleaseType_Charge, ReleaseType_Free, ReleaseType_Catch, VIPExtend_Count, OnLineMonthCardExtend_Count, MonthCardExtend_Count, OnLineStordCard_Count, StordCardRecharge_Count) {
+        var tr = " <div class=\"weui_panel\">";
+        tr += "<div class=\"weui_panel_hd\" style=\"height: 20px\">";
+        tr += "<div style=\"float: left\">" + ParkingName + "</div>";
+        tr += "   <div style=\"float: right\">" + KeyName + "</div></div>";
+        tr += " <div class='weui_panel_bd'><div class='weui_media_box weui_media_text'>";
+        tr += " <p class='weui_media_desc'>应收金额：" + Receivable_Amount + "</p>";
+        tr += " <p class='weui_media_desc'>实收金额：" + Real_Amount + "</p>";
+        tr += " <p class=\"weui_media_desc\">差异金额：" + Diff_Amount + "</p>";
+        tr += " <p class=\"weui_media_desc\">进场数：" + Entrance_Count + "</p>";
+        tr += "  <p class=\"weui_media_desc\">出场数：" + Exit_Count + "</p>";
+        tr += " <ul class=\"weui_media_info\"><li class=\"weui_media_info_meta\">正常放行次数：" + ReleaseType_Normal + "</li><li class=\"weui_media_info_meta weui_media_info_meta_extra\">收费放行次数：" + ReleaseType_Charge + "</li> </ul>";
+        tr += " <ul class=\"weui_media_info\"><li class=\"weui_media_info_meta\">免费放行次数：" + ReleaseType_Free + "</li><li class=\"weui_media_info_meta weui_media_info_meta_extra\">异常放行次数：" + ReleaseType_Catch + "</li> </ul>";
+        tr += " <ul class=\"weui_media_info\"><li class=\"weui_media_info_meta\">VIP卡续期次数：" + VIPExtend_Count + "</li><li class=\"weui_media_info_meta weui_media_info_meta_extra\">线上月卡续期次数：" + OnLineMonthCardExtend_Count + "</li> </ul>";
+        tr += " <ul class=\"weui_media_info\"><li class=\"weui_media_info_meta\">线下月卡续期次数：" + MonthCardExtend_Count + "</li><li class=\"weui_media_info_meta weui_media_info_meta_extra\">线上储值卡充值次数：" + OnLineStordCard_Count + "</li> </ul>";
+        tr += " <ul class=\"weui_media_info\"><li class=\"weui_media_info_meta\">线下储值卡充值次数：" + StordCardRecharge_Count + "</li></ul>";
+        tr += " </div></div>";
+        tr += "</div>"
+        $("#divDataList").append(tr);
+    }
+</script>

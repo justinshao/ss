@@ -1,0 +1,101 @@
+﻿@using ClassLibrary1
+@model MonthCardResult
+@{
+    ViewBag.Title = "月卡详情";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<style type="text/css">
+    body{ background-color:#f4f4f4; margin:0px; padding:0px;}
+    .parkingcenter{ width:95%; margin:0 auto;}
+    .listLayout{background:url(../../Content/mobile/images/yueka.png) no-repeat;background-size:100% 100%; -webkit-border-radius: 10px;border-radius: 10px;margin-top:3.05rem; height:20rem;}
+    .listhead { overflow:hidden; height:5rem; line-height:5rem;}
+    .listhead .listhead_left{ float:left;font:PingFang SC; font-size:2rem; color:#FFFFFF; margin-left:2rem;}
+    .pkname{ overflow:hidden; height:5rem; line-height:5rem;}
+    .pkname_center{ font:PingFang SC; font-size:2rem; color:#FFFFFF;text-align:center;}
+    .amount{ overflow:hidden; height:5rem; line-height:5rem;}
+    .amount .amount_center{ font:PingFang SC; font-size:2rem; color:#FFFFFF;text-align:center;}
+    .day{ overflow:hidden; height:5rem; line-height:5rem;} 
+    .day .day_center{ float:right; font:PingFang SC; font-size:2rem; color:#FFFFFF;}
+    
+    .recordinfo{ width:95%; margin:0 auto; }
+    .di{ margin-top:2.7rem; height:31.8rem; background:#ffffff; -webkit-border-radius: 10px; border-radius: 10px; }
+    .listhead { overflow:hidden; height:3.84rem; line-height:3.84rem; }
+    .listhead .listhead_top{ float:left; font:PingFang SC; font-size:1.92rem; margin-left:1.6rem; color:#666666;margin-top:1rem;}
+    .listhead .listhead_top1{ font:PingFang SC; font-size:1.92rem; margin-left:1.6rem; color:#c8161d;margin-top:1rem;}
+    .paynow{ overflow:hidden; border-top:1px solid #d4d4d4;margin-left:1.3rem; margin-right:1.3rem;margin-top:2.05rem;}
+    .listhead .neirong_left{ float:left; font:PingFang SC; font-size:1.69rem; margin-left:1.6rem; color:#666666;margin-top:1rem; }
+    .listhead .neirong_right{ float:right; font:PingFang SC; font-size:1.69rem; margin-right:1.6rem; color:#333333; margin-top:1rem;}
+    .listhead .neirong_right1{ float:right; font:PingFang SC; font-size:1.69rem; margin-right:1.6rem; color:#c8161d; margin-top:1rem;}
+    .cardMX{ background-color: #c8161d !important;border-radius: 0.5rem; text-align:center;height:3.38rem;line-height:3.38rem; cursor:pointer;font-size:1.69rem;margin-top:2.7rem;}
+</style>
+<script type="text/javascript">
+    window.onresize = function () {
+        calcRam()
+    }
+    function calcRam() {
+        var html = document.querySelector("html");
+        var w = document.documentElement.clientWidth;
+        html.style.fontSize = w / 37.5 + "px";
+    }
+    calcRam()
+
+    function cardInfo(obj, amount, cardid, day, endtime, licenseplate, maxmonth, maxvalue, parkname, starttime, state) {
+        location.href = "/MonthCard/MonthCardPayment?amount=" + amount + "&cardid=" + cardid + "&day=" + day + "&endtime=" + endtime + "&licenseplate=" + licenseplate + "&maxmonth=" + maxmonth + "&maxvalue=" + maxvalue + "&parkname=" + parkname + "&starttime=" + starttime + "&state=" + state;
+        //        $.ajax({
+        //            type: 'Post',
+        //            url: '/MonthCard/MonthCardDetails',
+        //            data: "amount=" + amount + "&cardid=" + cardid + "&day=" + day + "&endtime=" + endtime + "&licenseplate=" + licenseplate + "&maxmonth=" + maxmonth + "&maxvalue=" + maxvalue + "&parkname=" + parkname + "&starttime=" + starttime + "&state=" + state,
+        //            success: function () {
+        //                //window.location.href = "/MonthCard/MonthCardDetails";
+        //            }
+        //        });
+    }
+
+</script>
+<div class="parkingcenter">
+    <div class="listLayout">
+        <div class="listhead">
+            <div class="listhead_left">固定月卡</div>
+        </div>
+        <div class="pkname">
+            <div class="pkname_center">@Model.ParkName</div>
+        </div>
+        <div class="amount">
+            <div class="amount_center">@Model.Amount 元/月</div>
+        </div>
+        <div class="day">
+            <div class="day_center">剩余时间:@Model.Day<p style="float:right; font:PingFang SC; font-size:2rem; color:#FFFFFF;margin-right:2rem;">天</p></div>
+        </div>
+    </div>
+</div>
+<div class="recordinfo">
+    <div class="di">
+        <div class="listhead">
+            <div class="listhead_top">月卡类型：</div><div class="listhead_top1">固定月卡</div>
+        </div>
+        <div class="paynow"></div>
+        <div class="listhead">
+            <div class="neirong_left">车牌号</div><div class="neirong_right">@Model.LicensePlate</div>
+        </div>
+        <div class="listhead">
+            <div class="neirong_left">有效期</div><div class="neirong_right">@Model.StartTime.ToShortDateString()-@Model.EndTime.ToShortDateString()</div>
+        </div>
+        <div class="listhead">
+            <div class="neirong_left">使用范围</div><div class="neirong_right">@Model.ParkName</div>
+        </div>
+        <div class="listhead">
+            <div class="neirong_left">包月价格</div><div class="neirong_right1">@Model.Amount 元/月</div>
+        </div>
+        <div class="listhead">
+            <div class="neirong_left">使用规则</div><div class="neirong_right">限使用范围内停车场使用</div>
+        </div>
+        <div class="listhead">
+            <div class="neirong_left">其他说明</div><div class="neirong_right">无</div>
+        </div>
+    </div>
+</div>
+<div class="recordinfo">
+<div class="cardMX">
+    <a href="#" onclick="cardInfo(this,'@Model.Amount','@Model.CardID','@Model.Day','@Model.EndTime','@Model.LicensePlate','@Model.MaxMonth','@Model.MaxValue','@Model.ParkName','@Model.StartTime','@Model.State')" style="color:#FFFFFF;display:inline-block;width:100%;height:3.38rem;line-height:3.38rem;">包月续费</a>
+</div>
+</div>

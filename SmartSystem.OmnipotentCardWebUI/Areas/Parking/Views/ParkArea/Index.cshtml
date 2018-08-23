@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "车场区域管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Scripts/parking/parkingarea.js?v=1" type="text/javascript"></script>
+<script src="/Scripts/easyui/tree-searh-extend.js" type="text/javascript"></script>
+<div class="easyui-layout" style="height:500px;width:500px" fit="true">
+<div region="west" split="true" title="车场信息" style="width: 250px;">
+        <div style="margin:5px 0px 5px 5px; text-align:left">
+            <input type="text" id="txtSearchTreeContent" style="width:150px" class="my_textbox"/>&nbsp;<input type="button" style="width: 60px;height: 28px" value="搜索" class="easyui-linkbutton" onclick="btnSearchTreeContent()"/>
+        </div>
+      <ul id="parkingTree"></ul>
+</div>
+<div region="center" title="车场区域" style=" background: #eee;">
+    <table fit="true" id="tableArea"></table>
+</div>
+</div>
+
+<div id="divParkAreaBox" style="display: none">
+    <form id="divParkAreaBoxForm" class="easyui-form">
+    <div title="车场区域" style="padding: 20px;">
+        <input type="hidden" name="AreaID" id="AreaID" />
+        <input type="hidden" name="PKID" id="PKID" />
+        <table cellpadding="3" class="table_open_window_edit">
+           
+            <tr>
+                <td align="right">
+                    区域描述
+                </td>
+                <td>
+                    <input id="AreaName" name="AreaName" required="true" class="easyui-validatebox  form-control" missingmessage="区域描述不能为空" style="width: 200px" />
+                </td>
+            </tr>
+             <tr>
+                <td align="right">
+                    所属车场
+                </td>
+                <td>
+                    <input  type="text" class="form-control" id="ParkingName" name="ParkingName"  readonly="readonly" style="width: 200px"  />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    从属于
+                </td>
+                <td>
+                    <input id="MasterID" lines="true" editable="false" name="MasterID" value="0" style="width: 205px" />
+                </td>
+            </tr>
+            
+            <tr>
+                <td align="right">
+                    车位数
+                </td>
+                <td>
+                <input id="CarbitNum"  required="true" class="easyui-numberspinner  form-control" data-options="min:0" name="CarbitNum"  style="width: 205px" />
+                </td>
+            </tr>
+            <tr>
+             <td align="right">
+                    是否收费
+                </td>
+                <td>
+                     <input type="checkbox" id="ckbNeedToll" name="NeedToll" value="1" checked="checked"/>
+                </td>
+             
+            </tr>
+              <tr>
+           <td align="right">
+                    双摄像头是否等待
+                </td>
+                <td>
+                    <input type="checkbox" id="ckbTwoCameraWait" name="TwoCameraWait" value="1" checked="checked"/>
+                   <span id="spanWaitTime" style="display:none"> 等待时间 <input id="txtCameraWaitTime" name="CameraWaitTime" value="1" class="easyui-validatebox  form-control"  style="width:30px" /> 秒</span>
+                </td>
+             
+            </tr>
+            <tr>
+                <td align="right">
+                    备注
+                </td>
+                <td>
+                 <input class="easyui-textbox" data-options="multiline:true" name="Remark" style="width: 200px; height: 40px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+
